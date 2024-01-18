@@ -115,7 +115,7 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 animator.SetTrigger("isDesh");
-                //DeshCool = 0;
+                DeshCool = 0;
                 isDeshInvincible = true;
             }
         }
