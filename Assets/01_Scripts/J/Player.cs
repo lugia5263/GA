@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     public TimelineAsset[] Ta;
     Boss boss;
     TPScontroller tps;
-    StateManager stateManager;
+    public StateManager stateManager;
     MeshRenderTail meshRenderTail;
    
 
