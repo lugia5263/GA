@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     float DeshCool;
     float CurDeshCool = 8f;
     public bool isDeshInvincible;
-
+   
     float hAxis;
     float vAxis;
     Vector3 moveVec;
@@ -31,8 +31,8 @@ public class Player : MonoBehaviour
     private PlayableDirector PD;
     public TimelineAsset[] Ta;
     Boss boss;
-    TPScontroller tps;
-    StateManager stateManager;
+    public TPScontroller tps;
+    public StateManager stateManager;
     MeshRenderTail meshRenderTail;
    
 
@@ -84,17 +84,14 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isDeath != true)
-        {
             GetinPut();
             Attack();
             SkillOn();
             Death();
             Deshs();
-        }
-        
     }
 
+   
     void GetinPut()
     {
         hAxis = Input.GetAxisRaw("Horizontal");
@@ -116,6 +113,7 @@ public class Player : MonoBehaviour
             {
                 animator.SetTrigger("isDesh");
                 DeshCool = 0;
+
                 isDeshInvincible = true;
             }
         }
@@ -163,14 +161,12 @@ public class Player : MonoBehaviour
 
     public void Death()
     {
-
-        if (stateManager.hp <= 0)
+        if(stateManager.hp <= 0)
         {
             isDeath = true;
             characterController.enabled = false;
             StartCoroutine(DeathDelay());
         }
-
     }
 
     IEnumerator DeathDelay()
