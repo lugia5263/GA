@@ -84,11 +84,15 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!isDeath)
+        {
             GetinPut();
             Attack();
             SkillOn();
             Death();
             Deshs();
+        }
+            
     }
 
    
