@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
     // 룸으로 새로운 네트워크 유저가 입장했때 호출되는 콜백함수
-    public override void OnPlayerEnteredRoom(Player newPlayer)
+    public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
     {
         SetRoomInfo();
         string msg = $"\n<color=#00ff00>{newPlayer.NickName}</color> is joined room";
@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
     // 룸에서 네트워크 유저가 퇴장했때 호출되는 콜백함수
-    public override void OnPlayerLeftRoom(Player otherPlayer)
+    public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
     {
         SetRoomInfo();
         string msg = $"\n<color=#ff0000>{otherPlayer.NickName}</color> is left room";
