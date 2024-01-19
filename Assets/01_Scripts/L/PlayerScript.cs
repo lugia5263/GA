@@ -89,12 +89,21 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
 
     //void ChatterUpdate()
     //{
+<<<<<<< Updated upstream
         //chatManager.chatters = "PlayerList\n";
         //foreach (Player p in PhotonNetwork.PlayerList)
         //{
             //chatManager.chatters += p.NickName + "\n";
         //}
         //chatManager.chattingList.text = chatManager.chatters;
+=======
+    //    chatManager.chatters = "PlayerList\n";
+    //    foreach (Player p in PhotonNetwork.PlayerList)
+    //    {
+    //        chatManager.chatters += p.NickName + "\n";
+    //    }
+    //    chatManager.chattingList.text = chatManager.chatters;
+>>>>>>> Stashed changes
     //}
 
     [PunRPC]
