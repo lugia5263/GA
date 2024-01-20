@@ -3096,10 +3096,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2128965037}
-    - targetCorrespondingSourceObject: {fileID: 6851746602139634862, guid: 3964c23ae9838e84889ea6d65b5861aa,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2128965038}
   m_SourcePrefab: {fileID: 100100000, guid: 3964c23ae9838e84889ea6d65b5861aa, type: 3}
 --- !u!4 &200285574 stripped
 Transform:
@@ -4227,11 +4223,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -4833,11 +4830,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -5304,10 +5302,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1155068059}
-    - targetCorrespondingSourceObject: {fileID: 6851746602139634862, guid: 3964c23ae9838e84889ea6d65b5861aa,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1155068060}
   m_SourcePrefab: {fileID: 100100000, guid: 3964c23ae9838e84889ea6d65b5861aa, type: 3}
 --- !u!4 &341191541 stripped
 Transform:
@@ -5360,11 +5354,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -5859,11 +5854,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -9403,11 +9399,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -9864,11 +9861,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -9982,11 +9980,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -10770,11 +10769,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -11167,11 +11167,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -12214,8 +12215,9 @@ MonoBehaviour:
   enableSpawn: 0
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
-  monster1: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -12802,11 +12804,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -13945,11 +13948,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -14776,10 +14780,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1672472038}
-    - targetCorrespondingSourceObject: {fileID: 6851746602139634862, guid: 3964c23ae9838e84889ea6d65b5861aa,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1672472039}
   m_SourcePrefab: {fileID: 100100000, guid: 3964c23ae9838e84889ea6d65b5861aa, type: 3}
 --- !u!4 &829425683 stripped
 Transform:
@@ -15187,11 +15187,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -15754,11 +15755,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -15962,11 +15964,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -16648,11 +16651,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -16856,11 +16860,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -17746,11 +17751,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -18678,11 +18684,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -18886,11 +18893,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -19098,11 +19106,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -19810,11 +19819,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -20123,11 +20133,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -20256,8 +20267,9 @@ MonoBehaviour:
   enableSpawn: 0
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
-  monster1: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -20898,85 +20910,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1155068060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1155068058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enableSpawn: 0
-  spawnFloor: {fileID: 0}
-  floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
-  floor: []
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1001 &1163820772
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22313,11 +22246,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -22425,11 +22359,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -22616,11 +22551,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -23185,10 +23121,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1861644041}
-    - targetCorrespondingSourceObject: {fileID: 6851746602139634862, guid: 3964c23ae9838e84889ea6d65b5861aa,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1861644042}
   m_SourcePrefab: {fileID: 100100000, guid: 3964c23ae9838e84889ea6d65b5861aa, type: 3}
 --- !u!4 &1298369689 stripped
 Transform:
@@ -23557,7 +23489,7 @@ Transform:
   m_GameObject: {fileID: 1322770875}
   serializedVersion: 2
   m_LocalRotation: {x: -0.01815403, y: -0, z: -0, w: 0.9998352}
-  m_LocalPosition: {x: -0.00000047683716, y: 0.83000004, z: -4.440003}
+  m_LocalPosition: {x: -0.00000047683716, y: 0.83000004, z: -4.440001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24442,11 +24374,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -24834,11 +24767,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -25124,11 +25058,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -25510,11 +25445,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -25840,11 +25776,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -26327,11 +26264,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -26647,11 +26585,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -26939,11 +26878,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -27237,11 +27177,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -27658,10 +27599,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1493379606}
-    - targetCorrespondingSourceObject: {fileID: 5706971096275498080, guid: aa50862e18c864c4f86eb776cd73070c,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1493379607}
   m_SourcePrefab: {fileID: 100100000, guid: aa50862e18c864c4f86eb776cd73070c, type: 3}
 --- !u!4 &1493379605 stripped
 Transform:
@@ -27696,85 +27633,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1493379607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 793870565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enableSpawn: 0
-  spawnFloor: {fileID: 0}
-  floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
-  floor: []
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1001 &1494971019
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28041,11 +27899,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -28833,11 +28692,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -29050,11 +28910,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -29331,10 +29192,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1574056719}
-    - targetCorrespondingSourceObject: {fileID: 6851746602139634862, guid: 3964c23ae9838e84889ea6d65b5861aa,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1574056720}
   m_SourcePrefab: {fileID: 100100000, guid: 3964c23ae9838e84889ea6d65b5861aa, type: 3}
 --- !u!4 &1574056718 stripped
 Transform:
@@ -29369,85 +29226,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1574056720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 633509249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enableSpawn: 0
-  spawnFloor: {fileID: 0}
-  floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
-  floor: []
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1001 &1574788840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29589,11 +29367,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -29780,11 +29559,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -30060,11 +29840,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -30388,11 +30169,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -30864,11 +30646,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -31022,10 +30805,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1631601202}
-    - targetCorrespondingSourceObject: {fileID: 6851746602139634862, guid: 3964c23ae9838e84889ea6d65b5861aa,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1631601203}
   m_SourcePrefab: {fileID: 100100000, guid: 3964c23ae9838e84889ea6d65b5861aa, type: 3}
 --- !u!4 &1631601201 stripped
 Transform:
@@ -31060,85 +30839,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1631601203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 318952520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enableSpawn: 0
-  spawnFloor: {fileID: 0}
-  floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
-  floor: []
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1001 &1634142113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31334,10 +31034,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1933779150}
-    - targetCorrespondingSourceObject: {fileID: 5706971096275498080, guid: aa50862e18c864c4f86eb776cd73070c,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1933779151}
     - targetCorrespondingSourceObject: {fileID: 1010340590864244028, guid: aa50862e18c864c4f86eb776cd73070c,
         type: 3}
       insertIndex: -1
@@ -31490,11 +31186,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -31785,11 +31482,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -32198,11 +31896,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -32512,85 +32211,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1672472039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1672472037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enableSpawn: 0
-  spawnFloor: {fileID: 0}
-  floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
-  floor: []
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1001 &1678938361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32720,11 +32340,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -33480,10 +33101,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1740525366}
-    - targetCorrespondingSourceObject: {fileID: 6851746602139634862, guid: 3964c23ae9838e84889ea6d65b5861aa,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1740525367}
   m_SourcePrefab: {fileID: 100100000, guid: 3964c23ae9838e84889ea6d65b5861aa, type: 3}
 --- !u!4 &1740525365 stripped
 Transform:
@@ -33518,85 +33135,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1740525367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 988359975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enableSpawn: 0
-  spawnFloor: {fileID: 0}
-  floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
-  floor: []
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1001 &1747341168
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33738,11 +33276,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -34097,10 +33636,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1767203343}
-    - targetCorrespondingSourceObject: {fileID: 5706971096275498080, guid: aa50862e18c864c4f86eb776cd73070c,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1767203344}
     - targetCorrespondingSourceObject: {fileID: 1010340590864244028, guid: aa50862e18c864c4f86eb776cd73070c,
         type: 3}
       insertIndex: -1
@@ -34139,85 +33674,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1767203344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1463557304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enableSpawn: 0
-  spawnFloor: {fileID: 0}
-  floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
-  floor: []
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &1770230612 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6703871679423678342, guid: c23e31fa1d2ac1c4b808105671ec82dd,
@@ -34267,7 +33723,7 @@ Transform:
   m_GameObject: {fileID: 1773584300}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -88.6, y: -1.82, z: 105.8}
+  m_LocalPosition: {x: 0.8, y: -1.82, z: 57.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -34443,11 +33899,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -34555,11 +34012,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -35019,11 +34477,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -35131,11 +34590,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -35289,10 +34749,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1806166253}
-    - targetCorrespondingSourceObject: {fileID: 6851746602139634862, guid: 3964c23ae9838e84889ea6d65b5861aa,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1806166254}
   m_SourcePrefab: {fileID: 100100000, guid: 3964c23ae9838e84889ea6d65b5861aa, type: 3}
 --- !u!4 &1806166252 stripped
 Transform:
@@ -35327,85 +34783,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1806166254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1087682151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enableSpawn: 0
-  spawnFloor: {fileID: 0}
-  floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
-  floor: []
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1001 &1809559482
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35719,11 +35096,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -35831,11 +35209,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -36111,11 +35490,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -36211,85 +35591,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1861644042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1861644040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enableSpawn: 0
-  spawnFloor: {fileID: 0}
-  floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
-  floor: []
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1001 &1862574985
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36594,11 +35895,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -36897,11 +36199,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -37645,11 +36948,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -37882,11 +37186,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -38219,85 +37524,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1933779151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1933779149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enableSpawn: 0
-  spawnFloor: {fileID: 0}
-  floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
-  floor: []
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1001 &1942735939
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38494,11 +37720,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -38702,11 +37929,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -38910,11 +38138,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -39156,11 +38385,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -39325,10 +38555,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1993106221}
-    - targetCorrespondingSourceObject: {fileID: 5706971096275498080, guid: aa50862e18c864c4f86eb776cd73070c,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1993106222}
     - targetCorrespondingSourceObject: {fileID: 1010340590864244028, guid: aa50862e18c864c4f86eb776cd73070c,
         type: 3}
       insertIndex: -1
@@ -39367,85 +38593,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1993106222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1140103159}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enableSpawn: 0
-  spawnFloor: {fileID: 0}
-  floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
-  floor: []
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1001 &1995083571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39700,11 +38847,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -40057,11 +39205,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -40253,11 +39402,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -40606,11 +39756,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -40718,11 +39869,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -40926,11 +40078,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -41038,11 +40191,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -41229,11 +40383,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -41654,11 +40809,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -41766,11 +40922,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -42029,85 +41186,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2128965038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2128965036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enableSpawn: 0
-  spawnFloor: {fileID: 0}
-  floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
-  floor: []
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1001 &2130056750
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42237,11 +41315,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}
@@ -42529,11 +41608,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4a341091961f4aba734b7855e17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 0
+  enableSpawn: 1
   spawnFloor: {fileID: 0}
   floorRange: {fileID: 0}
-  monster: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
-  monster1: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855, type: 3}
+  monster: {fileID: 7173421539488827129, guid: 8f6bce9f5b1d9b440ae4b8f6478437dd, type: 3}
+  monster1: {fileID: 3437006692325699040, guid: d31a5d941d0457240a5d0dc0729b3e5b,
+    type: 3}
   floor: []
   enemies:
   - {fileID: 0}

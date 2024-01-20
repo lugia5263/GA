@@ -34,7 +34,7 @@ public class RespawnMonster : MonoBehaviour
 
         rangeX = Random.Range((rangeX/2) * -1, rangeX/2);
         rangeZ = Random.Range((rangeZ / 2) * -1, rangeZ / 2);
-        Vector3 RandomPos = new Vector3(rangeX, 0.5f, rangeZ);
+        Vector3 RandomPos = new Vector3(rangeX,0, rangeZ);
         Vector3 SpawnPos = originPos + RandomPos;
         return SpawnPos;
     }
@@ -44,10 +44,11 @@ public class RespawnMonster : MonoBehaviour
         {
             
             enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            if (enemies.Length < 60)
+            if (enemies.Length < 100)
             {
-                GameObject enemy = (GameObject)Instantiate(monster, RandomSpawnPosition(), Quaternion.identity);
-                GameObject enemy1 = (GameObject)Instantiate(monster, RandomSpawnPosition(), Quaternion.identity);
+                Vector3 rot = new Vector3(0, Random.Range(-10, 10), 0);
+                GameObject enemy = (GameObject)Instantiate(monster, RandomSpawnPosition(), Quaternion.Euler(rot));
+                GameObject enemy1 = (GameObject)Instantiate(monster1, RandomSpawnPosition(), Quaternion.Euler(rot));
             }
 
         }
