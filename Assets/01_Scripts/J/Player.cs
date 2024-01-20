@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    private GameObject nearObject;
+
     [Header("Move")]
     public float speed;
     public float moveSpeed = 8f;
@@ -81,6 +83,14 @@ public class Player : MonoBehaviour
        
     }
 
+    void Interation()
+    {
+        if(nearObject.tag == "Shop")
+        {
+            Shop shop = nearObject.GetComponent<Shop>();
+            shop.Enter(this);
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -251,6 +261,21 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.tag == "Shop")
+            nearObject = other.gameObject;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "Shop")
+        {
+            Shop shop = nearObject.GetComponent<Shop>();
+            shop.Exit();
+            nearObject = null;
+        }
+    }
     void Die()
     {
         isDeath = true;
