@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-    void Start()
+    public RectTransform uiGroup;
+    //public Animator anim;
+
+    Player enterPlayer;
+
+    public void Enter(Player player)
     {
-        
+        enterPlayer = player;
+        uiGroup.anchoredPosition = Vector3.zero;
     }
 
-    void Update()
+    public void Exit()
     {
-        
+        uiGroup.anchoredPosition = Vector3.down * 1000;
     }
 }
