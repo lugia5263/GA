@@ -9,18 +9,17 @@ public class RespawnMonster : MonoBehaviour
     public BoxCollider floorRange;
     public GameObject monster;
     public GameObject monster1;
-
+    
     public GameObject[] floor;
     public GameObject[] enemies;
     private void Awake()
     {
         spawnFloor = this.gameObject;
         floorRange = spawnFloor.GetComponentInChildren<BoxCollider>();
-        
     }
     void Start()
     {
-        InvokeRepeating("randomSpawn", 1, 20);
+        InvokeRepeating("randomSpawn", 10, 20);
     }
 
     Vector3 RandomSpawnPosition()
@@ -32,8 +31,8 @@ public class RespawnMonster : MonoBehaviour
         float rangeX = floorRange.bounds.size.x;
         float rangeZ = floorRange.bounds.size.z;
 
-        rangeX = Random.Range((rangeX/2) * -1, rangeX/2);
-        rangeZ = Random.Range((rangeZ / 2) * -1, rangeZ / 2);
+        rangeX = Random.Range((rangeX/4) * -1, rangeX/4);
+        rangeZ = Random.Range((rangeZ/4) * -1, rangeZ/4);
         Vector3 RandomPos = new Vector3(rangeX,0, rangeZ);
         Vector3 SpawnPos = originPos + RandomPos;
         return SpawnPos;
@@ -46,12 +45,17 @@ public class RespawnMonster : MonoBehaviour
             enemies = GameObject.FindGameObjectsWithTag("Enemy");
             if (enemies.Length < 100)
             {
-                Vector3 rot = new Vector3(0, Random.Range(-10, 10), 0);
-                GameObject enemy = (GameObject)Instantiate(monster, RandomSpawnPosition(), Quaternion.Euler(rot));
-                GameObject enemy1 = (GameObject)Instantiate(monster1, RandomSpawnPosition(), Quaternion.Euler(rot));
+                //Vector3 rot = new Vector3(0, Random.Range(-10, 10), 0);
+                GameObject enemy = (GameObject)Instantiate(monster, RandomSpawnPosition(), Quaternion.identity);
+                GameObject enemy1 = (GameObject)Instantiate(monster1, RandomSpawnPosition(), Quaternion.identity);
             }
 
         }
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        
+    }
+
 }

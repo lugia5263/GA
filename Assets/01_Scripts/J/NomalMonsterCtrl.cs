@@ -203,5 +203,10 @@ public class NomalMonsterCtrl : MonoBehaviour
             }
         }
     }
+
+    void Slowing()
+    {
+        
+    }
 }
 
