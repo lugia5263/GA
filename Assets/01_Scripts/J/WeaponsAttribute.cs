@@ -13,5 +13,9 @@ public class WeaponsAttribute  : MonoBehaviour
             {
                sm.DealDamage(other.GetComponent<StateManager>().gameObject, atkPer);
             }
+        if (other.gameObject.CompareTag("NomalMonster") && sm != null)
+        {
+            sm.DealDamage(other.GetComponent<StateManager>().gameObject, atkPer);
+        }
     }
 }
