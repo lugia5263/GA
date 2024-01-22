@@ -14,10 +14,12 @@ public class CrushSaveBall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if(Sm.hp <=0)
         {
             Instantiate(SaveZone, transform.position, transform.rotation);
             Destroy(gameObject);
         }
+        Destroy(gameObject, 15f);
     }
 }
