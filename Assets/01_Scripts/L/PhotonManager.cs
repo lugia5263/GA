@@ -4,6 +4,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
@@ -15,6 +16,9 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     // 유저명을 입력할 TextMeshPro Input Field
     public TMP_InputField inputUserID;
 
+    // 캐릭터 선택창
+    public GameObject selectPanel;
+
     // 룸 목록에 대한 데이터를 저장하기 위한 딕셔너리 자료형
     private Dictionary<string, GameObject> rooms = new Dictionary<string, GameObject>();
     // 룸 목록을 표시할 프리팹
@@ -24,6 +28,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     void Awake()
     {
+        // 캐릭선택창 끄기
+        selectPanel.SetActive(false);
         // 마스터 클라이언트의 씬 자동 동기화 옵션
         PhotonNetwork.AutomaticallySyncScene = true;
         //PhotonNetwork.IsMessageQueueRunning = false;
@@ -107,12 +113,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         {
             Debug.Log($"{player.Value.NickName} , {player.Value.ActorNumber}");
         }
-
-        if (PhotonNetwork.IsMasterClient)
-        {
-            Debug.Log("MasterClient is LoadLevel 실행");
-            PhotonNetwork.LoadLevel("Home");
-        }
     }
 
     // 룸 목록을 수신하는 콜백 함수
@@ -180,6 +180,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             LoadPlayerData(userID);
 
             JoinHome();
+
+            selectPanel.SetActive(true);
         }
     }
 
@@ -205,6 +207,15 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         PhotonNetwork.CreateRoom("Room_Home", ro);
     }
 
+    // Start버튼 누르면 실행
+    public void OnClickStartBtn()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            Debug.Log("마스터클라이언트가 start누름");
+            PhotonNetwork.LoadLevel("Home");
+        }
+    }
     #endregion
 
     #region PlayerPrefs 유저의 데이터 로딩
