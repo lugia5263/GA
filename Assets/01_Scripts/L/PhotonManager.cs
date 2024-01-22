@@ -28,8 +28,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     void Awake()
     {
-        // 캐릭선택창 끄기
-        selectPanel.SetActive(false);
         // 마스터 클라이언트의 씬 자동 동기화 옵션
         PhotonNetwork.AutomaticallySyncScene = true;
         //PhotonNetwork.IsMessageQueueRunning = false;
@@ -180,8 +178,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             LoadPlayerData(userID);
 
             JoinHome();
-
-            selectPanel.SetActive(true);
         }
     }
 
@@ -205,16 +201,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         ro.IsVisible = true;    // 로비에서 룸 목록에 노출시킬 여부
 
         PhotonNetwork.CreateRoom("Room_Home", ro);
-    }
-
-    // Start버튼 누르면 실행
-    public void OnClickStartBtn()
-    {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            Debug.Log("마스터클라이언트가 start누름");
-            PhotonNetwork.LoadLevel("Home");
-        }
     }
     #endregion
 
