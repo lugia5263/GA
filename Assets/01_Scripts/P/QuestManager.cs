@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 using SimpleJSON;
 public class QuestManager : MonoBehaviour
 {
@@ -14,6 +15,13 @@ public class QuestManager : MonoBehaviour
     public Text countTxt;
     public GameObject descriptionPanel;
 
+    Player enterPlayer;
+
+    public void Enter(Player player)
+    {
+        enterPlayer = player;
+        //uiGroup.anchoredPosition = Vector3.zero;
+    }
     private void Awake()
     {
         questNameTxt = GameObject.Find("questNameTxt").GetComponent<Text>();
