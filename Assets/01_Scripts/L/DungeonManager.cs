@@ -33,7 +33,7 @@ public class DungeonManager : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        spawnMgr.CreatePlayer();
+        //spawnMgr.CreatePlayer();
     }
 
     // Exit 버튼의 OnClick에 연결할 함수

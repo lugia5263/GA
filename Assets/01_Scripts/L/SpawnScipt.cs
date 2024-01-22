@@ -8,6 +8,11 @@ public class SpawnScipt : MonoBehaviourPunCallbacks
 {
     public GameObject[] characterPrefabs;
 
+    private void Start()
+    {
+        CreatePlayer();
+    }
+
     public void CreatePlayer()
     {
         if (PhotonNetwork.IsConnected)
