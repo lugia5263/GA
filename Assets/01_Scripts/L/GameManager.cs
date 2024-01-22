@@ -33,7 +33,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     private void OnExitClick()
     {
         PhotonNetwork.LeaveRoom();
+        SceneManager.LoadScene("Login");
     }
+
     #region 포톤 콜백함수
     // 포톤 룸에서 퇴장했을 때 호출되는 콜백함수
     public override void OnLeftRoom()
@@ -41,7 +43,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         Debug.Log("방 나가기 완료.");
         PhotonNetwork.JoinLobby();
         Debug.Log("JoinLobby 실행");
-        SceneManager.LoadScene("Login");
     }
 
     public override void OnJoinedLobby()
