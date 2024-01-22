@@ -44,7 +44,7 @@ public class Nem1Bomb : MonoBehaviour
         {
             castingTime += Time.deltaTime;
             float speed = 0.0001f;
-            bombArea.transform.localScale += new Vector3(castingTime * speed * 0.05f, 0, castingTime * speed * 0.05f);
+            bombArea.transform.localScale += new Vector3(castingTime * speed * 0.001f, 0, castingTime * speed * 0.001f);
             
 
             if (bombArea.transform.localScale.x >= size)

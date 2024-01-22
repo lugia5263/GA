@@ -30,8 +30,8 @@ public class Nem2Casting : MonoBehaviour
         while (bombArea.transform.localScale.x < size)
         {
             castingTime += Time.deltaTime;
-            float speed = 0.00001f;
-            bombArea.transform.localScale += new Vector3(castingTime * speed * 0.001f, 0, castingTime * speed * 0.001f);
+            float speed = 0.000001f;
+            bombArea.transform.localScale += new Vector3(castingTime * speed * 0.007f, 0, castingTime * speed * 0.007f);
 
 
             if (bombArea.transform.localScale.x >= size)
