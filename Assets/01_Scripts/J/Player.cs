@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+
+    [Header("Shop")]
     private GameObject nearObject;
     public int coin;
-
-
 
     [Header("Move")]
     public float speed;
