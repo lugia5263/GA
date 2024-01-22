@@ -32,40 +32,11 @@ public class Shop : MonoBehaviour
 
     void Start()
     {
-        LoadProductsFromJSON();
-        CreateItemButtons();
+        
     }
 
 
-    void LoadProductsFromJSON()
-    {
-        string filePath = Path.Combine(Application.streamingAssetsPath, "ClothesShop.json");
-
-        if (File.Exists(filePath))
-        {
-            string json = File.ReadAllText(filePath);
-            ProductList productListData = JsonUtility.FromJson<ProductList>(json);
-            productList = productListData.products;
-        }
-        else
-        {
-            Debug.LogError("Products JSON file not found!");
-        }
-    }
-
-    void CreateItemButtons()
-    {
-        foreach (Product product in productList)
-        {
-            GameObject itemButton = Instantiate(itemButtonPrefab, itemButtonParent);
-            Text buttonText = itemButton.GetComponentInChildren<Text>();
-            buttonText.text = product.name + " - $" + product.price;
-
-            Button button = itemButton.GetComponent<Button>();
-            int index = productList.IndexOf(product);
-            button.onClick.AddListener(() => SelectItem(index));
-        }
-    }
+    
 
     public void Enter(Player player)
     {
