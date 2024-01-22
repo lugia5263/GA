@@ -28,13 +28,10 @@ public class RewardMgr : MonoBehaviour
         rewardContent = GameObject.Find("RewardContent");
     }
 
-    public void QuestReward()
-    {
-
-    }
 
 
 
+            ///예제입니다. 이렇게 불러오세요!!!
     public void MakeItem(int itemIdx, int count) // n번째 아이템을 count개 얻음
     {
         InstMaterial(itemIdx, count);
@@ -49,10 +46,17 @@ public class RewardMgr : MonoBehaviour
         InstMaterial(makeidx, 1);
     } // 랜덤으로 재료 1개 얻는 버튼
 
+    public void Reward100exp3EABtn()
+    {
+        InstExp(3, 100);
+    }
 
 
 
-              // 재료소환
+
+
+
+    // 재료소환 함수
     public void InstMaterial(int n, int itemcount)
     {
 
@@ -81,7 +85,7 @@ public class RewardMgr : MonoBehaviour
     } 
 
 
-             //경험치 물약 소환
+             //경험치 물약 소환 함수
     public void InstExp(int n, int itemcount) 
     {
 
@@ -110,7 +114,7 @@ public class RewardMgr : MonoBehaviour
     } 
 
 
-             // 골드 소환
+             // 골드 소환 함수
     public void InstGOld(int itemcount)
     {
         GameObject character = Instantiate(jsonObject); // 만들거야
@@ -124,9 +128,5 @@ public class RewardMgr : MonoBehaviour
     }
 
 
-    public void Reward100exp3EABtn()
-    {
-        InstExp(3, 100);
-    }
 
 }
