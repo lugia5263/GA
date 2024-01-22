@@ -86,6 +86,11 @@ public class DungeonManager : MonoBehaviourPunCallbacks
     {
         base.OnJoinedRoom();
         Debug.Log("Room_Home¿¡ Join ¼º°ø");
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.LoadLevel("Home");
+        }
     }
 
     public override void OnDisconnected(DisconnectCause cause)
