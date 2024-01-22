@@ -181,6 +181,7 @@ public class Boss : MonoBehaviour
         {
             NvAgent.speed = 0;
             isDeath = true;
+            characterController.enabled = false;
             StartCoroutine(DeathDelay());
         }
     }
