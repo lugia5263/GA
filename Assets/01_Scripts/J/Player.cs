@@ -5,7 +5,7 @@ using UnityEngine.Playables;
 using UnityEngine.Timeline;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class Player  : MonoBehaviour
 {
 
     [Header("Shop")]
