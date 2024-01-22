@@ -34,7 +34,6 @@ public class SkillIconsManager : MonoBehaviour
             qskillIcon = GameObject.Find("SkillIconE").GetComponent<Image>();
             qskillIcon = GameObject.Find("SkillIconR").GetComponent<Image>();
         }
-
     }
 
     void Update()
@@ -50,7 +49,5 @@ public class SkillIconsManager : MonoBehaviour
         {
             Debug.Log("플레이어 못찾음");
         }
-
-
     }
 }
