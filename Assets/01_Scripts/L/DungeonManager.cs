@@ -65,11 +65,14 @@ public class DungeonManager : MonoBehaviourPunCallbacks
         base.OnJoinedLobby();
         Debug.Log("로비 입장 완료.");
         PhotonNetwork.JoinRoom("Room_Home");
+        Debug.Log("Room_Home에 Join 실행");
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
         base.OnJoinRoomFailed(returnCode, message);
+        Debug.Log("Room_Home에 Join 실패");
+
         // 룸의 속성 정의
         RoomOptions ro = new RoomOptions();
         ro.MaxPlayers = 20;     // 룸에 입장할 수 있는 최대 접속자 수
@@ -79,10 +82,16 @@ public class DungeonManager : MonoBehaviourPunCallbacks
         PhotonNetwork.CreateRoom("Room_Home", ro);
     }
 
+    public override void OnJoinedRoom()
+    {
+        base.OnJoinedRoom();
+        Debug.Log("Room_Home에 Join 성공");
+    }
+
     public override void OnDisconnected(DisconnectCause cause)
     {
         base.OnDisconnected(cause);
-        Debug.Log("재접속 실행..");
+        Debug.Log("접속끊김. 재접속 실행..");
         PhotonNetwork.ConnectUsingSettings();
     }
     #endregion
