@@ -7,28 +7,32 @@ using Photon.Pun;
 
 public class StartMgr : MonoBehaviourPunCallbacks
 {
-    public GameObject panel;
+    public GameObject selectPanel;
 
     public GameObject roomName;
     public GameObject connectInfo;
     public GameObject msgList;
     public GameObject exitBtn;
 
+    public GameObject chatBox;
+
     private void Start()
     {
-        panel.SetActive(true);
+        selectPanel.SetActive(true);
         roomName.SetActive(false);
         connectInfo.SetActive(false);
         msgList.SetActive(false);
         exitBtn.SetActive(false);
+        chatBox.SetActive(false);
     }
     public void OnClickStart()
     {
         Debug.Log("start ´­¸²");
-        panel.SetActive(false);
+        selectPanel.SetActive(false);
         roomName.SetActive(true);
         connectInfo.SetActive(true);
         msgList.SetActive(true);
         exitBtn.SetActive(true);
+        chatBox.SetActive(true);
     }
 }
