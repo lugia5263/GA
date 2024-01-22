@@ -68,6 +68,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float rotCamXAxisSpeed = 500f;
     [SerializeField] private float rotCamYAxisSpeed = 3f;
+    internal string NickName;
+
     void Start()
     {
         weapons = GetComponentInChildren<Weapons>();
