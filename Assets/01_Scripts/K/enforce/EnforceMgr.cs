@@ -35,6 +35,10 @@ public class EnforceMgr : MonoBehaviour
     public Text beforeAtkF;
     public Text afterAtkF;
 
+    [Header("업적클리어용")]
+    public int failEnforceCount;
+
+
     public int playerWeaponLv;
 
 
@@ -162,6 +166,8 @@ public class EnforceMgr : MonoBehaviour
             Debug.Log("강화 실패!");
             failweaponNowTxt.text = $"{jsonData["Enforce"][playerWeaponLv]["ForceLv"]} 단계";
             failedPanel.SetActive(true);
+            failEnforceCount++;
+            InitAtk();
         }
         yield return null;
     }
