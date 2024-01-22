@@ -17,10 +17,7 @@ public class ShaderOner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(stateManager.hp <=0 )
-        {
-            Destroy(gameObject, 9f);
-        }
+       
     }
 
     IEnumerator DeadProcess(float t)

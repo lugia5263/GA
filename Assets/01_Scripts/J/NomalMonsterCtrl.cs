@@ -164,7 +164,8 @@ public class NomalMonsterCtrl : MonoBehaviour
             transform.position = temp;
             yield return new WaitForEndOfFrame();
         }
-        //Destroy(gameObject, 9f);
+        InitEnemy();
+        gameObject.SetActive(false);
     }
 
     IEnumerator DeathDelay()
@@ -172,6 +173,22 @@ public class NomalMonsterCtrl : MonoBehaviour
         golemAnim.SetTrigger("DIE");
         golem = GOLEM.DIE;
         yield return null;
+    }
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(9f);
+        gameObject.SetActive(false);
+    }
+    void InitEnemy()
+    {
+        golemStateManager.hp = 4000f;
+        golem = GOLEM.IDLE;
+        col.enabled = true;
+        navAgent.enabled = true;
+        golemisDeath = false;
+        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+        originMesh.SetActive(true);
+        dieMesh.enabled = false;
     }
     private void OnTriggerEnter(Collider other)
     {
