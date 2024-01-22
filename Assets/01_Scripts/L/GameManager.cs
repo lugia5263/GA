@@ -34,16 +34,24 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.LeaveRoom();
     }
-
+    #region 포톤 콜백함수
     // 포톤 룸에서 퇴장했을 때 호출되는 콜백함수
     public override void OnLeftRoom()
     {
+        Debug.Log("방 나가기 완료.");
         PhotonNetwork.JoinLobby();
-        //SceneManager.LoadScene("Lobby");
+        Debug.Log("JoinLobby 실행");
+        SceneManager.LoadScene("Login");
+    }
+
+    public override void OnJoinedLobby()
+    {
+        base.OnJoinedLobby();
+        Debug.Log("로비 입장 완료.");
     }
 
     // 룸으로 새로운 네트워크 유저가 입장했때 호출되는 콜백함수
-    public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
+    public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)  
     {
         SetRoomInfo();
         string msg = $"\n<color=#00ff00>{newPlayer.NickName}</color> is joined room";
@@ -57,4 +65,5 @@ public class GameManager : MonoBehaviourPunCallbacks
         string msg = $"\n<color=#ff0000>{otherPlayer.NickName}</color> is left room";
         msgList.text += msg;
     }
+    #endregion
 }

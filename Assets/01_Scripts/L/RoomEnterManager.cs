@@ -24,19 +24,6 @@ public class RoomEnterManager : MonoBehaviourPunCallbacks
         JoinDungeon("RaidDungeon", 4); // 멀티 던전, 최대 4명 입장 가능
     }
 
-    // 방생성하거나 방참가
-    private void CreateDungeon(string dungeonType, int maxPlayers)
-    {
-        RoomOptions roomOptions = new RoomOptions();
-        roomOptions.MaxPlayers = (byte)maxPlayers;
-        roomOptions.IsOpen = true;
-        roomOptions.IsVisible = true;
-
-        roomOptions.CustomRoomProperties = new Hashtable { { "DungeonType", dungeonType }, { "MaxPlayers", maxPlayers } };
-
-        PhotonNetwork.CreateRoom(dungeonType, roomOptions, null);
-    }
-
     public void JoinDungeon(string dungeonType, int maxPlayers)
     {
         Debug.Log("던전의 타입 : " + dungeonType);
@@ -96,5 +83,6 @@ public class RoomEnterManager : MonoBehaviourPunCallbacks
     {
         dungeonPanel.SetActive(true);
         PhotonNetwork.LeaveRoom();
+        Debug.Log("방을 나갑니다..");
     }
 }
