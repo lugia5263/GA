@@ -38,7 +38,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     // 포톤 룸에서 퇴장했을 때 호출되는 콜백함수
     public override void OnLeftRoom()
     {
-        SceneManager.LoadScene("Lobby");
+        PhotonNetwork.JoinLobby();
+        //SceneManager.LoadScene("Lobby");
     }
 
     // 룸으로 새로운 네트워크 유저가 입장했때 호출되는 콜백함수
