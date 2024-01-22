@@ -16,9 +16,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     // 유저명을 입력할 TextMeshPro Input Field
     public TMP_InputField inputUserID;
 
-    // 캐릭터 선택창
-    public GameObject selectPanel;
-
     // 룸 목록에 대한 데이터를 저장하기 위한 딕셔너리 자료형
     private Dictionary<string, GameObject> rooms = new Dictionary<string, GameObject>();
     // 룸 목록을 표시할 프리팹
@@ -110,6 +107,11 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         foreach(var player in PhotonNetwork.CurrentRoom.Players)
         {
             Debug.Log($"{player.Value.NickName} , {player.Value.ActorNumber}");
+        }
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.LoadLevel("Home");
         }
     }
 
