@@ -1,11 +1,11 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 using UnityEngine.UI;
 
-public class Player  : MonoBehaviour
+public class Player : MonoBehaviour
 {
 
     [Header("Shop")]
@@ -20,7 +20,7 @@ public class Player  : MonoBehaviour
     float DeshCool;
     float CurDeshCool = 8f;
     public bool isDeshInvincible;
-   
+
     float hAxis;
     float vAxis;
     Vector3 moveVec;
@@ -39,7 +39,7 @@ public class Player  : MonoBehaviour
     public TPScontroller tps;
     public StateManager stateManager;
     MeshRenderTail meshRenderTail;
-   
+
 
     [Header("CamBat")]
     public bool isAttack;
@@ -56,7 +56,7 @@ public class Player  : MonoBehaviour
     public GameObject SkillE;
     public GameObject SkillR;
     public GameObject SkillLoding;
-    
+
     public Transform TargetPlayer;
 
     bool QisReady;
@@ -85,7 +85,7 @@ public class Player  : MonoBehaviour
         boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
         tps = GetComponentInParent<TPScontroller>();
         stateManager = GetComponent<StateManager>();
-       
+
     }
 
     //"��������"
@@ -103,7 +103,7 @@ public class Player  : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!isDeath)
+        if (!isDeath)
         {
             GetinPut();
             Attack();
@@ -112,10 +112,10 @@ public class Player  : MonoBehaviour
             Deshs();
             Interation();
         }
-            
+
     }
 
-   
+
     void GetinPut()
     {
         hAxis = Input.GetAxisRaw("Horizontal");
@@ -126,7 +126,7 @@ public class Player  : MonoBehaviour
     void Deshs()
     {
         DeshCool += Time.deltaTime;
-        if(DeshCool >= CurDeshCool)
+        if (DeshCool >= CurDeshCool)
         {
             Desh = true;
             DeshCool = CurDeshCool;
@@ -153,28 +153,28 @@ public class Player  : MonoBehaviour
             animator.SetTrigger("Attack");
             fireDelay = 0;
         }
-        if(isAttack1)
+        if (isAttack1)
         {
             isAttack3 = false;
-            if(Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(1))
             {
                 animator.SetTrigger("Smash1");
                 isAttack1 = false;
             }
         }
-        if(isAttack2)
+        if (isAttack2)
         {
             isAttack1 = false;
-            if(Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(1))
             {
                 animator.SetTrigger("Smash2");
                 isAttack2 = false;
             }
         }
-        if(isAttack3)
+        if (isAttack3)
         {
             isAttack2 = false;
-            if(Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(1))
             {
                 animator.SetTrigger("Smash3");
                 isAttack3 = false;
@@ -185,7 +185,7 @@ public class Player  : MonoBehaviour
 
     public void Death()
     {
-        if(stateManager.hp <= 0)
+        if (stateManager.hp <= 0)
         {
             isDeath = true;
             characterController.enabled = false;
@@ -200,14 +200,14 @@ public class Player  : MonoBehaviour
     }
     void SkillOn()
     {
-        Qskillcool += Time.deltaTime; 
+        Qskillcool += Time.deltaTime;
 
         if (Qskillcool >= CurQskillcool)
         {
             Qskillcool = CurQskillcool;
             QisReady = true;
         }
-            
+
         Eskillcool += Time.deltaTime;
 
         if (Eskillcool >= CurEskillcool)
@@ -223,7 +223,7 @@ public class Player  : MonoBehaviour
             RisReady = true;
         }
 
-        if(QisReady)
+        if (QisReady)
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
@@ -233,7 +233,7 @@ public class Player  : MonoBehaviour
             }
         }
 
-        if(EisReady)
+        if (EisReady)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -242,8 +242,8 @@ public class Player  : MonoBehaviour
                 EisReady = false;
             }
         }
-        
-        if(RisReady)
+
+        if (RisReady)
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
@@ -253,11 +253,11 @@ public class Player  : MonoBehaviour
             }
         }
     }
-   
+
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("DownPattern"))
+        if (other.CompareTag("DownPattern"))
         {
             if (isDeshInvincible == true)
                 return;
