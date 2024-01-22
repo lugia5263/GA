@@ -5,8 +5,13 @@ using UnityEngine.Playables;
 using UnityEngine.Timeline;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class Player  : MonoBehaviour
 {
+
+    [Header("Shop")]
+    private GameObject nearObject;
+    public int coin;
+
     [Header("Move")]
     public float speed;
     public float moveSpeed = 8f;
@@ -83,6 +88,18 @@ public class Player : MonoBehaviour
        
     }
 
+    //"��������"
+    void Interation()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftAlt) && nearObject != null && nearObject.tag == "Shop")
+        {
+            Shop shop = nearObject.GetComponent<Shop>();
+            if (shop != null)
+            {
+                shop.Enter(this);
+            }
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -93,6 +110,7 @@ public class Player : MonoBehaviour
             SkillOn();
             Death();
             Deshs();
+            Interation();
         }
             
     }
@@ -253,6 +271,22 @@ public class Player : MonoBehaviour
         }
     }
 
+    //Player ���� ���� 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Shop")
+            nearObject = other.gameObject;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Shop")
+        {
+            Shop shop = nearObject.GetComponent<Shop>();
+            shop.Exit();
+            nearObject = null;
+        }
+    }
     void Die()
     {
         isDeath = true;
