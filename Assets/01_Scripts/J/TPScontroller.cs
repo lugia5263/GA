@@ -6,10 +6,12 @@ public class TPScontroller  : MonoBehaviour
 {
     public Transform players;
     public Transform CameraArm;
-
+    Vector3 velocity;
     float DeshCool;
     float CurDeshCool = 8f;
-
+    float gravity = -9.8f;
+    public bool isJumping;
+    public bool isGrounded;
     CharacterController characterController;
     Player player;
     Animator animator;
@@ -28,7 +30,32 @@ public class TPScontroller  : MonoBehaviour
     {
         moves();
         lookAround();
+
+       if(!player.characterController.isGrounded)
+        { 
+            if(isJumping)
+            {
+                isJumping = false;
+            }
+
+            //velocity.y = 0;
+            velocity.y += gravity * Time.deltaTime;
+            player.characterController.Move(velocity * Time.deltaTime);
+        }
+       else if(isJumping)
+        {
+            isGrounded = false;
+            velocity.y += 7f;
+            player.characterController.Move(velocity * Time.deltaTime);
+        }
+
+       if(Input.GetKeyDown(KeyCode.C))
+        {
+            isJumping = true;
+        }
     }
+
+    
     void moves()
     {
       
@@ -42,7 +69,8 @@ public class TPScontroller  : MonoBehaviour
             Vector2 moveinput = new Vector2(Input.GetAxis("Horizontal") * Time.deltaTime* 1.5f, Input.GetAxis("Vertical") * Time.deltaTime* 1.5f ) ;
         bool ismove = moveinput.magnitude != 0;
         animator.SetBool("isRun", ismove);
-        
+
+
 
         if (ismove)
         {
@@ -51,16 +79,9 @@ public class TPScontroller  : MonoBehaviour
             Vector3 moveDir = lookForward * moveinput.y + lookRight * moveinput.x;
 
             players.forward = moveDir;
-            transform.position += moveDir * Time.deltaTime * 0.01f ;
-            characterController.Move(moveDir * 5f ) ;
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                transform.Translate(0, 0, Time.deltaTime * 10f);
-            }
+            transform.position += moveDir * Time.deltaTime * 0.01f;
+            characterController.Move(moveDir * 5f);
         }
-
-        
     }
     void lookAround()
     {
