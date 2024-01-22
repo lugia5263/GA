@@ -20,9 +20,13 @@ public class TrophyMgr : MonoBehaviour
         achievementContent = GameObject.Find("AchievementContent");
 
 
+        string json = txtFile.text;
+        var jsonData = JSON.Parse(json);
 
-            InstachievementContent(1);
-
+        for (int i = 1; i < jsonData["Achievement"].Count; i++) // ´ë¹Ú Â¿¾ú´Ù °­»ç´Ô ¤£¤£ ±³¼ö´Ô ¤£¤£
+        {
+            InstachievementContent(i);
+        }
 
 
     }
