@@ -57,10 +57,12 @@ public class APlayer : MonoBehaviour
 
     public GameObject skillQ;
     public GameObject skillE;
+    public GameObject eskillEff;
     public GameObject fskillR;
     public GameObject bskillR;
     public GameObject skillLoding;
 
+    public GameObject bullet;
     public GameObject rmuzzle;
     public GameObject lmuzzle;
 
@@ -181,7 +183,7 @@ public class APlayer : MonoBehaviour
 
         if (isAttack && isFireReady)
         {
-            
+
             animator.SetTrigger("Attack");
             fireDelay = 0;
         }
@@ -214,7 +216,14 @@ public class APlayer : MonoBehaviour
         }
     }
 
-
+    void LFireAttack()
+    {
+        Instantiate(bullet, lTargetPlayer.transform.position, lTargetPlayer.transform.rotation);
+    }
+    void RFireAttack()
+    {
+        Instantiate(bullet, rTargetPlayer.transform.position, rTargetPlayer.transform.rotation);
+    }
     public void Death()
     {
         if(stateManager.hp <= 0)
@@ -344,12 +353,24 @@ public class APlayer : MonoBehaviour
     {
 
         skillE.SetActive(true);
-        GameObject obj;
+        
 
-        obj = Instantiate(skillE, eskillLoding.position, eskillLoding.rotation);
-        //obj.GetComponent<WeaponsAttribute>().sm = transform.GetComponent<StateManager>();
+        StartCoroutine(eskillDelay());
+    }
+
+    IEnumerator eskillDelay()
+    {
+        yield return new WaitForSeconds(1.8f);
+        GameObject obj;
+        obj = Instantiate(eskillEff, eskillActive.position, eskillActive.rotation);
+        obj.GetComponent<WeaponsAttribute>().sm = transform.GetComponent<StateManager>();
         Destroy(obj, 2f);
     }
+
+    void Eskill_End()
+    {
+        skillE.SetActive(false);
+    }    
 
     void Skill_R()
     {
