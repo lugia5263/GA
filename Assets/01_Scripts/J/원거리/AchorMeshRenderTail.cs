@@ -18,7 +18,7 @@ public class AchorMeshRenderTail : MonoBehaviour
     public float shaderVarRefreshRate = 0.0f;
 
     private bool isTrailActive;
-    private SkinnedMeshRenderer[] skinnedMeshRenderers;
+    public SkinnedMeshRenderer[] skinnedMeshRenderers;
     void Start()
     {
         aplayer = GetComponent<APlayer>();
@@ -27,7 +27,7 @@ public class AchorMeshRenderTail : MonoBehaviour
 
     void Update()
     {
-        if (aplayer.Desh)
+        if (aplayer.desh)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -70,7 +70,7 @@ public class AchorMeshRenderTail : MonoBehaviour
         }
 
         isTrailActive = false;
-        aplayer.Desh = false;
+        aplayer.desh = false;
         aplayer.isDeshInvincible = false;
     }
 

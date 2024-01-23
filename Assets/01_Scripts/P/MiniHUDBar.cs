@@ -5,24 +5,22 @@ using UnityEngine.UI;
 
 public class MiniHUDBar : MonoBehaviour //∏ÛΩ∫≈Õ HUD 
 {
-    private StateManager stateMgr;
-    private Canvas canvas;
+    [SerializeField]
+    private StateManager stateManager;
 
     [SerializeField]
-    public Image hpFillbar;
+    Image hpFillbar;
 
-    void Awake()
+    private void Awake()
     {
-        canvas= gameObject.transform.GetComponentInChildren<Canvas>();
-        hpFillbar = canvas.transform.GetChild(0).GetChild(1).GetComponent<Image>();
-        stateMgr = this.GetComponent<StateManager>();
+        stateManager = this.GetComponent<StateManager>();
     }
 
-    void Update()
+    private void Update()
     {
-        float targetFillAmount = Mathf.InverseLerp(0, stateMgr.maxhp, stateMgr.hp);
+        float targetFillAmount = Mathf.InverseLerp(0, stateManager.maxhp, stateManager.hp);
 
-        if (hpFillbar.fillAmount > targetFillAmount)
+        if(hpFillbar.fillAmount > targetFillAmount )
         {
             hpFillbar.fillAmount -= 3f * Time.deltaTime;
             hpFillbar.fillAmount = Mathf.Max(hpFillbar.fillAmount, targetFillAmount);
