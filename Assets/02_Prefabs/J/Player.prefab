@@ -4879,8 +4879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Avatar: {fileID: 7002230151613074787, guid: 13b159f87ae9ee54690ebc15db016fef, type: 3}
-  Description: {fileID: 5240852814879768670, guid: 00000000000000000000000000000000,
-    type: 0}
+  Description: {fileID: 0}
 --- !u!95 &3522743758988556714
 Animator:
   serializedVersion: 5
@@ -4890,8 +4889,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6460208927614375049}
   m_Enabled: 1
-  m_Avatar: {fileID: 7002230151613074787, guid: 13b159f87ae9ee54690ebc15db016fef,
-    type: 3}
+  m_Avatar: {fileID: 7002230151613074787, guid: 13b159f87ae9ee54690ebc15db016fef, type: 3}
   m_Controller: {fileID: 9100000, guid: 23d78b17f9eb5d34ead91a56c8f306c4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -5126,7 +5124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e238af1a092f6bf40bd0331092266689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 2202955806870984403}
   activeTime: 0.5
   meshRefreshRate: 0.02
   positionToSpawn: {fileID: 4654286817470533598}
@@ -5147,6 +5145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9eb37695bcf887409a08920c83e2661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin: 0
   speed: 3
   moveSpeed: 3
   turn: 2
@@ -5160,6 +5159,8 @@ MonoBehaviour:
   weapons: {fileID: 0}
   Ta:
   - {fileID: 11400000, guid: 2433e2b8f6ccea14f929008f4eb8b73a, type: 2}
+  tps: {fileID: 0}
+  stateManager: {fileID: 0}
   isAttack: 0
   isAttack1: 0
   isAttack2: 0
@@ -5167,13 +5168,11 @@ MonoBehaviour:
   isFireReady: 0
   isDeath: 0
   downing: 0
-  SkillOneEffect: {fileID: 1210069404974878, guid: fbab27c98b168764eb295cfff1e9f61f,
-    type: 3}
+  SkillOneEffect: {fileID: 1210069404974878, guid: fbab27c98b168764eb295cfff1e9f61f, type: 3}
   SkillQ: {fileID: 1996079926692674, guid: fb101b1453aec9747a5ed7244075b1a2, type: 3}
   SkillE: {fileID: 1872147318604286, guid: 5bea49531fc500c408823a2e2863106f, type: 3}
   SkillR: {fileID: 1602379607235420, guid: 028b1ae485e846c4688aabad7557e474, type: 3}
-  SkillLoding: {fileID: 1236453127613114, guid: 26eb63a49b545534abe5c7fcf2bfad9e,
-    type: 3}
+  SkillLoding: {fileID: 1236453127613114, guid: 26eb63a49b545534abe5c7fcf2bfad9e, type: 3}
   TargetPlayer: {fileID: 350380202625865968}
   Qskillcool: 0
   Eskillcool: 0
@@ -8348,24 +8347,20 @@ PrefabInstance:
     - {fileID: 9500000, guid: d243a6e7c3a92d04b9dcedd1851b0c61, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 400000, guid: d243a6e7c3a92d04b9dcedd1851b0c61,
-        type: 3}
+    - targetCorrespondingSourceObject: {fileID: 400000, guid: d243a6e7c3a92d04b9dcedd1851b0c61, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6425228599406093434}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 100000, guid: d243a6e7c3a92d04b9dcedd1851b0c61,
-        type: 3}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: d243a6e7c3a92d04b9dcedd1851b0c61, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8684539352579632496}
-    - targetCorrespondingSourceObject: {fileID: 100000, guid: d243a6e7c3a92d04b9dcedd1851b0c61,
-        type: 3}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: d243a6e7c3a92d04b9dcedd1851b0c61, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8712763659791837763}
   m_SourcePrefab: {fileID: 100100000, guid: d243a6e7c3a92d04b9dcedd1851b0c61, type: 3}
 --- !u!1 &8798035570339728851 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: d243a6e7c3a92d04b9dcedd1851b0c61,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 100000, guid: d243a6e7c3a92d04b9dcedd1851b0c61, type: 3}
   m_PrefabInstance: {fileID: 8798035570339629939}
   m_PrefabAsset: {fileID: 0}
 --- !u!65 &8684539352579632496
@@ -8405,7 +8400,6 @@ MonoBehaviour:
   atkPer: 175
 --- !u!4 &8798035570340024819 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 400000, guid: d243a6e7c3a92d04b9dcedd1851b0c61,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 400000, guid: d243a6e7c3a92d04b9dcedd1851b0c61, type: 3}
   m_PrefabInstance: {fileID: 8798035570339629939}
   m_PrefabAsset: {fileID: 0}

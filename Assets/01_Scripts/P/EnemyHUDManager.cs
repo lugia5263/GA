@@ -22,7 +22,7 @@ public class EnemyHUDManager : MonoBehaviour
         stateManager = GameObject.FindGameObjectWithTag("Boss").GetComponent<StateManager>();
 
         HpSlider = GameObject.Find("EnemyHUD").GetComponent<Slider>(); //TODO: 자기가 가진 내부 슬라이더로 적용할 것!!!
-        //HpText = GameObject.Find("MainHP").GetComponent<Text>();
+        //HpText = GameObject.Find("EnemyHP").GetComponent<Text>();
         DHpBar = GameObject.Find("DecreasePBar").GetComponent<Image>();
     }
 
