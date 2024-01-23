@@ -64,6 +64,11 @@ public class InventoryManager : MonoBehaviour
         InitInventory();
         inventoryCanvas.SetActive(false);
 
+
+    }
+
+    private void Start()
+    {
         // 싱글톤 인스턴스가 이미 존재하면 현재 인스턴스를 파괴
         if (instance != null && instance != this)
         {
@@ -79,7 +84,7 @@ public class InventoryManager : MonoBehaviour
 
     private void Update() // c 눌러서 인벤토리 열기
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             if (!isInven)
             {
@@ -138,28 +143,28 @@ public class InventoryManager : MonoBehaviour
 
     public void AddMaterial() // 태그 찾기 -> 인벤토리 개수 늘리기
     {
+            for (int i = 0; i < rewardCanvas.transform.childCount; i++)
+            {
+                GameObject item = rewardCanvas.transform.GetChild(i).gameObject;
+                if (rewardCanvas.transform.GetChild(i).CompareTag("Material"))
+                {
+                    materials += item.GetComponent<ItemJsonData>().count;
+                    item.SetActive(false);
+                }
+                if (rewardCanvas.transform.GetChild(i).CompareTag("Exp"))
+                {
+                    expPotion += item.GetComponent<ItemJsonData>().count;
+                    item.SetActive(false);
+                }
+                if (rewardCanvas.transform.GetChild(i).CompareTag("Gold"))
+                {
+                    gold += item.GetComponent<ItemJsonData>().count;
+                    item.SetActive(false);
+                }
 
-        for (int i = 0; i < rewardCanvas.transform.childCount; i++)
-        {
-            GameObject item = rewardCanvas.transform.GetChild(i).gameObject;
-            if (rewardCanvas.transform.GetChild(i).CompareTag("Material"))
-            {
-                materials += item.GetComponent<ItemJsonData>().count;
-                item.SetActive(false);
-            }
-            if (rewardCanvas.transform.GetChild(i).CompareTag("Exp"))
-            {
-                expPotion += item.GetComponent<ItemJsonData>().count;
-                item.SetActive(false);
-            }
-            if (rewardCanvas.transform.GetChild(i).CompareTag("Gold"))
-            {
-                gold += item.GetComponent<ItemJsonData>().count;
-                item.SetActive(false);
-            }
-            //Destroy(item);
+       
+            //TODO: Destroy(item);
         }
-
     }
 
 
@@ -169,4 +174,6 @@ public class InventoryManager : MonoBehaviour
         InitInventory();
     }
 #endregion
+
+
 }
