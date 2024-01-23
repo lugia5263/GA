@@ -4,6 +4,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
@@ -110,7 +111,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.IsMasterClient)
         {
-            Debug.Log("MasterClient is LoadLevel 실행");
             PhotonNetwork.LoadLevel("Home");
         }
     }
@@ -204,7 +204,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
         PhotonNetwork.CreateRoom("Room_Home", ro);
     }
-
     #endregion
 
     #region PlayerPrefs 유저의 데이터 로딩

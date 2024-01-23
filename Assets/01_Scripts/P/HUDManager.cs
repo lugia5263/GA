@@ -20,24 +20,12 @@ public class HUDManager : MonoBehaviour
     //여기 함수를 피격판정에서 불러온다!
     private void Start()
     {
-        stateManager = gameObject.GetComponent<StateManager>();
-        if (stateManager.CompareTag("Player"))
-        {
+        stateManager = GameObject.FindGameObjectWithTag("Player").GetComponent<StateManager>();
+
             HpSlider = GameObject.Find("PlayerHUD").GetComponent<Slider>(); //TODO: 자기가 가진 내부 슬라이더로 적용할 것!!!
             HpText = GameObject.Find("MainHP").GetComponent<Text>();
             DHpBar = GameObject.Find("DecreasePBar").GetComponent<Image>();
-        }
-        else
-        {
-            //if (stateManager.CompareTag("Boss"))
-            //{
-                // 보스에 해당하는 것들
-            //}
-            HpSlider = GameObject.Find("EnemyHUD").GetComponent<Slider>(); //TODO: 자기가 가진 내부 슬라이더로 적용할 것!!!
-            HpText = GameObject.Find("EnemyHP").GetComponent<Text>();
-            DHpBar = GameObject.Find("DecreaseEBar").GetComponent<Image>();
-        }
-
+       
         InitHP();
     }
 
