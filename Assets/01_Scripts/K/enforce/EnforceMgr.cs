@@ -9,6 +9,8 @@ public class EnforceMgr : MonoBehaviour
     public TextAsset forcetxtFile; //Jsonfile
 
     public InventoryManager inventoryMgr;
+    public RewardMgr rewardMgr;
+    public TrophyMgr trophyMgr;
     public StateManager stateMgr;
     public Button enBtn;
 
@@ -55,6 +57,8 @@ public class EnforceMgr : MonoBehaviour
         enforcePanel = GameObject.Find("EnforcePanel");
         stateMgr = GameObject.Find("Player").GetComponent<StateManager>(); //TODO: 멀티때 신경쓰기
         inventoryMgr = GameObject.Find("InventoryMgr").GetComponent<InventoryManager>();
+        rewardMgr = GameObject.Find("RewardMgr").GetComponent<RewardMgr>();
+        trophyMgr = GameObject.Find("TrophyMgr").GetComponent<TrophyMgr>();
         wantEnforceTxt = GameObject.Find("ReallyTxt").GetComponent<Text>();
         weaponNowTxt = GameObject.Find("ReadyBefore").GetComponent<Text>();
         weaponAftTxt = GameObject.Find("ReadyAfter").GetComponent<Text>();
@@ -80,7 +84,7 @@ public class EnforceMgr : MonoBehaviour
     }
 
 
-    public void TestNPC()
+    public void TestNPC() //엔피시를 누르면 누른 대상 other을 찾고 그의 inven에서 weponLv잡아오기
     {
         OnEnforcePanel(inventoryMgr.weaponLv);
     }
@@ -155,6 +159,7 @@ public class EnforceMgr : MonoBehaviour
             stateMgr.atk += 20;
             inventoryMgr.weaponLv += 1;
             successweaponNowTxt.text = $"{jsonData["Enforce"][playerWeaponLv]["ForceLv"]} 단계";
+            trophyMgr.TrophyIndexUp(3);
             InitAtk();
         }
         else
@@ -167,8 +172,10 @@ public class EnforceMgr : MonoBehaviour
             failweaponNowTxt.text = $"{jsonData["Enforce"][playerWeaponLv]["ForceLv"]} 단계";
             failedPanel.SetActive(true);
             failEnforceCount++;
+            trophyMgr.TrophyIndexUp(4);
             InitAtk();
         }
+        trophyMgr.TrophyIndexUp(2);
         yield return null;
     }
 
