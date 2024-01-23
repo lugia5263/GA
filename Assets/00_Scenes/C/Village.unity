@@ -6510,6 +6510,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1376973028}
   m_Enabled: 1
+<<<<<<< Updated upstream
   m_Avatar: {fileID: 9000000, guid: 8f2819ec541c5ea458231eafa3b5f1ae, type: 3}
   m_Controller: {fileID: 9100000, guid: c9cabe0a881d3424caba6f4810d89bd7, type: 2}
   m_CullingMode: 1
@@ -6554,6 +6555,65 @@ Transform:
   - {fileID: 776334875}
   m_Father: {fileID: 33351986}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411dcac04aff248c4b98f1feb5595fb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_onFinish:
+    m_PersistentCalls:
+      m_Calls: []
+  playType: 0
+  animationStartTime: 0
+  animationTime: 2.0891721
+  enablePlay: 0
+  awakePlay: 1
+  lgnoreTimeScale: 1
+  randomStartValue: 0
+  startValue: 0
+  _timelineEvents: []
+  tweens:
+  - _tweenName: 
+    _tweenType: 2
+    _isSelf: 1
+    _tweenObject: {fileID: 1389205958}
+    _curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    _minAnimationTime: 0
+    _maxAnimationTime: 0.99725616
+    _minTime: 0
+    _maxTime: 2.0834398
+    _isLocal: 1
+    _fromVector: {x: 0, y: 0, z: 0}
+    _toVector: {x: 10, y: 6, z: 1}
+    _fromColor: {r: 1, g: 1, b: 1, a: 1}
+    _toColor: {r: 1, g: 1, b: 1, a: 1}
+    _fromFloat: 0
+    _toFloat: 0
+    _bezierCurve: {fileID: 0}
+>>>>>>> Stashed changes
 --- !u!4 &1394202777 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: bdd8b59fd28ade14d951aeeb4c9644d0,
