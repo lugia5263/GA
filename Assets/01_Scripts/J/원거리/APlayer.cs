@@ -342,6 +342,8 @@ public class APlayer : MonoBehaviour
     }
     void Skill_E()
     {
+
+        skillE.SetActive(true);
         GameObject obj;
 
         obj = Instantiate(skillE, eskillLoding.position, eskillLoding.rotation);
