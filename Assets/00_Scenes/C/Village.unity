@@ -4652,17 +4652,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Portal red
       objectReference: {fileID: 0}
+    - target: {fileID: 4617036660772024948, guid: 52c7d057cba585641bb68312c10d7791, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4706116037937865665, guid: 52c7d057cba585641bb68312c10d7791, type: 3}
       propertyPath: m_LocalScale.x
-      value: 12.563
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4706116037937865665, guid: 52c7d057cba585641bb68312c10d7791, type: 3}
       propertyPath: m_LocalScale.y
-      value: 7.5378
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4706116037937865665, guid: 52c7d057cba585641bb68312c10d7791, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.2563
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4706116037937865665, guid: 52c7d057cba585641bb68312c10d7791, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4790,7 +4794,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4617036660772024948, guid: 52c7d057cba585641bb68312c10d7791, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1389205959}
+      addedObject: {fileID: 1389205962}
   m_SourcePrefab: {fileID: 100100000, guid: 52c7d057cba585641bb68312c10d7791, type: 3}
 >>>>>>> DEV
 --- !u!1001 &718320665
@@ -10762,7 +10766,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4706116037937865665, guid: 52c7d057cba585641bb68312c10d7791, type: 3}
   m_PrefabInstance: {fileID: 710788042}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1389205959
+--- !u!114 &1389205962
 MonoBehaviour:
 >>>>>>> DEV
   m_ObjectHideFlags: 0
@@ -10857,7 +10861,7 @@ GameObject:
       m_Calls: []
   playType: 0
   animationStartTime: 0
-  animationTime: 2.0891721
+  animationTime: 1
   enablePlay: 0
   awakePlay: 1
   lgnoreTimeScale: 1
@@ -10894,56 +10898,16 @@ GameObject:
       m_PostInfinity: 2
       m_RotationOrder: 4
     _minAnimationTime: 0
-    _maxAnimationTime: 0.99725616
+    _maxAnimationTime: 1
     _minTime: 0
-    _maxTime: 2.0834398
+    _maxTime: 1
     _isLocal: 1
-    _fromVector: {x: 0, y: 0, z: 0}
-    _toVector: {x: 10, y: 6, z: 1}
+    _fromVector: {x: 0.5, y: 0.5, z: 0.5}
+    _toVector: {x: 10, y: 10, z: 10}
     _fromColor: {r: 1, g: 1, b: 1, a: 1}
     _toColor: {r: 1, g: 1, b: 1, a: 1}
     _fromFloat: 0
     _toFloat: 0
-    _bezierCurve: {fileID: 0}
-  - _tweenName: 
-    _tweenType: 4
-    _isSelf: 1
-    _tweenObject: {fileID: 1389205958}
-    _curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    _minAnimationTime: 0
-    _maxAnimationTime: 1
-    _minTime: 0
-    _maxTime: 2.0891721
-    _isLocal: 1
-    _fromVector: {x: 0, y: 0, z: 0}
-    _toVector: {x: 0, y: 0, z: 0}
-    _fromColor: {r: 1, g: 1, b: 1, a: 1}
-    _toColor: {r: 1, g: 1, b: 1, a: 1}
-    _fromFloat: 0
-    _toFloat: 1
     _bezierCurve: {fileID: 0}
 --- !u!4 &1394202777 stripped
 Transform:
@@ -11979,6 +11943,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 7.9999933, y: 0.50000006, z: 3.9999967}
   m_Center: {x: 0, y: -0.24999999, z: -0.000000059604645}
+--- !u!1 &1561008800
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1561008801}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1561008801
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561008800}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.4803714, y: 3.7194207, z: 13.353855}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1590768157 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 3c7d5dece75cf9845ad850601668e7d8, type: 3}
@@ -17141,4 +17136,8 @@ SceneRoots:
 >>>>>>> Stashed changes
 =======
   - {fileID: 710788042}
+<<<<<<< HEAD
 >>>>>>> DEV
+=======
+  - {fileID: 1561008801}
+>>>>>>> upstream/DEV
