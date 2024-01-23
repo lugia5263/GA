@@ -16,9 +16,9 @@ public class APlayer : MonoBehaviour
     public float speed;
     public float moveSpeed = 8f;
     public float turn;
-    public bool Desh;
-    float DeshCool;
-    float CurDeshCool = 8f;
+    public bool desh;
+    float deshCool;
+    float curDeshCool = 8f;
     public bool isDeshInvincible;
    
     float hAxis;
@@ -51,25 +51,38 @@ public class APlayer : MonoBehaviour
     public bool isDeath;
     public bool downing;
 
-    public GameObject SkillOneEffect;
-    public GameObject SkillQ;
-    public GameObject SkillE;
-    public GameObject SkillR;
-    public GameObject SkillLoding;
-    
-    public Transform TargetPlayer;
+    public GameObject rifle;
+    public GameObject rGun;
+    public GameObject lGun;
 
-    bool QisReady;
-    bool EisReady;
-    bool RisReady;
+    public GameObject skillQ;
+    public GameObject skillE;
+    public GameObject fskillR;
+    public GameObject bskillR;
+    public GameObject skillLoding;
 
-    public float Qskillcool;
-    public float Eskillcool;
-    public float Rskillcool;
+    public GameObject rmuzzle;
+    public GameObject lmuzzle;
 
-    public float CurQskillcool = 12f;
-    public float CurEskillcool = 8f;
-    public float CurRskillcool = 15f;
+    [Header("Trans")]
+    public Transform lTargetPlayer;
+    public Transform rTargetPlayer;
+    public Transform eskillLoding;
+    public Transform eskillActive;
+    public Transform rifleFtarget;
+    public Transform rifleBtarget; 
+
+    bool qisReady;
+    bool eisReady;
+    bool risReady;
+
+    public float qskillcool;
+    public float eskillcool;
+    public float rskillcool;
+
+    public float curQskillcool = 12f;
+    public float curEskillcool = 8f;
+    public float curRskillcool = 15f;
 
     [SerializeField] private float rotCamXAxisSpeed = 500f;
     [SerializeField] private float rotCamYAxisSpeed = 3f;
@@ -128,23 +141,39 @@ public class APlayer : MonoBehaviour
     }
     void Deshs()
     {
-        DeshCool += Time.deltaTime;
-        if(DeshCool >= CurDeshCool)
+        deshCool += Time.deltaTime;
+        if(deshCool >= curDeshCool)
         {
-            Desh = true;
-            DeshCool = CurDeshCool;
+            desh = true;
+            deshCool = curDeshCool;
         }
-        if (Desh)
+        if (desh)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 animator.SetTrigger("isDesh");
-                DeshCool = 0;
-                Desh = false;
+                //deshCool = 0;
                 isDeshInvincible = true;
             }
         }
     }
+
+    
+    IEnumerator LeffectDelay()
+    {
+        
+        lmuzzle.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+        lmuzzle.SetActive(false);
+    }
+    IEnumerator ReffectDelay()
+    {
+        
+        rmuzzle.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+        rmuzzle.SetActive(false);
+    }
+
     void Attack()
     {
         fireDelay += Time.deltaTime;
@@ -203,56 +232,56 @@ public class APlayer : MonoBehaviour
     }
     void SkillOn()
     {
-        Qskillcool += Time.deltaTime; 
+        qskillcool += Time.deltaTime; 
 
-        if (Qskillcool >= CurQskillcool)
+        if (qskillcool >= curQskillcool)
         {
-            Qskillcool = CurQskillcool;
-            QisReady = true;
+            qskillcool = curQskillcool;
+            qisReady = true;
         }
             
-        Eskillcool += Time.deltaTime;
+        eskillcool += Time.deltaTime;
 
-        if (Eskillcool >= CurEskillcool)
+        if (eskillcool >= curEskillcool)
         {
-            Eskillcool = CurEskillcool;
-            EisReady = true;
+            eskillcool = curEskillcool;
+            eisReady = true;
         }
-        Rskillcool += Time.deltaTime;
+        rskillcool += Time.deltaTime;
 
-        if (Rskillcool >= CurRskillcool)
+        if (rskillcool >= curRskillcool)
         {
-            Rskillcool = CurRskillcool;
-            RisReady = true;
+            rskillcool = curRskillcool;
+            risReady = true;
         }
 
-        if(QisReady)
+        if(qisReady)
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 animator.SetTrigger("SkillQ");
-                Qskillcool = 0;
-                QisReady = false;
+                qskillcool = 0;
+                qisReady = false;
             }
         }
 
-        if(EisReady)
+        if(eisReady)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
                 animator.SetTrigger("SkillE");
-                Eskillcool = 0;
-                EisReady = false;
+                eskillcool = 0;
+                eisReady = false;
             }
         }
         
-        if(RisReady)
+        if(risReady)
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
                 animator.SetTrigger("SkillR");
-                Rskillcool = 0;
-                RisReady = false;
+                rskillcool = 0;
+                risReady = false;
             }
         }
     }
@@ -303,48 +332,54 @@ public class APlayer : MonoBehaviour
     {
         downing = false;
     }
-    void SkillOneAttack()
-    {
-        GameObject obj;
-
-        obj = Instantiate(SkillOneEffect, TargetPlayer.position, TargetPlayer.rotation);
-
-        Destroy(obj, 2f);
-    }
+    
     void Skill_Q()
     {
         GameObject obj;
-
-        obj = Instantiate(SkillQ, TargetPlayer.position, TargetPlayer.rotation);
+        obj = Instantiate(skillQ, lTargetPlayer.position, lTargetPlayer.rotation);
         obj.GetComponent<WeaponsAttribute>().sm = transform.GetComponent<StateManager>();
-        Destroy(obj, 2f);
+        Destroy(obj, 1.3f);
     }
     void Skill_E()
     {
         GameObject obj;
 
-        obj = Instantiate(SkillE, TargetPlayer.position, TargetPlayer.rotation);
-        obj.GetComponent<WeaponsAttribute>().sm = transform.GetComponent<StateManager>();
+        obj = Instantiate(skillE, eskillLoding.position, eskillLoding.rotation);
+        //obj.GetComponent<WeaponsAttribute>().sm = transform.GetComponent<StateManager>();
         Destroy(obj, 2f);
     }
 
     void Skill_R()
     {
         GameObject obj;
+        GameObject objs;
 
-        obj = Instantiate(SkillR, TargetPlayer.position, TargetPlayer.rotation);
+        obj = Instantiate(fskillR, rifleFtarget.position, rifleFtarget.rotation);
+        objs = Instantiate(bskillR, rifleBtarget.position, rifleBtarget.rotation);
         obj.GetComponent<WeaponsAttribute>().sm = transform.GetComponent<StateManager>();
-        Destroy(obj, 2f);
+        Destroy(obj, 1.3f);
+        Destroy(objs, 1.3f);
 
     }
 
-    void Skill_QLoding()
+    void ActiveRifle()
     {
-        GameObject obj;
+        rifle.SetActive(true);
+    }
+    void HidingRifle()
+    {
+        rifle.SetActive(false);
+    }
 
-        obj = Instantiate(SkillLoding, TargetPlayer.position, TargetPlayer.rotation);
-
-        Destroy(obj, 2f);
+    void HandGunActive()
+    {
+        lGun.SetActive(true);
+        rGun.SetActive(true);
+    }
+    void HidingHandGun()
+    {
+        lGun.SetActive(false);
+        rGun.SetActive(false) ;
     }
 
     public void SlidingUse()
