@@ -140,7 +140,6 @@ public class Player : MonoBehaviour
             {
                 animator.SetTrigger("isDesh");
                 DeshCool = 0;
-                Desh = false;
                 isDeshInvincible = true;
             }
         }
