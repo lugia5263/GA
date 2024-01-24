@@ -26,10 +26,8 @@ public class NPCController : MonoBehaviour
         weaponPanel = GameObject.Find("WeaponPanel");
         lvPanel = GameObject.Find("LvPanel");
         clothingPanel = GameObject.Find("ClothingPanel");
-
-
     }
-
+    
     private void Start()
     {
         questPanel.SetActive(false);
@@ -76,8 +74,6 @@ public class NPCController : MonoBehaviour
             weaponPanel.SetActive(false);
             lvPanel.SetActive(false);
             clothingPanel.SetActive(false);
-
-
         }
     }
 
