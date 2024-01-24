@@ -52,9 +52,10 @@ public class RewardMgr : MonoBehaviour
 
     public void Reward100exp3EABtn()
     {
+        //앞자리 3으로 통일할게요!!!!!
+        InstExp(3, 100);
         InstMaterial(3, 200);
-        InstExp(1, 100);
-        InstGOld(100);
+        InstGOld(100); //3
     }
 
 
@@ -100,7 +101,6 @@ public class RewardMgr : MonoBehaviour
 
 
         int item = n-1; // 매개변수
-
 
         GameObject character = Instantiate(jsonObject); // 만들거야
 

@@ -40,6 +40,7 @@ public class InventoryManager : MonoBehaviour
     public int materials;
     public int gold;
 
+    [HideInInspector]
     public Image goldImage;
     public Image expImage;
     public Image materialImage;
