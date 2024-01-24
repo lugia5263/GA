@@ -30,7 +30,11 @@ public class RewardMgr : MonoBehaviour
 
 
 
+    public void clear()
+    {
 
+        InstExp(3, 100);
+    }
             ///예제입니다. 이렇게 불러오세요!!!
     public void MakeItem(int itemIdx, int count) // n번째 아이템을 count개 얻음
     {
@@ -48,7 +52,9 @@ public class RewardMgr : MonoBehaviour
 
     public void Reward100exp3EABtn()
     {
-        InstExp(3, 100);
+        InstMaterial(3, 200);
+        InstExp(1, 100);
+        InstGOld(100);
     }
 
 

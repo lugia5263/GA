@@ -22,6 +22,8 @@ public class TrophyMgr : MonoBehaviour
     #endregion
 
     public TextAsset txtFile; //Jsonfile
+    public GameObject jsonObjectD;
+    public GameObject jsonObjectW;
     public GameObject jsonObject; //Prefab (Json char 달린)
 
     public GameObject dailyContent;
@@ -56,8 +58,15 @@ public class TrophyMgr : MonoBehaviour
 
         string json = txtFile.text;
         var jsonData = JSON.Parse(json);
-
-        for (int i = 1; i < jsonData["Achievement"].Count; i++)
+        for (int i = 1; i < jsonData["DailyA"].Count + 1; i++)
+        {
+            InstDailyContent(i);
+        }
+        for (int i = 1; i < jsonData["WeekA"].Count+1; i++)
+        {
+            InstWeekContent(i);
+        }
+        for (int i = 1; i < jsonData["Achievement"].Count+1; i++)
         {
             InstachievementContent(i);
         }
@@ -76,16 +85,16 @@ public class TrophyMgr : MonoBehaviour
         int item = n - 1; // 매개변수
 
 
-        GameObject character = Instantiate(jsonObject); // 만들거야
+        GameObject character = Instantiate(jsonObjectD); // 만들거야
 
         character.transform.name = jsonData["DailyA"][item]["GoalName"]; // 오브젝트명 정의
 
-        character.GetComponent<DayWeekData>().trophyName = (jsonData["DailyA"][item]["TrophyName"]);
-        character.GetComponent<DayWeekData>().goalName = jsonData["DailyA"][item]["GoalName"];
-        character.GetComponent<DayWeekData>().goal = (int)(jsonData["DailyA"][item]["Goal"]);
+        character.GetComponent<DayQData>().trophyName = (jsonData["DailyA"][item]["TrophyName"]);
+        character.GetComponent<DayQData>().goalName = jsonData["DailyA"][item]["GoalName"];
+        character.GetComponent<DayQData>().goal = (int)(jsonData["DailyA"][item]["Goal"]);
 
-        character.GetComponent<DayWeekData>().rewardItem = (int)(jsonData["DailyA"][item]["RewardItem"]);
-        character.GetComponent<DayWeekData>().rewardCount = (int)(jsonData["DailyA"][item]["RewardCount"]);
+        character.GetComponent<DayQData>().rewardItem = (int)(jsonData["DailyA"][item]["RewardItem"]);
+        character.GetComponent<DayQData>().rewardCount = (int)(jsonData["DailyA"][item]["RewardCount"]);
 
 
         character.transform.SetParent(dailyContent.transform);
@@ -102,16 +111,16 @@ public class TrophyMgr : MonoBehaviour
         int item = n - 1; // 매개변수
 
 
-        GameObject character = Instantiate(jsonObject); // 만들거야
+        GameObject character = Instantiate(jsonObjectW); // 만들거야
 
         character.transform.name = jsonData["WeekA"][item]["GoalName"]; // 오브젝트명 정의
 
-        character.GetComponent<DayWeekData>().trophyName = (jsonData["WeekA"][item]["TrophyName"]);
-        character.GetComponent<DayWeekData>().goalName = jsonData["WeekA"][item]["GoalName"];
-        character.GetComponent<DayWeekData>().goal = (int)(jsonData["WeekA"][item]["Goal"]);
+        character.GetComponent<WeekQData>().trophyName = (jsonData["WeekA"][item]["TrophyName"]);
+        character.GetComponent<WeekQData>().goalName = jsonData["WeekA"][item]["GoalName"];
+        character.GetComponent<WeekQData>().goal = (int)(jsonData["WeekA"][item]["Goal"]);
 
-        character.GetComponent<DayWeekData>().rewardItem = (int)(jsonData["WeekA"][item]["RewardItem"]);
-        character.GetComponent<DayWeekData>().rewardCount = (int)(jsonData["WeekA"][item]["RewardCount"]);
+        character.GetComponent<WeekQData>().rewardItem = (int)(jsonData["WeekA"][item]["RewardItem"]);
+        character.GetComponent<WeekQData>().rewardCount = (int)(jsonData["WeekA"][item]["RewardCount"]);
 
 
         character.transform.SetParent(weekContent.transform);
@@ -132,7 +141,7 @@ public class TrophyMgr : MonoBehaviour
         GameObject character = Instantiate(jsonObject); // 만들거야
 
         character.transform.name = jsonData["Achievement"][item]["GoalName"]; // 오브젝트명 정의
-
+        
         character.GetComponent<TrophyJsonData>().trophyName = (jsonData["Achievement"][item]["TrophyName"]);
         character.GetComponent<TrophyJsonData>().goalName = jsonData["Achievement"][item]["GoalName"];
         character.GetComponent<TrophyJsonData>().goal = (int)(jsonData["Achievement"][item]["Goal"]);
@@ -248,12 +257,12 @@ public class TrophyMgr : MonoBehaviour
         weekPanel.SetActive(false);
         achievementPanel.SetActive(true);
     }
-    public void ChangeTrophy(int n) //1일퀘, 2주퀘, 3업적
+    public void ChangeTrophy(int n) //1일퀘, 2주퀘, 3업적 안쓸지도
     {
         string json = txtFile.text;
         var jsonData = JSON.Parse(json);
 
 
         int item = n - 1; // 매개변수
-    }
+    } 
 }
