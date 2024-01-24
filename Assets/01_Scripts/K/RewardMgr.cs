@@ -24,13 +24,18 @@ public class RewardMgr : MonoBehaviour
         imagelist = GameObject.Find("ImageList").GetComponent<ImageList>();
         var jsonitemFile = Resources.Load<TextAsset>("Json/ItemList");
         txtFile = jsonitemFile;
+
         jsonObject = Resources.Load<GameObject>("Prefabs/item");
         rewardContent = GameObject.Find("RewardContent");
     }
 
 
 
+    public void clear()
+    {
 
+        InstExp(3, 100);
+    }
             ///예제입니다. 이렇게 불러오세요!!!
     public void MakeItem(int itemIdx, int count) // n번째 아이템을 count개 얻음
     {
@@ -48,7 +53,10 @@ public class RewardMgr : MonoBehaviour
 
     public void Reward100exp3EABtn()
     {
+        //앞자리 3으로 통일할게요!!!!!
         InstExp(3, 100);
+        InstMaterial(3, 200);
+        InstGOld(100); //3
     }
 
 
@@ -94,7 +102,6 @@ public class RewardMgr : MonoBehaviour
 
 
         int item = n-1; // 매개변수
-
 
         GameObject character = Instantiate(jsonObject); // 만들거야
 
