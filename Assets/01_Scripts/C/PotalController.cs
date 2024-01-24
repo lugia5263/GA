@@ -6,51 +6,54 @@ using UnityEngine.UI;
 
 public class PotalController : MonoBehaviour
 {
-    public bool isPotal = false;
-    public GameObject potalPanel;
+    public bool isPortal = false;
+    public GameObject portalPanel;
 
-    public GameObject bigPortal;
+    public GameObject skyPortal;
 
     private void Awake()
     {
-        bigPortal = GameObject.Find("Portal red");
-        bigPortal.SetActive(false);
+        portalPanel = GameObject.Find("PortalPanel");
+        skyPortal = GameObject.Find("SkyPortal");
+        skyPortal.SetActive(false);
     }
     void Start()
     {
-        potalPanel = GameObject.Find("PortalPanel");
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Potal();
-            bigPortal.SetActive(true);
-            bigPortal.GetComponent<Jun_TweenRuntime>().Play();
+            Portal();
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            bigPortal.SetActive(false);
-            Potal();
+            Portal();
         }
     }
-    public void Potal()
+    public void Portal()
     {
-        if (isPotal == false)
+        if (isPortal == false)
         {
-            Jun_TweenRuntime[] gameObjects = potalPanel.GetComponents<Jun_TweenRuntime>();
+            Jun_TweenRuntime[] gameObjects = portalPanel.GetComponents<Jun_TweenRuntime>();
             gameObjects[0].Play();
-            isPotal = true;
+            isPortal = true;
+
+            skyPortal.SetActive(true);
+            skyPortal.GetComponent<Jun_TweenRuntime>().Play();
         }
         else
         {
-            Jun_TweenRuntime[] gameObjects = potalPanel.GetComponents<Jun_TweenRuntime>();
+            Jun_TweenRuntime[] gameObjects = portalPanel.GetComponents<Jun_TweenRuntime>();
             gameObjects[1].Play();
-            isPotal = false;
+            isPortal = false;
+
+            skyPortal.SetActive(false);
         }
     }
 }
