@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TrophyJsonData : MonoBehaviour
+public class DayWeekData : MonoBehaviour
 {
     public ImageList imagelist;
     public InventoryManager inventoryMgr;
@@ -54,23 +54,12 @@ public class TrophyJsonData : MonoBehaviour
 
     public void GetRewardBtn() // 보상 수령 버튼
     {
-<<<<<<< Updated upstream
-        if(rewardItem == 1)
-        {
-            inventoryMgr.expPotion += rewardCount;
-        }
-=======
->>>>>>> Stashed changes
         //얻었다 창 팝업
         if(rewardItem == 2) //2번은 재료
         {
             inventoryMgr.materials += rewardCount;
         }
-<<<<<<< Updated upstream
-        if (rewardItem == 3) //3번은 골드
-=======
         if (rewardItem == 3) //3번은 아이템
->>>>>>> Stashed changes
         {
             inventoryMgr.gold += rewardCount;
         }
