@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     float CurDeshCool = 8f;
     public bool isDeshInvincible;
 
+    float chargingTime;
+    float curchargingTime = 3f;
     float hAxis;
     float vAxis;
     Vector3 moveVec;
@@ -148,6 +150,7 @@ public class Player : MonoBehaviour
     }
     void Attack()
     {
+        //chargingTime += Time.deltaTime;
         fireDelay += Time.deltaTime;
         isFireReady = weapons.rate < fireDelay;
 
@@ -182,7 +185,16 @@ public class Player : MonoBehaviour
             {
                 animator.SetTrigger("Smash3");
                 isAttack3 = false;
+                //if(Input.GetMouseButton(1))
+                //{
+                    //if(chargingTime >= curchargingTime)
+                   // {
+                       // animator.SetTrigger("Charging");
+                       // isAttack3 = false;
+                   // }
+               // } 차징 스킬 구현중
             }
+
         }
     }
 
