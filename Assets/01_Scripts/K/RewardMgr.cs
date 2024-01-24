@@ -24,6 +24,7 @@ public class RewardMgr : MonoBehaviour
         imagelist = GameObject.Find("ImageList").GetComponent<ImageList>();
         var jsonitemFile = Resources.Load<TextAsset>("Json/ItemList");
         txtFile = jsonitemFile;
+
         jsonObject = Resources.Load<GameObject>("Prefabs/item");
         rewardContent = GameObject.Find("RewardContent");
     }
