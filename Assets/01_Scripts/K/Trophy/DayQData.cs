@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DayWeekData : MonoBehaviour
+public class DayQData : MonoBehaviour
 {
     public ImageList imagelist;
     public InventoryManager inventoryMgr;
