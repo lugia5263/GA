@@ -1,39 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Timeline;
+using UnityEngine.UI;
 
 public class PotalController : MonoBehaviour
 {
-    public bool isDunMenu = false;
-    public GameObject potalPanel;
+    public bool isPortal = false;
+    public GameObject portalPanel;
+
+    public GameObject skyPortal;
+
+    private void Awake()
+    {
+        portalPanel = GameObject.Find("PortalPanel");
+        skyPortal = GameObject.Find("SkyPortal");
+        skyPortal.SetActive(false);
+    }
+    void Start()
+    {
+        
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            UnitSetBtn();
+            Portal();
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            UnitSetBtn();
+            Portal();
         }
     }
-    public void UnitSetBtn()
+    public void Portal()
     {
-        if (isDunMenu == false)
+        if (isPortal == false)
         {
-            Jun_TweenRuntime[] gameObjects = potalPanel.GetComponents<Jun_TweenRuntime>();
+            Jun_TweenRuntime[] gameObjects = portalPanel.GetComponents<Jun_TweenRuntime>();
             gameObjects[0].Play();
-            isDunMenu = true;
+            isPortal = true;
+
+            skyPortal.SetActive(true);
+            skyPortal.GetComponent<Jun_TweenRuntime>().Play();
         }
         else
         {
-            Jun_TweenRuntime[] gameObjects = potalPanel.GetComponents<Jun_TweenRuntime>();
+            Jun_TweenRuntime[] gameObjects = portalPanel.GetComponents<Jun_TweenRuntime>();
             gameObjects[1].Play();
-            isDunMenu = false;
+            isPortal = false;
+
+            skyPortal.SetActive(false);
         }
     }
 }
