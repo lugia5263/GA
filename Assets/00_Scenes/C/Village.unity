@@ -2080,7 +2080,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 540009695}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ab3936478fa00244bf3f15ae50a9441, type: 3}
+  m_Script: {fileID: 11500000, guid: bd31fefcd0264484b8e4fbda1833a916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   questPanel: {fileID: 0}
@@ -2088,7 +2088,7 @@ MonoBehaviour:
   weaponPanel: {fileID: 0}
   lvPanel: {fileID: 0}
   clothingPanel: {fileID: 0}
-  introduce: "\uC637NPC"
+  introduce: 
   npcNum: 5
 --- !u!4 &554558982 stripped
 Transform:
@@ -4364,7 +4364,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 828224848}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ab3936478fa00244bf3f15ae50a9441, type: 3}
+  m_Script: {fileID: 11500000, guid: bd31fefcd0264484b8e4fbda1833a916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   questPanel: {fileID: 0}
@@ -4372,7 +4372,7 @@ MonoBehaviour:
   weaponPanel: {fileID: 0}
   lvPanel: {fileID: 0}
   clothingPanel: {fileID: 0}
-  introduce: "\uD018\uC2A4\uD2B8NPC"
+  introduce: 
   npcNum: 1
 --- !u!4 &836118512 stripped
 Transform:
@@ -5029,7 +5029,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 950925174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ab3936478fa00244bf3f15ae50a9441, type: 3}
+  m_Script: {fileID: 11500000, guid: bd31fefcd0264484b8e4fbda1833a916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   questPanel: {fileID: 0}
@@ -5037,7 +5037,7 @@ MonoBehaviour:
   weaponPanel: {fileID: 0}
   lvPanel: {fileID: 0}
   clothingPanel: {fileID: 0}
-  introduce: "\uB300\uC7A5\uC7A5\uC774NPC"
+  introduce: 
   npcNum: 3
 --- !u!1 &951394655
 GameObject:
@@ -5233,7 +5233,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 996553785}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ab3936478fa00244bf3f15ae50a9441, type: 3}
+  m_Script: {fileID: 11500000, guid: bd31fefcd0264484b8e4fbda1833a916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   questPanel: {fileID: 0}
@@ -5241,7 +5241,7 @@ MonoBehaviour:
   weaponPanel: {fileID: 0}
   lvPanel: {fileID: 0}
   clothingPanel: {fileID: 0}
-  introduce: "\uB808\uBCA8NPC"
+  introduce: 
   npcNum: 4
 --- !u!1 &1008366352
 GameObject:
@@ -7198,7 +7198,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1508173052}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ab3936478fa00244bf3f15ae50a9441, type: 3}
+  m_Script: {fileID: 11500000, guid: bd31fefcd0264484b8e4fbda1833a916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   questPanel: {fileID: 0}
@@ -7206,7 +7206,7 @@ MonoBehaviour:
   weaponPanel: {fileID: 0}
   lvPanel: {fileID: 0}
   clothingPanel: {fileID: 0}
-  introduce: "\uC5C5\uC801NPC"
+  introduce: 
   npcNum: 2
 --- !u!1 &1515869440 stripped
 GameObject:
@@ -7583,7 +7583,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-
 --- !u!1 &1634542657 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3220440682565326704, guid: 48c5715f9603c3842a353516a8baefbb, type: 3}
@@ -8340,6 +8339,7 @@ MonoBehaviour:
   CameraArm: {fileID: 1973112920}
   isJumping: 0
   isGrounded: 0
+  characterController: {fileID: 0}
 --- !u!4 &1817237459
 Transform:
   m_ObjectHideFlags: 0
@@ -9903,6 +9903,5 @@ SceneRoots:
   - {fileID: 405965505}
   - {fileID: 1736766138}
   - {fileID: 1625420936}
-
   - {fileID: 710788042}
   - {fileID: 37534406}
