@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletCtrl : MonoBehaviour
+public class BulletCtrl1 : MonoBehaviour
 {
    
     void Start()
