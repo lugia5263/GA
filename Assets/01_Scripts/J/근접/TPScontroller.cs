@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +12,7 @@ public class TPScontroller  : MonoBehaviour
     float gravity = -9.8f;
     public bool isJumping;
     public bool isGrounded;
-    CharacterController characterController;
+    public CharacterController characterController;
     Player player;
     Animator animator;
     
@@ -20,9 +20,10 @@ public class TPScontroller  : MonoBehaviour
     void Start()
     {
         animator = players.GetComponent<Animator>();
-        characterController = players.GetComponent<CharacterController>();
+        characterController = GetComponentInChildren<CharacterController>();
         player = GetComponentInChildren<Player>();
         animator = GetComponentInChildren<Animator>();
+        players = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -58,14 +59,15 @@ public class TPScontroller  : MonoBehaviour
     
     void moves()
     {
-      
+        if (player.skillUse == true)
+            return;
         if (player.isFireReady == false)
             return;
         if (player.downing == true)
             return;
         if (player.isDeath == true)
             return;
-
+  
             Vector2 moveinput = new Vector2(Input.GetAxis("Horizontal") * Time.deltaTime* 1.5f, Input.GetAxis("Vertical") * Time.deltaTime* 1.5f ) ;
         bool ismove = moveinput.magnitude != 0;
         animator.SetBool("isRun", ismove);

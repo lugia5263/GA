@@ -7,6 +7,7 @@ public class NomalMonsterWeapons : MonoBehaviour
     public StateManager sm;
     public float atkPer;
     public Player player;
+  
 
     private void Start()
     {
