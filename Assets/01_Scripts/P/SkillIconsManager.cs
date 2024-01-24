@@ -40,9 +40,9 @@ public class SkillIconsManager : MonoBehaviour
     {
         if(player != null)
         {
-            coolTImeFillQ.fillAmount = player.Qskillcool / player.CurQskillcool;
-            coolTImeFillE.fillAmount = player.Eskillcool / player.CurEskillcool;
-            coolTImeFillR.fillAmount = player.Rskillcool / player.CurRskillcool;
+            coolTImeFillQ.fillAmount = player.qskillcool / player.curQskillcool;
+            coolTImeFillE.fillAmount = player.eskillcool / player.curEskillcool;
+            coolTImeFillR.fillAmount = player.rskillcool / player.curRskillcool;
 
         }
         else

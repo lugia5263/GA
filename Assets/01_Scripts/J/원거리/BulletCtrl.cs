@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletCtrl : MonoBehaviour
 {
-    // Start is called before the first frame update
+   
     void Start()
     {
         
@@ -13,6 +13,7 @@ public class BulletCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.forward * 2f);
+        transform.Translate(Vector3.forward * 0.5f);
+        Destroy(gameObject, 0.4f);
     }
 }
