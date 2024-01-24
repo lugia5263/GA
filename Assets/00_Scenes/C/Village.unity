@@ -779,9 +779,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1686918803843648921, guid: 68c5d04241c6e6145a9f606972fda722, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1909916242011391303, guid: 68c5d04241c6e6145a9f606972fda722, type: 3}
       propertyPath: m_Name
       value: ChHouse
+      objectReference: {fileID: 0}
+    - target: {fileID: 2625441376525723909, guid: 68c5d04241c6e6145a9f606972fda722, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3045465521313148203, guid: 68c5d04241c6e6145a9f606972fda722, type: 3}
       propertyPath: m_LocalPosition.x
@@ -830,6 +838,34 @@ PrefabInstance:
     - target: {fileID: 7593831624177325710, guid: 68c5d04241c6e6145a9f606972fda722, type: 3}
       propertyPath: m_LocalPosition.z
       value: -4.440001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7811883723134409384, guid: 68c5d04241c6e6145a9f606972fda722, type: 3}
+      propertyPath: mat
+      value: 
+      objectReference: {fileID: 2100000, guid: 45005fb9a3f0af84081bb0cdbe4e506f, type: 2}
+    - target: {fileID: 7811883723134409384, guid: 68c5d04241c6e6145a9f606972fda722, type: 3}
+      propertyPath: shaderVarRef
+      value: _Alpha
+      objectReference: {fileID: 0}
+    - target: {fileID: 7811883723134409384, guid: 68c5d04241c6e6145a9f606972fda722, type: 3}
+      propertyPath: shaderVarRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7811883723134409384, guid: 68c5d04241c6e6145a9f606972fda722, type: 3}
+      propertyPath: meshRefreshRate
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 7811883723134409384, guid: 68c5d04241c6e6145a9f606972fda722, type: 3}
+      propertyPath: positionToSpawn
+      value: 
+      objectReference: {fileID: 1233235657}
+    - target: {fileID: 7811883723134409384, guid: 68c5d04241c6e6145a9f606972fda722, type: 3}
+      propertyPath: meshDestroyDelay
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7811883723134409384, guid: 68c5d04241c6e6145a9f606972fda722, type: 3}
+      propertyPath: shaderVarRefreshRate
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5197,6 +5233,11 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!4 &1233235657 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7453308461565334586, guid: 68c5d04241c6e6145a9f606972fda722, type: 3}
+  m_PrefabInstance: {fileID: 153988120}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1237739836 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: f98d0f97a920741499853e1e86a88ced, type: 3}
