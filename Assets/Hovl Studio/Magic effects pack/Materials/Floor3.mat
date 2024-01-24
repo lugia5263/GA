@@ -32,11 +32,28 @@ Material:
   - _METALLICGLOSSMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
+<<<<<<< HEAD:Assets/Tiny_Toony_City_Demo/Meshes/Materials/Car_B1-M_Cars.mat
+<<<<<<< HEAD:Assets/Tiny_Toony_City_Demo/Meshes/Materials/Car_B1-M_Cars.mat
+=======
+>>>>>>> upstream/DEV:Assets/Hovl Studio/Magic effects pack/Materials/Floor3.mat
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap:
     RenderType: Opaque
   disabledShaderPasses: []
+<<<<<<< HEAD:Assets/Tiny_Toony_City_Demo/Meshes/Materials/Car_B1-M_Cars.mat
+=======
+  m_DoubleSidedGI: 1
+  m_CustomRenderQueue: 3000
+  stringTagMap:
+    RenderType: Transparent
+  disabledShaderPasses:
+  - GRABPASS
+  - DepthOnly
+  - SHADOWCASTER
+>>>>>>> upstream/DEV:Assets/03_MyAssets/Hovl Studio/Magic effects pack/Materials/Stone.mat
+=======
+>>>>>>> upstream/DEV:Assets/Hovl Studio/Magic effects pack/Materials/Floor3.mat
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -110,6 +127,31 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
+<<<<<<< HEAD:Assets/Tiny_Toony_City_Demo/Meshes/Materials/Car_B1-M_Cars.mat
+<<<<<<< HEAD:Assets/Tiny_Toony_City_Demo/Meshes/Materials/Car_B1-M_Cars.mat
+    - _DstBlend: 0
+    - _DstBlendAlpha: 0
+    - _EnvironmentReflections: 1
+    - _GlossMapScale: 0
+    - _Glossiness: 0
+    - _GlossyReflections: 0
+=======
+    - _DistortionBlend: 0.5
+    - _DistortionEnabled: 0
+    - _DistortionStrength: 1
+    - _DistortionStrengthScaled: 0
+    - _DstBlend: 10
+    - _DstBlendAlpha: 10
+    - _EmissionEnabled: 0
+    - _FlipbookBlending: 0
+    - _FlipbookMode: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _LightingEnabled: 0
+>>>>>>> upstream/DEV:Assets/03_MyAssets/Hovl Studio/Magic effects pack/Materials/Stone.mat
+    - _Metallic: 0
+=======
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
@@ -118,6 +160,7 @@ Material:
     - _GlossyReflections: 1
     - _Metallic: 1
     - _Mode: 0
+>>>>>>> upstream/DEV:Assets/Hovl Studio/Magic effects pack/Materials/Floor3.mat
     - _OcclusionStrength: 1
     - _Parallax: 0.073
     - _QueueOffset: 0
@@ -127,6 +170,26 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
+<<<<<<< HEAD:Assets/Tiny_Toony_City_Demo/Meshes/Materials/Car_B1-M_Cars.mat
+<<<<<<< HEAD:Assets/Tiny_Toony_City_Demo/Meshes/Materials/Car_B1-M_Cars.mat
+    - _Surface: 0
+    - _WorkflowMode: 1
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+=======
+    - _Surface: 1
+    - _UVSec: 0
+    - _ZWrite: 0
+    m_Colors:
+    - _BaseColor: {r: 4.7547174, g: 4.7547174, b: 4.7547174, a: 1}
+    - _BaseColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
+    - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
+    - _Color: {r: 4.754718, g: 4.754718, b: 4.754718, a: 1}
+    - _ColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
+>>>>>>> upstream/DEV:Assets/03_MyAssets/Hovl Studio/Magic effects pack/Materials/Stone.mat
+=======
     - _Surface: 0
     - _UVSec: 0
     - _WorkflowMode: 1
@@ -134,6 +197,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 0.4313725, g: 0.4313725, b: 0.58431375, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+>>>>>>> upstream/DEV:Assets/Hovl Studio/Magic effects pack/Materials/Floor3.mat
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
