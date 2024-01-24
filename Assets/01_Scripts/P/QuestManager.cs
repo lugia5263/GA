@@ -13,13 +13,27 @@ public class QuestManager : MonoBehaviour
     public Text questNameTxt;
     public Text goalNameTxt;
     public Text countTxt;
+    public Image questRewards;
     public GameObject descriptionPanel;
 
-    Player enterPlayer;
+    public int acceptIdx;
+
+    [Header("퀘스트팝업")]
+    public GameObject questPopUpPanel;
+    public Text questGoalTxt;
+    public Text questCountTxt;
+    public int questCurCount;
+    //public int questMaxCount;
+
+    //[Header("퀘스트 보상목록 표시")]
+    //public Image 
+
+
+    //Player enterPlayer;
 
     public void Enter(Player player)
     {
-        enterPlayer = player;
+        //enterPlayer = player;
         //uiGroup.anchoredPosition = Vector3.zero;
     }
     private void Awake()
@@ -27,11 +41,14 @@ public class QuestManager : MonoBehaviour
         questNameTxt = GameObject.Find("questNameTxt").GetComponent<Text>();
         goalNameTxt = GameObject.Find("goalNameTxt").GetComponent<Text>();
         countTxt = GameObject.Find("countTxt").GetComponent<Text>();
+        questRewards = GameObject.Find("QuestRewards").GetComponent<Image>();
         descriptionPanel.SetActive(false);
     }
     void Start()
     {
-
+        questPopUpPanel = GameObject.Find("QuestPopUp");
+        questGoalTxt = GameObject.Find("GoalTxt").GetComponent<Text>();
+        questCountTxt = GameObject.Find("CountTxt").GetComponent <Text>();
 
     }
 
@@ -41,15 +58,15 @@ public class QuestManager : MonoBehaviour
         string json = txtFile.text;
         var jsonData = JSON.Parse(json); //var의 의미: Unity외의 파일을 다가져온다.
 
-        int item = n; //매개변수
+        int item = n-1; //매개변수
 
         //GameObject character = Instantiate(jsonObject);
 
 
-        questNameTxt.text = (jsonData["시트1"][n]["QuestName"]);
-        goalNameTxt.text = (jsonData["시트1"][n]["Goal"]);
-        countTxt.text = (jsonData["시트1"][n]["Count"]);
-
+        questNameTxt.text = (jsonData["Quest"][item]["QuestName"]);
+        goalNameTxt.text = (jsonData["Quest"][item]["Goal"]);
+        countTxt.text = (jsonData["Quest"][item]["Count"]);
+        acceptIdx = n;
 
         #region
         //character.transform.name = (jsonData["시트1"][n]["QuestName"]);
@@ -63,9 +80,18 @@ public class QuestManager : MonoBehaviour
         #endregion
     }
 
-
-    void Update()
+    public void AcceptQuestBtn()
     {
-        
+        ReceiveQuest(acceptIdx);
+    }
+    public void ReceiveQuest(int n)
+    {
+        Debug.Log("Tlqkf");
+        string json = txtFile.text;
+        var jsonData = JSON.Parse(json); //var의 의미: Unity외의 파일을 다가져온다.
+        int item = n-1;
+
+        questGoalTxt.text = (jsonData["Quest"][item]["Goal"]);
+        questCountTxt.text = $"({questCurCount} / {(jsonData["Quest"][item]["Count"])})";
     }
 }

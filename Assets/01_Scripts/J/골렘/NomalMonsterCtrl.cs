@@ -37,8 +37,8 @@ public class NomalMonsterCtrl : MonoBehaviour
     {
         golem = GOLEM.IDLE;
         golemAnim = GetComponent<Animator>();
-        targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        navAgent = GetComponent<NavMeshAgent>();
+        targetPlayer = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        navAgent = GetComponent<NavMeshAgent>(); 
         col = GetComponent<CapsuleCollider>();
         golemStateManager = GetComponent<StateManager>();
         originMesh.SetActive(true);

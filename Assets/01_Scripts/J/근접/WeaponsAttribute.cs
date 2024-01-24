@@ -7,6 +7,11 @@ public class WeaponsAttribute  : MonoBehaviour
     public StateManager sm;
     public float atkPer;
 
+    private void Start()
+    {
+        sm = GameObject.FindGameObjectWithTag("Player").GetComponent<StateManager>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Boss") && sm != null)
