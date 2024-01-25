@@ -15,20 +15,24 @@ public class TPScontroller  : MonoBehaviour
     public CharacterController characterController;
     Player player;
     Animator animator;
-    
-    
+
+
     void Start()
     {
+        players = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         animator = players.GetComponent<Animator>();
         characterController = GetComponentInChildren<CharacterController>();
         player = GetComponentInChildren<Player>();
         animator = GetComponentInChildren<Animator>();
-        players = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        player = GetComponentInChildren<Player>();
+        
+       
     }
 
     // Update is called once per frame
     void Update()
     {
+        players = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         moves();
         lookAround();
 

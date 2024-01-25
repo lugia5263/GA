@@ -52,7 +52,7 @@ public class InventoryManager : MonoBehaviour
     private void Awake()
     {
         Transform tr = transform.GetChild(0).GetChild(0).GetChild(1);
-        stateMgr = GameObject.Find("Player").GetComponent<StateManager>();//TODO: 
+        stateMgr = GameObject.FindGameObjectWithTag("Player").GetComponent<StateManager>();//TODO: 
         rewardCanvas = GameObject.Find("RewardContent").gameObject;//TODO:
         inventoryCanvas = GameObject.Find("InventoryCanvas").gameObject;
         goldImage = tr.Find("item_gold").GetComponent<Image>();
