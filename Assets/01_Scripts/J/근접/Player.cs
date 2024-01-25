@@ -62,12 +62,15 @@ public class Player : MonoBehaviour
     [Header("Guns or Object")]
     public GameObject[] ob;
 
-    public bool skillUse;
-    bool qisReady;
-    bool eisReady;
-    bool risReady;
+    [Header("Skill CoolTime")]
+    public Image[] skillIcon;
 
-    public float qskillcool; 
+    public bool skillUse;
+    public bool qisReady;
+    public bool eisReady;
+    public bool risReady;
+
+    public float qskillcool;
     public float eskillcool;
     public float rskillcool;
 
@@ -79,7 +82,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float rotCamYAxisSpeed = 3f;
     internal string NickName;
 
-    void Start()
+    void Awake()
     {
         isFireReady = true;
         weapons = GetComponentInChildren<Weapons>();
@@ -92,7 +95,16 @@ public class Player : MonoBehaviour
         }
         tps = GetComponentInParent<TPScontroller>();
         stateManager = GetComponent<StateManager>();
+        skillIcon[0] = GameObject.Find("CoolTimeBGQ").GetComponent<Image>();
+        skillIcon[1] = GameObject.Find("CoolTimeBGE").GetComponent<Image>();
+        skillIcon[2] = GameObject.Find("CoolTimeBGR").GetComponent<Image>();
+    }
 
+    private void Start()
+    {
+        skillIcon[0].fillAmount = 0;
+        skillIcon[1].fillAmount = 0;
+        skillIcon[2].fillAmount = 0;
     }
 
     //"��������"
@@ -118,6 +130,7 @@ public class Player : MonoBehaviour
             Death();
             Deshs();
             Interation();
+            SkillCoolTime();
         }
 
     }
@@ -148,6 +161,24 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    void SkillCoolTime()
+    {
+        if (!qisReady)
+        {
+            skillIcon[0].fillAmount = 1 - qskillcool /curQskillcool;
+        }
+        if (!eisReady)
+        {
+            skillIcon[1].fillAmount = 1 - eskillcool / curEskillcool;
+        }
+        if (!risReady)
+        {
+            skillIcon[2].fillAmount = 1 - rskillcool / curRskillcool;
+        }
+    }
+
+
     void Attack()
     {
         //chargingTime += Time.deltaTime;
