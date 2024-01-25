@@ -10,6 +10,8 @@ public class SpawnScipt : MonoBehaviourPunCallbacks
 
     public void CreatePlayer()
     {
+        PhotonNetwork.AutomaticallySyncScene = true;
+
         if (PhotonNetwork.IsConnected)
         {
             Transform[] points = GameObject.Find("SpawnPointGroup").GetComponentsInChildren<Transform>();
