@@ -95,9 +95,9 @@ public class Player : MonoBehaviour
         }
         tps = GetComponentInParent<TPScontroller>();
         stateManager = GetComponent<StateManager>();
-        skillIcon[0] = GameObject.Find("CoolTimeBGQ").GetComponent<Image>();
-        skillIcon[1] = GameObject.Find("CoolTimeBGE").GetComponent<Image>();
-        skillIcon[2] = GameObject.Find("CoolTimeBGR").GetComponent<Image>();
+        //skillIcon[0] = GameObject.Find("CoolTimeBGQ").GetComponent<Image>();
+        //skillIcon[1] = GameObject.Find("CoolTimeBGE").GetComponent<Image>();
+        //skillIcon[2] = GameObject.Find("CoolTimeBGR").GetComponent<Image>();
     }
 
     private void Start()
@@ -130,7 +130,7 @@ public class Player : MonoBehaviour
             Death();
             Deshs();
             Interation();
-            SkillCoolTime();
+            //SkillCoolTime();
         }
 
     }
@@ -414,6 +414,23 @@ public class Player : MonoBehaviour
         obj.GetComponent<WeaponsAttribute>().sm = transform.GetComponent<StateManager>();
         Destroy(obj, 1.3f);
         Destroy(objs, 1.3f);
+    }
+
+    IEnumerator M_SkillQ()
+    {
+        Skill[0].SetActive(true);
+        yield return new WaitForSeconds(4f);
+        Skill[0].SetActive(false);
+    }
+
+    void M_SkillE()
+    {
+
+    }
+
+    void M_SkillR()
+    {
+
     }
 
     void ActiveRifle()
