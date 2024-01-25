@@ -37,7 +37,7 @@ public class RoomData : MonoBehaviour
     void OnEnterRoom(string roomName)
     {
         // 유저명 설정
-        photonManager.SetUserId();
+        //photonManager.SetUserId();
         // 룸 접속
         PhotonNetwork.JoinRoom(roomName);
     }

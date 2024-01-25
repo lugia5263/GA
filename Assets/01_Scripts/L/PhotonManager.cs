@@ -10,35 +10,26 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 {
     // 게임의 버전
     private readonly string version = "1.0";
-    // 유저의 닉네임
-    private string userId = "Zack";
-    
-    // 유저명을 입력할 TextMeshPro Input Field
-    public TMP_InputField inputUserID;
 
     // 룸 목록에 대한 데이터를 저장하기 위한 딕셔너리 자료형
     private Dictionary<string, GameObject> rooms = new Dictionary<string, GameObject>();
     // 룸 목록을 표시할 프리팹
     private GameObject roomItemPrefab;
-    // RoomItem 프리팹이 추가될 ScrollContent
-    //public Transform scrollContent;
+
+    public LoadPlayerInfo loadPlayerInfo;
 
     void Awake()
     {
         // 마스터 클라이언트의 씬 자동 동기화 옵션
         PhotonNetwork.AutomaticallySyncScene = true;
-        //PhotonNetwork.IsMessageQueueRunning = false;
 
         // 게임 버전 설정
         PhotonNetwork.GameVersion = version;
-        // 접속 유저의 닉네임 설정
-        // PhotonNetwork.NickName = userId;
+
+        loadPlayerInfo = GameObject.Find("LoadPlayerInfo").GetComponent<LoadPlayerInfo>();
 
         // 포톤 서버와의 데이터의 초당 전송 횟수
         Debug.Log(PhotonNetwork.SendRate);
-
-        // RoomItem 프리팹 로드
-        //roomItemPrefab = Resources.Load<GameObject>("RoomItem");
 
         // 포톤 서버 접속
         if (PhotonNetwork.IsConnected == false)
@@ -53,22 +44,23 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     }
 
     // 유저명을 설정하는 로직
-    public void SetUserId()
-    {
-        if (string.IsNullOrEmpty(inputUserID.text))
-        {
-            userId = $"USER_{Random.Range(1,21):00}";
-        }
-        else
-        {
-            userId = inputUserID.text;
-        }
+    //public void SetUserId()
+    //{
+    //    if (string.IsNullOrEmpty(inputUserID.text))
+    //    {
+    //        userId = $"USER_{Random.Range(1,21):00}";
+    //    }
+    //    else
+    //    {
+    //        userId = inputUserID.text;
+    //    }
 
-        // 유저명 저장
-        PlayerPrefs.SetString("USER_ID", userId);
-        // 접속 유저의 닉네임 등록
-        PhotonNetwork.NickName = userId;
-    }
+    //    // 유저명 저장
+    //    LoadPlayerInfo.
+    //    // 접속 유저의 닉네임 등록
+    //    PhotonNetwork.NickName = userId;
+    //}
+
     #region 포톤 콜백 함수
     // 포톤 서버에 접속 후 호출되는 콜백 함수
     public override void OnConnectedToMaster()
@@ -86,7 +78,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
-        Debug.Log($"JoinRandom Filed {returnCode}:{message}");
+        Debug.Log($"JoinRoom Filed {returnCode}:{message}");
         // 룸을 생성하는 함수 실행
         MakeHome();
     }
@@ -162,40 +154,21 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     #endregion
 
     #region UI_BUTTON_EVENT
-    // 로그인 버튼 누르면 실행
-    public void OnClickLoginBtn() 
+    public void OnClickStartBtn()
     {
-        if (inputUserID == null || string.IsNullOrEmpty(inputUserID.text))
-        {
-            Debug.Log("UserID를 입력하세요");
-        }
-        else
-        {
-            string userID = inputUserID.text;
-
-            // PlayerPrefs에 userID 저장
-            PlayerPrefs.SetString("UserID", userID);
-            PlayerPrefs.Save();
-
-            LoadPlayerData(userID);
-
-            JoinHome();
-        }
+        JoinHome();
     }
 
     public void JoinHome()
     {
         // 유저명 저장
-        SetUserId();
+        //SetUserId();
 
         PhotonNetwork.JoinRoom("Room_Home");
     }
 
     public void MakeHome()
     {
-        // 유저명 저장
-        SetUserId();
-
         // 룸의 속성 정의
         RoomOptions ro = new RoomOptions();
         ro.MaxPlayers = 20;     // 룸에 입장할 수 있는 최대 접속자 수
@@ -203,46 +176,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         ro.IsVisible = true;    // 로비에서 룸 목록에 노출시킬 여부
 
         PhotonNetwork.CreateRoom("Room_Home", ro);
-    }
-    #endregion
-
-    #region PlayerPrefs 유저의 데이터 로딩
-    void LoadPlayerData(string userID)
-    {
-        if (PlayerPrefs.HasKey(userID))
-        {
-            LoadExistingPlayerData(userID);
-        }
-        else
-        {
-            CreateDefaultPlayerData(userID);
-        }
-    }
-
-    // 기존 플레이어 데이터 로딩
-    void LoadExistingPlayerData(string userID)
-    {
-        string playerName = PlayerPrefs.GetString("PlayerName", userID);
-        int playerLevel = PlayerPrefs.GetInt("PlayerLevel", 1); // 나중에 변수추가해서 성장한만큼 변수에 저장하게끔..
-        int playerAtk = PlayerPrefs.GetInt(userID + "_PlayerAtk", 10);
-
-        Debug.Log("존재하는 유저의 userID : " + userID);
-        Debug.Log("존재하는 유저의 level : " + playerLevel); // 나중에 변수추가해서 성장한만큼 변수에 저장한걸 출력하게끔..
-        Debug.Log("존재하는 유저의 공격력: " + playerAtk);
-    }
-
-    // Default 플레이어 데이터 생성
-    void CreateDefaultPlayerData(string userID)
-    {
-        // 예시로 대충 1레벨일때의 능력치.. 실제로 만들때 초기화하기
-        int defaultLevel = 1;
-        int defaultAtk = 10;
-
-        PlayerPrefs.SetInt(userID, defaultLevel);
-        PlayerPrefs.SetInt(userID, defaultAtk);
-        PlayerPrefs.Save();
-
-        Debug.Log("처음만든 userID: " + userID + ", 시작 레벨 : " + defaultLevel + ", 시작 공격력 : " + defaultAtk);
     }
     #endregion
 }
