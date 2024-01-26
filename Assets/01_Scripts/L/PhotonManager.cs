@@ -5,6 +5,8 @@ using Photon.Realtime;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Firebase.Firestore;
+using Firebase.Extensions;
 
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
@@ -18,6 +20,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     public LoadPlayerInfo loadPlayerInfo;
 
+    public int slotNum;
+
     void Awake()
     {
         // 마스터 클라이언트의 씬 자동 동기화 옵션
@@ -29,7 +33,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         loadPlayerInfo = GameObject.Find("LoadPlayerInfo").GetComponent<LoadPlayerInfo>();
 
         // 포톤 서버와의 데이터의 초당 전송 횟수
-        Debug.Log(PhotonNetwork.SendRate);
+        //Debug.Log(PhotonNetwork.SendRate);
 
         // 포톤 서버 접속
         if (PhotonNetwork.IsConnected == false)
@@ -163,7 +167,23 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         // 유저명 저장
         //SetUserId();
-
+        //loadPlayerInfo.LoadNickName(nickName);
+        slotNum = SelectSlot.slotNum;
+        Debug.Log("SlotNum : "+slotNum);
+        switch (slotNum)
+        {
+            case 0:
+                PhotonNetwork.NickName = loadPlayerInfo.slot1Text[0].text;
+                break;
+            case 1:
+                PhotonNetwork.NickName = loadPlayerInfo.slot2Text[0].text;
+                break;
+            case 2:
+                PhotonNetwork.NickName = loadPlayerInfo.slot3Text[0].text;
+                break;
+            default:
+                break;
+        }
         PhotonNetwork.JoinRoom("Room_Home");
     }
 

@@ -235,6 +235,18 @@ MonoBehaviour:
   nickNameTxt: {fileID: 1838937866}
   classNameTxt: {fileID: 1891901141}
   levelTxt: {fileID: 258266156}
+  slot1Text:
+  - {fileID: 1838937866}
+  - {fileID: 1891901141}
+  - {fileID: 258266156}
+  slot2Text:
+  - {fileID: 1020533768}
+  - {fileID: 1276962913}
+  - {fileID: 1594062004}
+  slot3Text:
+  - {fileID: 1372859793}
+  - {fileID: 919907096}
+  - {fileID: 1546437511}
   characterCreate: {fileID: 1811083770}
 --- !u!4 &143646753
 Transform:
@@ -667,7 +679,7 @@ GameObject:
   - component: {fileID: 258266157}
   - component: {fileID: 258266156}
   m_Layer: 5
-  m_Name: levelTxt
+  m_Name: slot1_levelTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1272,10 +1284,10 @@ RectTransform:
   - {fileID: 1546437510}
   m_Father: {fileID: 1431401884}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1100, y: -360}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &446471807
 MonoBehaviour:
@@ -2988,7 +3000,7 @@ GameObject:
   - component: {fileID: 919907097}
   - component: {fileID: 919907096}
   m_Layer: 5
-  m_Name: classTxt
+  m_Name: slot3_classTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3240,10 +3252,10 @@ RectTransform:
   - {fileID: 258266155}
   m_Father: {fileID: 1431401884}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 260, y: -360}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &997102000
 MonoBehaviour:
@@ -3313,7 +3325,7 @@ GameObject:
   - component: {fileID: 1020533769}
   - component: {fileID: 1020533768}
   m_Layer: 5
-  m_Name: nicknameTxt
+  m_Name: slot2_nicknameTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3748,7 +3760,7 @@ GameObject:
   - component: {fileID: 1276962914}
   - component: {fileID: 1276962913}
   m_Layer: 5
-  m_Name: classTxt
+  m_Name: slot2_classTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3960,7 +3972,7 @@ GameObject:
   - component: {fileID: 1372859794}
   - component: {fileID: 1372859793}
   m_Layer: 5
-  m_Name: nicknameTxt
+  m_Name: slot3_nicknameTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4294,7 +4306,7 @@ GameObject:
   - component: {fileID: 1546437512}
   - component: {fileID: 1546437511}
   m_Layer: 5
-  m_Name: levelTxt
+  m_Name: slot3_levelTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4506,7 +4518,7 @@ GameObject:
   - component: {fileID: 1594062005}
   - component: {fileID: 1594062004}
   m_Layer: 5
-  m_Name: levelTxt
+  m_Name: slot2_levelTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4843,6 +4855,7 @@ MonoBehaviour:
   nickNamePanel: {fileID: 404800891}
   nickNameIF: {fileID: 795844905}
   characterNickName: 
+  userEmail: 
   sprites:
   - {fileID: 21300000, guid: 017439f317400da46a71deb0ffb4c883, type: 3}
   - {fileID: 21300000, guid: 4990c1ec828ff884d80b11da65faf92a, type: 3}
@@ -4851,7 +4864,6 @@ MonoBehaviour:
   - {fileID: 997102000}
   - {fileID: 2107641726}
   - {fileID: 446471810}
-  loadPlayerInfo: {fileID: 143646752}
 --- !u!4 &1811083771
 Transform:
   m_ObjectHideFlags: 0
@@ -4879,7 +4891,7 @@ GameObject:
   - component: {fileID: 1838937867}
   - component: {fileID: 1838937866}
   m_Layer: 5
-  m_Name: nicknameTxt
+  m_Name: slot1_nicknameTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4958,7 +4970,7 @@ GameObject:
   - component: {fileID: 1891901142}
   - component: {fileID: 1891901141}
   m_Layer: 5
-  m_Name: classTxt
+  m_Name: slot1_classTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6029,10 +6041,10 @@ RectTransform:
   - {fileID: 1594062003}
   m_Father: {fileID: 1431401884}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 680, y: -360}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2107641723
 MonoBehaviour:

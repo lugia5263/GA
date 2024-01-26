@@ -14,6 +14,7 @@ public class StateManager : MonoBehaviour
     public float hp;
     public int atk;
     public int level = 1;
+    public int exp;
     
     [Space(10)]
     [Range(0, 100)]
