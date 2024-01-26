@@ -29,10 +29,11 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
         chatManager = GameObject.Find("ChatManager").GetComponent<ChatManager>();
         tr = GetComponent<Transform>();
         pv = GetComponent<PhotonView>();
-        StartCoroutine(CheckEnterKey());
+        
         chatManager.inputChat.enabled = false;
         chatManager.chatLog.text = "";
         ChatterUpdate();
+        StartCoroutine(CheckEnterKey());
     }
 
     void Update()
@@ -95,12 +96,12 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
             chatManager.chatters += p.NickName + "\n";
         }
         chatManager.chattingList.text = chatManager.chatters;
-        chatManager.chatters = "PlayerList\n";
-        foreach (Photon.Realtime.Player p in PhotonNetwork.PlayerList)
-        {
-            chatManager.chatters += p.NickName + "\n";
-        }
-        chatManager.chattingList.text = chatManager.chatters;
+        //chatManager.chatters = "PlayerList\n";
+        //foreach (Photon.Realtime.Player p in PhotonNetwork.PlayerList)
+        //{
+        //    chatManager.chatters += p.NickName + "\n";
+        //}
+        //chatManager.chattingList.text = chatManager.chatters;
     }
 
     [PunRPC]
@@ -117,7 +118,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
             // enter키를 눌렀고 inputChat에 포커스를 가지고있을때 실행(isFocused는 가지고있지않을때 true를 반환함)
             if (Input.GetKeyDown(KeyCode.Return))
             {
-                if (chatManager.inputChat.enabled == false)
+                if (!chatManager.inputChat.enabled)
                 {
                     Debug.Log("enter키 누름. 채팅창활성화 합니다..");
                     chatManager.inputChat.enabled = true;
@@ -161,4 +162,4 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
             currRot = (Quaternion)stream.ReceiveNext();
         }
     }
-}   
+}
