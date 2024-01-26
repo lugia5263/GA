@@ -10,15 +10,12 @@ public class DungeonMgr : MonoBehaviour
 {
     public Text discription;
 
-
     public int dungeonSort; // 현재 던전 형식(싱글1, 카오스2, 레이드3)
     public int dungeonNum;
 
     public string single = "Single";
     public string chaos = "Chaos";
     public string raid = "Raid";
-
-
 
     public GameObject singlePanel;
     public GameObject chaosPanel;
@@ -27,7 +24,6 @@ public class DungeonMgr : MonoBehaviour
     public GameObject singleContent;
     public GameObject chaosContent;
     public GameObject raidContent;
-
 
     public TextAsset txtFile; //Jsonfile
     public GameObject singleCell; // Prefab
@@ -45,20 +41,15 @@ public class DungeonMgr : MonoBehaviour
         chaosPanel = GameObject.Find("ChaosPanel");
         raidPanel = GameObject.Find("RaidPanel");
 
-
         discription = GameObject.Find("DungeonDescription").GetComponent<Text>();
 
         var jsonitemFIle = Resources.Load<TextAsset>("Json/DungeonList");
         txtFile = jsonitemFIle;
-
-        discription = GameObject.Find("DunGeonDescription").GetComponent<Text>();
     }
 
     private void Start()
     {
-        singlePanel.SetActive(false);
-        chaosPanel.SetActive(false);
-        raidPanel.SetActive(false);
+        BackDungeon();
 
         var DunGeonListFile = Resources.Load<TextAsset>("Json/DungeonList");
         txtFile = DunGeonListFile;
@@ -67,12 +58,11 @@ public class DungeonMgr : MonoBehaviour
         string json = txtFile.text;
         var jsonData = JSON.Parse(json);
 
-
         for (int i = 1; i < jsonData["Single"].Count + 1; i++)
         {
             InstSingleDunGeon(i);
         }
-        for (int i = 0; i < jsonData["Chaos"].Count; i++)
+        for (int i = 1; i < jsonData["Chaos"].Count + 1; i++)
         {
             InstChaosDunGeon(i);
         }
@@ -82,21 +72,20 @@ public class DungeonMgr : MonoBehaviour
         }
     }
 
-
-
     public void InstSingleDunGeon(int n)
     {
         string json = txtFile.text;
         var jsonData = JSON.Parse(json);
 
-        int idx = n; // 매개변수
+        int idx = n - 1; // 매개변수
 
         GameObject character = Instantiate(singleCell); // 만들거야
 
         character.transform.name = jsonData["Single"][idx]["dungeonName"]; // 오브젝트명 정의
 
+        character.GetComponent<CellsInfo_Single>().dungeonIdxNum = (int)(jsonData["Single"][idx]["num"]);
         character.GetComponent<CellsInfo_Single>().dungeonName = (jsonData["Single"][idx]["dungeonName"]);
-        character.GetComponent<CellsInfo_Single>().discription = (jsonData["Single"][idx]["discription"]);
+        character.GetComponent<CellsInfo_Single>().discription = (jsonData["Single"][idx]["Discription"]);
         character.GetComponent<CellsInfo_Single>().difficult = (jsonData["Single"][idx]["difficulty"]);
 
         character.transform.SetParent(singleContent.transform);
@@ -150,7 +139,6 @@ public class DungeonMgr : MonoBehaviour
         dungeonSort = 1;
         string single = "혼자와써? 응 싱글이야.";
         discription.text = single;
-
     }
 
     public void OnChaosPanel()
@@ -171,7 +159,6 @@ public class DungeonMgr : MonoBehaviour
         dungeonSort = 3;
         string raid = "레이드 던전을 선택하세요.";
         discription.text = raid;
-
     }
 
     public void BackDungeon()
