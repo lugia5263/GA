@@ -23,8 +23,7 @@ public class HUDManager : MonoBehaviour
         stateManager = gameObject.GetComponent<StateManager>();
         if (stateManager.CompareTag("Player"))
         {
-            HpSlider = GameObject.Find("PlayerHUD").GetComponent<Slider>(); //TODO: 자기가 가진 내부 슬라이더로 적용할 것!!!
-            HpText = GameObject.Find("MainHP").GetComponent<Text>();
+            HpSlider = GameObject.Find("PlayerHUD").GetComponent<Slider>(); //TODO: 자기가 가진 내부 슬라이더로 적용할 것!!!            HpText = GameObject.Find("MainHP").GetComponent<Text>();
             DHpBar = GameObject.Find("DecreasePBar").GetComponent<Image>();
         }
         else 

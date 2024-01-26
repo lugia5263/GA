@@ -7,11 +7,17 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
+    public LoadPlayerInfo loadPlayerInfo;
+    public int slotNum;
+
+    PhotonManager photonManager;
+
+    public GameObject selectCharPanel;
     public TMP_Text roomName;
     public TMP_Text connectInfo;
     public TMP_Text msgList;
-
     public Button exitBtn;
+    public GameObject chatBox;
 
     void Awake()
     {
@@ -19,6 +25,15 @@ public class GameManager : MonoBehaviourPunCallbacks
         SetRoomInfo();
         // Exit 버튼 이벤트 연결
         exitBtn.onClick.AddListener(() => OnExitClick());
+    }
+
+    void Start()
+    {
+        loadPlayerInfo = GameObject.Find("LoadPlayerInfo").GetComponent<LoadPlayerInfo>();
+        photonManager = GameObject.Find("PhotonManager").GetComponent<PhotonManager>();
+
+        selectCharPanel.SetActive(true);
+        //chatBox.SetActive(false);
     }
 
     // 룸 접속 정보를 출력
@@ -33,7 +48,41 @@ public class GameManager : MonoBehaviourPunCallbacks
     private void OnExitClick()
     {
         PhotonNetwork.LeaveRoom();
+    }
+
+    public void OnClickStartBtn()
+    {
+        selectCharPanel.SetActive(false);
+        //chatBox.SetActive(true);
+        SetUserId();
+        photonManager.JoinHome();
+    }
+
+    public void OnClickGoLoginSceneBtn()
+    {
+        PhotonNetwork.LeaveRoom();
         SceneManager.LoadScene("Login");
+    }
+
+    //유저명을 설정하는 로직
+    public void SetUserId()
+    {
+        slotNum = SelectSlot.slotNum;
+        Debug.Log("SlotNum : " + slotNum);
+        switch (slotNum)
+        {
+            case 0:
+                PhotonNetwork.NickName = loadPlayerInfo.slot1Text[0].text;
+                break;
+            case 1:
+                PhotonNetwork.NickName = loadPlayerInfo.slot2Text[0].text;
+                break;
+            case 2:
+                PhotonNetwork.NickName = loadPlayerInfo.slot3Text[0].text;
+                break;
+            default:
+                break;
+        }
     }
 
     #region 포톤 콜백함수
@@ -43,6 +92,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         Debug.Log("방 나가기 완료.");
         PhotonNetwork.JoinLobby();
         Debug.Log("JoinLobby 실행");
+        SceneManager.LoadScene("Login");
     }
 
     public override void OnJoinedLobby()
