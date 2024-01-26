@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class TimeSlow : MonoBehaviour
 {
-    public float curTime;
-    public float slowTime;
+    public bool isSlowing;
+    public float slowTime = 0.5f;
     void Start()
     {
-        curTime = Time.timeScale;
+        
     }
 
     // Update is called once per frame
@@ -19,9 +19,16 @@ public class TimeSlow : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Enemy"))
+        if(other.CompareTag("Boss") && other.CompareTag("NomalMonster"))
         {
-            curTime -= 0.4f;
+            Time.timeScale = slowTime;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Boss") && other.CompareTag("NomalMonster"))
+        {
+            Time.timeScale = 1f;
         }
     }
 }

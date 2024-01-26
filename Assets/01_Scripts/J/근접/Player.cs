@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
     public float curRskillcool;
 
     public Slider chargingSlider;
-
+    public float curTime = 1;
     [SerializeField] private float rotCamXAxisSpeed = 500f;
     [SerializeField] private float rotCamYAxisSpeed = 3f;
     internal string NickName;
@@ -97,12 +97,14 @@ public class Player : MonoBehaviour
         tps = GetComponentInParent<TPScontroller>();
         stateManager = GetComponent<StateManager>();
         //skillIcon[0] = GameObject.Find("CoolTimeBGQ").GetComponent<Image>();
-        //skillIcon[1] = GameObject.Find("CoolTimeBGE").GetComponent<Image>();
-        //skillIcon[2] = GameObject.Find("CoolTimeBGR").GetComponent<Image>();
+       // skillIcon[1] = GameObject.Find("CoolTimeBGE").GetComponent<Image>();
+       // skillIcon[2] = GameObject.Find("CoolTimeBGR").GetComponent<Image>();
     }
 
     private void Start()
     {
+        curTime = Time.unscaledDeltaTime;
+        //Time.timeScale = Time.unscaledDeltaTime; 
         skillIcon[0].fillAmount = 0;
         skillIcon[1].fillAmount = 0;
         skillIcon[2].fillAmount = 0;
@@ -123,6 +125,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        curTime = 1;
         if (!isDeath)
         {
             GetinPut();
@@ -131,7 +134,7 @@ public class Player : MonoBehaviour
             Death();
             Deshs();
             Interation();
-            //SkillCoolTime();
+            SkillCoolTime();
         }
 
     }
@@ -322,7 +325,7 @@ public class Player : MonoBehaviour
                 Skill[2].SetActive(false);
                 ob[0].SetActive(false);
                 rischarging = false;
-                chargingSlider.value = 0;
+                //chargingSlider.value = 0;
             }
         }
     }
