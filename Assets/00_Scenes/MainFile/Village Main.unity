@@ -5951,6 +5951,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4446616183318249512, guid: 1cb2100ec70d3374caa59c5e10b738c6, type: 3}
+      propertyPath: mat
+      value: 
+      objectReference: {fileID: 2100000, guid: 45005fb9a3f0af84081bb0cdbe4e506f, type: 2}
+    - target: {fileID: 4446616183318249512, guid: 1cb2100ec70d3374caa59c5e10b738c6, type: 3}
+      propertyPath: shaderVarRef
+      value: _Alpha
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446616183318249512, guid: 1cb2100ec70d3374caa59c5e10b738c6, type: 3}
+      propertyPath: shaderVarRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446616183318249512, guid: 1cb2100ec70d3374caa59c5e10b738c6, type: 3}
+      propertyPath: meshRefreshRate
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446616183318249512, guid: 1cb2100ec70d3374caa59c5e10b738c6, type: 3}
+      propertyPath: positionToSpawn
+      value: 
+      objectReference: {fileID: 1115408448}
+    - target: {fileID: 4446616183318249512, guid: 1cb2100ec70d3374caa59c5e10b738c6, type: 3}
+      propertyPath: meshDestroyDelay
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446616183318249512, guid: 1cb2100ec70d3374caa59c5e10b738c6, type: 3}
+      propertyPath: shaderVarRefreshRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947899216190345627, guid: 1cb2100ec70d3374caa59c5e10b738c6, type: 3}
+      propertyPath: m_ClearFlags
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6493537448667326656, guid: 1cb2100ec70d3374caa59c5e10b738c6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.00000047683716
@@ -5964,6 +5996,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7017177608455967452, guid: 1cb2100ec70d3374caa59c5e10b738c6, type: 3}
+      propertyPath: chargingSlider
+      value: 
+      objectReference: {fileID: 860969145}
+    - target: {fileID: 7017177608455967452, guid: 1cb2100ec70d3374caa59c5e10b738c6, type: 3}
       propertyPath: skillIcon.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -5971,6 +6007,10 @@ PrefabInstance:
       propertyPath: ob.Array.size
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7204974341759797946, guid: 1cb2100ec70d3374caa59c5e10b738c6, type: 3}
+      propertyPath: chargingSlider
+      value: 
+      objectReference: {fileID: 860969145}
     - target: {fileID: 7204974341759797946, guid: 1cb2100ec70d3374caa59c5e10b738c6, type: 3}
       propertyPath: skillIcon.Array.size
       value: 4
@@ -47236,6 +47276,11 @@ Transform:
 --- !u!1 &1115408447 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2223657018099997933, guid: 1cb2100ec70d3374caa59c5e10b738c6, type: 3}
+  m_PrefabInstance: {fileID: 100883634}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1115408448 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7987801885394552142, guid: 1cb2100ec70d3374caa59c5e10b738c6, type: 3}
   m_PrefabInstance: {fileID: 100883634}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1129257236 stripped
