@@ -23,7 +23,7 @@ public class NPCController : MonoBehaviour
     {
         questPanel = GameObject.Find("QuestPanel");
         achievementPanel = GameObject.Find("AchievementPanel");
-        weaponPanel = GameObject.Find("WeaponPanel");
+        weaponPanel = GameObject.Find("EnforcePanel");
         lvPanel = GameObject.Find("LvPanel");
         clothingPanel = GameObject.Find("ClothingPanel");
     }
