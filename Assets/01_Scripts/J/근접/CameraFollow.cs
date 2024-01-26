@@ -35,7 +35,7 @@ public class CameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
-        playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        
         transform.position = playerTransform.position + Offset; //카메라 위치 = 플레이어 위치 + 거리
         Vector3 direction = (playerTransform.position - transform.position).normalized;
         RaycastHit[] hits = Physics.RaycastAll(transform.position, direction, Mathf.Infinity, 1 << LayerMask.NameToLayer("Filed"));
