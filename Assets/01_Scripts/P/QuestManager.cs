@@ -19,7 +19,6 @@ public class QuestManager : MonoBehaviour
     public GameObject questCanvas;
     public Text questNameTxt;
     public Text goalNameTxt;
-    public Text countTxt;
     public Image questRewards;
     public GameObject descriptionPanel;
 
@@ -48,7 +47,6 @@ public class QuestManager : MonoBehaviour
     {
         questNameTxt = GameObject.Find("questNameTxt").GetComponent<Text>();
         goalNameTxt = GameObject.Find("goalNameTxt").GetComponent<Text>();
-        countTxt = GameObject.Find("countTxt").GetComponent<Text>();
         questRewards = GameObject.Find("QuestRewards").GetComponent<Image>();
         questPopUpPanel = GameObject.Find("QuestPanel");
         questGoalTxt = GameObject.Find("GoalTxt").GetComponent<Text>();
@@ -74,7 +72,6 @@ public class QuestManager : MonoBehaviour
 
         questNameTxt.text = (jsonData["Quest"][item]["QuestName"]);
         goalNameTxt.text = (jsonData["Quest"][item]["Goal"]);
-        countTxt.text = (jsonData["Quest"][item]["Count"]);
         rewardExp.text = (jsonData["Quest"][item]["Reward1"]);
         rewardMat.text = (jsonData["Quest"][item]["Reward2"]);
         rewardGold.text = (jsonData["Quest"][item]["Reward3"]);
