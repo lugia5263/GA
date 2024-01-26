@@ -6948,9 +6948,9 @@ RectTransform:
   - {fileID: 158190898}
   m_Father: {fileID: 1734052996}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 225, y: -280}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 430, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &176269331
@@ -15512,9 +15512,9 @@ RectTransform:
   - {fileID: 417348248}
   m_Father: {fileID: 1734052996}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 225, y: -60}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 430, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &522635452
@@ -28445,7 +28445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5f85388e938d9e4599afc6d9441ed57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: b957742c5b9bfd441b9b330c8b55d0c5, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -34734,9 +34734,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16e49e9aeca8f304fb674feebf69c83c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curQuestIndex: 0
+  questCountTxt: {fileID: 0}
   goal: 
   curCount: 0
   maxCount: 0
+  isCompleted: 0
 --- !u!114 &846956613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47176,9 +47179,9 @@ RectTransform:
   - {fileID: 1626388497}
   m_Father: {fileID: 1734052996}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 225, y: -500}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 430, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1043835672
@@ -68849,9 +68852,9 @@ RectTransform:
   - {fileID: 801170133}
   m_Father: {fileID: 1734052996}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 225, y: -610}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 430, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1598335466
@@ -69395,8 +69398,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   discription: {fileID: 0}
-  cursort: 0
-  curIdx: 0
+  dungeonSort: 0
+  dungeonNum: 0
+  single: Single
+  chaos: Chaos
+  raid: Raid
   singlePanel: {fileID: 0}
   chaosPanel: {fileID: 0}
   raidPanel: {fileID: 0}
@@ -69404,7 +69410,9 @@ MonoBehaviour:
   chaosContent: {fileID: 0}
   raidContent: {fileID: 0}
   txtFile: {fileID: 0}
-  jsonObject: {fileID: 6226444408516719881, guid: 85d2aeae4e454f341bca97697debfbcf, type: 3}
+  singleCell: {fileID: 0}
+  chaosCell: {fileID: 0}
+  raidCell: {fileID: 0}
 --- !u!4 &1625420936
 Transform:
   m_ObjectHideFlags: 0
@@ -76459,9 +76467,9 @@ RectTransform:
   - {fileID: 382285895}
   m_Father: {fileID: 1734052996}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 225, y: -390}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 430, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1815664800
@@ -84610,6 +84618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c92b5a17a60a7745a9c5343c6f43403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  qPopupMgr: {fileID: 0}
   isPortal: 0
   portalPanel: {fileID: 0}
   skyPortal: {fileID: 0}
@@ -89995,9 +90004,9 @@ RectTransform:
   - {fileID: 1440066064}
   m_Father: {fileID: 1734052996}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 225, y: -170}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 430, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2130932741
@@ -90922,10 +90931,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8280132811163334767}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 310, y: -40}
-  m_SizeDelta: {x: 80, y: 80}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2076483980048378383
 CanvasRenderer:
@@ -91231,10 +91240,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8280132811163334767}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 130, y: -40}
-  m_SizeDelta: {x: 80, y: 80}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2886765644469119310
 MonoBehaviour:
@@ -92732,10 +92741,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8280132811163334767}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 400, y: -40}
-  m_SizeDelta: {x: 80, y: 80}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7438946092320557249
 MonoBehaviour:
@@ -92847,10 +92856,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8280132811163334767}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 220, y: -40}
-  m_SizeDelta: {x: 80, y: 80}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8058074952566187247
 GameObject:
@@ -93155,6 +93164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   txtFile: {fileID: 4900000, guid: cc474b9786ff37f4dada911af62272ce, type: 3}
   jsonObject: {fileID: 1522211221239391581, guid: de76610006dbe3845a77d5e541476eb0, type: 3}
+  qPopup: {fileID: 0}
   questCanvas: {fileID: 1258165690}
   questNameTxt: {fileID: 1258165692}
   goalNameTxt: {fileID: 67375031}
@@ -93164,8 +93174,10 @@ MonoBehaviour:
   acceptIdx: 0
   questPopUpPanel: {fileID: 0}
   questGoalTxt: {fileID: 0}
-  questCountTxt: {fileID: 0}
   questCurCount: 0
+  rewardExp: {fileID: 0}
+  rewardMat: {fileID: 0}
+  rewardGold: {fileID: 0}
 --- !u!224 &8911550223732503490
 RectTransform:
   m_ObjectHideFlags: 0
@@ -93180,10 +93192,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8280132811163334767}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 40, y: -40}
-  m_SizeDelta: {x: 80, y: 80}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8975109542120059535
 MonoBehaviour:
