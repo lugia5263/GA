@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     public TPScontroller tps;
     public StateManager stateManager;
     MeshRenderTail meshRenderTail;
-
+    public HUDManager hudManager;
 
     [Header("CamBat")]
     public bool isAttack;
@@ -96,9 +96,10 @@ public class Player : MonoBehaviour
         }
         tps = GetComponentInParent<TPScontroller>();
         stateManager = GetComponent<StateManager>();
-        //skillIcon[0] = GameObject.Find("CoolTimeBGQ").GetComponent<Image>();
-        //skillIcon[1] = GameObject.Find("CoolTimeBGE").GetComponent<Image>();
-        //skillIcon[2] = GameObject.Find("CoolTimeBGR").GetComponent<Image>();
+        hudManager = GetComponent<HUDManager>();
+        skillIcon[0] = GameObject.Find("CoolTimeBGQ").GetComponent<Image>();
+        skillIcon[1] = GameObject.Find("CoolTimeBGE").GetComponent<Image>();
+        skillIcon[2] = GameObject.Find("CoolTimeBGR").GetComponent<Image>();
     }
 
     private void Start()
@@ -131,7 +132,7 @@ public class Player : MonoBehaviour
             Death();
             Deshs();
             Interation();
-            //SkillCoolTime();
+            SkillCoolTime();
         }
 
     }
@@ -317,13 +318,13 @@ public class Player : MonoBehaviour
                     rischarging = false;
                 }
             }
-            else
-            {
-                Skill[2].SetActive(false);
-                ob[0].SetActive(false);
-                rischarging = false;
-                chargingSlider.value = 0;
-            }
+            //else
+            //{
+                //Skill[2].SetActive(false);
+               // ob[0].SetActive(false);
+               // rischarging = false;
+               // chargingSlider.value = 0;
+          //  }
         }
     }
 
@@ -352,6 +353,7 @@ public class Player : MonoBehaviour
         if (other.tag == "HealArea")
         {
             stateManager.hp += 5;
+            hudManager.ChangeUserHUD();
         }
     }
 

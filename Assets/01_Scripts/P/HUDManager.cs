@@ -23,7 +23,8 @@ public class HUDManager : MonoBehaviour
         stateManager = gameObject.GetComponent<StateManager>();
         if (stateManager.CompareTag("Player"))
         {
-            HpSlider = GameObject.Find("PlayerHUD").GetComponent<Slider>(); //TODO: 자기가 가진 내부 슬라이더로 적용할 것!!!            HpText = GameObject.Find("MainHP").GetComponent<Text>();
+            HpSlider = GameObject.Find("PlayerHUD").GetComponent<Slider>(); //TODO: 자기가 가진 내부 슬라이더로 적용할 것!!!
+            HpText = GameObject.Find("MainHP").GetComponent<Text>();
             DHpBar = GameObject.Find("DecreasePBar").GetComponent<Image>();
         }
         else 
@@ -69,6 +70,11 @@ public class HUDManager : MonoBehaviour
         if (DHpBar.fillAmount > targetFillAmount)
         {
             DHpBar.fillAmount -= 0.1f * Time.deltaTime;
+            DHpBar.fillAmount = Mathf.Max(DHpBar.fillAmount, targetFillAmount);
+        }
+        if(DHpBar.fillAmount < targetFillAmount)
+        {
+            DHpBar.fillAmount += 0.1f * Time.deltaTime;
             DHpBar.fillAmount = Mathf.Max(DHpBar.fillAmount, targetFillAmount);
         }
     }
