@@ -43,7 +43,6 @@ public class PotalController : MonoBehaviour
             Jun_TweenRuntime[] gameObjects = portalPanel.GetComponents<Jun_TweenRuntime>();
             gameObjects[0].Play();
             isPortal = true;
-
             skyPortal.SetActive(true);
             skyPortal.GetComponent<Jun_TweenRuntime>().Play();
         }

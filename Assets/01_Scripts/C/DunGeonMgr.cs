@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using SimpleJSON;
+using UnityEngine.SceneManagement;
+using System;
 
-public class DunGeonMgr : MonoBehaviour
+public class DungeonMgr : MonoBehaviour
 {
     public Text discription;
 
-    public int cursort; // 현재 던전 형식(싱글1, 카오스2, 레이드3)
-    public int curIdx; // 싱글-1, 싱글-2 , 싱글-3
+    public int dungeonSort; // 현재 던전 형식(싱글1, 카오스2, 레이드3)
+    public int dungeonNum;
 
+    public string single = "Single";
+    public string chaos = "Chaos";
+    public string raid = "Raid";
 
     public GameObject singlePanel;
     public GameObject chaosPanel;
@@ -20,9 +25,10 @@ public class DunGeonMgr : MonoBehaviour
     public GameObject chaosContent;
     public GameObject raidContent;
 
-
     public TextAsset txtFile; //Jsonfile
-    public GameObject jsonObject; //Prefab (Json char 달린)
+    public GameObject singleCell; // Prefab
+    public GameObject chaosCell;
+    public GameObject raidCell;
 
     private void Awake()
     {
@@ -30,22 +36,17 @@ public class DunGeonMgr : MonoBehaviour
         chaosContent = GameObject.Find("ChaosContent");
         raidContent = GameObject.Find("RaidContent");
 
-
         singlePanel = GameObject.Find("SinglePanel");
         chaosPanel = GameObject.Find("ChaosPanel");
         raidPanel = GameObject.Find("RaidPanel");
 
         discription = GameObject.Find("DungeonDescription").GetComponent<Text>();
-    }
 
-    private void Start()
-    {
-        var jsonitemFile = Resources.Load<TextAsset>("Json/DungeonList");
-        txtFile = jsonitemFile;
+        var jsonitemFIle = Resources.Load<TextAsset>("Json/DungeonList");
+        txtFile = jsonitemFIle;
 
         string json = txtFile.text;
         var jsonData = JSON.Parse(json);
-
 
         for (int i = 1; i < jsonData["Single"].Count + 1; i++)
         {
@@ -55,77 +56,118 @@ public class DunGeonMgr : MonoBehaviour
         {
             InstChaosDunGeon(i);
         }
-    }
-
-
-
-    public void InstChaosDunGeon(int n)
-    {
+        for (int i = 1; i < jsonData["Raid"].Count + 1; i++)
         {
-
-            string json = txtFile.text;
-            var jsonData = JSON.Parse(json);
-
-
-            int idx = n - 1; // 매개변수
-
-
-            GameObject character = Instantiate(jsonObject); // 만들거야
-
-            character.transform.name = jsonData["Chaos"][idx]["dungeonName"]; // 오브젝트명 정의
-
-            character.GetComponent<DunGeonInfo>().dunGeonName = (jsonData["Chaos"][idx]["dungeonName"]);
-            character.GetComponent<DunGeonInfo>().discription = jsonData["Chaos"][idx]["discription"];
-            character.GetComponent<DunGeonInfo>().difficult = (jsonData["Chaos"][idx]["difficulty"]);
-
-            character.transform.SetParent(chaosContent.transform);
-
+            InstRaidDunGeon(i);
         }
     }
+
+    private void Start()
+    {
+        BackDungeon();
+    }
+
     public void InstSingleDunGeon(int n)
     {
-        {
+        string json = txtFile.text;
+        var jsonData = JSON.Parse(json);
 
-            string json = txtFile.text;
-            var jsonData = JSON.Parse(json);
+        int idx = n-1; // 매개변수
 
+        GameObject character = Instantiate(singleCell);
 
-            int idx = n - 1; // 매개변수
+        character.transform.name = jsonData["Single"][idx]["dungeonName"];
 
+        character.GetComponent<CellsInfo_Single>().dungeonIdxNum = (int)(jsonData["Single"][idx]["num"]);
+        character.GetComponent<CellsInfo_Single>().dungeonName = (jsonData["Single"][idx]["dungeonName"]);
+        character.GetComponent<CellsInfo_Single>().discription = jsonData["Single"][idx]["Discription"];
+        character.GetComponent<CellsInfo_Single>().difficult = (jsonData["Single"][idx]["difficulty"]);
 
-            GameObject character = Instantiate(jsonObject); // 만들거야
-
-            character.transform.name = jsonData["Single"][idx]["dungeonName"]; // 오브젝트명 정의
-
-            character.GetComponent<DunGeonInfo>().dunGeonName = (jsonData["Single"][idx]["dungeonName"]);
-            character.GetComponent<DunGeonInfo>().discription = jsonData["Single"][idx]["discription"];
-            character.GetComponent<DunGeonInfo>().difficult = (jsonData["Single"][idx]["difficulty"]);
-
-            character.transform.SetParent(singleContent.transform);
-
-        }
+        character.transform.SetParent(singleContent.transform);
     }
+    public void InstChaosDunGeon(int n)
+    {
+        string json = txtFile.text;
+        var jsonData = JSON.Parse(json);
+
+        int idx = n-1; // 매개변수
+
+        GameObject character = Instantiate(chaosCell);
+
+        character.transform.name = jsonData["Chaos"][idx]["dungeonName"];
+
+        character.GetComponent<CellsInfo_Chaos>().dungeonIdxNum = (int)(jsonData["Chaos"][idx]["num"]);
+        character.GetComponent<CellsInfo_Chaos>().dungeonName = (jsonData["Chaos"][idx]["dungeonName"]);
+        character.GetComponent<CellsInfo_Chaos>().discription = jsonData["Chaos"][idx]["Discription"];
+        character.GetComponent<CellsInfo_Chaos>().difficult = (jsonData["Chaos"][idx]["difficulty"]);
+
+        character.transform.SetParent(chaosContent.transform);
+    }
+    public void InstRaidDunGeon(int n)
+    {
+        string json = txtFile.text;
+        var jsonData = JSON.Parse(json);
+
+        int idx = n-1; // 매개변수
+
+        GameObject character = Instantiate(raidCell);
+
+        character.transform.name = jsonData["Raid"][idx]["dungeonName"];
+
+        character.GetComponent<CellsInfo_Raid>().dungeonIdxNum = (int)(jsonData["Raid"][idx]["num"]);
+        character.GetComponent<CellsInfo_Raid>().dungeonName = (jsonData["Raid"][idx]["dungeonName"]);
+        character.GetComponent<CellsInfo_Raid>().discription = jsonData["Raid"][idx]["Discription"];
+        character.GetComponent<CellsInfo_Raid>().difficult = (jsonData["Raid"][idx]["difficulty"]);
+
+        character.transform.SetParent(raidContent.transform);
+    }
+
     public void OnSinglePanel()
     {
         singlePanel.SetActive(true);
         chaosPanel.SetActive(false);
         raidPanel.SetActive(false);
-        cursort = 1;
-        //discription.text = 
+        dungeonSort = 1;
+        string single = "혼자와써? 응 싱글이야.";
+        discription.text = single;
     }
+
     public void OnChaosPanel()
     {
         singlePanel.SetActive(false);
         chaosPanel.SetActive(true);
         raidPanel.SetActive(false);
-        cursort = 2;
+        dungeonSort = 2;
+        string chaos = "카오스 던전을 선택하세요.";
+        discription.text = chaos;
     }
+
     public void OnRaidPanel()
     {
         singlePanel.SetActive(false);
         chaosPanel.SetActive(false);
         raidPanel.SetActive(true);
-        cursort =3;
+        dungeonSort = 3;
+        string raid = "레이드 던전을 선택하세요.";
+        discription.text = raid;
+    }
+
+    public void BackDungeon()
+    {
+        singlePanel.SetActive(false);
+        chaosPanel.SetActive(false);
+        raidPanel.SetActive(false);
+        string main = "던전을 선택해.";
+        discription.text = main;
+    }
+    public void MoveDungeon()
+    {
+        if (dungeonSort == 1)
+            SceneManager.LoadScene(single);
+        else if (dungeonSort == 2)
+            SceneManager.LoadScene(chaos);
+        else if (dungeonSort == 3)
+            SceneManager.LoadScene(raid);
     }
 
 }
