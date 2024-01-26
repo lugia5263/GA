@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     public TPScontroller tps;
     public StateManager stateManager;
     MeshRenderTail meshRenderTail;
-
+    public HUDManager hudManager;
 
     [Header("CamBat")]
     public bool isAttack;
@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
     public float curRskillcool;
 
     public Slider chargingSlider;
-    public float curTime = 1;
+
     [SerializeField] private float rotCamXAxisSpeed = 500f;
     [SerializeField] private float rotCamYAxisSpeed = 3f;
     internal string NickName;
@@ -96,15 +96,14 @@ public class Player : MonoBehaviour
         }
         tps = GetComponentInParent<TPScontroller>();
         stateManager = GetComponent<StateManager>();
-        //skillIcon[0] = GameObject.Find("CoolTimeBGQ").GetComponent<Image>();
-       // skillIcon[1] = GameObject.Find("CoolTimeBGE").GetComponent<Image>();
-       // skillIcon[2] = GameObject.Find("CoolTimeBGR").GetComponent<Image>();
+        hudManager = GetComponent<HUDManager>();
+        skillIcon[0] = GameObject.Find("CoolTimeBGQ").GetComponent<Image>();
+        skillIcon[1] = GameObject.Find("CoolTimeBGE").GetComponent<Image>();
+        skillIcon[2] = GameObject.Find("CoolTimeBGR").GetComponent<Image>();
     }
 
     private void Start()
     {
-        curTime = Time.unscaledDeltaTime;
-        //Time.timeScale = Time.unscaledDeltaTime; 
         skillIcon[0].fillAmount = 0;
         skillIcon[1].fillAmount = 0;
         skillIcon[2].fillAmount = 0;
@@ -125,7 +124,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        curTime = 1;
         if (!isDeath)
         {
             GetinPut();
@@ -320,13 +318,13 @@ public class Player : MonoBehaviour
                     rischarging = false;
                 }
             }
-            else
-            {
-                Skill[2].SetActive(false);
-                ob[0].SetActive(false);
-                rischarging = false;
-                //chargingSlider.value = 0;
-            }
+            //else
+            //{
+                //Skill[2].SetActive(false);
+               // ob[0].SetActive(false);
+               // rischarging = false;
+               // chargingSlider.value = 0;
+          //  }
         }
     }
 
@@ -355,6 +353,7 @@ public class Player : MonoBehaviour
         if (other.tag == "HealArea")
         {
             stateManager.hp += 5;
+            hudManager.ChangeUserHUD();
         }
     }
 
