@@ -12,7 +12,6 @@ public class SpawnScipt : MonoBehaviourPunCallbacks
     private void Start()
     {
         Debug.Log(curSlotNum);
-        CreatePlayer();
     }
     public void CreatePlayer()
     {

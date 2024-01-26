@@ -232,9 +232,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curUserEmail: 
-  nickNameTxt: {fileID: 1838937866}
-  classNameTxt: {fileID: 1891901141}
-  levelTxt: {fileID: 258266156}
   slot1Text:
   - {fileID: 1838937866}
   - {fileID: 1891901141}
@@ -1284,10 +1281,10 @@ RectTransform:
   - {fileID: 1546437510}
   m_Father: {fileID: 1431401884}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1100, y: -360}
-  m_SizeDelta: {x: 120, y: 120}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &446471807
 MonoBehaviour:
@@ -1649,18 +1646,6 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 143646751}
-        m_TargetAssemblyTypeName: CharacterCreate, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3252,10 +3237,10 @@ RectTransform:
   - {fileID: 258266155}
   m_Father: {fileID: 1431401884}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 260, y: -360}
-  m_SizeDelta: {x: 120, y: 120}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &997102000
 MonoBehaviour:
@@ -4083,7 +4068,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4bc4deed9ea4f7bbb055f2d6298bbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadPlayerInfo: {fileID: 143646752}
 --- !u!1 &1391824297
 GameObject:
   m_ObjectHideFlags: 0
@@ -6041,10 +6025,10 @@ RectTransform:
   - {fileID: 1594062003}
   m_Father: {fileID: 1431401884}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 680, y: -360}
-  m_SizeDelta: {x: 120, y: 120}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2107641723
 MonoBehaviour:

@@ -4,9 +4,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using Firebase.Firestore;
-using Firebase.Extensions;
+
 
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
@@ -18,19 +16,30 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     // 룸 목록을 표시할 프리팹
     private GameObject roomItemPrefab;
 
-    public LoadPlayerInfo loadPlayerInfo;
 
-    public int slotNum;
+    // 싱글톤
+    public static PhotonManager instance;
+
 
     void Awake()
     {
+        #region 싱글톤
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != null)
+        {
+            Destroy(instance.gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
+        #endregion
+
         // 마스터 클라이언트의 씬 자동 동기화 옵션
         PhotonNetwork.AutomaticallySyncScene = true;
 
         // 게임 버전 설정
         PhotonNetwork.GameVersion = version;
-
-        loadPlayerInfo = GameObject.Find("LoadPlayerInfo").GetComponent<LoadPlayerInfo>();
 
         // 포톤 서버와의 데이터의 초당 전송 횟수
         //Debug.Log(PhotonNetwork.SendRate);
@@ -41,29 +50,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             PhotonNetwork.ConnectUsingSettings();
         }
     }
-
-    void Start()
-    {
-
-    }
-
-    // 유저명을 설정하는 로직
-    //public void SetUserId()
-    //{
-    //    if (string.IsNullOrEmpty(inputUserID.text))
-    //    {
-    //        userId = $"USER_{Random.Range(1,21):00}";
-    //    }
-    //    else
-    //    {
-    //        userId = inputUserID.text;
-    //    }
-
-    //    // 유저명 저장
-    //    LoadPlayerInfo.
-    //    // 접속 유저의 닉네임 등록
-    //    PhotonNetwork.NickName = userId;
-    //}
 
     #region 포톤 콜백 함수
     // 포톤 서버에 접속 후 호출되는 콜백 함수
@@ -107,6 +93,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.IsMasterClient)
         {
+            PhotonNetwork.AutomaticallySyncScene = true;
             PhotonNetwork.LoadLevel("Home");
         }
     }
@@ -117,7 +104,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         // 삭제된 RoomItem 프리팹을 저장할 임시변수
         GameObject tempRoom = null;
 
-        foreach(var roomInfo in roomList)
+        foreach (var roomInfo in roomList)
         {
             // 룸이 삭제된 경우
             if (roomInfo.RemovedFromList == true)
@@ -141,7 +128,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
                     //GameObject roomPrefab = Instantiate(roomItemPrefab, scrollContent);
                     // 룸 정보를 표시하기 위해 RoomInfo 정보 전달
                     //roomPrefab.GetComponent<RoomData>().RoomInfo = roomInfo;
-                    
+
                     // 딕셔너리 자료형에 데이터 추가
                     //rooms.Add(roomInfo.Name, roomPrefab);
                 }
@@ -151,39 +138,18 @@ public class PhotonManager : MonoBehaviourPunCallbacks
                     tempRoom.GetComponent<RoomData>().RoomInfo = roomInfo;
                 }
             }
-            
+
             Debug.Log($"Room={roomInfo.Name} ({roomInfo.PlayerCount}/{roomInfo.MaxPlayers})");
         }
     }
     #endregion
 
     #region UI_BUTTON_EVENT
-    public void OnClickStartBtn()
-    {
-        JoinHome();
-    }
+
 
     public void JoinHome()
     {
-        // 유저명 저장
-        //SetUserId();
-        //loadPlayerInfo.LoadNickName(nickName);
-        slotNum = SelectSlot.slotNum;
-        Debug.Log("SlotNum : "+slotNum);
-        switch (slotNum)
-        {
-            case 0:
-                PhotonNetwork.NickName = loadPlayerInfo.slot1Text[0].text;
-                break;
-            case 1:
-                PhotonNetwork.NickName = loadPlayerInfo.slot2Text[0].text;
-                break;
-            case 2:
-                PhotonNetwork.NickName = loadPlayerInfo.slot3Text[0].text;
-                break;
-            default:
-                break;
-        }
+        Debug.Log("JoinHome 실행");
         PhotonNetwork.JoinRoom("Room_Home");
     }
 

@@ -32,12 +32,12 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
         StartCoroutine(CheckEnterKey());
         chatManager.inputChat.enabled = false;
         chatManager.chatLog.text = "";
-        //ChatterUpdate();
+        ChatterUpdate();
     }
 
     void Update()
     {   
-        //ChatterUpdate();
+        ChatterUpdate();
 
         if (pv.IsMine)
         {
@@ -87,21 +87,21 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    //void ChatterUpdate()
-    //{
-        //chatManager.chatters = "PlayerList\n";
-        //foreach (Player p in PhotonNetwork.PlayerList)
-        //{
-            //chatManager.chatters += p.NickName + "\n";
-        //}
-        //chatManager.chattingList.text = chatManager.chatters;
-    //    chatManager.chatters = "PlayerList\n";
-    //    foreach (Player p in PhotonNetwork.PlayerList)
-    //    {
-    //        chatManager.chatters += p.NickName + "\n";
-    //    }
-    //    chatManager.chattingList.text = chatManager.chatters;
-    //}
+    void ChatterUpdate()
+    {
+        chatManager.chatters = "PlayerList\n";
+        foreach (Photon.Realtime.Player p in PhotonNetwork.PlayerList)
+        {
+            chatManager.chatters += p.NickName + "\n";
+        }
+        chatManager.chattingList.text = chatManager.chatters;
+        chatManager.chatters = "PlayerList\n";
+        foreach (Photon.Realtime.Player p in PhotonNetwork.PlayerList)
+        {
+            chatManager.chatters += p.NickName + "\n";
+        }
+        chatManager.chattingList.text = chatManager.chatters;
+    }
 
     [PunRPC]
     public void ReceiveMsg(string msg)
@@ -139,8 +139,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
                     }
                 }
             }
-            yield return null;
-            
+                yield return null; 
         }
     }
     #endregion
