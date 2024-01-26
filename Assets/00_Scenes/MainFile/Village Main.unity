@@ -69495,17 +69495,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecbdda35d5a0aae4ba41eb64912799ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  discription: {fileID: 0}
-  cursort: 0
-  curIdx: 0
-  singlePanel: {fileID: 0}
-  chaosPanel: {fileID: 0}
-  raidPanel: {fileID: 0}
-  singleContent: {fileID: 0}
-  chaosContent: {fileID: 0}
-  raidContent: {fileID: 0}
-  txtFile: {fileID: 0}
-  jsonObject: {fileID: 6226444408516719881, guid: 85d2aeae4e454f341bca97697debfbcf, type: 3}
 --- !u!4 &1625420936
 Transform:
   m_ObjectHideFlags: 0
@@ -95557,9 +95546,9 @@ MonoBehaviour:
   questPopUpPanel: {fileID: 0}
   questGoalTxt: {fileID: 0}
   questCurCount: 0
-  rewardExp: {fileID: 1656627636}
-  rewardMat: {fileID: 1803714465}
-  rewardGold: {fileID: 1607770687}
+  rewardExp: {fileID: 0}
+  rewardMat: {fileID: 0}
+  rewardGold: {fileID: 0}
 --- !u!114 &8909528473029687371
 MonoBehaviour:
   m_ObjectHideFlags: 0
