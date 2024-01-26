@@ -75,7 +75,8 @@ public class LoginSystem_test : MonoBehaviour
         Dictionary<string, object> user = new Dictionary<string, object>
         {
             {"UserPw", userPassword },
-            {"UpdateTime", FieldValue.ServerTimestamp }
+            {"UpdateTime", FieldValue.ServerTimestamp },
+            {"UID", FirebaseAuth.DefaultInstance.CurrentUser.UserId} // 현재 사용자의 UID 추가
         };
 
         yield return docRef.SetAsync(user).ContinueWithOnMainThread(task =>
@@ -122,6 +123,24 @@ public class LoginSystem_test : MonoBehaviour
             }
             if (task.IsFaulted)
             {
+                AggregateException exception = task.Exception;
+                if (exception != null)
+                {
+                    foreach (Exception innerException in exception.InnerExceptions)
+                    {
+                        if (innerException is FirebaseException firebaseException)
+                        {
+                            // FirebaseException의 ErrorCode 및 Message를 디버그 로그에 출력
+                            Debug.LogError($"FirebaseException: {firebaseException.ErrorCode} - {firebaseException.Message}");
+                        }
+                        else
+                        {
+                            // 기타 예외의 경우 메시지만 출력
+                            Debug.LogError($"Exception: {innerException.Message}");
+                        }
+                    }
+                }
+
                 // 회원가입 실패 이유 => 이메일이 비정상 / 비밀번호가 너무 간단 / 이미 가입된 이메일 등등..
                 Debug.Log("회원가입 실패");
                 return;
@@ -137,7 +156,7 @@ public class LoginSystem_test : MonoBehaviour
     }
 
     // 기존유저 데이터 불러오기
-    IEnumerator ReadUserData()
+    IEnumerator ReadUserData(string userEmail)
     {
         Debug.Log("코루틴 시작");
         FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
@@ -157,6 +176,10 @@ public class LoginSystem_test : MonoBehaviour
                     {
                         Debug.Log("Password :: " + pair.Value.ToString());
                     }
+                    if (pair.Key == "UID")
+                    {
+                        Debug.Log("UID :: " + pair.Value.ToString());
+                    }
                 }
             }
             else
@@ -171,6 +194,8 @@ public class LoginSystem_test : MonoBehaviour
 
     public void OnClickLoginBtn()
     {
+        Debug.Log("로그인버튼 누름");
+
         CheckingEmailAndPw();
         auth.SignInWithEmailAndPasswordAsync(userEmail, password).ContinueWithOnMainThread(task =>
         {
@@ -189,13 +214,13 @@ public class LoginSystem_test : MonoBehaviour
             FirebaseUser newUser = authResult.User;
             Debug.Log("로그인 완료");
 
-            StartCoroutine(ReadUserDataAndLoadScene());
+            StartCoroutine(ReadUserDataAndLoadScene(userEmail));
         });
     }
 
-    IEnumerator ReadUserDataAndLoadScene()
+    IEnumerator ReadUserDataAndLoadScene(string userEmail)
     {
-        yield return StartCoroutine(ReadUserData());
+        yield return StartCoroutine(ReadUserData(userEmail));
         SceneManager.LoadScene("Lobby_test");
     }
 

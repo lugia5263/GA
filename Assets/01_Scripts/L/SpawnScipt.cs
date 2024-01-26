@@ -7,7 +7,13 @@ using Photon.Realtime;
 public class SpawnScipt : MonoBehaviourPunCallbacks
 {
     public GameObject[] characterPrefabs;
-    int curSlotNum = SelectSlot.slotNum;
+    readonly int curSlotNum = SelectSlot.slotNum;
+
+    private void Start()
+    {
+        Debug.Log(curSlotNum);
+        CreatePlayer();
+    }
     public void CreatePlayer()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
