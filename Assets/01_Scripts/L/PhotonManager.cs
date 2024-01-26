@@ -163,7 +163,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         // 유저명 저장
         //SetUserId();
-
+        PhotonNetwork.NickName = PlayerPrefs.GetString("Nickname");
         PhotonNetwork.JoinRoom("Room_Home");
     }
 

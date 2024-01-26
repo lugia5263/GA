@@ -30,7 +30,7 @@ public class CharacterCreate : MonoBehaviour
     public Sprite[] sprites;
     public Button[] slots;
 
-    public LoadPlayerInfo loadPlayerInfo;
+    LoadPlayerInfo loadPlayerInfoInstance = new LoadPlayerInfo();
 
     void Start()
     {
@@ -39,8 +39,6 @@ public class CharacterCreate : MonoBehaviour
         selectPanel.SetActive(false);
         nickNamePanel.SetActive(false);
         userEmail = LoginSystem_test.userEmail;
-
-        loadPlayerInfo = GameObject.Find("LoadPlayerInfo").GetComponent<LoadPlayerInfo>();
     }
 
     IEnumerator CreateCharacter(string userEmail, string characterNickName, string className)
@@ -137,7 +135,9 @@ public class CharacterCreate : MonoBehaviour
         Debug.Log(currentCharacterClass);
         StartCoroutine(CreateCharacter(userEmail, characterNickName, currentCharacterClass));
         Debug.Log("닉네임, 캐릭터생성 완료");
-        
+
+        StartCoroutine(loadPlayerInfoInstance.LoadPlayerData(userEmail));
+
         slots[currentSlotNum].GetComponent<Image>().sprite = sprites[currentClassNum];
         selectPanel.SetActive(false);
         nickNamePanel.SetActive(false);

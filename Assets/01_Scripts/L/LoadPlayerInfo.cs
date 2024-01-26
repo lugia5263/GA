@@ -31,7 +31,7 @@ public class LoadPlayerInfo : MonoBehaviour
         StartCoroutine(LoadPlayerData(curUserEmail));
     }
 
-    IEnumerator LoadPlayerData(string userEmail)
+    public IEnumerator LoadPlayerData(string userEmail)
     {
         // users 컬렉션에서 userEmail(ID역할)로 된 이름의 문서 읽기
         DocumentReference userDocRef = db.Collection("users").Document(userEmail);
@@ -46,48 +46,72 @@ public class LoadPlayerInfo : MonoBehaviour
             {
                 Debug.Log("Document ID: " + snapshot.Id);
 
-                // userEmail 문서에서 캐릭터1 컬렉션의 Info문서 참조
-                DocumentReference characterInfoDocRef = userDocRef.Collection("캐릭터1").Document("Info");
+                for(int i = 1; i <= 3; i++)
+                {
+                    // userEmail 문서에서 캐릭터1 컬렉션의 Info문서 참조
+                    DocumentReference characterInfoDocRef = userDocRef.Collection("캐릭터" + i).Document("Info");
 
-                // 데이터 읽기
-                characterInfoDocRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
-                {
-                if (task.IsFaulted)
-                {
-                    Debug.LogError("캐릭터 정보 읽기 실패: " + task.Exception);
-                    return;
+                    // 데이터 읽기
+                    characterInfoDocRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
+                    {
+                        if (task.IsFaulted)
+                        {
+                            Debug.LogError("캐릭터 정보 읽기 실패: " + task.Exception);
+                            return;
+                        }
+
+                        DocumentSnapshot characterSnapshot = task.Result;
+
+                        if (characterSnapshot.Exists)
+                        {
+                            // 캐릭터 정보 가져오기
+                            IDictionary<string, object> characterData = characterSnapshot.ToDictionary();
+
+                            // characterData에서 SlotNum 값 확인
+                            if (characterData.ContainsKey("SlotNum"))
+                            {
+                                int slotNum = (int)characterData["SlotNum"];
+                                PlayerPrefs.SetInt("SlotNum" + slotNum, slotNum);
+                                // 각 캐릭터의 정보를 PlayerPrefs에 저장
+                                if (characterData.ContainsKey("NickName"))
+                                    PlayerPrefs.SetString("NickName_" + slotNum, (string)characterData["NickName"]);
+
+                                if (characterData.ContainsKey("Class"))
+                                    PlayerPrefs.SetString("Class_" + slotNum, (string)characterData["Class"]);
+
+                                if (characterData.ContainsKey("CharacterLevel"))
+                                    PlayerPrefs.SetInt("CharacterLevel_" + slotNum, (int)characterData["CharacterLevel"]);
+
+                                PlayerPrefs.Save();
+                            }
+                            // UI에 정보 표시
+                            //UpdateUI(characterData);
+                            UpdateUI();
+                        }
+                        else
+                        {
+                            Debug.Log("캐릭터 정보 찾지못함.");
+                        }
+                    });
                 }
-
-                DocumentSnapshot characterSnapshot = task.Result;
-
-                if (characterSnapshot.Exists)
-                {
-                        // 캐릭터 정보 가져오기
-                        IDictionary<string, object> characterData = characterSnapshot.ToDictionary();
-
-                        // UI에 정보 표시
-                        UpdateUI(characterData);
-                }
-                else
-                {
-                    Debug.Log("캐릭터 정보 찾지못함.");
-                }
-                });
+                
             }
         });
     }
 
-    public void UpdateUI(IDictionary<string, object> characterData)
+    //public void UpdateUI(IDictionary<string, object> characterData)
+    public void UpdateUI()
     {
         Debug.Log("UpdateUI 시작");
-        nickNameTxt.text = "닉네임: " + characterData["NickName"];
-        classNameTxt.text = "직업: " + characterData["Class"];
-        levelTxt.text = "레벨: " + characterData["CharacterLevel"];
-
-        //Text[] infoText = characterCreate.slots[CharacterCreate.currentSlotNum].GetComponentsInChildren<Text>();
-
-        //infoText[0].text = "닉네임: " + characterData["NickName"].ToString();
-        //infoText[1].text = "직업: " + characterData["Class"].ToString();
-        //infoText[2].text = "레벨: " + characterData["CharacterLevel"].ToString();
+        if (PlayerPrefs.HasKey("SlotNum"))
+        {
+            int slotNum = PlayerPrefs.GetInt("SlotNum");
+            string nickName = PlayerPrefs.GetString("NickName_" + slotNum);
+            string className = PlayerPrefs.GetString("Class_" + slotNum);
+            int level = PlayerPrefs.GetInt("CharacterLevel_" + slotNum);
+            nickNameTxt.text = "닉네임 : " + nickName;
+            classNameTxt.text = "직업 : " + className;
+            levelTxt.text = "레벨 : " + level;
+        }
     }
 }
