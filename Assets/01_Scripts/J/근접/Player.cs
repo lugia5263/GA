@@ -62,24 +62,28 @@ public class Player : MonoBehaviour
     [Header("Guns or Object")]
     public GameObject[] ob;
 
-    public bool skillUse;
-    bool qisReady;
-    bool eisReady;
-    bool risReady;
+    [Header("Skill CoolTime")]
+    public Image[] skillIcon;
 
-    public float qskillcool; 
+    public bool skillUse;
+    public bool qisReady;
+    public bool eisReady;
+    public bool risReady;
+    public bool rischarging;
+    public float qskillcool;
     public float eskillcool;
     public float rskillcool;
-
     public float curQskillcool;
     public float curEskillcool;
     public float curRskillcool;
+
+    public Slider chargingSlider;
 
     [SerializeField] private float rotCamXAxisSpeed = 500f;
     [SerializeField] private float rotCamYAxisSpeed = 3f;
     internal string NickName;
 
-    void Start()
+    void Awake()
     {
         isFireReady = true;
         weapons = GetComponentInChildren<Weapons>();
@@ -92,7 +96,16 @@ public class Player : MonoBehaviour
         }
         tps = GetComponentInParent<TPScontroller>();
         stateManager = GetComponent<StateManager>();
+        //skillIcon[0] = GameObject.Find("CoolTimeBGQ").GetComponent<Image>();
+        //skillIcon[1] = GameObject.Find("CoolTimeBGE").GetComponent<Image>();
+        //skillIcon[2] = GameObject.Find("CoolTimeBGR").GetComponent<Image>();
+    }
 
+    private void Start()
+    {
+        skillIcon[0].fillAmount = 0;
+        skillIcon[1].fillAmount = 0;
+        skillIcon[2].fillAmount = 0;
     }
 
     //"��������"
@@ -118,6 +131,7 @@ public class Player : MonoBehaviour
             Death();
             Deshs();
             Interation();
+            //SkillCoolTime();
         }
 
     }
@@ -148,6 +162,24 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    void SkillCoolTime()
+    {
+        if (!qisReady)
+        {
+            skillIcon[0].fillAmount = 1 - qskillcool /curQskillcool;
+        }
+        if (!eisReady)
+        {
+            skillIcon[1].fillAmount = 1 - eskillcool / curEskillcool;
+        }
+        if (!risReady)
+        {
+            skillIcon[2].fillAmount = 1 - rskillcool / curRskillcool;
+        }
+    }
+
+
     void Attack()
     {
         //chargingTime += Time.deltaTime;
@@ -237,6 +269,7 @@ public class Player : MonoBehaviour
         {
             rskillcool = curRskillcool;
             risReady = true;
+            rischarging = true;
         }
 
         if (qisReady)
@@ -268,6 +301,30 @@ public class Player : MonoBehaviour
                 risReady = false;
             }
         }
+        if(rischarging)
+        {
+            if(Input.GetKey(KeyCode.R))
+            {
+                animator.SetTrigger("SkillR");
+                Skill[2].SetActive(true);
+                ob[0].SetActive(true);
+                chargingSlider.value += Time.deltaTime * 0.35f;
+                
+                if(chargingSlider.value == 1)
+                {
+                    Skill[2].SetActive(false);
+                    ob[0].SetActive(false);
+                    rischarging = false;
+                }
+            }
+            else
+            {
+                Skill[2].SetActive(false);
+                ob[0].SetActive(false);
+                rischarging = false;
+                chargingSlider.value = 0;
+            }
+        }
     }
 
 
@@ -292,6 +349,10 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "Shop")
             nearObject = other.gameObject;
+        if (other.tag == "HealArea")
+        {
+            stateManager.hp += 5;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -383,6 +444,31 @@ public class Player : MonoBehaviour
         obj.GetComponent<WeaponsAttribute>().sm = transform.GetComponent<StateManager>();
         Destroy(obj, 1.3f);
         Destroy(objs, 1.3f);
+    }
+
+    IEnumerator M_SkillQ()
+    {
+        Skill[0].SetActive(true);
+        yield return new WaitForSeconds(4f);
+        Skill[0].SetActive(false);
+    }
+
+    void M_SkillE()
+    {
+        GameObject obj;
+
+        obj = Instantiate(Skill[1], transform.position, transform.rotation);
+        Destroy(obj, 15f);
+    }
+
+    void M_SkillR()
+    {
+        Skill[2].SetActive(true);
+        if (chargingSlider.value == 1)
+        {
+            Skill[2].SetActive(false);
+            chargingSlider.value = 0;
+        }
     }
 
     void ActiveRifle()

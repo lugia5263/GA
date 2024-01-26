@@ -23,7 +23,7 @@ public class NPCController : MonoBehaviour
     {
         questPanel = GameObject.Find("QuestPanel");
         achievementPanel = GameObject.Find("AchievementPanel");
-        weaponPanel = GameObject.Find("WeaponPanel");
+        weaponPanel = GameObject.Find("EnforcePanel");
         lvPanel = GameObject.Find("LvPanel");
         clothingPanel = GameObject.Find("ClothingPanel");
     }
@@ -39,27 +39,27 @@ public class NPCController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")&& npcNum== 1)
+        if (other.CompareTag("Player")&& npcNum== 1) //Äù½ºÆ®
         {
             questPanel.SetActive(true);
 
         }
-        if (other.CompareTag("Player") && npcNum == 2)
+        if (other.CompareTag("Player") && npcNum == 2) //¾÷Àû
         {
             achievementPanel.SetActive(true);
 
         }
-        if (other.CompareTag("Player") && npcNum == 3)
+        if (other.CompareTag("Player") && npcNum == 3) //´ëÀåÀåÀÌ
         {
             weaponPanel.SetActive(true);
 
         }
-        if (other.CompareTag("Player") && npcNum == 4)
+        if (other.CompareTag("Player") && npcNum == 4) //·¾¾÷
         {
             lvPanel.SetActive(true);
 
         }
-        if (other.CompareTag("Player") && npcNum == 5)
+        if (other.CompareTag("Player") && npcNum == 5) //¿Ê
         {
             clothingPanel.SetActive(true);
 

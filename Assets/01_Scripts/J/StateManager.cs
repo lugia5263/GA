@@ -13,6 +13,9 @@ public class StateManager : MonoBehaviour
     public float maxhp;
     public float hp;
     public int atk;
+    public int level = 1;
+    public int exp;
+    
     [Space(10)]
     [Range(0, 100)]
     public int criChance = 50; //in percentage
@@ -21,15 +24,15 @@ public class StateManager : MonoBehaviour
     public float gageTime;
 
     [HideInInspector]
-    public int asdf;
-    //public HUDManager hudManager;
-    //public AttackController atkctrl;
+    
+    public HUDManager hudManager;
+   
 
 
     private void Start()
     {
-        //atkctrl = GetComponentInChildren<AttackController>();
-        //hudManager = gameObject.GetComponent<HUDManager>();
+        
+        hudManager = gameObject.GetComponent<HUDManager>();
     }
 
 
@@ -70,7 +73,7 @@ public class StateManager : MonoBehaviour
         // hit - (hit*def/100)
 
         DamagePopUpGenerator.current.CreatePopup(transform.position + randomness, hit.ToString(), popupColor);
-        //hudManager.ChangeUserHUD();
+        hudManager.ChangeUserHUD();
     }
 
     

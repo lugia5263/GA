@@ -51,11 +51,8 @@ public class EnforceMgr : MonoBehaviour
         var jsonitemFile = Resources.Load<TextAsset>("Json/EnforceTable");
         forcetxtFile = jsonitemFile;
         lessTween = GameObject.Find("lessTween").GetComponent<Jun_TweenRuntime>();
-    }
-    void Start()
-    {
         enforcePanel = GameObject.Find("EnforcePanel");
-        stateMgr = GameObject.Find("Player").GetComponent<StateManager>(); //TODO: 멀티때 신경쓰기
+        stateMgr = GameObject.FindWithTag("Player").GetComponent<StateManager>(); //TODO: 멀티때 신경쓰기
         inventoryMgr = GameObject.Find("InventoryMgr").GetComponent<InventoryManager>();
         rewardMgr = GameObject.Find("RewardMgr").GetComponent<RewardMgr>();
         trophyMgr = GameObject.Find("TrophyMgr").GetComponent<TrophyMgr>();
@@ -76,6 +73,10 @@ public class EnforceMgr : MonoBehaviour
         failweaponNowTxt = GameObject.Find("ForceLvF").GetComponent<Text>();
         beforeAtkF = GameObject.Find("beforeAtkF").GetComponent<Text>();
         afterAtkF = GameObject.Find("afterAtkF").GetComponent<Text>();
+    }
+    void Start()
+    {
+
         enforceEffect.SetActive(false);
         successPanel.SetActive(false);
         failedPanel.SetActive(false);
