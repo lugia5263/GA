@@ -50,11 +50,12 @@ public class TrophyMgr : MonoBehaviour
 
         dailyContent = GameObject.Find("DailyContent");
         weekContent = GameObject.Find("WeekContent");
-        achievementContent = GameObject.Find("AchievementContent");
+        achievementPanel = GameObject.Find("AchievementPanel");
+        //achievementContent = GameObject.Find("AchievementContent");
 
         dailyPanel = GameObject.Find("DailyPanel");
         weekPanel = GameObject.Find("WeekPanel");
-        achievementPanel = GameObject.Find("AchievementPanel");
+
 
         string json = txtFile.text;
         var jsonData = JSON.Parse(json);

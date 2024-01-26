@@ -42,13 +42,14 @@ public class QuestManager : MonoBehaviour
         goalNameTxt = GameObject.Find("goalNameTxt").GetComponent<Text>();
         countTxt = GameObject.Find("countTxt").GetComponent<Text>();
         questRewards = GameObject.Find("QuestRewards").GetComponent<Image>();
+        questPopUpPanel = GameObject.Find("QuestPanel");
+        questGoalTxt = GameObject.Find("GoalTxt").GetComponent<Text>();
+        questCountTxt = GameObject.Find("CountTxt").GetComponent<Text>();
         descriptionPanel.SetActive(false);
     }
     void Start()
     {
-        questPopUpPanel = GameObject.Find("QuestPopUp");
-        questGoalTxt = GameObject.Find("GoalTxt").GetComponent<Text>();
-        questCountTxt = GameObject.Find("CountTxt").GetComponent <Text>();
+
 
     }
 
