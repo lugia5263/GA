@@ -49,11 +49,12 @@ public class TrophyMgr : MonoBehaviour
 
         dailyContent = GameObject.Find("DailyContent");
         weekContent = GameObject.Find("WeekContent");
-        //achievementPanel = GameObject.Find("AchievementPanel");
-        //achievementContent = GameObject.Find("AchievementContent");
+        achievementContent = GameObject.Find("AchievementContent");
 
         dailyPanel = GameObject.Find("DailyPanel");
         weekPanel = GameObject.Find("WeekPanel");
+        achievementPanel = GameObject.Find("AchievementPanel");
+        
 
 
         string json = txtFile.text;
@@ -70,11 +71,11 @@ public class TrophyMgr : MonoBehaviour
         {
             InstachievementContent(i);
         }
-
     }
     private void Start()
     {
- 
+
+        weekPanel.SetActive(false);
         trophyPanel.SetActive(false); //TODO: npc생기면 지움!!
 
     }
