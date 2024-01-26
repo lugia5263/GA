@@ -35,7 +35,5 @@ public class SelectSlot : MonoBehaviour
         }
         // 할당된 슬롯번호 확인
         Debug.Log("Selected Slot: " + currentSlot);
-
-
     }
 }
