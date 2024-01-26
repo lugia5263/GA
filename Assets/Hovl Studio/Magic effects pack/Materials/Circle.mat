@@ -1,5 +1,7 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+<<<<<<< HEAD
+=======
 --- !u!114 &-7036827700935576697
 MonoBehaviour:
   m_ObjectHideFlags: 11
@@ -13,6 +15,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 7
+>>>>>>> DEV
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -21,6 +24,15 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Circle
+<<<<<<< HEAD
+  m_Shader: {fileID: 211, guid: 0000000000000000f000000000000000, type: 0}
+  m_ValidKeywords:
+  - _ALPHABLEND_ON
+  m_InvalidKeywords: []
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+=======
   m_Shader: {fileID: 4800000, guid: 0406db5a14f94604a8c57ccfbc9f3b46, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -33,11 +45,17 @@ Material:
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
+>>>>>>> DEV
   m_CustomRenderQueue: 3000
   stringTagMap:
     RenderType: Transparent
   disabledShaderPasses:
   - GRABPASS
+<<<<<<< HEAD
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+=======
   - DepthOnly
   - SHADOWCASTER
   m_LockedProperties: 
@@ -48,6 +66,7 @@ Material:
         m_Texture: {fileID: 2800000, guid: c4cf9c9f7cf52f6409ef75a08a4357ac, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+>>>>>>> DEV
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -86,9 +105,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+<<<<<<< HEAD
+=======
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
+>>>>>>> DEV
     - _BlendOp: 0
     - _BumpScale: 1
     - _CameraFadingEnabled: 0
@@ -103,9 +125,13 @@ Material:
     - _DistortionStrength: 1
     - _DistortionStrengthScaled: 0
     - _DstBlend: 10
+<<<<<<< HEAD
+    - _EmissionEnabled: 0
+=======
     - _DstBlendAlpha: 10
     - _EmissionEnabled: 0
     - _FlipbookBlending: 0
+>>>>>>> DEV
     - _FlipbookMode: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -115,13 +141,21 @@ Material:
     - _Mode: 2
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+<<<<<<< HEAD
+=======
     - _QueueOffset: 0
+>>>>>>> DEV
     - _SmoothnessTextureChannel: 0
     - _SoftParticlesEnabled: 0
     - _SoftParticlesFarFadeDistance: 1
     - _SoftParticlesNearFadeDistance: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 5
+<<<<<<< HEAD
+    - _UVSec: 0
+    - _ZWrite: 0
+    m_Colors:
+=======
     - _SrcBlendAlpha: 1
     - _Surface: 1
     - _UVSec: 0
@@ -129,6 +163,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 2.3773584, g: 2.3773584, b: 2.3773584, a: 1}
     - _BaseColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
+>>>>>>> DEV
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
     - _Color: {r: 2.3773584, g: 2.3773584, b: 2.3773584, a: 1}
     - _ColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
