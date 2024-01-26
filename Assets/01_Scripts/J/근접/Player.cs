@@ -69,14 +69,15 @@ public class Player : MonoBehaviour
     public bool qisReady;
     public bool eisReady;
     public bool risReady;
-
+    public bool rischarging;
     public float qskillcool;
     public float eskillcool;
     public float rskillcool;
-
     public float curQskillcool;
     public float curEskillcool;
     public float curRskillcool;
+
+    public Slider chargingSlider;
 
     [SerializeField] private float rotCamXAxisSpeed = 500f;
     [SerializeField] private float rotCamYAxisSpeed = 3f;
@@ -268,6 +269,7 @@ public class Player : MonoBehaviour
         {
             rskillcool = curRskillcool;
             risReady = true;
+            rischarging = true;
         }
 
         if (qisReady)
@@ -299,6 +301,30 @@ public class Player : MonoBehaviour
                 risReady = false;
             }
         }
+        if(rischarging)
+        {
+            if(Input.GetKey(KeyCode.R))
+            {
+                animator.SetTrigger("SkillR");
+                Skill[2].SetActive(true);
+                ob[0].SetActive(true);
+                chargingSlider.value += Time.deltaTime * 0.35f;
+                
+                if(chargingSlider.value == 1)
+                {
+                    Skill[2].SetActive(false);
+                    ob[0].SetActive(false);
+                    rischarging = false;
+                }
+            }
+            else
+            {
+                Skill[2].SetActive(false);
+                ob[0].SetActive(false);
+                rischarging = false;
+                chargingSlider.value = 0;
+            }
+        }
     }
 
 
@@ -323,6 +349,10 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "Shop")
             nearObject = other.gameObject;
+        if (other.tag == "HealArea")
+        {
+            stateManager.hp += 5;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -425,12 +455,20 @@ public class Player : MonoBehaviour
 
     void M_SkillE()
     {
+        GameObject obj;
 
+        obj = Instantiate(Skill[1], transform.position, transform.rotation);
+        Destroy(obj, 15f);
     }
 
     void M_SkillR()
     {
-
+        Skill[2].SetActive(true);
+        if (chargingSlider.value == 1)
+        {
+            Skill[2].SetActive(false);
+            chargingSlider.value = 0;
+        }
     }
 
     void ActiveRifle()
