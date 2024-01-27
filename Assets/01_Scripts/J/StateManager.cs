@@ -15,6 +15,7 @@ public class StateManager : MonoBehaviour
     public int atk;
     public int level = 1;
     public int exp;
+    public int classNum;
     
     [Space(10)]
     [Range(0, 100)]
@@ -73,7 +74,7 @@ public class StateManager : MonoBehaviour
         // hit - (hit*def/100)
 
         DamagePopUpGenerator.current.CreatePopup(transform.position + randomness, hit.ToString(), popupColor);
-        hudManager.ChangeUserHUD();
+        //hudManager.ChangeUserHUD();
     }
 
     
