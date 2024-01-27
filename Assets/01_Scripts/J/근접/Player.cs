@@ -78,13 +78,15 @@ public class Player : MonoBehaviour
     public float curRskillcool;
 
     public Slider chargingSlider;
-
+    public float originalTimeScale;
+    
     [SerializeField] private float rotCamXAxisSpeed = 500f;
     [SerializeField] private float rotCamYAxisSpeed = 3f;
     internal string NickName;
 
     void Awake()
     {
+        
         isFireReady = true;
         weapons = GetComponentInChildren<Weapons>();
         rigid = GetComponent<Rigidbody>();
@@ -104,6 +106,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        
         skillIcon[0].fillAmount = 0;
         skillIcon[1].fillAmount = 0;
         skillIcon[2].fillAmount = 0;
@@ -124,6 +127,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        originalTimeScale = Time.timeScale * Time.unscaledDeltaTime;
         if (!isDeath)
         {
             GetinPut();
@@ -343,7 +347,13 @@ public class Player : MonoBehaviour
         {
             isDeshInvincible = true;
         }
+
+        if(other.CompareTag("TimeSlow"))
+        {
+            
+        }
     }
+   
 
     //Player ���� ���� 
     private void OnTriggerStay(Collider other)
@@ -364,6 +374,10 @@ public class Player : MonoBehaviour
             Shop shop = nearObject.GetComponent<Shop>();
             shop.Exit();
             nearObject = null;
+        }
+        if(other.CompareTag("TimeSlow"))
+        {
+            
         }
     }
     void SkillUsing()

@@ -13,10 +13,9 @@ GameObject:
   - component: {fileID: 337590252539436848}
   - component: {fileID: 5392646661923128663}
   - component: {fileID: -6948584162029381725}
-  - component: {fileID: 8908549302636447075}
   m_Layer: 0
   m_Name: M_Eskill
-  m_TagString: Untagged
+  m_TagString: TimeSlow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,7 +123,7 @@ MonoBehaviour:
       m_Calls: []
   playType: 0
   animationStartTime: 0
-  animationTime: 3.142857
+  animationTime: 14.959036
   enablePlay: 0
   awakePlay: 1
   lgnoreTimeScale: 1
@@ -161,7 +160,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     _minAnimationTime: 0
-    _maxAnimationTime: 1
+    _maxAnimationTime: 0.21009757
     _minTime: 0
     _maxTime: 3.142857
     _isLocal: 1
@@ -172,17 +171,43 @@ MonoBehaviour:
     _fromFloat: 0
     _toFloat: 0
     _bezierCurve: {fileID: 0}
---- !u!114 &8908549302636447075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7264096684284151771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14580894cfc49bd4bb852e495360014d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  curTime: 0
-  slowTime: 0
+  - _tweenName: 
+    _tweenType: 2
+    _isSelf: 1
+    _tweenObject: {fileID: 6686524214854407651}
+    _curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    _minAnimationTime: 0.7963917
+    _maxAnimationTime: 1
+    _minTime: 11.913253
+    _maxTime: 14.959036
+    _isLocal: 1
+    _fromVector: {x: 20, y: 20, z: 20}
+    _toVector: {x: 0.1, y: 0.1, z: 0.1}
+    _fromColor: {r: 1, g: 1, b: 1, a: 1}
+    _toColor: {r: 1, g: 1, b: 1, a: 1}
+    _fromFloat: 0
+    _toFloat: 0
+    _bezierCurve: {fileID: 0}
