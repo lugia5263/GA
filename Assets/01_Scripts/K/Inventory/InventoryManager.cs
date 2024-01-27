@@ -48,6 +48,7 @@ public class InventoryManager : MonoBehaviour
     public Text expTxt;
     public Text materialTxt;
     public Text atkInfo;
+    public Text playerLv;
 
     private void Awake()
     {
@@ -62,6 +63,7 @@ public class InventoryManager : MonoBehaviour
         expTxt = tr.transform.Find("item_expTxt").GetComponent<Text>();
         materialTxt = tr.transform.Find("item_materialTxt").GetComponent<Text>();
         atkInfo = tr.transform.Find("atkInfo").GetComponent<Text>();
+        playerLv = GameObject.Find("lvInfo").GetComponent<Text>();
         InitInventory();
         inventoryCanvas.SetActive(false);
 
@@ -139,6 +141,7 @@ public class InventoryManager : MonoBehaviour
         expTxt.text = expPotion.ToString();
         materialTxt.text = materials.ToString();
         atkInfo.text = stateMgr.atk.ToString();
+        playerLv.text = stateMgr.level.ToString();
 
     } //아이템 1개 이상이면 불들어오게
 
