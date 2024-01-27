@@ -26,6 +26,9 @@ public class Player : MonoBehaviour
     float hAxis;
     float vAxis;
     Vector3 moveVec;
+    private Plane plane;
+    private Ray ray;
+    private Vector3 hitPosition;
 
     [Header("Component")]
     public CharacterController characterController;
@@ -42,6 +45,7 @@ public class Player : MonoBehaviour
     public StateManager stateManager;
     MeshRenderTail meshRenderTail;
     public HUDManager hudManager;
+    private new Camera camera;
 
     [Header("CamBat")]
     public bool isAttack;
@@ -86,7 +90,7 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-        
+        camera = Camera.main;
         isFireReady = true;
         weapons = GetComponentInChildren<Weapons>();
         rigid = GetComponent<Rigidbody>();
@@ -106,7 +110,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        
+        plane = new Plane(transform.up, transform.position);
         skillIcon[0].fillAmount = 0;
         skillIcon[1].fillAmount = 0;
         skillIcon[2].fillAmount = 0;
@@ -137,10 +141,22 @@ public class Player : MonoBehaviour
             Deshs();
             Interation();
             SkillCoolTime();
+            //Turn();
         }
 
     }
+    void Turn()
+    {
+        ray = camera.ScreenPointToRay(Input.mousePosition);
+        float enter = 0;
 
+        plane.Raycast(ray, out enter);
+        hitPosition = ray.GetPoint(enter);
+
+        Vector3 lookDir = hitPosition - transform.position;
+        lookDir.y = 0;
+        transform.localRotation = Quaternion.LookRotation(lookDir);
+    }
 
     void GetinPut()
     {
@@ -331,6 +347,7 @@ public class Player : MonoBehaviour
           //  }
         }
     }
+    
 
 
     private void OnTriggerEnter(Collider other)
