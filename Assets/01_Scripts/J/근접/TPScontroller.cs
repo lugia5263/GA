@@ -15,7 +15,7 @@ public class TPScontroller  : MonoBehaviour
     public CharacterController characterController;
     Player player;
     Animator animator;
-
+    public float dontSlow;
 
     void Start()
     {
@@ -25,8 +25,6 @@ public class TPScontroller  : MonoBehaviour
         player = GetComponentInChildren<Player>();
         animator = GetComponentInChildren<Animator>();
         player = GetComponentInChildren<Player>();
-        
-       
     }
 
     // Update is called once per frame
