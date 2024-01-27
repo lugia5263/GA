@@ -5951,6 +5951,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4446616183318249512, guid: 1cb2100ec70d3374caa59c5e10b738c6, type: 3}
+      propertyPath: mat
+      value: 
+      objectReference: {fileID: 2100000, guid: 45005fb9a3f0af84081bb0cdbe4e506f, type: 2}
+    - target: {fileID: 4446616183318249512, guid: 1cb2100ec70d3374caa59c5e10b738c6, type: 3}
+      propertyPath: meshRefreshRate
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446616183318249512, guid: 1cb2100ec70d3374caa59c5e10b738c6, type: 3}
+      propertyPath: positionToSpawn
+      value: 
+      objectReference: {fileID: 1115408448}
+    - target: {fileID: 4446616183318249512, guid: 1cb2100ec70d3374caa59c5e10b738c6, type: 3}
+      propertyPath: meshDestroyDelay
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6493537448667326656, guid: 1cb2100ec70d3374caa59c5e10b738c6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.00000047683716
@@ -47238,6 +47254,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2223657018099997933, guid: 1cb2100ec70d3374caa59c5e10b738c6, type: 3}
   m_PrefabInstance: {fileID: 100883634}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1115408448 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7987801885394552142, guid: 1cb2100ec70d3374caa59c5e10b738c6, type: 3}
+  m_PrefabInstance: {fileID: 100883634}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1129257236 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: bdd8b59fd28ade14d951aeeb4c9644d0, type: 3}
@@ -65340,7 +65361,6 @@ GameObject:
   - component: {fileID: 1404948359}
   - component: {fileID: 1404948358}
   - component: {fileID: 1404948357}
-  - component: {fileID: 1404948356}
   m_Layer: 5
   m_Name: AcceptQuestBtn
   m_TagString: Untagged
@@ -65368,18 +65388,6 @@ RectTransform:
   m_AnchoredPosition: {x: -203, y: 111}
   m_SizeDelta: {x: 219.91614, y: 73.30539}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1404948356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1404948354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a867d19c96a6a6346b7ef9876649b455, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1404948357
 MonoBehaviour:
   m_ObjectHideFlags: 0
