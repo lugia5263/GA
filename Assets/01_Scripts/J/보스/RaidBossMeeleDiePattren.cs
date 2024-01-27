@@ -6,13 +6,14 @@ public class RaidBossMeeleDiePattren : MonoBehaviour
 {
     public GameObject bombArea;
     public float castingTime;
-
+    Animator anim;
     public GameObject Effect;
     float size = 1f;
     Vector3 maxSize;
     Vector3 originSize;
     void Start()
     {
+        anim = GameObject.FindGameObjectWithTag("Boss").GetComponent<Animator>();
         originSize = bombArea.transform.localScale;
     }
 
@@ -27,17 +28,18 @@ public class RaidBossMeeleDiePattren : MonoBehaviour
         while (bombArea.transform.localScale.z < size)
         {
             castingTime += Time.deltaTime;
-            float speed = 0.000001f;
-            bombArea.transform.localScale += new Vector3(0, 0, castingTime * speed * 0.03f * Time.deltaTime);
-
+            float speed = 0.00001f;
+            bombArea.transform.localScale += new Vector3(0, 0, castingTime * speed * 3f * Time.deltaTime);
+            
             if (bombArea.transform.localScale.z >= size)
             {
                 GameObject effcet;
-                effcet = Instantiate(Effect, transform.position, transform.rotation);
+                Vector3 Pos = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1.5f);
+                effcet = Instantiate(Effect, Pos, transform.rotation);
                 //effcet.GetComponent<BossWeapons>().sm = GameObject.FindGameObjectWithTag("Boss").GetComponent<StateManager>();
                 castingTime = 0;
                 Destroy(gameObject, 0.1f);
-                Destroy(effcet, 3f);
+                Destroy(effcet,3f);
                 break;
             }
             yield return null;

@@ -37,12 +37,14 @@ public class RaidBossCtrl : MonoBehaviour
     public float p3;
     public float p4;
     public float p5;
+    public float dieNowPattern;
 
-    public float p1check = 31f;
-    public float p2check = 47f;
-    public float p3check = 14f;
-    public float p4check = 61f;
-    public float p5check = 74f;
+    public float p1check;
+    public float p2check;
+    public float p3check;
+    public float p4check;
+    public float p5check;
+    public float dieNowPatternCheck;
 
     public bool p1Ready;
     public bool p2Ready;
@@ -50,6 +52,7 @@ public class RaidBossCtrl : MonoBehaviour
     public bool p4Ready;
     public bool p5Ready;
 
+    public GameObject dieNowPatternEffect;
     public GameObject DownPattern;
     public float breakTime;
     public float breakCheck;
@@ -71,6 +74,7 @@ public class RaidBossCtrl : MonoBehaviour
             BreakTime();
             PatternTimeCheck();
             Dieing();
+            DieNowPatternt();
             switch (raidBoss)
             {
                 case RAIDBOSS.IDLE:
@@ -272,6 +276,20 @@ public class RaidBossCtrl : MonoBehaviour
         {
             die = true;
             raidBoss = RAIDBOSS.DIE;
+        }
+    }
+
+    void DieNowPatternt()
+    {
+        dieNowPattern += Time.deltaTime;
+        if(dieNowPattern >= dieNowPatternCheck)
+        {
+            Vector3 Pos = new Vector3(transform.position.x, transform.position.y + 0.01f, transform.position.z - 3.5f);
+            GameObject obj;
+            obj = Instantiate(dieNowPatternEffect, Pos, transform.rotation);
+            Destroy(obj, 3f);
+            dieNowPattern = 0;
+            anim.SetTrigger("Rolling");
         }
     }
 }
