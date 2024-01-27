@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class QuestPopUpManager : MonoBehaviour
 {
+    public QuestManager questManager;
 
     public int curQuestIndex; //현재 퀘스트 번호
 
@@ -19,6 +20,7 @@ public class QuestPopUpManager : MonoBehaviour
     private void Start()
     {
         questCountTxt = GameObject.Find("QCountTxt").GetComponent<Text>();
+
     }
 
 
@@ -49,15 +51,13 @@ public class QuestPopUpManager : MonoBehaviour
         if(curCount >= maxCount)
         {
             questCountTxt.color = Color.yellow;
-            isCompleted = true;
+            isCompleted = true;          
         }
         else
         {
             questCountTxt.color = Color.white;
         }
     }
-
-
 }
 
 
