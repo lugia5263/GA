@@ -10,8 +10,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     public LoadPlayerInfo loadPlayerInfo;
     public int slotNum;
 
-    PhotonManager photonManager;
-
     public GameObject selectCharPanel;
     public TMP_Text roomName;
     public TMP_Text connectInfo;
@@ -23,14 +21,11 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         // 접속 정보 추출 및 표시
         SetRoomInfo();
-        // Exit 버튼 이벤트 연결
-        exitBtn.onClick.AddListener(() => OnExitClick());
     }
 
     void Start()
     {
         loadPlayerInfo = GameObject.Find("LoadPlayerInfo").GetComponent<LoadPlayerInfo>();
-        photonManager = GameObject.Find("PhotonManager").GetComponent<PhotonManager>();
 
         selectCharPanel.SetActive(true);
         //chatBox.SetActive(false);
@@ -45,17 +40,16 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
     // Exit 버튼의 OnClick에 연결할 함수
-    private void OnExitClick()
+    public void OnExitClick()
     {
         PhotonNetwork.LeaveRoom();
     }
 
     public void OnClickStartBtn()
     {
+        SetUserId();
         selectCharPanel.SetActive(false);
         //chatBox.SetActive(true);
-        SetUserId();
-        photonManager.JoinHome();
     }
 
     public void OnClickGoLoginSceneBtn()
@@ -92,13 +86,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         Debug.Log("방 나가기 완료.");
         PhotonNetwork.JoinLobby();
         Debug.Log("JoinLobby 실행");
-        SceneManager.LoadScene("Login");
-    }
-
-    public override void OnJoinedLobby()
-    {
-        base.OnJoinedLobby();
-        Debug.Log("로비 입장 완료.");
     }
 
     // 룸으로 새로운 네트워크 유저가 입장했때 호출되는 콜백함수
