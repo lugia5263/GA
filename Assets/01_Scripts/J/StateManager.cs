@@ -15,7 +15,7 @@ public class StateManager : MonoBehaviour
     public int atk;
     public int level = 1;
     public int exp;
-    public int classNum;
+    public int classNum; // 클래스 변경시, 이 부분도 신경써주세요 1전사 2원딜 3마법
     
     [Space(10)]
     [Range(0, 100)]
