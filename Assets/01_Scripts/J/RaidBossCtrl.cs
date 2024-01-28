@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class RaidBossCtrl : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class RaidBossCtrl : MonoBehaviour
         PAGE3,
     }
 
+    
     [Header("Move")]
     public float speed = 2.5f;
     public float rotSpeed = 5f;
@@ -30,6 +32,8 @@ public class RaidBossCtrl : MonoBehaviour
     public CharacterController characterController;
     public Animator anim;
     public StateManager stateManager;
+    public VisualEffect healthUp;
+    public Player player;
 
     [Header("AttackPattern")]
     public float p1;
@@ -38,13 +42,16 @@ public class RaidBossCtrl : MonoBehaviour
     public float p4;
     public float p5;
     public float dieNowPattern;
-
+    public float healthUpingTime;
+    public float healUseingTime;
     public float p1check;
     public float p2check;
     public float p3check;
     public float p4check;
     public float p5check;
     public float dieNowPatternCheck;
+    public float healthUpingTimeCheck;
+    public float healUseingTimeCheck;
 
     public bool p1Ready;
     public bool p2Ready;
@@ -58,6 +65,7 @@ public class RaidBossCtrl : MonoBehaviour
     public float breakCheck;
     public bool breakOn;
     public bool die;
+    public bool healthUpCheck;
     void Start()
     {
         raidBoss = RAIDBOSS.IDLE;
@@ -65,6 +73,7 @@ public class RaidBossCtrl : MonoBehaviour
         targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         anim = GetComponent<Animator>();
         stateManager = GetComponent<StateManager>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     void Update()
@@ -75,6 +84,7 @@ public class RaidBossCtrl : MonoBehaviour
             PatternTimeCheck();
             Dieing();
             DieNowPatternt();
+            healthUpPattern();
             switch (raidBoss)
             {
                 case RAIDBOSS.IDLE:
@@ -208,6 +218,19 @@ public class RaidBossCtrl : MonoBehaviour
             }
         }
     }
+    void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("TimeSlow"))
+        {
+            anim.speed = 0.15f;
+            speed = 0.5f;
+        }
+        else
+        {
+            speed = 3f;
+            anim.speed = 1f;
+        }
+    }
 
     void PatternTimeCheck()
     {
@@ -292,4 +315,35 @@ public class RaidBossCtrl : MonoBehaviour
             anim.SetTrigger("Rolling");
         }
     }
+
+    void healthUpPattern()
+    {
+        healthUpingTime += Time.deltaTime;
+        if (healthUpingTime >= healthUpingTimeCheck)
+        {
+            anim.SetTrigger("HealthUp");
+            healthUpCheck = true;
+            if (healthUpCheck)
+            {
+                InvokeRepeating("EffectInvoke", 0, 2);
+                stateManager.hp += 3000f;
+                stateManager.atk += 50;
+                healthUpingTime = 0;
+                StartCoroutine(EffectDelay());
+            }
+        }
+    }
+
+    void EffectInvoke()
+    {
+        healthUp.Play();
+    }
+    IEnumerator EffectDelay()
+    {
+        yield return new WaitForSeconds(12f);
+        stateManager.atk -= 50;
+        CancelInvoke();
+        healthUpCheck = false;
+    }
+
 }

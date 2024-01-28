@@ -20,7 +20,7 @@ public class StateManager : MonoBehaviour
     [Space(10)]
     [Range(0, 100)]
     public int criChance = 50; //in percentage
-    public float criDamage = 1.5f;
+    public float criDamage = 120f;
     public int def;
     public float gageTime;
 

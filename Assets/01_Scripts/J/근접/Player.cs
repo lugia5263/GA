@@ -358,6 +358,7 @@ public class Player : MonoBehaviour
                 return;
 
             animator.SetTrigger("Down");
+            StartCoroutine(DownDelay());
         }
 
         if (other.CompareTag("SaveZone"))
@@ -369,6 +370,13 @@ public class Player : MonoBehaviour
         {
             
         }
+    }
+
+    IEnumerator DownDelay()
+    {
+        speed = 0;
+        yield return new WaitForSeconds(3f);
+        speed = 3;
     }
    
 

@@ -36,7 +36,7 @@ public class RaidBossMeeleDiePattren : MonoBehaviour
                 GameObject effcet;
                 Vector3 Pos = new Vector3(transform.position.x, transform.position.y, transform.position.z + 4f);
                 effcet = Instantiate(Effect, Pos, transform.rotation);
-                //effcet.GetComponent<BossWeapons>().sm = GameObject.FindGameObjectWithTag("Boss").GetComponent<StateManager>();
+                effcet.GetComponent<BossWeapons>().sm = GameObject.FindGameObjectWithTag("Boss").GetComponent<StateManager>();
                 castingTime = 0;
                 Destroy(gameObject, 0.1f);
                 Destroy(effcet,3f);
