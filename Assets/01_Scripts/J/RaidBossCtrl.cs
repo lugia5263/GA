@@ -284,7 +284,7 @@ public class RaidBossCtrl : MonoBehaviour
         dieNowPattern += Time.deltaTime;
         if(dieNowPattern >= dieNowPatternCheck)
         {
-            Vector3 Pos = new Vector3(transform.position.x, transform.position.y + 0.01f, transform.position.z - 3.5f);
+            Vector3 Pos = new Vector3(transform.position.x, transform.position.y + 0.01f, transform.position.z - 1f);
             GameObject obj;
             obj = Instantiate(dieNowPatternEffect, Pos, transform.rotation);
             Destroy(obj, 3f);

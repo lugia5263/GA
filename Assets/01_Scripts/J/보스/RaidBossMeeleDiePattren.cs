@@ -34,7 +34,7 @@ public class RaidBossMeeleDiePattren : MonoBehaviour
             if (bombArea.transform.localScale.z >= size)
             {
                 GameObject effcet;
-                Vector3 Pos = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1.5f);
+                Vector3 Pos = new Vector3(transform.position.x, transform.position.y, transform.position.z + 4f);
                 effcet = Instantiate(Effect, Pos, transform.rotation);
                 //effcet.GetComponent<BossWeapons>().sm = GameObject.FindGameObjectWithTag("Boss").GetComponent<StateManager>();
                 castingTime = 0;

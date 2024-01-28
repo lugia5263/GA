@@ -18977,6 +18977,8 @@ GameObject:
   - component: {fileID: 6002550410715242216}
   - component: {fileID: 6040248856490247553}
   - component: {fileID: 3406264501827881306}
+  - component: {fileID: 4084640101110846271}
+  - component: {fileID: 1772162185142305472}
   m_Layer: 0
   m_Name: die instantlyEffect
   m_TagString: Untagged
@@ -18994,7 +18996,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.89, y: 0, z: 4.87}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5585917317479831879}
@@ -23880,6 +23882,42 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!65 &4084640101110846271
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7093197919085047918}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.91, y: 1, z: 10}
+  m_Center: {x: 0.057698842, y: 0, z: 5.76}
+--- !u!114 &1772162185142305472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7093197919085047918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fac9142f96420c3419eb34712cacc9ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sm: {fileID: 1035065995105691986, guid: 6d07266f4acf9ae4daec4185f49db125, type: 3}
+  atkPer: 200
+  player: {fileID: 0}
 --- !u!1 &7140524374451013171
 GameObject:
   m_ObjectHideFlags: 0
