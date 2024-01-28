@@ -38,6 +38,8 @@ namespace Photon.Pun
         /// </summary>
         private static NonAllocDictionary<int, PhotonView> photonViewList = new NonAllocDictionary<int, PhotonView>();
 
+
+
         /// <summary>
         /// Gets the photon views.
         /// </summary>
@@ -59,6 +61,11 @@ namespace Photon.Pun
                 }
                 return views;
             }
+        }
+
+        public static void GetRoomList()
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -1803,7 +1810,10 @@ namespace Photon.Pun
             PhotonView view = GetPhotonView(viewID);
             if (view == null)
             {
-                Debug.LogWarning("Received OnSerialization for view ID " + viewID + ". We have no such PhotonView! Ignore this if you're joining or leaving a room. State: " + NetworkingClient.State);
+                if (PhotonNetwork.LogLevel >= PunLogLevel.Informational)
+                {
+                    Debug.LogWarning("Received OnSerialization for view ID " + viewID + ". We have no such PhotonView! Ignore this if you're joining or leaving a room. State: " + NetworkingClient.State);
+                }
                 return;
             }
 

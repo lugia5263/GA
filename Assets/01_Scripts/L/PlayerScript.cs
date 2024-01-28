@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
+using System.Linq;
 
 public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -29,23 +30,27 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
         chatManager = GameObject.Find("ChatManager").GetComponent<ChatManager>();
         tr = GetComponent<Transform>();
         pv = GetComponent<PhotonView>();
-        StartCoroutine(CheckEnterKey());
+        
         chatManager.inputChat.enabled = false;
         chatManager.chatLog.text = "";
-        //ChatterUpdate();
+        
+        StartCoroutine(CheckEnterKey());
     }
 
     void Update()
     {   
-        //ChatterUpdate();
-
         if (pv.IsMine)
         {
             nickNameTxt.text = PhotonNetwork.NickName + " (나)";
-            float moveHorizontal = Input.GetAxis("Horizontal");
-            float moveVertical = Input.GetAxis("Vertical");
-            Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-            tr.Translate(movement * Time.deltaTime * speed);
+            // 만약 채팅창이 활성화되어 있으면 플레이어를 움직이지 않음
+            if (!chatManager.inputChat.isFocused)
+            {
+                float moveHorizontal = Input.GetAxis("Horizontal");
+                float moveVertical = Input.GetAxis("Vertical");
+                Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+                tr.Translate(movement * Time.deltaTime * speed);
+                ChatterUpdate();
+            }
         }
         else
         {
@@ -87,21 +92,24 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    //void ChatterUpdate()
-    //{
-        //chatManager.chatters = "PlayerList\n";
-        //foreach (Player p in PhotonNetwork.PlayerList)
-        //{
-            //chatManager.chatters += p.NickName + "\n";
-        //}
-        //chatManager.chattingList.text = chatManager.chatters;
-    //    chatManager.chatters = "PlayerList\n";
-    //    foreach (Player p in PhotonNetwork.PlayerList)
-    //    {
-    //        chatManager.chatters += p.NickName + "\n";
-    //    }
-    //    chatManager.chattingList.text = chatManager.chatters;
-    //}
+    void ChatterUpdate()
+    {
+        if (pv.IsMine)
+        {
+            string[] playerList = PhotonNetwork.PlayerList.Select(p => p.NickName).ToArray();
+            string concatenatedPlayerList = string.Join("\n", playerList); // 들어온 순서대로 출력
+            photonView.RPC("SyncChatterList", RpcTarget.AllBuffered, concatenatedPlayerList);
+        }
+    }
+
+    [PunRPC]
+    public void SyncChatterList(string playerList)
+    {
+        if (chatManager != null)
+        {
+            chatManager.chattingList.text = playerList;
+        }
+    }
 
     [PunRPC]
     public void ReceiveMsg(string msg)
@@ -114,33 +122,34 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
     {
         while (true)
         {
-            // enter키를 눌렀고 inputChat에 포커스를 가지고있을때 실행(isFocused는 가지고있지않을때 true를 반환함)
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (pv.IsMine && Input.GetKeyDown(KeyCode.Return))
             {
-                if (chatManager.inputChat.enabled == false)
+                if (chatManager != null && chatManager.inputChat != null)
                 {
-                    Debug.Log("enter키 누름. 채팅창활성화 합니다..");
-                    chatManager.inputChat.enabled = true;
-                    chatManager.inputChat.ActivateInputField();
-
-                    yield return null;
-                }
-                else
-                {
-                    if (!chatManager.inputChat.isFocused)
+                    if (chatManager.inputChat.enabled == false)
                     {
-                        Debug.Log("enter키 누름. Focused 가지고있음=깜빡이고있음=메세지입력가능");
-                        OnClickSendBtn();
+                        Debug.Log("enter키 누름. 채팅창활성화 합니다..");
+                        chatManager.inputChat.enabled = true;
+                        chatManager.inputChat.ActivateInputField();
+
+                        yield return null;
                     }
                     else
                     {
-                        Debug.Log("enter키 누름. Focused 가지고있지않음=깜빡이지않음=메세지입력불가");
-                        chatManager.inputChat.ActivateInputField();
+                        if (!chatManager.inputChat.isFocused)
+                        {
+                            Debug.Log("enter키 누름. Focused 가지고있음=깜빡이고있음=메세지입력가능");
+                            OnClickSendBtn();
+                        }
+                        else
+                        {
+                            Debug.Log("enter키 누름. Focused 가지고있지않음=깜빡이지않음=메세지입력불가");
+                            chatManager.inputChat.ActivateInputField();
+                        }
                     }
                 }
             }
             yield return null;
-            
         }
     }
     #endregion
@@ -162,4 +171,4 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
             currRot = (Quaternion)stream.ReceiveNext();
         }
     }
-}   
+}

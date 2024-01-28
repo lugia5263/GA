@@ -72,6 +72,11 @@ public class HUDManager : MonoBehaviour
             DHpBar.fillAmount -= 0.1f * Time.deltaTime;
             DHpBar.fillAmount = Mathf.Max(DHpBar.fillAmount, targetFillAmount);
         }
+        if(DHpBar.fillAmount < targetFillAmount)
+        {
+            DHpBar.fillAmount += 0.1f * Time.deltaTime;
+            DHpBar.fillAmount = Mathf.Max(DHpBar.fillAmount, targetFillAmount);
+        }
     }
     public void ChangeMainHP()
     {
