@@ -21,7 +21,7 @@ public class TownTeleportMgr : MonoBehaviour
 
     public void HappyGround()
     {
-        chHouseMain.transform.position = new Vector3(-16.8f, 0.7f, 0.1501f);
+        chHouseMain.transform.position = new Vector3(3.8685f, 4.2894f, 32.388f);
         bossPrefab.SetActive(false);
     }
 }
