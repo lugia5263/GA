@@ -15,8 +15,8 @@ public class TPScontroller  : MonoBehaviour
     public CharacterController characterController;
     Player player;
     Animator animator;
-    public float dontSlow;
-
+    public float rotationSpeed = 5f;
+    public float speed = 1;
     void Start()
     {
         players = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -34,7 +34,7 @@ public class TPScontroller  : MonoBehaviour
         moves();
         lookAround();
 
-       if(!player.characterController.isGrounded)
+        if (!player.characterController.isGrounded)
         { 
             if(isJumping)
             {
@@ -58,7 +58,6 @@ public class TPScontroller  : MonoBehaviour
         }
     }
 
-    
     void moves()
     {
         if (player.skillUse == true)
@@ -103,6 +102,4 @@ public class TPScontroller  : MonoBehaviour
         CameraArm.rotation = Quaternion.Euler(0, camAngle.y + mouseDelta.x, camAngle.z);
         
     }
-
-    
 }

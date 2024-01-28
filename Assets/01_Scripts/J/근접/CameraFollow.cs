@@ -19,7 +19,7 @@ public class CameraFollow : MonoBehaviour
     Coroutine resetCoroutine;
     Coroutine becomeTransparentCoroutine;
     public GameObject stage;
-
+    public Transform CameraArm;
     private float xRotateMove, yRotateMove;
 
     public float rotateSpeed = 500.0f;
@@ -51,7 +51,7 @@ public class CameraFollow : MonoBehaviour
     }
     void Update()
     {
-
+        
     }
 }
 
