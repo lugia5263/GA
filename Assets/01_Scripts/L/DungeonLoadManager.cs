@@ -33,6 +33,17 @@ public class DungeonLoadManager : MonoBehaviourPunCallbacks
         Debug.Log("DungeonLoad.dungeonType : " + dungeonType);
     }
 
+    void Update()
+    {
+
+    }
+    IEnumerator LoadLevelRaidDungeon()
+    {
+        yield return null;
+
+        PhotonNetwork.LoadLevel("RaidDungeon");
+        PhotonNetwork.AutomaticallySyncScene = true;
+    }
     IEnumerator EnterDungeonRoom()
     {
         if (PhotonNetwork.InLobby && dungeonType== "raidDungeon")
@@ -43,11 +54,6 @@ public class DungeonLoadManager : MonoBehaviourPunCallbacks
         {
             Debug.Log("EnterDungeonRoom의 if문에 들어가지못했음");
         }
-        // yield return에 StartCoroutine(룸 동기화);
-        //if(PhotonNetwork.CurrentRoom.PlayerCount == PhotonNetwork.CurrentRoom.MaxPlayers)
-        //{
-        //    PhotonNetwork.JoinRoom("Room_Raid");
-        //}
 
         yield return null;
     }
@@ -62,6 +68,11 @@ public class DungeonLoadManager : MonoBehaviourPunCallbacks
     {
         base.OnJoinedRoom();
         Debug.Log("Room입장 성공");
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.AutomaticallySyncScene = true;
+        }
+
         SetRoomInfo();
     }
 
@@ -107,6 +118,20 @@ public class DungeonLoadManager : MonoBehaviourPunCallbacks
         SetRoomInfo();
         string msg = $"\n<color=#00ff00>{newPlayer.NickName}</color> is joined room";
         msgList.text += msg;
+
+        if (PhotonNetwork.CurrentRoom.PlayerCount == PhotonNetwork.CurrentRoom.MaxPlayers)
+        {
+            Debug.Log("CurPlayerCount==MaxPlayerCount 입니다.");
+            if (PhotonNetwork.IsMasterClient)
+            {
+                Debug.Log("마스터 클라이언트 입니다. 코루틴 실행함.");
+                StartCoroutine(LoadLevelRaidDungeon());
+            }
+            else
+            {
+                Debug.Log("마스터 클라이언트가 아닙니다. 코루틴실행안함.");
+            }
+        }
     }
 
     // 룸에서 네트워크 유저가 퇴장했때 호출되는 콜백함수

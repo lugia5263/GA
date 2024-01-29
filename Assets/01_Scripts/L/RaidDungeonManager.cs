@@ -5,8 +5,9 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
-public class RoomInfoManager : MonoBehaviourPunCallbacks
+public class RaidDungeonManager : MonoBehaviourPunCallbacks
 {
     public SpawnScipt spawnMgr;
 
@@ -33,12 +34,13 @@ public class RoomInfoManager : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        //spawnMgr.CreatePlayer();
+        spawnMgr.CreatePlayer();
     }
 
     // Exit 버튼의 OnClick에 연결할 함수
     private void OnClickExitBtn()
     {
+        RoomEnterManager.dungeonType = "None";
         PhotonNetwork.LeaveRoom();
     }
 
