@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class QuestPopUpManager : MonoBehaviour
 {
-    public QuestManager questManager;
 
     public int curQuestIndex; //현재 퀘스트 번호
 
@@ -39,7 +38,7 @@ public class QuestPopUpManager : MonoBehaviour
     {
         qcondition = (QuestCondition)n; // 위의 이넘값을 1, 2 로 쓸거야
         if (curQuestIndex == n)
-        { curCount++;}
+        { curCount++; }
 
         InitCurQuest();
     }
@@ -48,10 +47,10 @@ public class QuestPopUpManager : MonoBehaviour
     {
         questCountTxt.text = $"({curCount} /  {maxCount} )";
 
-        if(curCount >= maxCount)
+        if (curCount >= maxCount)
         {
             questCountTxt.color = Color.yellow;
-            isCompleted = true;          
+            isCompleted = true;
         }
         else
         {

@@ -15,6 +15,7 @@ public class NPCController : MonoBehaviour
     public InventoryManager inventoryMgr;
     public EnforceMgr enforceMgr;
     public LevelUpMgr levelupMgr;
+    public QuestManager questMgr;
 
     [TextArea(1, 3)]
     public string introduce;
@@ -26,7 +27,7 @@ public class NPCController : MonoBehaviour
         inventoryMgr = GameObject.Find("InventoryMgr").GetComponent<InventoryManager>();
         enforceMgr = GameObject.Find("EnforceMgr").GetComponent<EnforceMgr>();
         levelupMgr = GameObject.Find("LevelupMgr").GetComponent<LevelUpMgr>();
-
+        questMgr = GameObject.Find("QuestMgr").GetComponent<QuestManager>();
         questPanel = GameObject.Find("QuestPanel");
         achievementPanel = GameObject.Find("AchievementPanel");
         weaponPanel = GameObject.Find("EnforcePanel");
@@ -47,7 +48,9 @@ public class NPCController : MonoBehaviour
     {
         if (other.CompareTag("Player")&& npcNum== 1) //Äù½ºÆ®
         {
+            
             questPanel.SetActive(true);
+            questMgr.CurQuestCheck();
 
         }
         if (other.CompareTag("Player") && npcNum == 2) //¾÷Àû
