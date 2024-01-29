@@ -6,7 +6,7 @@ using Photon.Realtime;
 using UnityEngine.UI;
 using TMPro;
 
-public class DungeonManager : MonoBehaviourPunCallbacks
+public class RoomInfoManager : MonoBehaviourPunCallbacks
 {
     public SpawnScipt spawnMgr;
 

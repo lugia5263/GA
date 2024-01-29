@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void OnExitClick()
     {
         PhotonNetwork.LeaveRoom();
+        SceneManager.LoadScene("Login");
     }
 
     public void OnClickStartBtn()
@@ -84,8 +85,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         Debug.Log("방 나가기 완료.");
-        PhotonNetwork.JoinLobby();
-        Debug.Log("JoinLobby 실행");
+        //PhotonNetwork.JoinLobby();
+        //Debug.Log("JoinLobby 실행");
     }
 
     // 룸으로 새로운 네트워크 유저가 입장했때 호출되는 콜백함수
