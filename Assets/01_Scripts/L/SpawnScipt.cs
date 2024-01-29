@@ -7,16 +7,11 @@ using Photon.Realtime;
 public class SpawnScipt : MonoBehaviourPunCallbacks
 {
     public GameObject[] characterPrefabs;
-    readonly int curSlotNum = SelectSlot.slotNum;
 
-    private void Start()
-    {
-        Debug.Log(curSlotNum);
-    }
     public void CreatePlayer()
     {
-        PhotonNetwork.AutomaticallySyncScene = true;
-        
+        int curSlotNum = SelectSlot.slotNum;
+        Debug.Log("spawnScriptø°º≠ curSlotNum¿∫ "+curSlotNum);
         if (PhotonNetwork.IsConnected)
         {
             Transform[] points = GameObject.Find("SpawnPointGroup").GetComponentsInChildren<Transform>();
