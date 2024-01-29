@@ -100,10 +100,12 @@ public class QuestManager : MonoBehaviour
     }
     private void Start()
     {
+        questPopUpPanel.SetActive(false);
+
         ingBtn.SetActive(false);
         completedBtn.SetActive(false);
         questEndBtn.SetActive(false);
-
+        
         descriptionPanel.SetActive(false);
     }
 
