@@ -4,9 +4,15 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 using UnityEngine.UI;
+using Photon.Pun;
+using Photon.Realtime;
+using System.Linq;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviourPunCallbacks, IPunObservable
 {
+    private Vector3 currPos;
+    private Quaternion currRot;
+    private Transform tr;
 
     [Header("Shop")]
     private GameObject nearObject;
@@ -46,6 +52,7 @@ public class Player : MonoBehaviour
     public HUDManager hudManager;
     private new Camera camera;
     public GameObject magition;
+    
     [Header("CamBat")]
     public bool isAttack;
     public bool isAttack1;
@@ -103,9 +110,12 @@ public class Player : MonoBehaviour
         tps = GetComponentInParent<TPScontroller>();
         stateManager = GetComponent<StateManager>();
         hudManager = GetComponent<HUDManager>();
-        skillIcon[0] = GameObject.Find("CoolTimeBGQ").GetComponent<Image>();
-        skillIcon[1] = GameObject.Find("CoolTimeBGE").GetComponent<Image>();
-        skillIcon[2] = GameObject.Find("CoolTimeBGR").GetComponent<Image>();
+        if(skillIcon != null)
+        {
+            skillIcon[0] = GameObject.Find("CoolTimeBGQ").GetComponent<Image>();
+            skillIcon[1] = GameObject.Find("CoolTimeBGE").GetComponent<Image>();
+            skillIcon[2] = GameObject.Find("CoolTimeBGR").GetComponent<Image>();
+        }
     }
 
     private void Start()
@@ -551,6 +561,21 @@ public class Player : MonoBehaviour
         ob[5].SetActive(false);
     }
 
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        //통신을 보내는 
+        if (stream.IsWriting)
+        {
+            stream.SendNext(tr.position);
+            stream.SendNext(tr.rotation);
+        }
 
-  
+        //클론이 통신을 받는 
+        else
+        {
+            currPos = (Vector3)stream.ReceiveNext();
+            currRot = (Quaternion)stream.ReceiveNext();
+        }
+    }
+
 }

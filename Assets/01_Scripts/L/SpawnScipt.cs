@@ -6,11 +6,15 @@ using Photon.Realtime;
 
 public class SpawnScipt : MonoBehaviourPunCallbacks
 {
-    public GameObject[] characterPrefabs;
+    public GameObject[] cH;
 
+    public GameObject charater;
     public void CreatePlayer()
     {
+        
         int curSlotNum = SelectSlot.slotNum;
+        int classNum = PlayerPrefs.GetInt($"{curSlotNum}_ClassNum");
+        Debug.Log(classNum);
         Debug.Log("spawnScriptø°º≠ curSlotNum¿∫ "+curSlotNum);
         if (PhotonNetwork.IsConnected)
         {
@@ -18,7 +22,9 @@ public class SpawnScipt : MonoBehaviourPunCallbacks
             int idx = Random.Range(1, points.Length);
 
             //PhotonNetwork.Instantiate(characterPrefabs[(int)DataMgr.instance.currentCharacter].name, points[idx].position, points[idx].rotation, 0);
-            PhotonNetwork.Instantiate(characterPrefabs[curSlotNum].name, points[idx].position, points[idx].rotation, 0);
+            GameObject obj;
+            obj = PhotonNetwork.Instantiate(cH[classNum].name, points[idx].position, points[idx].rotation, 0);
+            
         }
     }
 }
