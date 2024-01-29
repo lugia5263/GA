@@ -6,7 +6,7 @@ using Photon.Realtime;
 using System.Linq;
 using UnityEngine.UI;
 
-public class TPScontroller  : MonoBehaviourPunCallbacks, IPunObservable
+public class TPScontroller  : MonoBehaviour
 {
 
     private Vector3 currPos;
@@ -14,6 +14,7 @@ public class TPScontroller  : MonoBehaviourPunCallbacks, IPunObservable
     private Transform tr;
     //private Text nickNameTxt;
     public PhotonView pv;
+    public PhotonAnimatorView pav;
     public Transform players;
     public Transform CameraArm;
     Vector3 velocity;
@@ -37,7 +38,7 @@ public class TPScontroller  : MonoBehaviourPunCallbacks, IPunObservable
         animator = GetComponentInChildren<Animator>();
         player = GetComponentInChildren<Player>();
         tr = GetComponent<Transform>();
-        pv = GetComponent<PhotonView>();
+        
     }
 
     // Update is called once per frame
@@ -73,8 +74,6 @@ public class TPScontroller  : MonoBehaviourPunCallbacks, IPunObservable
 
     void moves()
     {
-        if (pv.IsMine)
-        {
             if (player.skillUse == true)
                 return;
             if (player.isFireReady == false)
@@ -103,11 +102,8 @@ public class TPScontroller  : MonoBehaviourPunCallbacks, IPunObservable
                 characterController.Move(moveDir * 5f);
             }
         }
-    }
     void lookAround()
     {
-        if (pv.IsMine)
-        {
             Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
             Vector3 camAngle = CameraArm.rotation.eulerAngles;
             float x = camAngle.x - mouseDelta.y;
@@ -120,23 +116,6 @@ public class TPScontroller  : MonoBehaviourPunCallbacks, IPunObservable
                 x = Mathf.Clamp(x, 335f, 361f);
             }
             CameraArm.rotation = Quaternion.Euler(0, camAngle.y + mouseDelta.x, camAngle.z);
-        }
     }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        //통신을 보내는 
-        if (stream.IsWriting)
-        {
-            stream.SendNext(tr.position);
-            stream.SendNext(tr.rotation);
-        }
-
-        //클론이 통신을 받는 
-        else
-        {
-            currPos = (Vector3)stream.ReceiveNext();
-            currRot = (Quaternion)stream.ReceiveNext();
-        }
-    }
 }

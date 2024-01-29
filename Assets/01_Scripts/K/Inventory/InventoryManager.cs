@@ -57,7 +57,6 @@ public class InventoryManager : MonoBehaviour
     private void Awake()
     {
         Transform tr = transform.GetChild(0).GetChild(0).GetChild(1);
-        stateMgr = GameObject.FindGameObjectWithTag("Player").GetComponent<StateManager>();//TODO: 
         rewardCanvas = GameObject.Find("RewardContent").gameObject;//TODO:
         inventoryCanvas = GameObject.Find("InventoryCanvas").gameObject;
         goldImage = tr.Find("item_gold").GetComponent<Image>();
@@ -72,7 +71,6 @@ public class InventoryManager : MonoBehaviour
         playerNameTxt = tr.transform.Find("PlayerName").GetComponent<Text>();
         playerNickTxt = tr.transform.Find("PlayerNick").GetComponent<Text>();
 
-        InitInventory(); // 게임킬때 인벤토리 초기화
         inventoryCanvas.SetActive(false);
 
 

@@ -358,8 +358,6 @@ GameObject:
   - component: {fileID: 5073125215103966181}
   - component: {fileID: 3434557764470499554}
   - component: {fileID: 841365873679324462}
-  - component: {fileID: 1522166998290312552}
-  - component: {fileID: 1669526292035571007}
   m_Layer: 0
   m_Name: ChHouseMplayer
   m_TagString: Untagged
@@ -399,6 +397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pv: {fileID: 0}
+  pav: {fileID: 0}
   players: {fileID: 696033951615425037}
   CameraArm: {fileID: 6468163637866505378}
   isJumping: 0
@@ -433,49 +432,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 90
   m_CollisionDetection: 0
---- !u!114 &1522166998290312552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8502269643170917708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents:
-  - {fileID: 3434557764470499554}
-  - {fileID: 1669526292035571007}
-  - {fileID: 6317968231685849856}
-  - {fileID: 794401958840142267}
-  - {fileID: 3071920326013556297}
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
---- !u!114 &1669526292035571007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8502269643170917708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
 --- !u!1 &8806059024721578037
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,6 +776,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8725214292206496400, guid: aaac400894831734b93f97a3a9af5972, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1956130866967240137}
+    - targetCorrespondingSourceObject: {fileID: 8725214292206496400, guid: aaac400894831734b93f97a3a9af5972, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4860016133084383663}
+    - targetCorrespondingSourceObject: {fileID: 8725214292206496400, guid: aaac400894831734b93f97a3a9af5972, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1505324934215516301}
+    - targetCorrespondingSourceObject: {fileID: 8725214292206496400, guid: aaac400894831734b93f97a3a9af5972, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1758504384147870013}
     - targetCorrespondingSourceObject: {fileID: 5921659157067773944, guid: aaac400894831734b93f97a3a9af5972, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1523077024477560035}
@@ -955,6 +920,101 @@ MonoBehaviour:
   shaderVarRef: _Alpha
   shaderVarRate: 0.5
   shaderVarRefreshRate: 1
+--- !u!114 &4860016133084383663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5844137743446570166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 9
+    SynchronizeType: 0
+    Name: isDesh
+  - Type: 4
+    SynchronizeType: 0
+    Name: isRun
+  - Type: 9
+    SynchronizeType: 0
+    Name: Attack
+  - Type: 9
+    SynchronizeType: 0
+    Name: Smash1
+  - Type: 9
+    SynchronizeType: 0
+    Name: Smash2
+  - Type: 9
+    SynchronizeType: 0
+    Name: Smash3
+  - Type: 9
+    SynchronizeType: 0
+    Name: Down
+  - Type: 9
+    SynchronizeType: 0
+    Name: isDeath
+  - Type: 9
+    SynchronizeType: 0
+    Name: SkillQ
+  - Type: 9
+    SynchronizeType: 0
+    Name: SkillE
+  - Type: 9
+    SynchronizeType: 0
+    Name: SkillR
+  - Type: 9
+    SynchronizeType: 0
+    Name: Charging
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
+--- !u!114 &1505324934215516301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5844137743446570166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 3071920326013556297}
+  - {fileID: 4860016133084383663}
+  - {fileID: 1758504384147870013}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &1758504384147870013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5844137743446570166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!114 &7649039981031633809 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4767734403140054455, guid: aaac400894831734b93f97a3a9af5972, type: 3}
@@ -2697,6 +2757,7 @@ MonoBehaviour:
   curRskillcool: 23
   chargingSlider: {fileID: 0}
   originalTimeScale: 0
+  itMe: 0
   rotCamXAxisSpeed: 500
   rotCamYAxisSpeed: 3
 --- !u!114 &8762134568966736862

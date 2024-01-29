@@ -52,8 +52,6 @@ public class EnforceMgr : MonoBehaviour
         forcetxtFile = jsonitemFile;
         lessTween = GameObject.Find("lessTween").GetComponent<Jun_TweenRuntime>();
         enforcePanel = GameObject.Find("EnforcePanel");
-        stateMgr = GameObject.FindWithTag("Player").GetComponent<StateManager>();
-        inventoryMgr = GameObject.Find("InventoryMgr").GetComponent<InventoryManager>();
         rewardMgr = GameObject.Find("RewardMgr").GetComponent<RewardMgr>();
         trophyMgr = GameObject.Find("TrophyMgr").GetComponent<TrophyMgr>();
         wantEnforceTxt = GameObject.Find("ReallyTxt").GetComponent<Text>();
@@ -80,7 +78,6 @@ public class EnforceMgr : MonoBehaviour
         enforceEffect.SetActive(false);
         successPanel.SetActive(false);
         failedPanel.SetActive(false);
-        InitAtk();
         enforcePanel.SetActive(false);
     }
 

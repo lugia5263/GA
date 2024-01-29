@@ -52,6 +52,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public HUDManager hudManager;
     private new Camera camera;
     public GameObject magition;
+    PhotonView pv;
+    PhotonAnimatorView pav;
     
     [Header("CamBat")]
     public bool isAttack;
@@ -90,7 +92,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     public Slider chargingSlider;
     public float originalTimeScale;
-    
+    public int itMe;
     [SerializeField] private float rotCamXAxisSpeed = 500f;
     [SerializeField] private float rotCamYAxisSpeed = 3f;
     internal string NickName;
@@ -110,7 +112,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         tps = GetComponentInParent<TPScontroller>();
         stateManager = GetComponent<StateManager>();
         hudManager = GetComponent<HUDManager>();
-        if(skillIcon != null)
+        chargingSlider = GameObject.FindGameObjectWithTag("Heal").GetComponent<Slider>();
+        ob[0] = GameObject.FindGameObjectWithTag("Heal").GetComponent<GameObject>();
+        if (skillIcon != null)
         {
             skillIcon[0] = GameObject.Find("CoolTimeBGQ").GetComponent<Image>();
             skillIcon[1] = GameObject.Find("CoolTimeBGE").GetComponent<Image>();
@@ -120,7 +124,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Start()
     {
-        
+        pv = GetComponent<PhotonView>();
+        pav = GetComponent<PhotonAnimatorView>();
         plane = new Plane(transform.up, transform.position);
         skillIcon[0].fillAmount = 0;
         skillIcon[1].fillAmount = 0;
@@ -143,19 +148,21 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     void Update()
     {
         originalTimeScale = Time.timeScale * Time.unscaledDeltaTime;
-        if (!isDeath)
-        {
-            GetinPut();
-            Attack();
-            SkillOn();
-            Death();
-            Deshs();
-            Interation();
-            SkillCoolTime();
-            //Turn();
-        }
-
+        
+            if (!isDeath)
+            {
+                
+                GetinPut();
+                Attack();
+                SkillOn();
+                Death();
+                Deshs();
+                Interation();
+                SkillCoolTime();
+                //Turn();
+            }
     }
+
     void Turn()
     {
         ray = camera.ScreenPointToRay(Input.mousePosition);
@@ -176,6 +183,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         turn = Input.GetAxisRaw("Mouse X");
         isAttack = Input.GetButtonDown("Fire");
     }
+
     void Deshs()
     {
         DeshCool += Time.deltaTime;
@@ -211,7 +219,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-
+    
     void Attack()
     {
         //chargingTime += Time.deltaTime;
@@ -262,7 +270,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-
     public void Death()
     {
         if (stateManager.hp <= 0)
@@ -278,6 +285,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         animator.SetTrigger("isDeath");
         yield return null;
     }
+
     void SkillOn()
     {
         qskillcool += Time.deltaTime;
@@ -354,14 +362,14 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 else
                 {
                 Skill[2].SetActive(false);
-                ob[0].SetActive(false);
+                //ob[0].SetActive(false);
+                
                 rischarging = false;
                 chargingSlider.value = 0;
                 }
             }
         }
     }
-    
 
 
     private void OnTriggerEnter(Collider other)
@@ -388,9 +396,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         yield return new WaitForSeconds(4f);
         downing = false;
     }
-   
 
-    //Player ���� ���� 
+
+
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Shop")
@@ -415,6 +423,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             
         }
     }
+
     void SkillUsing()
     {
         skillUse = true;

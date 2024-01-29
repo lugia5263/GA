@@ -430,8 +430,6 @@ GameObject:
   - component: {fileID: 462087784054788801}
   - component: {fileID: 6316782740014923480}
   - component: {fileID: 7393164062669072771}
-  - component: {fileID: 4855522644848734228}
-  - component: {fileID: 396232855550663795}
   m_Layer: 0
   m_Name: ChHouseAplayer
   m_TagString: Untagged
@@ -471,6 +469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pv: {fileID: 0}
+  pav: {fileID: 0}
   players: {fileID: 6514054526043957262}
   CameraArm: {fileID: 7368073803168921797}
   isJumping: 0
@@ -505,49 +504,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 90
   m_CollisionDetection: 0
---- !u!114 &4855522644848734228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7175197408261984037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents:
-  - {fileID: 6316782740014923480}
-  - {fileID: 396232855550663795}
-  - {fileID: 316293783095390467}
-  - {fileID: 7738338487268893308}
-  - {fileID: 7758677729883282147}
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
---- !u!114 &396232855550663795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7175197408261984037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
 --- !u!1001 &1941556284591269840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2039,6 +1995,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2563745271361283309, guid: b60ebb74b31ffde44a334068570fdef8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2727526600626352746}
+    - targetCorrespondingSourceObject: {fileID: 2563745271361283309, guid: b60ebb74b31ffde44a334068570fdef8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1394993605894071870}
+    - targetCorrespondingSourceObject: {fileID: 2563745271361283309, guid: b60ebb74b31ffde44a334068570fdef8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6392777377797038224}
+    - targetCorrespondingSourceObject: {fileID: 2563745271361283309, guid: b60ebb74b31ffde44a334068570fdef8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3778438010837933048}
     - targetCorrespondingSourceObject: {fileID: 1441153306549866359, guid: b60ebb74b31ffde44a334068570fdef8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1046399432713416387}
@@ -2193,6 +2158,7 @@ MonoBehaviour:
   curRskillcool: 23
   chargingSlider: {fileID: 0}
   originalTimeScale: 0
+  itMe: 0
   rotCamXAxisSpeed: 500
   rotCamYAxisSpeed: 3
 --- !u!114 &2727526600626352746
@@ -2211,6 +2177,101 @@ MonoBehaviour:
   HpSlider: {fileID: 0}
   HpText: {fileID: 0}
   DHpBar: {fileID: 0}
+--- !u!114 &1394993605894071870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411881002873950637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 9
+    SynchronizeType: 0
+    Name: isDesh
+  - Type: 4
+    SynchronizeType: 0
+    Name: isRun
+  - Type: 9
+    SynchronizeType: 0
+    Name: Attack
+  - Type: 9
+    SynchronizeType: 0
+    Name: Smash1
+  - Type: 9
+    SynchronizeType: 0
+    Name: Smash2
+  - Type: 9
+    SynchronizeType: 0
+    Name: Smash3
+  - Type: 9
+    SynchronizeType: 0
+    Name: Down
+  - Type: 9
+    SynchronizeType: 0
+    Name: isDeath
+  - Type: 9
+    SynchronizeType: 0
+    Name: SkillQ
+  - Type: 9
+    SynchronizeType: 0
+    Name: SkillE
+  - Type: 9
+    SynchronizeType: 0
+    Name: SkillR
+  - Type: 9
+    SynchronizeType: 0
+    Name: Charging
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
+--- !u!114 &6392777377797038224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411881002873950637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 7738338487268893308}
+  - {fileID: 1394993605894071870}
+  - {fileID: 3778438010837933048}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &3778438010837933048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411881002873950637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!4 &2556198664746584658 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 385754922325868306, guid: b60ebb74b31ffde44a334068570fdef8, type: 3}

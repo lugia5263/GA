@@ -518,7 +518,14 @@ namespace Photon.Pun
                 {
                     var component = this.ObservedComponents[i];
                     if (component != null)
-                        SerializeComponent(this.ObservedComponents[i], stream, info);
+                    { 
+                        if (ObservedComponents[i] == null)
+                        {
+                            Debug.LogError("Observed component at index " + i + " is null. Check your setup.");
+                            continue;
+                        }
+                    SerializeComponent(this.ObservedComponents[i], stream, info);
+                        }
                 }
             }
         }
