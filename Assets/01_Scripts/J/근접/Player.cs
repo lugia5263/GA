@@ -33,7 +33,6 @@ public class Player : MonoBehaviour
     [Header("Component")]
     public CharacterController characterController;
     public Rigidbody rigid;
-    public GameObject rigids;
     public Transform CameraArm;
     Animator animator;
     public TrailRenderer trailRenderer;
