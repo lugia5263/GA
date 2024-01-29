@@ -6,6 +6,10 @@ using System.IO;
 using SimpleJSON;
 public class QuestManager : MonoBehaviour
 {
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     public TextAsset txtFile; //Jsonfile
     public GameObject jsonObject; //¾È½áµµ µÊ
     public QuestPopUpManager qPopup;
@@ -53,13 +57,31 @@ public class QuestManager : MonoBehaviour
         questPopUpPanel = GameObject.Find("QuestPanel");
         questGoalTxt = GameObject.Find("GoalTxt").GetComponent<Text>();
         qPopup = GameObject.Find("QuestPopUp").GetComponent<QuestPopUpManager>();
+<<<<<<< Updated upstream
    
+=======
+
+        ingBtn = GameObject.Find("QuestIngBtn");
+
+
+
+>>>>>>> Stashed changes
     }
     void Start()
     {
+<<<<<<< Updated upstream
 
         descriptionPanel.SetActive(false);
     }
+=======
+        ingBtn.SetActive(false);
+        completedBtn.SetActive(false);
+
+        descriptionPanel.SetActive(false);
+    }
+
+
+>>>>>>> Stashed changes
 
 
     public void InstQuest(int n)
@@ -95,6 +117,11 @@ public class QuestManager : MonoBehaviour
     public void AcceptQuestBtn()
     {
         ReceiveQuest(acceptIdx);
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
     }
     public void ReceiveQuest(int n)
     {
@@ -111,8 +138,25 @@ public class QuestManager : MonoBehaviour
         //rewardMat.text = (jsonData["Quest"][item]["Reward2"]);
         //rewardGold.text = (jsonData["Quest"][item]["Reward3"]);
 
+<<<<<<< Updated upstream
     }
 
+=======
+        acceptBtn.SetActive(false);
+        ingBtn.SetActive(true);
+
+    }
+
+    public void CompletedBtn()
+    {
+        GetComponent<QuestPopUpManager>().InitCurQuest();
+        //if (curCount >= maxCount) { 
+        //}
+        transform.Find("IngBtn").gameObject.SetActive(false);
+        transform.Find("CompletedBtn").gameObject.SetActive(true);
+    }
+
+>>>>>>> Stashed changes
     //public void CompleteButton()
     //{
         

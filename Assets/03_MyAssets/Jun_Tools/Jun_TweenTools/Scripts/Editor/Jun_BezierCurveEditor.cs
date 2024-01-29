@@ -53,7 +53,11 @@ public class Jun_BezierCurveEditor : Editor
 
 			float handleSize = HandleUtility.GetHandleSize(thisPoint.transform.position) * 0.1f;
 
+<<<<<<< Updated upstream
             var fmh_56_85_638412565957094276 = Quaternion.identity; Vector3 pointPos = Handles.FreeMoveHandle(thisPoint.transform.position, handleSize, Vector3.zero, Handles.SphereHandleCap);
+=======
+            var fmh_56_85_638421196639317143 = Quaternion.identity; Vector3 pointPos = Handles.FreeMoveHandle(thisPoint.transform.position, handleSize, Vector3.zero, Handles.SphereHandleCap);
+>>>>>>> Stashed changes
             if (thisPoint.transform.position != pointPos)
             {
                 thisPoint.transform.position = pointPos;
@@ -64,7 +68,11 @@ public class Jun_BezierCurveEditor : Editor
 			{            
 				if (thisPoint.type != Jun_BezierPoint.PointType.None)
 				{
+<<<<<<< Updated upstream
 					var fmh_67_77_638412565957124436 = Quaternion.identity; Vector3 handle01Pos = Handles.FreeMoveHandle(thisPoint.worldHandles01, handleSize, Vector3.zero, Handles.CubeHandleCap);
+=======
+					var fmh_67_77_638421196639345646 = Quaternion.identity; Vector3 handle01Pos = Handles.FreeMoveHandle(thisPoint.worldHandles01, handleSize, Vector3.zero, Handles.CubeHandleCap);
+>>>>>>> Stashed changes
 
 					if (thisPoint.worldHandles01 != handle01Pos)
 					{
@@ -72,7 +80,11 @@ public class Jun_BezierCurveEditor : Editor
 						if (thisPoint.type == Jun_BezierPoint.PointType.Smooth) thisPoint.worldHandles02 = -(handle01Pos - pointPos) + pointPos;
 					}
 
+<<<<<<< Updated upstream
 					var fmh_75_77_638412565957129050 = Quaternion.identity; Vector3 handle02Pos = Handles.FreeMoveHandle(thisPoint.worldHandles02, handleSize, Vector3.zero, Handles.CubeHandleCap);
+=======
+					var fmh_75_77_638421196639350008 = Quaternion.identity; Vector3 handle02Pos = Handles.FreeMoveHandle(thisPoint.worldHandles02, handleSize, Vector3.zero, Handles.CubeHandleCap);
+>>>>>>> Stashed changes
 					if (thisPoint.worldHandles02 != handle02Pos)
 					{
 						thisPoint.worldHandles02 = handle02Pos;

@@ -37,7 +37,7 @@ public class QuestPopUpManager : MonoBehaviour
     {
         qcondition = (QuestCondition)n; // 위의 이넘값을 1, 2 로 쓸거야
         if (curQuestIndex == n)
-        { curCount++;}
+        { curCount++; }
 
         InitCurQuest();
     }
@@ -46,7 +46,7 @@ public class QuestPopUpManager : MonoBehaviour
     {
         questCountTxt.text = $"({curCount} /  {maxCount} )";
 
-        if(curCount >= maxCount)
+        if (curCount >= maxCount)
         {
             questCountTxt.color = Color.yellow;
             isCompleted = true;
