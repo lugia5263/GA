@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     Transform playerTransform;
-    Vector3 Offset; // 카메라와 플레이어 사이의 거리 변수
+    public Vector3 Offset; 
     public bool IsTransparent { get; private set; } = false;
     MeshRenderer[] renderers;
     WaitForSeconds delay = new WaitForSeconds(0.001f);
@@ -18,25 +18,22 @@ public class CameraFollow : MonoBehaviour
     Coroutine timeCheckCoroutine;
     Coroutine resetCoroutine;
     Coroutine becomeTransparentCoroutine;
-    public GameObject stage;
+
     public Transform CameraArm;
     private float xRotateMove, yRotateMove;
 
     public float rotateSpeed = 500.0f;
-
-    public Vector3 roa;
-
     void Awake()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        Offset = transform.position - playerTransform.position; //카메라 위치 - 플레이어 위치    
+        //Offset = transform.position - playerTransform.position;     
         renderers = GetComponentsInChildren<MeshRenderer>();
     }
 
     void LateUpdate()
     {
-        
-        transform.position = playerTransform.position + Offset; //카메라 위치 = 플레이어 위치 + 거리
+
+        transform.position = playerTransform.position; 
         Vector3 direction = (playerTransform.position - transform.position).normalized;
         RaycastHit[] hits = Physics.RaycastAll(transform.position, direction, Mathf.Infinity, 1 << LayerMask.NameToLayer("Filed"));
         for (int i = 0; i < hits.Length; i++)

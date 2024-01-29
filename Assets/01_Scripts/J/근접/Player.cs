@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
     MeshRenderTail meshRenderTail;
     public HUDManager hudManager;
     private new Camera camera;
-
+    public GameObject magition;
     [Header("CamBat")]
     public bool isAttack;
     public bool isAttack1;
@@ -73,6 +73,7 @@ public class Player : MonoBehaviour
     public bool eisReady;
     public bool risReady;
     public bool rischarging;
+    public bool onMagic;
     public float qskillcool;
     public float eskillcool;
     public float rskillcool;
@@ -109,12 +110,13 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        
         plane = new Plane(transform.up, transform.position);
         skillIcon[0].fillAmount = 0;
         skillIcon[1].fillAmount = 0;
         skillIcon[2].fillAmount = 0;
     }
-
+    
     //"��������"
     void Interation()
     {
@@ -321,29 +323,32 @@ public class Player : MonoBehaviour
                 risReady = false;
             }
         }
-        if(rischarging)
+        if (onMagic)
         {
-            if(Input.GetKey(KeyCode.R))
+            if (rischarging)
             {
-                animator.SetTrigger("SkillR");
-                Skill[2].SetActive(true);
-                ob[0].SetActive(true);
-                chargingSlider.value += Time.deltaTime * 0.35f;
-                
-                if(chargingSlider.value == 1)
+                if (Input.GetKey(KeyCode.R))
                 {
-                    Skill[2].SetActive(false);
-                    ob[0].SetActive(false);
-                    rischarging = false;
+                    animator.SetTrigger("SkillR");
+                    Skill[2].SetActive(true);
+                    ob[0].SetActive(true);
+                    chargingSlider.value += Time.deltaTime * 0.35f;
+
+                    if (chargingSlider.value == 1)
+                    {
+                        Skill[2].SetActive(false);
+                        ob[0].SetActive(false);
+                        rischarging = false;
+                    }
+                }
+                else
+                {
+                Skill[2].SetActive(false);
+                ob[0].SetActive(false);
+                rischarging = false;
+                chargingSlider.value = 0;
                 }
             }
-            //else
-            //{
-                //Skill[2].SetActive(false);
-               // ob[0].SetActive(false);
-               // rischarging = false;
-               // chargingSlider.value = 0;
-          //  }
         }
     }
     
@@ -365,17 +370,13 @@ public class Player : MonoBehaviour
             isDeshInvincible = true;
         }
 
-        if(other.CompareTag("TimeSlow"))
-        {
-            
-        }
     }
 
     IEnumerator DownDelay()
     {
-        speed = 0;
-        yield return new WaitForSeconds(3f);
-        speed = 3;
+        downing = true;
+        yield return new WaitForSeconds(4f);
+        downing = false;
     }
    
 
@@ -442,11 +443,13 @@ public class Player : MonoBehaviour
 
     void A_LfireAttack()
     {
-        Instantiate(Skill[4], Point[5].transform.position, Point[5].transform.rotation);
+        Vector3 spawnRotation = new Vector3 (-90, 0, 0);
+        Instantiate(Skill[4], Point[5].transform.position, Quaternion.Euler(spawnRotation));
     }
       void A_RfireAttack()
     {
-        Instantiate(Skill[4], Point[5].transform.position, Point[5].transform.rotation);
+        Vector3 spawnRotation = new Vector3(-90, 0, 0);
+        Instantiate(Skill[4], Point[5].transform.position, Quaternion.Euler(spawnRotation));
     }
 
     void A_SkillQ()

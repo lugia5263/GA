@@ -58,7 +58,8 @@ public class RaidBossCtrl : MonoBehaviour
     public bool p3Ready;
     public bool p4Ready;
     public bool p5Ready;
-
+    public bool down;
+    public bool attacking;
     public GameObject dieNowPatternEffect;
     public GameObject DownPattern;
     public float breakTime;
@@ -101,15 +102,23 @@ public class RaidBossCtrl : MonoBehaviour
                     }
                     break;
                 case RAIDBOSS.MOVE:
+                    StartCoroutine(MoveDelay());
+                    if (down)
+                        return;
+                    if (attacking)
+                        return;
                     float dis = Vector3.Distance(targetPlayer.position, transform.position);
-                    if (dis > 0.7f)
+                    if (dis > 1f)
                     {
                         isActivating = false;
                     }
-
+                    if(dis < attakRange)
+                    {
+                        raidBoss = RAIDBOSS.ATTACK;
+                    }
                     speed = 3f;
                     anim.SetTrigger("RUN");
-                    MoveTowardsTarget();
+                    MoveTowardsTarget(true);
                     float distan = Vector3.Distance(targetPlayer.position, transform.position);
                     if (distan > 18)
                     {
@@ -119,37 +128,57 @@ public class RaidBossCtrl : MonoBehaviour
                 case RAIDBOSS.ATTACK:
                     isActivating = true;
                     speed = 0f;
+                    float dists = Vector3.Distance(targetPlayer.position, transform.position);
                     if (p1Ready)
                     {
-                        anim.SetTrigger("Pattern1");
-                        p1 = 0;
-                        p1Ready = false;
+                        if (dists < attakRange)
+                        {
+                            anim.SetTrigger("Pattern1");
+                            p1 = 0;
+                            p1Ready = false;
+                            attacking = true;
+                        }
                     }
                     if (p2Ready)
                     {
-                        anim.SetTrigger("Pattern2");
-                        p2 = 0;
-                        p2Ready = false;
+                        if (dists < attakRange)
+                        {
+                            anim.SetTrigger("Pattern2");
+                            p2 = 0;
+                            p2Ready = false;
+                            attacking = true;
+                        }
                     }
                     if (p3Ready)
                     {
-                        anim.SetTrigger("Pattern3");
-                        p3 = 0;
-                        p3Ready = false;
+                        if (dists < attakRange)
+                        {
+                            anim.SetTrigger("Pattern3");
+                            p3 = 0;
+                            p3Ready = false;
+                            attacking = true;
+                        }
                     }
                     if (p4Ready)
                     {
-                        anim.SetTrigger("Pattern4");
-                        p4 = 0;
-                        p4Ready = false;
+                        if (dists < attakRange)
+                        {
+                            anim.SetTrigger("Pattern4");
+                            p4 = 0;
+                            p4Ready = false;
+                            attacking = true;
+                        }
                     }
                     if (p5Ready)
                     {
-                        anim.SetTrigger("Pattern5");
-                        p5 = 0;
-                        p5Ready = false;
+                        if (dists < attakRange)
+                        {
+                            anim.SetTrigger("Pattern5");
+                            p5 = 0;
+                            p5Ready = false;
+                            attacking = true;
+                        }
                     }
-                    float dists = Vector3.Distance(targetPlayer.position, transform.position);
                     if (dists > attakRange)
                     {
                         raidBoss = RAIDBOSS.MOVE;
@@ -168,13 +197,14 @@ public class RaidBossCtrl : MonoBehaviour
                     break;
                 case RAIDBOSS.DOWN:
                     isActivating = true;
+                    down = true;
                     speed = 0f;
-                    anim.SetTrigger("Down");
                     float dista = Vector3.Distance(targetPlayer.position, transform.position);
+                    anim.SetTrigger("Down");
                     if (dista > attakRange)
                     {
                         raidBoss = RAIDBOSS.MOVE;
-                    }
+                    } 
                     else
                     {
                         raidBoss = RAIDBOSS.ATTACK;
@@ -190,7 +220,7 @@ public class RaidBossCtrl : MonoBehaviour
             }
         }
     }
-    void MoveTowardsTarget()
+    void MoveTowardsTarget(bool stop)
     {
         if (isActivating)
             return;
@@ -206,6 +236,13 @@ public class RaidBossCtrl : MonoBehaviour
         {
             raidBoss = RAIDBOSS.ATTACK;
         }
+    }
+    IEnumerator MoveDelay()
+    {
+        yield return new WaitForSeconds(4.5f);
+        down = false;
+        yield return new WaitForSeconds(3f);
+        attacking = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -223,7 +260,7 @@ public class RaidBossCtrl : MonoBehaviour
         if (other.gameObject.CompareTag("TimeSlow"))
         {
             anim.speed = 0.15f;
-            speed = 0.5f;
+            speed = 0.3f;
         }
         else
         {
@@ -310,7 +347,7 @@ public class RaidBossCtrl : MonoBehaviour
             Vector3 Pos = new Vector3(transform.position.x, transform.position.y + 0.01f, transform.position.z - 1f);
             GameObject obj;
             obj = Instantiate(dieNowPatternEffect, Pos, transform.rotation);
-            Destroy(obj, 3f);
+            Destroy(obj, 3.8f);
             dieNowPattern = 0;
             anim.SetTrigger("Rolling");
         }
