@@ -91,7 +91,7 @@ public class RaidDungeonManager : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.IsMasterClient)
         {
-            PhotonNetwork.LoadLevel("Home");
+            PhotonNetwork.LoadLevel("Town");
         }
     }
 
