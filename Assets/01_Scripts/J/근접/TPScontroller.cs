@@ -68,6 +68,8 @@ public class TPScontroller  : MonoBehaviour
             return;
         if (player.isDeath == true)
             return;
+        if (player.downing)
+            return;
   
             Vector2 moveinput = new Vector2(Input.GetAxis("Horizontal") * Time.deltaTime* 1.5f, Input.GetAxis("Vertical") * Time.deltaTime* 1.5f ) ;
         bool ismove = moveinput.magnitude != 0;
