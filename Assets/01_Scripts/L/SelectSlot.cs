@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum SlotClass
 {
-    Slot1, Slot2, Slot3
+    Slot0, Slot1, Slot2
 }
 
 public class SelectSlot : MonoBehaviour
@@ -21,13 +21,13 @@ public class SelectSlot : MonoBehaviour
         // 슬롯번호를 다른스크립트에 넘겨주기
         switch (currentSlot)
         {
-            case "Slot1":
+            case "Slot0":
                 slotNum = 0;
                 break;
-            case "Slot2":
+            case "Slot1":
                 slotNum = 1;
                 break;
-            case "Slot3":
+            case "Slot2":
                 slotNum = 2;
                 break;
             default:

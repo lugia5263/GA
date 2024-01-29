@@ -9,24 +9,31 @@ public class RoomEnterManager : MonoBehaviourPunCallbacks
 {
     public GameObject dungeonPanel;
 
+    public static string dungeonType;
+
+    //솔로던전은 roomleave하고 씬매니저로 돌릴것
     public void OnSoloDungeon1ButtonClick()
     {
-        JoinDungeon("Dungeon1_", 1); // 솔로 던전, 최대 1명 입장 가능
+        JoinDungeon("Solo1Dungeon", 1);
+        PhotonNetwork.LeaveRoom();
     }
 
     public void OnSoloDungeon2ButtonClick()
     {
-        JoinDungeon("Dungeon2_", 1); // 솔로 던전, 최대 1명 입장 가능
+        JoinDungeon("Solo2Dungeon", 1);
+        PhotonNetwork.LeaveRoom();
     }
 
     public void OnRaidDungeonButtonClick()
     {
-        JoinDungeon("RaidDungeon", 4); // 멀티 던전, 최대 4명 입장 가능
+        JoinDungeon("RaidDungeon", 3); // 멀티 던전, 최대 3명 입장 가능
+        PhotonNetwork.LeaveRoom();
     }
 
-    public void JoinDungeon(string dungeonType, int maxPlayers)
+    public void JoinDungeon(string typeName, int maxPlayers)
     {
-        Debug.Log("던전의 타입 : " + dungeonType);
+        dungeonType = typeName;
+        Debug.Log("던전의 타입 : " + typeName);
         Debug.Log("maxPlayers : " + maxPlayers);
 
         RoomOptions roomOptions = new RoomOptions
@@ -34,12 +41,12 @@ public class RoomEnterManager : MonoBehaviourPunCallbacks
             MaxPlayers = (byte)maxPlayers,
             IsVisible = true, // 방을 리스트에 보이게 할 것인지 여부
             IsOpen = true,    // 방이 열려 있는지 여부
-            CustomRoomProperties = new Hashtable { { "DungeonType", dungeonType } },
+            CustomRoomProperties = new Hashtable { { "DungeonType", typeName } },
             CustomRoomPropertiesForLobby = new string[] { "DungeonType" }
         };
 
         // 방에 조인하거나 생성
-        PhotonNetwork.JoinOrCreateRoom(dungeonType, roomOptions, null);
+        //PhotonNetwork.JoinOrCreateRoom(dungeonType, roomOptions, null);
     }
 
     // userid 필요하면 사용
@@ -52,10 +59,22 @@ public class RoomEnterManager : MonoBehaviourPunCallbacks
     }
 
     #region 포톤 콜백 함수
+    public override void OnLeftRoom()
+    {
+        base.OnLeftRoom();
+        Debug.Log("방떠나기 완료");
+        Debug.Log("Lobby에 입장 시도합니다");
+        PhotonNetwork.JoinLobby();
+    }
+
+    public override void OnJoinedLobby()
+    {
+        base.OnJoinedLobby();
+        Debug.Log("Lobby에 입장 완료");
+        
+    }
     public override void OnJoinedRoom()
     {
-        dungeonPanel.SetActive(false);
-
         // 현재 방의 던전 타입을 가져옴
         if (PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue("DungeonType", out object dungeonTypeObj))
         {
@@ -80,7 +99,10 @@ public class RoomEnterManager : MonoBehaviourPunCallbacks
     public void OnClickEnterDungeonBtn()
     {
         dungeonPanel.SetActive(true);
-        PhotonNetwork.LeaveRoom();
-        Debug.Log("방을 나갑니다..");
+    }
+    //던전입장 UI panel끄는 버튼누르는 함수
+    public void OnClickCancelBtn()
+    {
+        dungeonPanel.SetActive(false);
     }
 }
