@@ -5,9 +5,15 @@ using Photon.Pun;
 using Photon.Realtime;
 
 public class SpawnScipt : MonoBehaviourPunCallbacks
-{
+{  
     public GameObject[] classNumPrefabs;
     public int classNum;
+
+    public IEnumerator SpawnPlayer()
+    {
+        yield return new WaitForSeconds(0.1f);
+        CreatePlayer();
+    }
 
     public void CreatePlayer()
     {

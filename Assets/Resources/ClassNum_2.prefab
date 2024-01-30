@@ -117,7 +117,9 @@ GameObject:
   - component: {fileID: 8612009605648819529}
   - component: {fileID: 3769026466892078511}
   - component: {fileID: 7745786643513878178}
+  - component: {fileID: 6466142903087945620}
   - component: {fileID: 2977289930743915065}
+  - component: {fileID: -391647896077269695}
   m_Layer: 0
   m_Name: ClassNum_2
   m_TagString: Untagged
@@ -279,6 +281,27 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 1
   m_UseLocal: 1
+--- !u!114 &6466142903087945620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3607375465105616540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b548abb57ff23748874c37312408dee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chatList: []
+  chatLog: {fileID: 0}
+  chattingList: {fileID: 0}
+  inputChat: {fileID: 0}
+  scrollRect: {fileID: 0}
+  chatters: 
+  pv: {fileID: 0}
+  nickNameTxt: {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &2977289930743915065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,9 +314,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 819af19ee9f3fba4fb264d36167fac68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currPos: {x: 0, y: 0, z: 0}
+  currRot: {x: 0, y: 0, z: 0, w: 0}
   speed: 10
   pv: {fileID: 3769026466892078511}
-  nickNameTxt: {fileID: 2662591131279729624}
+  nickNameTxt: {fileID: 0}
+  chatManager: {fileID: 0}
+  allowMove: 1
+--- !u!114 &-391647896077269695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3607375465105616540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6abf66d12efa96d4a9d3f514eec8ec1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentA: {fileID: 6466142903087945620}
 --- !u!1 &8894671147854674966
 GameObject:
   m_ObjectHideFlags: 0
