@@ -9,6 +9,8 @@ public class EnforceMgr : MonoBehaviour
     public TextAsset forcetxtFile; //Jsonfile
 
     public InventoryManager inventoryMgr;
+    public RewardMgr rewardMgr;
+    public TrophyMgr trophyMgr;
     public StateManager stateMgr;
     public Button enBtn;
 
@@ -49,12 +51,9 @@ public class EnforceMgr : MonoBehaviour
         var jsonitemFile = Resources.Load<TextAsset>("Json/EnforceTable");
         forcetxtFile = jsonitemFile;
         lessTween = GameObject.Find("lessTween").GetComponent<Jun_TweenRuntime>();
-    }
-    void Start()
-    {
         enforcePanel = GameObject.Find("EnforcePanel");
-        stateMgr = GameObject.Find("Player").GetComponent<StateManager>(); //TODO: 멀티때 신경쓰기
-        inventoryMgr = GameObject.Find("InventoryMgr").GetComponent<InventoryManager>();
+        rewardMgr = GameObject.Find("RewardMgr").GetComponent<RewardMgr>();
+        trophyMgr = GameObject.Find("TrophyMgr").GetComponent<TrophyMgr>();
         wantEnforceTxt = GameObject.Find("ReallyTxt").GetComponent<Text>();
         weaponNowTxt = GameObject.Find("ReadyBefore").GetComponent<Text>();
         weaponAftTxt = GameObject.Find("ReadyAfter").GetComponent<Text>();
@@ -72,18 +71,17 @@ public class EnforceMgr : MonoBehaviour
         failweaponNowTxt = GameObject.Find("ForceLvF").GetComponent<Text>();
         beforeAtkF = GameObject.Find("beforeAtkF").GetComponent<Text>();
         afterAtkF = GameObject.Find("afterAtkF").GetComponent<Text>();
+    }
+    void Start()
+    {
+
         enforceEffect.SetActive(false);
         successPanel.SetActive(false);
         failedPanel.SetActive(false);
-        InitAtk();
         enforcePanel.SetActive(false);
     }
 
 
-    public void TestNPC()
-    {
-        OnEnforcePanel(inventoryMgr.weaponLv);
-    }
 
     public void OnEnforcePanel(int playerWeaponLv) // 창이 열림, 플레이어 웨폰레벨을 받음
     {
@@ -139,6 +137,8 @@ public class EnforceMgr : MonoBehaviour
         int successRate = (int)(jsonData["Enforce"][replace]["Rate"]); //TODO: 이거랑 밑에 20이랑 테이블에서 가져오기!!
         int randomNumbuer = Random.Range(0, 101);
 
+        Debug.Log(successRate);
+        Debug.Log(randomNumbuer);
 
         //효과음
         enforceEffect.SetActive(true);
@@ -155,6 +155,7 @@ public class EnforceMgr : MonoBehaviour
             stateMgr.atk += 20;
             inventoryMgr.weaponLv += 1;
             successweaponNowTxt.text = $"{jsonData["Enforce"][playerWeaponLv]["ForceLv"]} 단계";
+            trophyMgr.TrophyIndexUp(3);
             InitAtk();
         }
         else
@@ -167,8 +168,10 @@ public class EnforceMgr : MonoBehaviour
             failweaponNowTxt.text = $"{jsonData["Enforce"][playerWeaponLv]["ForceLv"]} 단계";
             failedPanel.SetActive(true);
             failEnforceCount++;
+            trophyMgr.TrophyIndexUp(4);
             InitAtk();
         }
+        trophyMgr.TrophyIndexUp(2);
         yield return null;
     }
 

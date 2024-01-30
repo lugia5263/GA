@@ -37,8 +37,8 @@ public class NomalMonsterCtrl : MonoBehaviour
     {
         golem = GOLEM.IDLE;
         golemAnim = GetComponent<Animator>();
-        targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        navAgent = GetComponent<NavMeshAgent>();
+        targetPlayer = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        navAgent = GetComponent<NavMeshAgent>(); 
         col = GetComponent<CapsuleCollider>();
         golemStateManager = GetComponent<StateManager>();
         originMesh.SetActive(true);
@@ -198,6 +198,19 @@ public class NomalMonsterCtrl : MonoBehaviour
             golem = GOLEM.HIT;
         }
     }
+    void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("TimeSlow"))
+        {
+            golemAnim.speed = 0.15f;
+            golemspeed = 1f;
+        }
+        else
+        {
+            golemspeed = 3f;
+            golemAnim.speed = 1f;
+        }
+    }
 
     void AttackBoxActive(int isEnable)
     {
@@ -221,9 +234,5 @@ public class NomalMonsterCtrl : MonoBehaviour
         }
     }
 
-    void Slowing()
-    {
-        
-    }
 }
 

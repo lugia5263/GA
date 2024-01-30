@@ -4,35 +4,23 @@
 TagManager:
   serializedVersion: 2
   tags:
-
-  - Shop
-  - Enemy
-  - DownPattern
-  - DownSkill
-  - Boss
-  - EnemyWeapon
-  - Weapon
-  - Potal
-  - SaveZone
-  - StartStage
-  - NomalMonster
-  - Golem
   - TAZOFX
-  - NoMalMonster
-  - Gold
-  - Material
-  - Exp
-  - Board
-
-  - Enemy
-  - Boss
-  - DownPattern
-  - EnemyWeapon
+  - Potal
+  - HealArea
   - Weapon
   - DownSkill
-  - SaveZone
   - APlayer
-
+  - enemy
+  - DownPattern
+  - SaveZone
+  - Boss
+  - NomalMonster
+  - EnemyWeapon
+  - TimeSlow
+  - Gold
+  - Exp
+  - Material
+  - Heal
   layers:
   - Default
   - TransparentFX
@@ -69,4 +57,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: inven
+    uniqueID: 881205837
     locked: 0
