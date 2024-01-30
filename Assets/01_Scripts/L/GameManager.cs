@@ -17,17 +17,34 @@ public class GameManager : MonoBehaviourPunCallbacks
     public Button exitBtn;
     public GameObject chatBox;
 
+    public SpawnScipt spawnMgr;
+
     void Awake()
     {
         // 접속 정보 추출 및 표시
         SetRoomInfo();
+        loadPlayerInfo = GameObject.Find("LoadPlayerInfo").GetComponent<LoadPlayerInfo>();
+        spawnMgr = GameObject.Find("SpawnMgr").GetComponent<SpawnScipt>();
     }
 
     void Start()
     {
-        loadPlayerInfo = GameObject.Find("LoadPlayerInfo").GetComponent<LoadPlayerInfo>();
+        //loadPlayerInfo = GameObject.Find("LoadPlayerInfo").GetComponent<LoadPlayerInfo>();
+        //spawnMgr = GameObject.Find("SpawnMgr").GetComponent<SpawnScipt>();
 
-        selectCharPanel.SetActive(true);
+        if (RoomEnterManager.dungeonType == "None") // 던전들어갔다가 마을로 돌아올때 캐릭선택패널이 뜨면안되게 하는 조건문
+        {
+            selectCharPanel.SetActive(false); // 패널끄고
+
+            
+
+            spawnMgr.CreatePlayer(); // 캐릭터 스폰까지 해줘야함.
+        }
+        else
+        {
+            selectCharPanel.SetActive(true);
+        }
+         
         //chatBox.SetActive(false);
     }
 
@@ -43,6 +60,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void OnExitClick()
     {
         PhotonNetwork.LeaveRoom();
+        SceneManager.LoadScene("Login");
     }
 
     public void OnClickStartBtn()
@@ -50,6 +68,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         SetUserId();
         selectCharPanel.SetActive(false);
         //chatBox.SetActive(true);
+        spawnMgr.StartCoroutine(spawnMgr.SpwanPlayer());
+
+
     }
 
     public void OnClickGoLoginSceneBtn()
@@ -84,8 +105,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         Debug.Log("방 나가기 완료.");
-        PhotonNetwork.JoinLobby();
-        Debug.Log("JoinLobby 실행");
+        //PhotonNetwork.JoinLobby();
+        //Debug.Log("JoinLobby 실행");
     }
 
     // 룸으로 새로운 네트워크 유저가 입장했때 호출되는 콜백함수

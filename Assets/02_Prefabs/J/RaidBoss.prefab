@@ -621,6 +621,8 @@ GameObject:
   - component: {fileID: 6749636528951470587}
   - component: {fileID: 8062565803154822620}
   - component: {fileID: 8241037372162608274}
+  - component: {fileID: 8869380804708637435}
+  - component: {fileID: 8474619218822480843}
   m_Layer: 0
   m_Name: RaidBossPattern
   m_TagString: Untagged
@@ -655,7 +657,7 @@ VisualEffect:
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
-  m_ResetSeedOnPlay: 1
+  m_ResetSeedOnPlay: 0
   m_AllowInstancing: 1
   m_ResourceVersion: 1
   m_PropertySheet:
@@ -668,7 +670,7 @@ VisualEffect:
       - m_Value: {x: -0, y: 180, z: -0}
         m_Name: Transform_angles
         m_Overridden: 1
-      - m_Value: {x: -1.19, y: -0.5, z: 6.21}
+      - m_Value: {x: -38.1, y: 48.26, z: -49.5}
         m_Name: Transform_position
         m_Overridden: 1
       - m_Value: {x: 1, y: 1, z: 1}
@@ -751,6 +753,8 @@ MonoBehaviour:
   m_ExecuteInEditor: 1
   m_Bindings:
   - {fileID: 8241037372162608274}
+  - {fileID: 8869380804708637435}
+  - {fileID: 8474619218822480843}
   m_VisualEffect: {fileID: 478454655306220251}
 --- !u!114 &8241037372162608274
 MonoBehaviour:
@@ -767,6 +771,36 @@ MonoBehaviour:
   m_Property:
     m_Name: Transform
   Target: {fileID: 4405391868967560268}
+--- !u!114 &8869380804708637435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 964058754381396652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fdfea1f838247c40921a07afedde962, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Property:
+    m_Name: Transform
+  Target: {fileID: 7255141509743487899}
+--- !u!114 &8474619218822480843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 964058754381396652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fdfea1f838247c40921a07afedde962, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Property:
+    m_Name: Transform
+  Target: {fileID: 7255141509743487899}
 --- !u!1 &967878663685849284
 GameObject:
   m_ObjectHideFlags: 0
@@ -6779,7 +6813,7 @@ MonoBehaviour:
   speed: 2.5
   rotSpeed: 5
   range: 8
-  attakRange: 1.5
+  attakRange: 2.5
   targetPlayer: {fileID: 0}
   raidBoss: 0
   isActivating: 0
@@ -6787,6 +6821,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   stateManager: {fileID: 0}
   healthUp: {fileID: 478454655306220251}
+  player: {fileID: 0}
   p1: 0
   p2: 0
   p3: 0
@@ -6808,6 +6843,8 @@ MonoBehaviour:
   p3Ready: 0
   p4Ready: 0
   p5Ready: 0
+  down: 0
+  attacking: 0
   dieNowPatternEffect: {fileID: 5309087038445080835, guid: 3170976abaa09574d8c17f0e01bac229, type: 3}
   DownPattern: {fileID: 1286664782529946363}
   breakTime: 0
