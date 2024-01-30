@@ -75,8 +75,6 @@ public class TrophyMgr : MonoBehaviour
     private void Start()
     {
 
-        weekPanel.SetActive(false);
-        trophyPanel.SetActive(false); //TODO: npc생기면 지움!!
 
     }
 

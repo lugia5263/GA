@@ -63,14 +63,13 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         Debug.Log("Created Room");
         Debug.Log($"Create Room Name = {PhotonNetwork.CurrentRoom.Name}");
     }
-
     // 룸에 입장한 후 호출되는 콜백 함수
     public override void OnJoinedRoom()
     {
         Debug.Log($"PhotonNetwork.InRoom = {PhotonNetwork.InRoom}");
         Debug.Log($"Player Count = {PhotonNetwork.CurrentRoom.PlayerCount}");
 
-        foreach(var player in PhotonNetwork.CurrentRoom.Players)
+        foreach (var player in PhotonNetwork.CurrentRoom.Players)
         {
             Debug.Log($"{player.Value.NickName} , {player.Value.ActorNumber}");
         }
@@ -78,14 +77,14 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient)
         {
             Debug.Log("MasterClient is LoadLevel 실행");
-            PhotonNetwork.LoadLevel("Home");
+            PhotonNetwork.LoadLevel("Town");
         }
     }
 
     // 룸 목록을 수신하는 콜백 함수
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        
+
     }
     #endregion
 

@@ -14,7 +14,7 @@ public class SelectChar : MonoBehaviour
     public CharacterClass character;
     public SelectChar[] chars;
 
-public void OnClickCharacterBtn()
+    public void OnClickCharacterBtn()
     {
         // 해당 버튼의 character를 현재 스크립트의 currentCharacter에 할당
         currentCharacter = character.ToString();
