@@ -7,8 +7,21 @@ using Photon.Realtime;
 public class SpawnScipt : MonoBehaviourPunCallbacks
 {
     public GameObject[] cH;
+    public GameObject vc;
+    public int classNum;
+    GameObject player;
+    public ThirdPersonOrbitCamBasicA thrid;
 
-    public GameObject charater;
+    private void Start()
+    {
+        thrid = GameObject.Find("Virtual Camera").GetComponent<ThirdPersonOrbitCamBasicA>();
+    }
+    public IEnumerator SpwanPlayer()
+    {
+        yield return new WaitForSeconds(0.1f);
+        CreatePlayer();
+        
+    }
     public void CreatePlayer()
     {
         
@@ -20,7 +33,6 @@ public class SpawnScipt : MonoBehaviourPunCallbacks
         {
             Transform[] points = GameObject.Find("SpawnPointGroup").GetComponentsInChildren<Transform>();
             int idx = Random.Range(1, points.Length);
-
             //PhotonNetwork.Instantiate(characterPrefabs[(int)DataMgr.instance.currentCharacter].name, points[idx].position, points[idx].rotation, 0);
             GameObject obj;
             obj = PhotonNetwork.Instantiate(cH[classNum].name, points[idx].position, points[idx].rotation, 0);

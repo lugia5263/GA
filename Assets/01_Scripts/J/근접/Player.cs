@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 using System.Linq;
+using Cinemachine;
 
 public class Player : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -46,7 +47,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     private PlayableDirector PD;
     public TimelineAsset[] Ta;
     Boss boss;
-    public TPScontroller tps;
+    
     public StateManager stateManager;
     MeshRenderTail meshRenderTail;
     public HUDManager hudManager;
@@ -54,7 +55,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject magition;
     PhotonView pv;
     PhotonAnimatorView pav;
-    
+    public CinemachineVirtualCamera cvc;
     [Header("CamBat")]
     public bool isAttack;
     public bool isAttack1;
@@ -99,6 +100,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     void Awake()
     {
+        
         camera = Camera.main;
         isFireReady = true;
         weapons = GetComponentInChildren<Weapons>();
@@ -109,11 +111,16 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         {
             boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
         }
-        tps = GetComponentInParent<TPScontroller>();
+        
         stateManager = GetComponent<StateManager>();
         hudManager = GetComponent<HUDManager>();
         chargingSlider = GameObject.FindGameObjectWithTag("Heal").GetComponent<Slider>();
-        ob[0] = GameObject.FindGameObjectWithTag("Heal").GetComponent<GameObject>();
+        cvc = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
+        if (PhotonNetwork.IsConnected && photonView.IsMine)
+        {
+            cvc.GetComponent<ThirdPersonOrbitCamBasicA>().player = transform;
+        }
+        cvc.GetComponent<ThirdPersonOrbitCamBasicA>().Starts();
         if (skillIcon != null)
         {
             skillIcon[0] = GameObject.Find("CoolTimeBGQ").GetComponent<Image>();
@@ -130,9 +137,76 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         skillIcon[0].fillAmount = 0;
         skillIcon[1].fillAmount = 0;
         skillIcon[2].fillAmount = 0;
+        if(pv.IsMine)
+        {
+            //cvc.Follow = transform;
+            //cvc.LookAt = transform;
+        }
+      // ob[6] = GameObject.FindGameObjectWithTag("Heal").GetComponent<GameObject>();
     }
-    
+
     //"��������"
+    void moves()
+    {
+        if (skillUse == true)
+            return;
+        if (isFireReady == false)
+            return;
+        if (downing == true)
+            return;
+        if (isDeath == true)
+            return;
+        if (downing)
+            return;
+
+        Vector2 moveinput = new Vector2(Input.GetAxis("Horizontal") * Time.deltaTime * 1.5f, Input.GetAxis("Vertical") * Time.deltaTime * 1.5f);
+        bool ismove = moveinput.magnitude != 0;
+        animator.SetBool("isRun", ismove);
+
+
+
+        if (ismove)
+        {
+            Vector3 lookForward = new Vector3(cvc.transform.forward.x, 0f, cvc.transform.forward.z).normalized;
+            Vector3 lookRight = new Vector3(cvc.transform.right.x, 0f, cvc.transform.right.z).normalized;
+            Vector3 moveDir = lookForward * moveinput.y + lookRight * moveinput.x;
+
+            transform.forward = moveDir;
+            transform.position += moveDir * Time.deltaTime * 0.01f;
+            characterController.Move(moveDir * 5f);
+        }
+    }
+    void lookAround()
+    {
+        Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        Vector3 camAngle = cvc.transform.rotation.eulerAngles;
+        float x = camAngle.x - mouseDelta.y;
+        if (x <= 180f)
+        {
+            x = Mathf.Clamp(x, -1f, 70f);
+        }
+        else
+        {
+            x = Mathf.Clamp(x, -90f, 90f);
+        }
+        cvc.transform.rotation = Quaternion.Euler(15, camAngle.y + mouseDelta.x, camAngle.z);
+    }
+    void check()
+    {
+        cvc.transform.position = new Vector3(transform.position.x, transform.position.y + 3f, transform.position.z - 3.5f);
+       //cvc.transform.rotation = Quaternion.Euler(15, transform.rotation.y,transform.rotation.z);
+        Vector3 direction = (transform.position - cvc.transform.position).normalized;
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, direction, Mathf.Infinity, 1 << LayerMask.NameToLayer("Filed"));
+        for (int i = 0; i < hits.Length; i++)
+        {
+            TransparentObject[] obj = hits[i].transform.GetComponentsInChildren<TransparentObject>();
+
+            for (int j = 0; j < obj.Length; j++)
+            {
+                obj[j]?.BecomeTransparent();
+            }
+        }
+    }
     void Interation()
     {
         if (Input.GetKeyDown(KeyCode.LeftAlt) && nearObject != null && nearObject.tag == "Shop")
@@ -145,15 +219,21 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        originalTimeScale = Time.timeScale * Time.unscaledDeltaTime;
-        
+       
+        if (pv.IsMine)
+        {
+            
+            originalTimeScale = Time.timeScale * Time.unscaledDeltaTime;
+
             if (!isDeath)
             {
-                
+                moves();
+                //lookAround();
                 GetinPut();
                 Attack();
+                //check();
                 SkillOn();
                 Death();
                 Deshs();
@@ -161,6 +241,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 SkillCoolTime();
                 //Turn();
             }
+        }
     }
 
     void Turn()
@@ -349,20 +430,20 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 {
                     animator.SetTrigger("SkillR");
                     Skill[2].SetActive(true);
-                    ob[0].SetActive(true);
+                    ob[6].SetActive(true);
                     chargingSlider.value += Time.deltaTime * 0.35f;
 
                     if (chargingSlider.value == 1)
                     {
                         Skill[2].SetActive(false);
-                        ob[0].SetActive(false);
+                        ob[6].SetActive(false);
                         rischarging = false;
                     }
                 }
                 else
                 {
                 Skill[2].SetActive(false);
-                //ob[0].SetActive(false);
+                //ob[6].SetActive(false);
                 
                 rischarging = false;
                 chargingSlider.value = 0;
@@ -575,8 +656,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         //통신을 보내는 
         if (stream.IsWriting)
         {
-            stream.SendNext(tr.position);
-            stream.SendNext(tr.rotation);
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
         }
 
         //클론이 통신을 받는 

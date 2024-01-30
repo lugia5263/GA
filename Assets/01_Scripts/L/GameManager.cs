@@ -68,6 +68,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         SetUserId();
         selectCharPanel.SetActive(false);
         //chatBox.SetActive(true);
+        spawnMgr.StartCoroutine(spawnMgr.SpwanPlayer());
+
+
     }
 
     public void OnClickGoLoginSceneBtn()
