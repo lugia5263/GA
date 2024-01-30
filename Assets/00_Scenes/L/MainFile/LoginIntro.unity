@@ -502,11 +502,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5490724367227094206, guid: 4059be86aea36bf4dbd127f164cd719b, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5490724367227094206, guid: 4059be86aea36bf4dbd127f164cd719b, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5746422157442864636, guid: 4059be86aea36bf4dbd127f164cd719b, type: 3}
       propertyPath: m_Name
@@ -3023,15 +3023,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8161a81723a64bf9b743eaa9ebc6455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadPlayerInfo: {fileID: 1541609293}
+  loadPlayerInfo: {fileID: 0}
   slotNum: 0
-  selectCharPanel: {fileID: 402539574}
+  selectCharPanel: {fileID: 0}
   roomName: {fileID: 1368683211}
   connectInfo: {fileID: 1199679291}
   msgList: {fileID: 384625553}
   exitBtn: {fileID: 1075428984}
-  chatBox: {fileID: 1941013586}
-  spawnMgr: {fileID: 363697427}
+  chatBox: {fileID: 0}
+  spawnMgr: {fileID: 0}
 --- !u!4 &484102765
 Transform:
   m_ObjectHideFlags: 0
@@ -3790,7 +3790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSlot: 
-  slot: 2
+  slot: 0
   chars:
   - {fileID: 1042402159}
   - {fileID: 1721262923}
@@ -9286,7 +9286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSlot: 
-  slot: 1
+  slot: 0
   chars:
   - {fileID: 1042402159}
   - {fileID: 1721262923}
