@@ -15,7 +15,9 @@ GameObject:
   - component: {fileID: 4117801578875548934}
   - component: {fileID: 4017719693872868535}
   - component: {fileID: 5413724352735999674}
+  - component: {fileID: -8552405581378993917}
   - component: {fileID: 3302447564410305290}
+  - component: {fileID: 4495694283961031433}
   m_Layer: 0
   m_Name: ClassNum_0
   m_TagString: Untagged
@@ -153,10 +155,11 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 2
-  OwnershipTransfer: 1
-  observableSearch: 2
+  OwnershipTransfer: 0
+  observableSearch: 0
   ObservedComponents:
   - {fileID: 5413724352735999674}
+  - {fileID: -8552405581378993917}
   - {fileID: 3302447564410305290}
   sceneViewId: 0
   InstantiationId: 0
@@ -177,6 +180,24 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 1
   m_UseLocal: 1
+--- !u!114 &-8552405581378993917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601072967639036023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b548abb57ff23748874c37312408dee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chatList: []
+  chatLog: {fileID: 0}
+  inputChat: {fileID: 0}
+  scrollRect: {fileID: 0}
+  nickNameTxt: {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &3302447564410305290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,10 +210,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 819af19ee9f3fba4fb264d36167fac68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currPos: {x: 0, y: 0, z: 0}
+  currRot: {x: 0, y: 0, z: 0, w: 0}
   speed: 10
   pv: {fileID: 4017719693872868535}
-  nickNameTxt: {fileID: 9012103420907165646}
+  nickNameTxt: {fileID: 0}
   chatManager: {fileID: 0}
+  allowMove: 1
+--- !u!114 &4495694283961031433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601072967639036023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6abf66d12efa96d4a9d3f514eec8ec1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentA: {fileID: -8552405581378993917}
 --- !u!1 &4791394988164374468
 GameObject:
   m_ObjectHideFlags: 0

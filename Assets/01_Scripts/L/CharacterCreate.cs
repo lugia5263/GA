@@ -22,6 +22,7 @@ public class CharacterCreate : MonoBehaviour
     public Button[] slots;
 
     public LoadPlayerInfo loadPlayerInfo;
+    private int classNum;
 
     void Start()
     {
@@ -67,8 +68,23 @@ public class CharacterCreate : MonoBehaviour
         currentSlotNum = SelectSlot.slotNum;
         characterNickName = nickNameIF.text;
         currentCharacterClass = SelectChar.currentCharacter;
+        
+        switch (currentCharacterClass) //Warrior, Gunner, Magician
+        {
+            case "Warrior":
+                classNum = 0;
+                break;
+            case "Gunner":
+                classNum = 1;
+                break;
+            case "Magician":
+                classNum = 2;
+                break;
+            default:
+                break;
+        }
         Debug.Log(currentCharacterClass);
-        StartCoroutine(CreateCharacter(currentSlotNum, characterNickName, currentCharacterClass));
+        StartCoroutine(CreateCharacter(currentSlotNum, characterNickName, currentCharacterClass, currentClassNum));
         Debug.Log("닉네임, 캐릭터생성 완료");
         loadPlayerInfo.LoadEverySlotData();
 
@@ -78,7 +94,7 @@ public class CharacterCreate : MonoBehaviour
         nickNamePanel.SetActive(false);
     }
 
-    IEnumerator CreateCharacter(int slotNum, string nickName, string className)
+    IEnumerator CreateCharacter(int slotNum, string nickName, string className, int classNum)
     {
         Debug.Log(nickName);
         Debug.Log(className);
@@ -86,6 +102,7 @@ public class CharacterCreate : MonoBehaviour
 
         PlayerPrefs.SetString($"{slotNum}_NickName", nickName);
         PlayerPrefs.SetString($"{slotNum}_Class", className);
+        PlayerPrefs.SetInt($"{slotNum}_ClassNum", classNum);
         PlayerPrefs.SetInt($"{slotNum}_Level", 1);
         PlayerPrefs.SetInt($"{slotNum}_MaxHp", 500);
         PlayerPrefs.SetInt($"{slotNum}_WeaponLevel", 1);
