@@ -10,7 +10,7 @@ public class LoginSystem : MonoBehaviourPunCallbacks
     public string password;
     public InputField userIDInput;
     //public InputField pwInput;
-
+    public GameObject em;
     public Text outputText;
 
     public bool isExist = false;
@@ -48,6 +48,7 @@ public class LoginSystem : MonoBehaviourPunCallbacks
         {
             if (PlayerPrefs.HasKey("UserID"))
             {
+                //em.SetActive(true);
                 photonManager.JoinHome();
             }
             else
