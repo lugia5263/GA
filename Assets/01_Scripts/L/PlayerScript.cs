@@ -74,8 +74,8 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
         //통신을 보내는 
         if (stream.IsWriting)
         {
-            stream.SendNext(tr.position);
-            stream.SendNext(tr.rotation);
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
         }
 
         //클론이 통신을 받는 

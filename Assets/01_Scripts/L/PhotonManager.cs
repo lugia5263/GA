@@ -11,8 +11,10 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     // 게임의 버전
     private readonly string version = "1.0";
 
-    public LoadPlayerInfo loadPlayerInfo;
-    public int slotNum;
+    // 룸 목록에 대한 데이터를 저장하기 위한 딕셔너리 자료형
+    private Dictionary<string, GameObject> rooms = new Dictionary<string, GameObject>();
+
+    bool roomHomeExists = false;
 
     void Awake()
     {
@@ -30,8 +32,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.ConnectUsingSettings();
         }
-
-        loadPlayerInfo = GameObject.Find("LoadPlayerInfo").GetComponent<LoadPlayerInfo>();
     }
 
 
@@ -63,14 +63,13 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         Debug.Log("Created Room");
         Debug.Log($"Create Room Name = {PhotonNetwork.CurrentRoom.Name}");
     }
-
     // 룸에 입장한 후 호출되는 콜백 함수
     public override void OnJoinedRoom()
     {
         Debug.Log($"PhotonNetwork.InRoom = {PhotonNetwork.InRoom}");
         Debug.Log($"Player Count = {PhotonNetwork.CurrentRoom.PlayerCount}");
 
-        foreach(var player in PhotonNetwork.CurrentRoom.Players)
+        foreach (var player in PhotonNetwork.CurrentRoom.Players)
         {
             Debug.Log($"{player.Value.NickName} , {player.Value.ActorNumber}");
         }
@@ -78,39 +77,18 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient)
         {
             Debug.Log("MasterClient is LoadLevel 실행");
-            PhotonNetwork.LoadLevel("Home");
+            PhotonNetwork.LoadLevel("Town");
         }
+    }
+
+    // 룸 목록을 수신하는 콜백 함수
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+
     }
     #endregion
 
     #region UI_BUTTON_EVENT
-    //유저명을 설정하는 로직
-    public void SetUserId()
-    {
-        slotNum = SelectSlot.slotNum;
-        Debug.Log("SlotNum : " + slotNum);
-        switch (slotNum)
-        {
-            case 0:
-                PhotonNetwork.NickName = loadPlayerInfo.slot1Text[0].text;
-                break;
-            case 1:
-                PhotonNetwork.NickName = loadPlayerInfo.slot2Text[0].text;
-                break;
-            case 2:
-                PhotonNetwork.NickName = loadPlayerInfo.slot3Text[0].text;
-                break;
-            default:
-                break;
-        }
-    }
-
-    public void OnClickStartBtn()
-    {
-        SetUserId();
-        JoinHome();
-    }
-
     public void JoinHome()
     {
         Debug.Log("JoinHome 실행");

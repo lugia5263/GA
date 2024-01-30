@@ -4,11 +4,9 @@ using Photon.Realtime;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
-    public SpawnScipt spawnMgr;
     public LoadPlayerInfo loadPlayerInfo;
     public int slotNum;
 
@@ -19,33 +17,34 @@ public class GameManager : MonoBehaviourPunCallbacks
     public Button exitBtn;
     public GameObject chatBox;
 
-    
+    public SpawnScipt spawnMgr;
 
     void Awake()
     {
         // 접속 정보 추출 및 표시
         SetRoomInfo();
-        //loadPlayerInfo = GameObject.Find("LoadPlayerInfo").GetComponent<LoadPlayerInfo>();
-        //spawnMgr = GameObject.Find("SpawnMgr").GetComponent<SpawnScipt>();
+        loadPlayerInfo = GameObject.Find("LoadPlayerInfo").GetComponent<LoadPlayerInfo>();
+        spawnMgr = GameObject.Find("SpawnMgr").GetComponent<SpawnScipt>();
     }
 
     void Start()
     {
-        spawnMgr.StartCoroutine(spawnMgr.SpawnPlayer());
         //loadPlayerInfo = GameObject.Find("LoadPlayerInfo").GetComponent<LoadPlayerInfo>();
         //spawnMgr = GameObject.Find("SpawnMgr").GetComponent<SpawnScipt>();
 
-        //if (RoomEnterManager.dungeonType == "None") // 던전들어갔다가 마을로 돌아올때 캐릭선택패널이 뜨면안되게 하는 조건문
-        //{
-        //    selectCharPanel.SetActive(false); // 패널끄고
+        if (RoomEnterManager.dungeonType == "None") // 던전들어갔다가 마을로 돌아올때 캐릭선택패널이 뜨면안되게 하는 조건문
+        {
+            selectCharPanel.SetActive(false); // 패널끄고
 
-        //    spawnMgr.StartCoroutine(spawnMgr.SpawnPlayer());
-        //}
-        //else
-        //{
-        //    selectCharPanel.SetActive(true);
-        //}
+            
 
+            spawnMgr.CreatePlayer(); // 캐릭터 스폰까지 해줘야함.
+        }
+        else
+        {
+            selectCharPanel.SetActive(true);
+        }
+         
         //chatBox.SetActive(false);
     }
 
@@ -61,42 +60,45 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void OnExitClick()
     {
         PhotonNetwork.LeaveRoom();
-        SceneManager.LoadScene("Login_test");
+        SceneManager.LoadScene("Login");
     }
 
-    //public void OnClickStartBtn()
-    //{
-    //    SetUserId();
-    //    selectCharPanel.SetActive(false);
-    //    //chatBox.SetActive(true);
-    //}
+    public void OnClickStartBtn()
+    {
+        SetUserId();
+        selectCharPanel.SetActive(false);
+        //chatBox.SetActive(true);
+        spawnMgr.StartCoroutine(spawnMgr.SpwanPlayer());
+
+
+    }
 
     public void OnClickGoLoginSceneBtn()
     {
         PhotonNetwork.LeaveRoom();
-        SceneManager.LoadScene("Login_test");
+        SceneManager.LoadScene("Login");
     }
 
     //유저명을 설정하는 로직
-    //public void SetUserId()
-    //{
-    //    slotNum = SelectSlot.slotNum;
-    //    Debug.Log("SlotNum : " + slotNum);
-    //    switch (slotNum)
-    //    {
-    //        case 0:
-    //            PhotonNetwork.NickName = loadPlayerInfo.slot1Text[0].text;
-    //            break;
-    //        case 1:
-    //            PhotonNetwork.NickName = loadPlayerInfo.slot2Text[0].text;
-    //            break;
-    //        case 2:
-    //            PhotonNetwork.NickName = loadPlayerInfo.slot3Text[0].text;
-    //            break;
-    //        default:
-    //            break;
-    //    }
-    //}
+    public void SetUserId()
+    {
+        slotNum = SelectSlot.slotNum;
+        Debug.Log("SlotNum : " + slotNum);
+        switch (slotNum)
+        {
+            case 0:
+                PhotonNetwork.NickName = loadPlayerInfo.slot1Text[0].text;
+                break;
+            case 1:
+                PhotonNetwork.NickName = loadPlayerInfo.slot2Text[0].text;
+                break;
+            case 2:
+                PhotonNetwork.NickName = loadPlayerInfo.slot3Text[0].text;
+                break;
+            default:
+                break;
+        }
+    }
 
     #region 포톤 콜백함수
     // 포톤 룸에서 퇴장했을 때 호출되는 콜백함수

@@ -12,7 +12,9 @@ public class NPCController : MonoBehaviour
     public GameObject lvPanel;
     public GameObject clothingPanel;
 
-
+    public InventoryManager inventoryMgr;
+    public EnforceMgr enforceMgr;
+    public LevelUpMgr levelupMgr;
 
     [TextArea(1, 3)]
     public string introduce;
@@ -21,10 +23,14 @@ public class NPCController : MonoBehaviour
     
     void Awake()
     {
+        inventoryMgr = GameObject.Find("InventoryMgr").GetComponent<InventoryManager>();
+        enforceMgr = GameObject.Find("EnforceMgr").GetComponent<EnforceMgr>();
+        levelupMgr = GameObject.Find("LevelupMgr").GetComponent<LevelUpMgr>();
+
         questPanel = GameObject.Find("QuestPanel");
         achievementPanel = GameObject.Find("AchievementPanel");
         weaponPanel = GameObject.Find("EnforcePanel");
-        lvPanel = GameObject.Find("LvPanel");
+        lvPanel = GameObject.Find("LevelUpPanel");
         clothingPanel = GameObject.Find("ClothingPanel");
     }
     
@@ -51,11 +57,15 @@ public class NPCController : MonoBehaviour
         }
         if (other.CompareTag("Player") && npcNum == 3) //대장장이
         {
+            enforceMgr.stateMgr = GameObject.FindWithTag("Player").GetComponent<StateManager>();
+            enforceMgr.inventoryMgr = GameObject.Find("InventoryMgr").GetComponent<InventoryManager>();
+            enforceMgr.InitAtk();
             weaponPanel.SetActive(true);
 
         }
         if (other.CompareTag("Player") && npcNum == 4) //렙업
         {
+            levelupMgr.stateMgr = GameObject.FindWithTag("Player").GetComponent<StateManager>();
             lvPanel.SetActive(true);
 
         }

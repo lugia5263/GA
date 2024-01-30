@@ -29,6 +29,7 @@ public class LoadPlayerInfo : MonoBehaviour
             {
                 string nickName = PlayerPrefs.GetString($"{slotNum}_NickName");
                 string className = PlayerPrefs.GetString($"{slotNum}_Class");
+                
                 int level = PlayerPrefs.GetInt($"{slotNum}_Level");
                 PlayerPrefs.GetInt($"{slotNum}_MaxHp");
                 PlayerPrefs.GetInt($"{slotNum}_WeaponLevel");

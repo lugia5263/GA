@@ -15,6 +15,12 @@ TagManager:
   - SaveZone
   - Boss
   - NomalMonster
+  - EnemyWeapon
+  - TimeSlow
+  - Gold
+  - Exp
+  - Material
+  - Heal
   layers:
   - Default
   - TransparentFX
@@ -51,4 +57,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: inven
+    uniqueID: 881205837
     locked: 0

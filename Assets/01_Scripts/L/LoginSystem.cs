@@ -2,18 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+using Photon.Pun;
 
-public class LoginSystem : MonoBehaviour
+public class LoginSystem : MonoBehaviourPunCallbacks
 {
     public static string userEmail;
     public string password;
     public InputField userIDInput;
     //public InputField pwInput;
-
+    public GameObject em;
     public Text outputText;
 
     public bool isExist = false;
+
+    PhotonManager photonManager;
+
+    void Start()
+    {
+        photonManager = GameObject.Find("PhotonManager").GetComponent<PhotonManager>();
+    }
 
     public void OnClickCreateBtn()
     {
@@ -41,7 +48,8 @@ public class LoginSystem : MonoBehaviour
         {
             if (PlayerPrefs.HasKey("UserID"))
             {
-                SceneManager.LoadScene("Lobby_test");
+                //em.SetActive(true);
+                photonManager.JoinHome();
             }
             else
             {
