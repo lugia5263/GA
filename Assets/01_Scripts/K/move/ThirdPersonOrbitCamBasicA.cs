@@ -25,10 +25,10 @@ public class ThirdPersonOrbitCamBasicA : MonoBehaviour
 	private float angleH = 0;                                          // Float to store camera horizontal angle related to mouse movement.
 	private float angleV = 0;                                          // Float to store camera vertical angle related to mouse movement.
 	public Transform cam;                                             // This transform.
-	private Vector3 smoothPivotOffset;                                 // Camera current pivot offset on interpolation.
-	private Vector3 smoothCamOffset;                                   // Camera current offset on interpolation.
-	private Vector3 targetPivotOffset;                                 // Camera pivot offset target to interpolate.
-	private Vector3 targetCamOffset;                                   // Camera offset target to interpolate.
+	public Vector3 smoothPivotOffset;                                 // Camera current pivot offset on interpolation.
+	public Vector3 smoothCamOffset;                                   // Camera current offset on interpolation.
+	public Vector3 targetPivotOffset;                                 // Camera pivot offset target to interpolate.
+	public Vector3 targetCamOffset;                                   // Camera offset target to interpolate.
 	private float defaultFOV;                                          // Default camera Field of View.
 	private float targetFOV;                                           // Target camera Field of View.
 	private float targetMaxVerticalAngle;                              // Custom camera max vertical clamp angle.

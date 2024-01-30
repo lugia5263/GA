@@ -67,6 +67,13 @@ public class RaidBossCtrl : MonoBehaviour
     public bool breakOn;
     public bool die;
     public bool healthUpCheck;
+
+    [Header("Ettect")]
+    public GameObject p5PatternE;
+    public GameObject downPatterE;
+    public GameObject p2EttectE;
+    public GameObject p1EttectE;
+    public GameObject healEttetE;
     void Start()
     {
         raidBoss = RAIDBOSS.IDLE;
@@ -190,7 +197,6 @@ public class RaidBossCtrl : MonoBehaviour
                     break;
                 case RAIDBOSS.BREAK:
                     isActivating = true;
-                    anim.SetTrigger("Break");
                     speed = 0f;
                     breakTime = 0f;
                     StartCoroutine(breakTiming());
@@ -307,6 +313,7 @@ public class RaidBossCtrl : MonoBehaviour
         breakTime += Time.deltaTime;
         if(breakTime >= breakCheck)
         {
+            anim.SetTrigger("Break");
             raidBoss = RAIDBOSS.BREAK;
             breakOn = true;
             breakTime = breakCheck;
@@ -383,4 +390,34 @@ public class RaidBossCtrl : MonoBehaviour
         healthUpCheck = false;
     }
 
+    IEnumerator P5patternEttect()
+    {
+        p5PatternE.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        p5PatternE.SetActive(false) ;
+    }
+    IEnumerator DownPatternEttect()
+    {
+        downPatterE.SetActive(true);
+        yield return new WaitForSeconds(2.3f);
+        downPatterE.SetActive(false);
+    }
+    IEnumerator P2EttectEttect()
+    {
+        p2EttectE.SetActive(true);
+        yield return new WaitForSeconds(1.3f);
+        p2EttectE.SetActive(false);
+    }
+    IEnumerator P1Ettect()
+    {
+        p1EttectE.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        p1EttectE.SetActive(false);
+    }
+    IEnumerator HealEttect()
+    {
+        healEttetE.SetActive(true);
+        yield return new WaitForSeconds(5f);
+        healEttetE.SetActive(false);
+    }
 }
