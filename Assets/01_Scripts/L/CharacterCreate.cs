@@ -1,27 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Firebase.Firestore;
-using Firebase.Extensions;
-using Firebase.Auth;
 using System;
 using UnityEngine.UI;
-using Firebase;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 
 public class CharacterCreate : MonoBehaviour
 {
-    private FirebaseFirestore db;
-    private FirebaseAuth auth;
-
     public GameObject selectPanel;
     public GameObject nickNamePanel;
 
     public InputField nickNameIF;
     public string characterNickName;
-
-    public string userEmail;
 
     public static string currentCharacterClass;
 
@@ -30,73 +21,14 @@ public class CharacterCreate : MonoBehaviour
     public Sprite[] sprites;
     public Button[] slots;
 
-    LoadPlayerInfo loadPlayerInfoInstance;
+    public LoadPlayerInfo loadPlayerInfo;
 
     void Start()
     {
-        db = FirebaseFirestore.DefaultInstance;
-        auth = FirebaseAuth.DefaultInstance;
         selectPanel.SetActive(false);
         nickNamePanel.SetActive(false);
-        userEmail = LoginSystem_test.userEmail;
-        loadPlayerInfoInstance = GameObject.Find("LoadPlayerInfo").GetComponent<LoadPlayerInfo>();
-        Debug.Log(userEmail);
-    }
 
-    IEnumerator CreateCharacter(string userEmail, string characterNickName, string className)
-    {
-        Debug.Log("코루틴 시작");
-        Debug.Log(className);
-
-        // Firestore에 사용자 데이터 추가
-        FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
-        // 캐릭터 1, 2, 3컬렉션 참조 없으면 만듬.
-        DocumentReference docRef = db.Collection("users").Document(userEmail).Collection($"캐릭터{currentClassNum+1}").Document("Info");
-        Dictionary<string, object> user = new Dictionary<string, object>
-        {
-            {"SlotNum", currentSlotNum},
-            {"NickName", characterNickName},
-            {"Class", className},
-            {"CharacterLevel", 1},
-            {"MaxHp", 100},
-            {"WeaponLevel", 1},
-            {"ATK", 100},
-            {"CriticalPer", 50},
-            {"UserGold", 0},
-            {"Material", 0},
-            {"ExpPotion", 0},
-            {"UpdateTime", FieldValue.ServerTimestamp}
-        };
-
-        yield return docRef.SetAsync(user).ContinueWithOnMainThread(task =>
-        {
-            Debug.Log("데이터작성 시작");
-            if (task.IsFaulted)
-            {
-                foreach (Exception exception in task.Exception.InnerExceptions)
-                {
-                    if (exception is FirebaseException firebaseException)
-                    {
-                        Debug.LogError($"FirebaseException: {firebaseException.ErrorCode} - {firebaseException.Message}");
-                    }
-                    else
-                    {
-                        Debug.LogError($"Exception: {exception}");
-                    }
-                }
-                Debug.Log("데이터작성 실패");
-            }
-            else if (task.IsCanceled)
-            {
-                Debug.LogError("데이터작성 취소");
-            }
-            else
-            {
-                Debug.Log($"{characterNickName} 의 캐릭터생성이 완료되었습니다...");
-                Debug.Log("데이터작성 끝");
-            }
-        });
-        Debug.Log("코루틴 종료");
+        loadPlayerInfo = GameObject.Find("LoadPlayerInfo").GetComponent<LoadPlayerInfo>();
     }
 
     // 만들 슬롯 클릭 후, 캐릭터생성버튼 클릭 => 패널띄우기
@@ -132,19 +64,82 @@ public class CharacterCreate : MonoBehaviour
     // 닉네임 결정완료 버튼
     public void OnClickDecideNickBtn()
     {
+        currentSlotNum = SelectSlot.slotNum;
         characterNickName = nickNameIF.text;
         currentCharacterClass = SelectChar.currentCharacter;
         Debug.Log(currentCharacterClass);
-        StartCoroutine(CreateCharacter(userEmail, characterNickName, currentCharacterClass));
+        StartCoroutine(CreateCharacter(currentSlotNum, characterNickName, currentCharacterClass, currentClassNum));
         Debug.Log("닉네임, 캐릭터생성 완료");
+        loadPlayerInfo.LoadEverySlotData();
 
-        Debug.Log("userEmail : " + userEmail);
-        StartCoroutine(loadPlayerInfoInstance.LoadPlayerData(userEmail));
-
+        // 나중에 이부분(슬롯에 sprite넣기) 게임로딩하고 슬롯에도 넣게끔 추가해보기
         slots[currentSlotNum].GetComponent<Image>().sprite = sprites[currentClassNum];
         selectPanel.SetActive(false);
         nickNamePanel.SetActive(false);
     }
+
+    IEnumerator CreateCharacter(int slotNum, string nickName, string className, int classNum)
+    {
+        Debug.Log(nickName);
+        Debug.Log(className);
+        PlayerPrefs.SetString($"SlotNum_{slotNum}", slotNum.ToString());
+
+        PlayerPrefs.SetString($"{slotNum}_NickName", nickName);
+        PlayerPrefs.SetString($"{slotNum}_Class", className);
+        PlayerPrefs.SetInt($"{slotNum}_ClassNum", classNum);
+        PlayerPrefs.SetInt($"{slotNum}_Level", 1);
+        PlayerPrefs.SetInt($"{slotNum}_MaxHp", 500);
+        PlayerPrefs.SetInt($"{slotNum}_WeaponLevel", 1);
+        PlayerPrefs.SetInt($"{slotNum}_ATK", 50);
+        PlayerPrefs.SetInt($"{slotNum}_CriticalPer", 50);
+        PlayerPrefs.SetInt($"{slotNum}_UserGold", 0);
+        PlayerPrefs.SetInt($"{slotNum}_Material", 0);
+        PlayerPrefs.SetInt($"{slotNum}_ExpPotion", 0);
+
+        PlayerPrefs.Save();
+
+        yield return null;
+    }
+
+    public void DeleteCharacter()
+    {
+        int slotNum = SelectSlot.slotNum;
+        Debug.Log(slotNum);
+
+        if (PlayerPrefs.HasKey($"SlotNum_{slotNum}"))
+        {
+            PlayerPrefs.DeleteKey($"{slotNum}_NickName");
+            PlayerPrefs.DeleteKey($"{slotNum}_Class");
+            PlayerPrefs.DeleteKey($"{slotNum}_Level");
+            PlayerPrefs.DeleteKey($"{slotNum}_MaxHp");
+            PlayerPrefs.DeleteKey($"{slotNum}_WeaponLevel");
+            PlayerPrefs.DeleteKey($"{slotNum}_ATK");
+            PlayerPrefs.DeleteKey($"{slotNum}_CriticalPer");
+            PlayerPrefs.DeleteKey($"{slotNum}_UserGold");
+            PlayerPrefs.DeleteKey($"{slotNum}_Material");
+            PlayerPrefs.DeleteKey($"{slotNum}_ExpPotion");
+
+            PlayerPrefs.Save();
+
+            loadPlayerInfo.LoadEverySlotData();
+        }
+        else
+        {
+            Debug.Log("현재슬롯에 키값이 없음");
+        }
+    }
+
+    // 만약 직업마다 스탯이 다르다면.. 여기서 switch로 클래스명받아와서 createcharacter에서 호출하게끔하기
+    //void CreateDefaultPlayerData(string userID)
+    //{
+        // 예시로 대충 1레벨일때의 능력치.. 실제로 만들때 초기화하기
+        //int defaultLevel = 1;
+        //int defaultAtk = 10;
+
+        //PlayerPrefs.SetInt(userID, defaultLevel);
+        //PlayerPrefs.SetInt(userID, defaultAtk);
+        //PlayerPrefs.Save();
+    //}
 
     public void OnClickGoLoginSceneBtn()
     {
