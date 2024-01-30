@@ -19,6 +19,7 @@ public class QuestPopUpManager : MonoBehaviour
     private void Start()
     {
         questCountTxt = GameObject.Find("QCountTxt").GetComponent<Text>();
+
     }
 
 
@@ -56,8 +57,6 @@ public class QuestPopUpManager : MonoBehaviour
             questCountTxt.color = Color.white;
         }
     }
-
-
 }
 
 
