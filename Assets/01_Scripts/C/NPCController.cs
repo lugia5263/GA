@@ -15,25 +15,26 @@ public class NPCController : MonoBehaviour
     public InventoryManager inventoryMgr;
     public EnforceMgr enforceMgr;
     public LevelUpMgr levelupMgr;
+    public QuestManager questMgr;
 
     [TextArea(1, 3)]
     public string introduce;
 
     public int npcNum;
-    
+
     void Awake()
     {
         inventoryMgr = GameObject.Find("InventoryMgr").GetComponent<InventoryManager>();
         enforceMgr = GameObject.Find("EnforceMgr").GetComponent<EnforceMgr>();
         levelupMgr = GameObject.Find("LevelupMgr").GetComponent<LevelUpMgr>();
-
+        questMgr = GameObject.Find("QuestMgr").GetComponent<QuestManager>();
         questPanel = GameObject.Find("QuestPanel");
         achievementPanel = GameObject.Find("AchievementPanel");
         weaponPanel = GameObject.Find("EnforcePanel");
         lvPanel = GameObject.Find("LevelUpPanel");
         clothingPanel = GameObject.Find("ClothingPanel");
     }
-    
+
     private void Start()
     {
         questPanel.SetActive(false);
@@ -45,9 +46,11 @@ public class NPCController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")&& npcNum== 1) //Äù½ºÆ®
+        if (other.CompareTag("Player") && npcNum == 1) //Äù½ºÆ®
         {
+
             questPanel.SetActive(true);
+            questMgr.CurQuestCheck();
 
         }
         if (other.CompareTag("Player") && npcNum == 2) //¾÷Àû
@@ -63,7 +66,7 @@ public class NPCController : MonoBehaviour
         }
         if (other.CompareTag("Player") && npcNum == 4) //·¾¾÷
         {
-            
+
             lvPanel.SetActive(true);
 
         }
@@ -85,5 +88,5 @@ public class NPCController : MonoBehaviour
         }
     }
 
-   
+
 }
