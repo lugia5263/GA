@@ -126,6 +126,7 @@ public class CharacterCreate : MonoBehaviour
         {
             PlayerPrefs.DeleteKey($"{slotNum}_NickName");
             PlayerPrefs.DeleteKey($"{slotNum}_Class");
+            PlayerPrefs.DeleteKey($"{slotNum}_ClassNum");
             PlayerPrefs.DeleteKey($"{slotNum}_Level");
             PlayerPrefs.DeleteKey($"{slotNum}_MaxHp");
             PlayerPrefs.DeleteKey($"{slotNum}_WeaponLevel");
@@ -157,7 +158,7 @@ public class CharacterCreate : MonoBehaviour
         //PlayerPrefs.Save();
     //}
 
-    public void OnClickGoLoginSceneBtn()
+    public void OnClickGoLoginSceneBtn() // 로비에서 연결끊고 나가는거 추가하기
     {
         SceneManager.LoadScene("Login");
     }
