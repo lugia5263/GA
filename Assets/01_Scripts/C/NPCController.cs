@@ -50,8 +50,7 @@ public class NPCController : MonoBehaviour
         {
             
             questPanel.SetActive(true);
-            questMgr.CurQuestCheck();
-
+            
         }
         if (other.CompareTag("Player") && npcNum == 2) //¾÷Àû
         {

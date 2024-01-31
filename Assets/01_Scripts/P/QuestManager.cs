@@ -68,7 +68,7 @@ public class QuestManager : MonoBehaviour
     }
     private void Start()
     {
-        ingBtn.SetActive(false);
+        //ingBtn.SetActive(false);
         completedBtn.SetActive(false);
 
         descriptionPanel.SetActive(false);
