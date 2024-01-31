@@ -18,13 +18,17 @@ public class ChatManager : MonoBehaviourPunCallbacks, IPunObservable
 
     public Text nickNameTxt;
 
-    public PlayerScript player;
+    public PhotonView pv;
+    public Player player;
+    // 여기 위에가 추가한것. 현창
 
     private void Start()
     {
-        player = GetComponent<PlayerScript>();
+        pv = GetComponent<PhotonView>();
+        player = GetComponent<Player>();
+        // 여기 위에가 추가한것. 현창
 
-        GameObject canvasObj = GameObject.Find("Canvas");
+        GameObject canvasObj = GameObject.Find("LoginIntroCanvas");
         GameObject chattingBox = canvasObj.transform.Find("ChattingBox").gameObject;
         scrollRect = chattingBox.GetComponentInChildren<ScrollRect>();
         //chatterList = chattingBox.GetComponentInChildren<Text>();
@@ -36,13 +40,15 @@ public class ChatManager : MonoBehaviourPunCallbacks, IPunObservable
 
         inputChat.enabled = false;
         chatLog.text = "";
+
+        StartCoroutine(CheckEnterKey());
     }
 
     public void Update()
     {
         //ChatterUpdate();
 
-        if (player.pv.IsMine)
+        if (pv.IsMine)
         {
             if (!inputChat.isFocused)
             {
@@ -104,7 +110,7 @@ public class ChatManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         while (true)
         {
-            if (player.pv.IsMine && Input.GetKeyDown(KeyCode.Return))
+            if (pv.IsMine && Input.GetKeyDown(KeyCode.Return))
             {
                 if (inputChat != null)
                 {

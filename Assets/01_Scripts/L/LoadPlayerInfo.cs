@@ -18,7 +18,7 @@ public class LoadPlayerInfo : MonoBehaviour
         characterCreate = GameObject.Find("CharacterCreate").GetComponent<CharacterCreate>();
         LoadEverySlotData();
     }
-
+    
     public void LoadEverySlotData()
     {
         for (int slotNum = 0; slotNum < 3; slotNum++)
