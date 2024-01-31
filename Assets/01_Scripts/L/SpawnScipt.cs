@@ -20,7 +20,6 @@ public class SpawnScipt : MonoBehaviourPunCallbacks
     {
         yield return new WaitForSeconds(0.1f);
         CreatePlayer();
-        
     }
     public void CreatePlayer()
     {
