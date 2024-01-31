@@ -21,7 +21,7 @@ public class BulletCtrl : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Boss"))
         {
-            Debug.Log("?");
+            
             Destroy(gameObject);
         }
         
