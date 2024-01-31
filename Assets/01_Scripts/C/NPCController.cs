@@ -48,7 +48,11 @@ public class NPCController : MonoBehaviour
         if (other.CompareTag("Player")&& npcNum== 1) //퀘스트
         {
             questPanel.SetActive(true);
+<<<<<<< Updated upstream
 
+=======
+            
+>>>>>>> Stashed changes
         }
         if (other.CompareTag("Player") && npcNum == 2) //업적
         {
