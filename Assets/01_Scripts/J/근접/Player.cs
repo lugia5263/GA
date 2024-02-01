@@ -4,9 +4,21 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 using UnityEngine.UI;
+using Photon.Pun;
+using Photon.Realtime;
+using System.Linq;
+using Cinemachine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviourPunCallbacks, IPunObservable
 {
+    public Text nickNameTxt;
+    public ChatManager chatManager;
+    public bool allowMove = false;
+    // 여기 위에를 추가했음. 현창
+
+    private Vector3 currPos;
+    private Quaternion currRot;
+    private Transform tr;
 
     [Header("Shop")]
     private GameObject nearObject;
@@ -31,21 +43,22 @@ public class Player : MonoBehaviour
     private Vector3 hitPosition;
 
     [Header("Component")]
-    public CharacterController characterController;
-    public Rigidbody rigid;
-    public Transform CameraArm;
+    CharacterController characterController;
+    Rigidbody rigid;
     Animator animator;
-    public TrailRenderer trailRenderer;
-    public Weapons weapons;
+    TrailRenderer trailRenderer;
+    Weapons weapons;
     private PlayableDirector PD;
     public TimelineAsset[] Ta;
     Boss boss;
-    public TPScontroller tps;
-    public StateManager stateManager;
+    StateManager stateManager;
     MeshRenderTail meshRenderTail;
-    public HUDManager hudManager;
+    HUDManager hudManager;
     private new Camera camera;
-
+    PhotonView pv;
+    PhotonAnimatorView pav;
+    CinemachineVirtualCamera cvc;
+     UIMgr uimgr;
     [Header("CamBat")]
     public bool isAttack;
     public bool isAttack1;
@@ -67,26 +80,34 @@ public class Player : MonoBehaviour
 
     [Header("Skill CoolTime")]
     public Image[] skillIcon;
-
     public bool skillUse;
     public bool qisReady;
     public bool eisReady;
     public bool risReady;
     public bool rischarging;
+    public bool onMagic;
     public float qskillcool;
     public float eskillcool;
     public float rskillcool;
     public float curQskillcool;
     public float curEskillcool;
     public float curRskillcool;
-
     public Slider chargingSlider;
     public float originalTimeScale;
-    
+    public bool sPlayer;
+    public bool aPlayer;
+    public bool mPlayer;
+
+    [Header("NPC")]
+    public GameObject[] getNPC;
+
+    [Header("UIctrl")]
+    public bool isInven;
     [SerializeField] private float rotCamXAxisSpeed = 500f;
     [SerializeField] private float rotCamYAxisSpeed = 3f;
     internal string NickName;
 
+    
     void Awake()
     {
         camera = Camera.main;
@@ -95,27 +116,83 @@ public class Player : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
+        stateManager = GetComponent<StateManager>();
+        hudManager = GetComponent<HUDManager>();
+        uimgr = GameObject.Find("UIMgr").GetComponent<UIMgr>();
+        chargingSlider = GameObject.FindGameObjectWithTag("Heal").GetComponent<Slider>();
+        cvc = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
+        if (PhotonNetwork.IsConnected && photonView.IsMine)
+        {
+            cvc.GetComponent<ThirdPersonOrbitCamBasicA>().player = transform;
+        }
+        cvc.GetComponent<ThirdPersonOrbitCamBasicA>().Starts();
+        if (skillIcon != null)
+        {
+            skillIcon[0] = GameObject.Find("CoolTimeBGQ").GetComponent<Image>();
+            skillIcon[1] = GameObject.Find("CoolTimeBGE").GetComponent<Image>();
+            skillIcon[2] = GameObject.Find("CoolTimeBGR").GetComponent<Image>();
+        }
         if (boss != null)
         {
             boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
         }
-        tps = GetComponentInParent<TPScontroller>();
-        stateManager = GetComponent<StateManager>();
-        hudManager = GetComponent<HUDManager>();
-        skillIcon[0] = GameObject.Find("CoolTimeBGQ").GetComponent<Image>();
-        skillIcon[1] = GameObject.Find("CoolTimeBGE").GetComponent<Image>();
-        skillIcon[2] = GameObject.Find("CoolTimeBGR").GetComponent<Image>();
     }
 
     private void Start()
     {
+        chatManager = GetComponent<ChatManager>();
+        Canvas nickCanvas = GetComponentInChildren<Canvas>();
+        nickNameTxt = nickCanvas.GetComponentInChildren<Text>();
+        // 여기 위에를 추가했음. 현창
+
+        pv = GetComponent<PhotonView>();
+        pav = GetComponent<PhotonAnimatorView>();
         plane = new Plane(transform.up, transform.position);
         skillIcon[0].fillAmount = 0;
         skillIcon[1].fillAmount = 0;
         skillIcon[2].fillAmount = 0;
+        
+        if (pv.IsMine)
+        {
+            cvc.Follow = transform;
+            cvc.LookAt = transform;
+            SKilliconOn();
+        }
+        //chatManager.StartCoroutine(chatManager.CheckEnterKey());
     }
 
     //"��������"
+    void moves()
+    {
+        if (skillUse == true)
+            return;
+        if (isFireReady == false)
+            return;
+        if (downing == true)
+            return;
+        if (isDeath == true)
+            return;
+        if (downing)
+            return;
+
+        Vector2 moveinput = new Vector2(Input.GetAxis("Horizontal") * Time.deltaTime * 1.5f, Input.GetAxis("Vertical") * Time.deltaTime * 1.5f);
+        bool ismove = moveinput.magnitude != 0;
+        animator.SetBool("isRun", ismove);
+
+
+
+        if (ismove)
+        {
+            Vector3 lookForward = new Vector3(cvc.transform.forward.x, 0f, cvc.transform.forward.z).normalized;
+            Vector3 lookRight = new Vector3(cvc.transform.right.x, 0f, cvc.transform.right.z).normalized;
+            Vector3 moveDir = lookForward * moveinput.y + lookRight * moveinput.x;
+
+            transform.forward = moveDir;
+            transform.position += moveDir * Time.deltaTime * 0.01f;
+            characterController.Move(moveDir * 5f);
+        }
+    }
+    
     void Interation()
     {
         if (Input.GetKeyDown(KeyCode.LeftAlt) && nearObject != null && nearObject.tag == "Shop")
@@ -128,33 +205,38 @@ public class Player : MonoBehaviour
         }
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate() // 원래 FixedUpdate였음
     {
-        originalTimeScale = Time.timeScale * Time.unscaledDeltaTime;
-        if (!isDeath)
+       
+        if (pv.IsMine)
         {
-            GetinPut();
-            Attack();
-            SkillOn();
-            Death();
-            Deshs();
-            Interation();
-            SkillCoolTime();
-            //Turn();
+            nickNameTxt.text = PhotonNetwork.NickName + " (나)"; //여기 추가했음. 현창
+            nickNameTxt.color = Color.white;
+
+            originalTimeScale = Time.timeScale * Time.unscaledDeltaTime;
+
+            if (!isDeath)
+            {
+                //Debug.Log("현재의 allowMove는 " + allowMove);
+                if (allowMove)
+                {
+                    GetinPut();
+                    moves();
+                    Attack();
+                    SkillOn();
+                    Death();
+                    Deshs();
+                    Interation();
+                    SkillCoolTime();
+                    UIctrl();
+                }
+            }
         }
-
-    }
-    void Turn()
-    {
-        ray = camera.ScreenPointToRay(Input.mousePosition);
-        float enter = 0;
-
-        plane.Raycast(ray, out enter);
-        hitPosition = ray.GetPoint(enter);
-
-        Vector3 lookDir = hitPosition - transform.position;
-        lookDir.y = 0;
-        transform.localRotation = Quaternion.LookRotation(lookDir);
+        else
+        {
+            nickNameTxt.text = pv.Owner.NickName;
+            nickNameTxt.color = Color.red;
+        }
     }
 
     void GetinPut()
@@ -164,6 +246,7 @@ public class Player : MonoBehaviour
         turn = Input.GetAxisRaw("Mouse X");
         isAttack = Input.GetButtonDown("Fire");
     }
+
     void Deshs()
     {
         DeshCool += Time.deltaTime;
@@ -199,7 +282,7 @@ public class Player : MonoBehaviour
         }
     }
 
-
+    
     void Attack()
     {
         //chargingTime += Time.deltaTime;
@@ -250,7 +333,6 @@ public class Player : MonoBehaviour
         }
     }
 
-
     public void Death()
     {
         if (stateManager.hp <= 0)
@@ -266,6 +348,7 @@ public class Player : MonoBehaviour
         animator.SetTrigger("isDeath");
         yield return null;
     }
+
     void SkillOn()
     {
         qskillcool += Time.deltaTime;
@@ -321,32 +404,36 @@ public class Player : MonoBehaviour
                 risReady = false;
             }
         }
-        if(rischarging)
+        if (onMagic)
         {
-            if(Input.GetKey(KeyCode.R))
+            ob[0] = GameObject.FindGameObjectWithTag("Heal").GetComponent<GameObject>();
+            if (rischarging)
             {
-                animator.SetTrigger("SkillR");
-                Skill[2].SetActive(true);
-                ob[0].SetActive(true);
-                chargingSlider.value += Time.deltaTime * 0.35f;
-                
-                if(chargingSlider.value == 1)
+                if (Input.GetKey(KeyCode.R))
                 {
-                    Skill[2].SetActive(false);
-                    ob[0].SetActive(false);
-                    rischarging = false;
+                    animator.SetTrigger("SkillR");
+                    Skill[2].SetActive(true);
+                    ob[0].SetActive(true);
+                    chargingSlider.value += Time.deltaTime * 0.35f;
+
+                    if (chargingSlider.value == 1)
+                    {
+                        Skill[2].SetActive(false);
+                        ob[0].SetActive(false);
+                        rischarging = false;
+                    }
+                }
+                else
+                {
+                Skill[2].SetActive(false);
+                ob[0].SetActive(false);
+                
+                rischarging = false;
+                chargingSlider.value = 0;
                 }
             }
-            //else
-            //{
-                //Skill[2].SetActive(false);
-               // ob[0].SetActive(false);
-               // rischarging = false;
-               // chargingSlider.value = 0;
-          //  }
         }
     }
-    
 
 
     private void OnTriggerEnter(Collider other)
@@ -355,31 +442,34 @@ public class Player : MonoBehaviour
         {
             if (isDeshInvincible == true)
                 return;
-
             animator.SetTrigger("Down");
             StartCoroutine(DownDelay());
         }
-
         if (other.CompareTag("SaveZone"))
-        {
             isDeshInvincible = true;
-        }
+        if (other.CompareTag("NPCQ"))
+            uimgr.npcPanel[0].SetActive(true);
+        if (other.CompareTag("NPCW"))
+            uimgr.npcPanel[1].SetActive(true);
+        if (other.CompareTag("NPCL"))
+            uimgr.npcPanel[2].SetActive(true);
+        //if (other.CompareTag("NPCP"))
+        //uimgr.npcPanel[5].SetActive(true);
+        //if (other.CompareTag("NPCA"))
+        //uimgr.npcPanel[1].SetActive(true);
 
-        if(other.CompareTag("TimeSlow"))
-        {
-            
-        }
+
     }
 
     IEnumerator DownDelay()
     {
-        speed = 0;
-        yield return new WaitForSeconds(3f);
-        speed = 3;
+        downing = true;
+        yield return new WaitForSeconds(4f);
+        downing = false;
     }
-   
 
-    //Player ���� ���� 
+
+
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Shop")
@@ -399,11 +489,55 @@ public class Player : MonoBehaviour
             shop.Exit();
             nearObject = null;
         }
-        if(other.CompareTag("TimeSlow"))
+        if (other.CompareTag("NPCQ"))
+            uimgr.npcPanel[0].SetActive(false);
+        if (other.CompareTag("NPCW"))
+            uimgr.npcPanel[1].SetActive(false);
+        if (other.CompareTag("NPCL"))
+            uimgr.npcPanel[2].SetActive(false);
+    }
+
+    void UIctrl()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
         {
-            
+            if (!isInven)
+            {
+                uimgr.npcPanel[3].SetActive(true);
+                isInven = true;
+            }
+            else
+            {
+                uimgr.npcPanel[3].SetActive(false);
+                isInven = false;
+            }
         }
     }
+    void SKilliconOn()
+    {
+        if (sPlayer)
+        {
+            uimgr.playerSkillIcon[0].SetActive(true);
+            uimgr.playerSkillIcon[1].SetActive(false);
+            uimgr.playerSkillIcon[2].SetActive(false);
+        }
+        if(aPlayer)
+        {
+            uimgr.playerSkillIcon[0].SetActive(false);
+            uimgr.playerSkillIcon[1].SetActive(true);
+            uimgr.playerSkillIcon[2].SetActive(false);
+        }
+        if(mPlayer)
+        {
+            uimgr.playerSkillIcon[0].SetActive(false);
+            uimgr.playerSkillIcon[1].SetActive(false);
+            uimgr.playerSkillIcon[2].SetActive(true);
+        }
+            
+    }    
+
+
+
     void SkillUsing()
     {
         skillUse = true;
@@ -442,10 +576,12 @@ public class Player : MonoBehaviour
 
     void A_LfireAttack()
     {
+        Vector3 spawnRotation = new Vector3 (0, 90, 0);
         Instantiate(Skill[4], Point[5].transform.position, Point[5].transform.rotation);
     }
       void A_RfireAttack()
     {
+        Vector3 spawnRotation = new Vector3(0, 90, 0);
         Instantiate(Skill[4], Point[5].transform.position, Point[5].transform.rotation);
     }
 
@@ -548,6 +684,21 @@ public class Player : MonoBehaviour
         ob[5].SetActive(false);
     }
 
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        //통신을 보내는 
+        if (stream.IsWriting)
+        {
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
+        }
 
-  
+        //클론이 통신을 받는 
+        else
+        {
+            currPos = (Vector3)stream.ReceiveNext();
+            currRot = (Quaternion)stream.ReceiveNext();
+        }
+    }
+
 }

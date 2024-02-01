@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class QuestPopUpManager : MonoBehaviour
 {
-
+    
     public int curQuestIndex; //현재 퀘스트 번호
 
     public Text questCountTxt;
