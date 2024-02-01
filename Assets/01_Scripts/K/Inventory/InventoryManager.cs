@@ -133,7 +133,7 @@ public class InventoryManager : MonoBehaviour
         goldTxt.text = gold.ToString();
         expTxt.text = expPotion.ToString();
         materialTxt.text = materials.ToString();
-        atkInfo.text = stateMgr.atk.ToString();
+        atkInfo.text = stateMgr.attackPower.ToString();
         playerLvTxt.text = stateMgr.level.ToString();
         
         playerNickTxt.text = playerNick;

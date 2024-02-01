@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using SimpleJSON;
+using Photon.Pun;
 
-public class EnforceMgr : MonoBehaviour
+public class EnforceMgr : MonoBehaviourPunCallbacks
 {
+    public DataMgrDontDestroy dataMgrDontDestroy;
     public TextAsset forcetxtFile; //Jsonfile
 
     public InventoryManager inventoryMgr;
@@ -41,19 +43,21 @@ public class EnforceMgr : MonoBehaviour
     public int failEnforceCount;
 
 
-    public int playerWeaponLv;
-
-
-
+    public int playerWeaponLevel;
+    public int playerGold;
+    public int playerMaterial;
+    public int playerAttackPower;
 
     private void Awake()
     {
+        dataMgrDontDestroy = DataMgrDontDestroy.Instance;
+        
         var jsonitemFile = Resources.Load<TextAsset>("Json/EnforceTable");
         forcetxtFile = jsonitemFile;
         lessTween = GameObject.Find("lessTween").GetComponent<Jun_TweenRuntime>();
         enforcePanel = GameObject.Find("EnforcePanel");
         rewardMgr = GameObject.Find("RewardMgr").GetComponent<RewardMgr>();
-        trophyMgr = GameObject.Find("TrophyMgr").GetComponent<TrophyMgr>();
+        //trophyMgr = GameObject.Find("TrophyMgr").GetComponent<TrophyMgr>();
         wantEnforceTxt = GameObject.Find("ReallyTxt").GetComponent<Text>();
         weaponNowTxt = GameObject.Find("ReadyBefore").GetComponent<Text>();
         weaponAftTxt = GameObject.Find("ReadyAfter").GetComponent<Text>();
@@ -74,29 +78,63 @@ public class EnforceMgr : MonoBehaviour
     }
     void Start()
     {
-
+        playerWeaponLevel = dataMgrDontDestroy.WeaponLevel;
+        playerMaterial = dataMgrDontDestroy.UserMaterial;
+        playerGold = dataMgrDontDestroy.UserGold;
+        playerAttackPower = dataMgrDontDestroy.AttackPower;
+        //테스트용 주석사이 나중에 지우기
+        playerWeaponLevel = 1;
+        playerMaterial = 3000;
+        playerGold = 3000;
+        //테스트용 주석사이 나중에 지우기
         enforceEffect.SetActive(false);
         successPanel.SetActive(false);
         failedPanel.SetActive(false);
         enforcePanel.SetActive(false);
     }
 
-
-
-    public void OnEnforcePanel(int playerWeaponLv) // 창이 열림, 플레이어 웨폰레벨을 받음
+    private void OnTriggerEnter(Collider other)
     {
-        int replace = playerWeaponLv - 1;
+        if (other.CompareTag("Player"))
+        {
+            if (other.GetComponent<PhotonView>().IsMine)
+            {
+                Debug.Log("충돌일어남");
+                OnEnforcePanel();
+            }
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (other.GetComponent<PhotonView>().IsMine)
+            {
+                // 강화창 껐으니까 플레이어의 정보에 반영
+                enforcePanel.SetActive(false);
+                StateManager stateManager = other.gameObject.GetComponent<StateManager>();
+                stateManager.weaponLevel = playerWeaponLevel;
+                stateManager.userMaterial = playerMaterial;
+                stateManager.userGold = playerGold;
+                stateManager.attackPower = playerAttackPower;
+            }
+        }
+    }
+
+    public void OnEnforcePanel() // 창이 열림, 플레이어 웨폰레벨을 받음
+    {
+        int replace = playerWeaponLevel - 1;
 
         string json = forcetxtFile.text;
         var jsonData = JSON.Parse(json);
 
-        weaponNowTxt.text = $"현재 재련 수치{playerWeaponLv} 단계";
-        weaponAftTxt.text = $"현재 재련 수치{playerWeaponLv+ 1} 단계";
+        weaponNowTxt.text = $"현재 재련 수치{playerWeaponLevel} 단계";
+        weaponAftTxt.text = $"현재 재련 수치{playerWeaponLevel + 1} 단계";
         wantEnforceTxt.text = $"강화 하시겠습니까? \n 강화 확률은 {(jsonData["Enforce"][replace]["Rate"])}% 입니다.";
 
 
-        needMaterial.text = $"{inventoryMgr.materials}  /  {(jsonData["Enforce"][replace]["Material"])}";
-        needGold.text = $"{inventoryMgr.gold}  /  { (jsonData["Enforce"][replace]["Gold"])}";
+        needMaterial.text = $"{playerMaterial}  /  {(jsonData["Enforce"][replace]["Material"])}";
+        needGold.text = $"{playerGold}  /  { (jsonData["Enforce"][replace]["Gold"])}";
         //여기에 캐릭터 레벨에 맞는 강화 초기화!!!frg
         enforcePanel.SetActive(true);
     }
@@ -108,14 +146,14 @@ public class EnforceMgr : MonoBehaviour
         string json = forcetxtFile.text;
         var jsonData = JSON.Parse(json);
 
-        int needMat = (int)(jsonData["Enforce"][playerWeaponLv-1]["Material"]);
-        int needGold = (int)(jsonData["Enforce"][playerWeaponLv-1]["Gold"]);
-              
-        if (inventoryMgr.materials >= needMat && inventoryMgr.gold >= needGold)
+        int needMat = (int)(jsonData["Enforce"][playerWeaponLevel - 1]["Material"]);
+        int needGold = (int)(jsonData["Enforce"][playerWeaponLevel - 1]["Gold"]);
+        
+        if (playerMaterial >= needMat && playerGold >= needGold)
         {
-                inventoryMgr.materials -= needMat;
-                inventoryMgr.gold -= needGold;
-                EnforcResult(playerWeaponLv);
+            playerMaterial -= needMat;
+            playerGold -= needGold;
+            EnforcResult(playerWeaponLevel);
         }
         else
         {
@@ -127,6 +165,7 @@ public class EnforceMgr : MonoBehaviour
     {
         StartCoroutine(EnforceEffect(playerWeaponLv));
     }
+
     IEnumerator EnforceEffect(int playerWeaponLv)
     {
         int replace = playerWeaponLv - 1;
@@ -149,54 +188,66 @@ public class EnforceMgr : MonoBehaviour
         {
             //코루틴 넣어서 강화연출 혹은 플레이어한테 프리팹
             Debug.Log("강화 성공!");
-            beforeAtk.text = stateMgr.atk.ToString();
-            afterAtk.text = (stateMgr.atk + (int)(jsonData["Enforce"][replace]["PlusAtk"])).ToString();
+            beforeAtk.text = playerAttackPower.ToString();
+            afterAtk.text = (playerAttackPower + (int)(jsonData["Enforce"][replace]["PlusAtk"])).ToString();
             successPanel.SetActive(true);
-            stateMgr.atk += 20;
-            inventoryMgr.weaponLv += 1;
+            playerAttackPower += 20;
+            playerWeaponLevel += 1;
             successweaponNowTxt.text = $"{jsonData["Enforce"][playerWeaponLv]["ForceLv"]} 단계";
-            trophyMgr.TrophyIndexUp(3);
+            //trophyMgr.TrophyIndexUp(3);
             InitAtk();
+            SyncDataMgr();
         }
         else
         {
             //코루틴 넣어서 강화연출 혹은 플레이어한테 프리팹
 
-            beforeAtkF.text = stateMgr.atk.ToString();
-            afterAtkF.text = stateMgr.atk.ToString();
+            beforeAtkF.text = playerAttackPower.ToString();
+            afterAtkF.text = playerAttackPower.ToString();
             Debug.Log("강화 실패!");
             failweaponNowTxt.text = $"{jsonData["Enforce"][playerWeaponLv]["ForceLv"]} 단계";
             failedPanel.SetActive(true);
             failEnforceCount++;
-            trophyMgr.TrophyIndexUp(4);
+            //trophyMgr.TrophyIndexUp(4);
             InitAtk();
+            SyncDataMgr();
         }
-        trophyMgr.TrophyIndexUp(2);
+        //trophyMgr.TrophyIndexUp(2);
         yield return null;
     }
-
-
-
 
     public void InitAtk()
     {
         string json = forcetxtFile.text;
         var jsonData = JSON.Parse(json);
+        Debug.Log(playerWeaponLevel);
+        //playerWeaponLevel을 이미 알고있음
+        //playerWeaponLv = inventoryMgr.weaponLv;
 
-        playerWeaponLv = inventoryMgr.weaponLv;
-
-        wantEnforceTxt.text = $"강화 하시겠습니까? \n 강화 확률은 {(jsonData["Enforce"][playerWeaponLv-1]["Rate"])}% 입니다.";
-        weaponNowTxt.text = $"현재 재련 수치{playerWeaponLv} 단계";
-        weaponAftTxt.text = $"현재 재련 수치{playerWeaponLv+1} 단계";
-        inventoryMgr.atkInfo.text = stateMgr.atk.ToString();
+        wantEnforceTxt.text = $"강화 하시겠습니까? \n 강화 확률은 {(jsonData["Enforce"][playerWeaponLevel - 1]["Rate"])}% 입니다.";
+        weaponNowTxt.text = $"현재 재련 수치{playerWeaponLevel} 단계";
+        weaponAftTxt.text = $"현재 재련 수치{playerWeaponLevel + 1} 단계";
+        //inventoryMgr.atkInfo.text = playerAttackPower.ToString();
         
-        beforeAtkF.text = stateMgr.atk.ToString();
-        afterAtk.text = stateMgr.atk.ToString();
+        beforeAtkF.text = playerAttackPower.ToString();
+        afterAtk.text = playerAttackPower.ToString();
 
-        inventoryMgr.goldTxt.text = inventoryMgr.gold.ToString();
-        inventoryMgr.materialTxt.text = inventoryMgr.materials.ToString();
-        needMaterial.text = $"{inventoryMgr.materials}  /  {(jsonData["Enforce"][playerWeaponLv-1]["Material"])}";
-        needGold.text = $"{inventoryMgr.gold}  /  { (jsonData["Enforce"][playerWeaponLv-1]["Gold"])}";
+        //inventoryMgr.goldTxt.text = playerGold.ToString();
+        //inventoryMgr.materialTxt.text = playerMaterial.ToString();
+        needMaterial.text = $"{playerMaterial}  /  {(jsonData["Enforce"][playerWeaponLevel - 1]["Material"])}";
+        needGold.text = $"{playerGold}  /  { (jsonData["Enforce"][playerWeaponLevel - 1]["Gold"])}";
+    }
+
+    public void SyncDataMgr()
+    {
+        dataMgrDontDestroy.WeaponLevel = playerWeaponLevel;
+        dataMgrDontDestroy.UserMaterial = playerMaterial;
+        dataMgrDontDestroy.userGold = playerGold;
+        dataMgrDontDestroy.AttackPower = playerAttackPower;
+    }
+    public void SyncStateManager()
+    {
+
     }
 
     public void SuccesPanelOff()

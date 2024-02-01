@@ -9144,17 +9144,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f2b234d65ba7b84485082702a4067fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxhp: 2500
-  hp: 2500
-  atk: 120
+  dataMgrDontDestroy: {fileID: 0}
   level: 1
   exp: 0
-  classNum: 0
+  maxhp: 2500
+  hp: 2500
+  weaponLevel: 0
+  attackPower: 0
   criChance: 50
   criDamage: 150
-  def: 0
-  gageTime: 0
+  userGold: 0
+  userMaterial: 0
+  userExpPotion: 0
   hudManager: {fileID: 0}
+  pv: {fileID: 0}
 --- !u!114 &5926032621641576396
 MonoBehaviour:
   m_ObjectHideFlags: 0

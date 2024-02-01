@@ -6,7 +6,7 @@ using SimpleJSON;
 
 public class LevelUpMgr : MonoBehaviour
 {
-
+    public DataMgrDontDestroy dataMgrDontDestroy;
     public TextAsset leveltxtFile; //Jsonfile
 
 
@@ -37,6 +37,7 @@ public class LevelUpMgr : MonoBehaviour
         var jsonitemFile = Resources.Load<TextAsset>("Json/LvupTable");
         leveltxtFile = jsonitemFile;
 
+        dataMgrDontDestroy = DataMgrDontDestroy.Instance;
         lvupPanel = GameObject.Find("LevelUpPanel");
         playerLvTxt = GameObject.Find("PlayerLevelInfo").GetComponent<Text>();
     }
@@ -44,7 +45,7 @@ public class LevelUpMgr : MonoBehaviour
 
     public void PlayerCheck() // 현재 플레이어 가진거 불러옴, npc 누를때 호출
     {
-        playerlv = stateMgr.level;
+        playerlv = dataMgrDontDestroy.level;
         playerHaveExpTxt.text = inventoryMgr.expPotion.ToString();
         
     }
@@ -73,9 +74,9 @@ public class LevelUpMgr : MonoBehaviour
         string json = leveltxtFile.text;
         var jsonData = JSON.Parse(json);
 
-        playerLvTxt.text = stateMgr.level.ToString();
+        playerLvTxt.text = dataMgrDontDestroy.level.ToString();
         playerHaveExpTxt.text = inventoryMgr.expPotion.ToString();
-        beforeHealth.text = stateMgr.hp.ToString();
+        beforeHealth.text = dataMgrDontDestroy.MaxHp.ToString();
 
         //여기서 클래스에 따른 json파일 가져옴
 

@@ -11,7 +11,8 @@ public class UIMgr : MonoBehaviour
     public GameObject[] playerSkillIcon;
 
     void Start()
-    {
+    { 
+
         UIstartOff();
         if (player != null)
         {
@@ -23,7 +24,7 @@ public class UIMgr : MonoBehaviour
     {
         foreach (GameObject obj in npcPanel)
         {
-            obj.SetActive(false);
+            //obj.SetActive(false);
         }
     }
     // Update is called once per frame

@@ -123,6 +123,66 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &52539819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 52539821}
+  - component: {fileID: 52539822}
+  m_Layer: 0
+  m_Name: DataMgrDontDestroy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &52539821
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52539819}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &52539822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52539819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46573b77e40543b459725e02adcf6a33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nickName: 
+  level: 0
+  exp: 0
+  maxhp: 0
+  hp: 0
+  weaponLevel: 0
+  attackPower: 0
+  criChance: 0
+  criDamage: 0
+  userGold: 0
+  userMateiral: 0
+  userExpPotion: 0
+  questIdx: 0
+  goalTxt: 
+  questCurCnt: 0
+  questMaxCnt: 0
 --- !u!1 &127642404
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,6 +291,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e6cc345c97705541b410c1181a34e71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nickName: 
+  level: 0
+  exp: 0
+  maxhp: 0
+  hp: 0
+  attackPower: 0
+  weaponLevel: 0
+  criChance: 0
+  criDamage: 0
+  userGold: 0
+  userMaterial: 0
+  userExpPotion: 0
   slot1Text:
   - {fileID: 1838937866}
   - {fileID: 1891901141}
@@ -903,10 +975,10 @@ RectTransform:
   - {fileID: 1546437510}
   m_Father: {fileID: 1431401884}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1100, y: -360}
-  m_SizeDelta: {x: 120, y: 120}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &446471807
 MonoBehaviour:
@@ -1607,6 +1679,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 143646752}
+        m_TargetAssemblyTypeName: LoadPlayerInfo, Assembly-CSharp
+        m_MethodName: LoadCurrnetPlayerData
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1376397798}
         m_TargetAssemblyTypeName: PhotonManager, Assembly-CSharp
         m_MethodName: OnClickStartBtn
@@ -2397,10 +2481,10 @@ RectTransform:
   - {fileID: 258266155}
   m_Father: {fileID: 1431401884}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 260, y: -360}
-  m_SizeDelta: {x: 120, y: 120}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &997102000
 MonoBehaviour:
@@ -3836,7 +3920,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1811083769}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81f6998b8d75c484a8bdac8cef198377, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d19de33b4bccac41b8499c1effc5ff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   selectPanel: {fileID: 531196108}
@@ -3848,10 +3932,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4990c1ec828ff884d80b11da65faf92a, type: 3}
   - {fileID: 21300000, guid: 7e0e469e73fb3464182e9ccb1aa6eb6e, type: 3}
   slots:
-  - {fileID: 997102000}
-  - {fileID: 2107641726}
-  - {fileID: 446471810}
-  loadPlayerInfo: {fileID: 143646752}
+  - {fileID: 2073945126}
+  - {fileID: 1922731323}
+  - {fileID: 1900658247}
+  loadPlayerInfo: {fileID: 0}
 --- !u!4 &1811083771
 Transform:
   m_ObjectHideFlags: 0
@@ -5029,10 +5113,10 @@ RectTransform:
   - {fileID: 1594062003}
   m_Father: {fileID: 1431401884}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 680, y: -360}
-  m_SizeDelta: {x: 120, y: 120}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2107641723
 MonoBehaviour:
@@ -5157,3 +5241,4 @@ SceneRoots:
   - {fileID: 1811083771}
   - {fileID: 143646753}
   - {fileID: 1376397797}
+  - {fileID: 52539821}
