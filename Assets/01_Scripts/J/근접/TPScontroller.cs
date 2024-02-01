@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class TPScontroller  : MonoBehaviour
 {
     public Transform players;
     public Transform CameraArm;
+    
     Vector3 velocity;
     float DeshCool;
     float CurDeshCool = 8f;
@@ -35,24 +37,28 @@ public class TPScontroller  : MonoBehaviour
         lookAround();
 
         if (!player.characterController.isGrounded)
-        { 
-            if(isJumping)
-            {
-                isJumping = false;
-            }
-
+        {
+            
+            //if (isJumping)
+            //{
+            //    isJumping = false;
+            //}
             //velocity.y = 0;
             velocity.y += gravity * Time.deltaTime;
             player.characterController.Move(velocity * Time.deltaTime);
+            if (player.transform.position.y < -20f)
+            {
+                player.transform.position = new Vector3(0, 0.5f, 0);
+            }
         }
-       else if(isJumping)
+        else if (isJumping)
         {
             isGrounded = false;
             velocity.y += 7f;
             player.characterController.Move(velocity * Time.deltaTime);
         }
 
-       if(Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             isJumping = true;
         }
