@@ -107,7 +107,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField] private float rotCamYAxisSpeed = 3f;
     internal string NickName;
 
-    
+    //테스팅중
+    RaidBossCtrl raidBoss;
+    Tboss tboss;
+
     void Awake()
     {
         camera = Camera.main;
@@ -121,6 +124,12 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         uimgr = GameObject.Find("UIMgr").GetComponent<UIMgr>();
         chargingSlider = GameObject.FindGameObjectWithTag("Heal").GetComponent<Slider>();
         cvc = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
+        //테스트용
+        //raidBoss = GameObject.Find("RaidBoss").GetComponent<RaidBossCtrl>();
+        //tboss = GameObject.Find("TTboss").GetComponent<Tboss>();
+        //raidBoss.GetComponent<RaidBossCtrl>().Starts();
+        //tboss.GetComponent<Tboss>().Starts();
+        //테스트용
         if (PhotonNetwork.IsConnected && photonView.IsMine)
         {
             cvc.GetComponent<ThirdPersonOrbitCamBasicA>().player = transform;
@@ -137,7 +146,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
         }
     }
-
     private void Start()
     {
         chatManager = GetComponent<ChatManager>();
@@ -159,6 +167,12 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             SKilliconOn();
         }
         //chatManager.StartCoroutine(chatManager.CheckEnterKey());
+    }
+
+    public void DoSomething()
+    {
+        raidBoss.player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        raidBoss.targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     //"��������"
@@ -205,7 +219,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
     // Update is called once per frame
-    void FixedUpdate() // 원래 FixedUpdate였음
+    void Update() // 원래 FixedUpdate였음
     {
        
         if (pv.IsMine)
