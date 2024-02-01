@@ -48,24 +48,24 @@ public class Player_test : MonoBehaviourPunCallbacks
     // 강화하기 이따가 강화매니저로 이동
     public void Enhance()
     {
-        if (photonView.IsMine)
-        {
+        //if (photonView.IsMine)
+        //{
             // 강화 작업 수행
-
+            attackPower += 100;
             // 강화 후 DataMgr에 저장된 정보 업데이트
             dataMgr.AttackPower = attackPower;
-        }
+        //}
     }
 
     // 레벨업하기 레벨업매니저로이동
     public void LevelUp()
     {
-        if (photonView.IsMine)
-        {
+        //if (photonView.IsMine)
+        //{
             // 레벨업 작업 수행
-
+            level += 1;
             // 레벨업 후 DataMgr에 저장된 정보 업데이트
             dataMgr.Level = level;
-        }
+        //}
     }
 }
