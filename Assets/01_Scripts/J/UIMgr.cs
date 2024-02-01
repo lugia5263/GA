@@ -12,7 +12,6 @@ public class UIMgr : MonoBehaviour
 
     void Start()
     { 
-
         UIstartOff();
         if (player != null)
         {

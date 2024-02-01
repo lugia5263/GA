@@ -12,7 +12,6 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
 
     public InventoryManager inventoryMgr;
     public RewardMgr rewardMgr;
-    public TrophyMgr trophyMgr;
     public StateManager stateMgr;
     public Button enBtn;
 
@@ -57,7 +56,6 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
         lessTween = GameObject.Find("lessTween").GetComponent<Jun_TweenRuntime>();
         enforcePanel = GameObject.Find("EnforcePanel");
         rewardMgr = GameObject.Find("RewardMgr").GetComponent<RewardMgr>();
-        //trophyMgr = GameObject.Find("TrophyMgr").GetComponent<TrophyMgr>();
         wantEnforceTxt = GameObject.Find("ReallyTxt").GetComponent<Text>();
         weaponNowTxt = GameObject.Find("ReadyBefore").GetComponent<Text>();
         weaponAftTxt = GameObject.Find("ReadyAfter").GetComponent<Text>();
@@ -131,7 +129,6 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
         weaponNowTxt.text = $"현재 재련 수치{playerWeaponLevel} 단계";
         weaponAftTxt.text = $"현재 재련 수치{playerWeaponLevel + 1} 단계";
         wantEnforceTxt.text = $"강화 하시겠습니까? \n 강화 확률은 {(jsonData["Enforce"][replace]["Rate"])}% 입니다.";
-
 
         needMaterial.text = $"{playerMaterial}  /  {(jsonData["Enforce"][replace]["Material"])}";
         needGold.text = $"{playerGold}  /  { (jsonData["Enforce"][replace]["Gold"])}";
@@ -227,13 +224,10 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
         wantEnforceTxt.text = $"강화 하시겠습니까? \n 강화 확률은 {(jsonData["Enforce"][playerWeaponLevel - 1]["Rate"])}% 입니다.";
         weaponNowTxt.text = $"현재 재련 수치{playerWeaponLevel} 단계";
         weaponAftTxt.text = $"현재 재련 수치{playerWeaponLevel + 1} 단계";
-        //inventoryMgr.atkInfo.text = playerAttackPower.ToString();
         
         beforeAtkF.text = playerAttackPower.ToString();
         afterAtk.text = playerAttackPower.ToString();
 
-        //inventoryMgr.goldTxt.text = playerGold.ToString();
-        //inventoryMgr.materialTxt.text = playerMaterial.ToString();
         needMaterial.text = $"{playerMaterial}  /  {(jsonData["Enforce"][playerWeaponLevel - 1]["Material"])}";
         needGold.text = $"{playerGold}  /  { (jsonData["Enforce"][playerWeaponLevel - 1]["Gold"])}";
     }
@@ -244,10 +238,6 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
         dataMgrDontDestroy.UserMaterial = playerMaterial;
         dataMgrDontDestroy.userGold = playerGold;
         dataMgrDontDestroy.AttackPower = playerAttackPower;
-    }
-    public void SyncStateManager()
-    {
-
     }
 
     public void SuccesPanelOff()

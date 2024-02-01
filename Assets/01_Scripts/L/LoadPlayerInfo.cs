@@ -59,6 +59,7 @@ public class LoadPlayerInfo : MonoBehaviour
                 string nickName = PlayerPrefs.GetString($"{slotNum}_NickName");
                 string className = PlayerPrefs.GetString($"{slotNum}_Class");
                 int level = PlayerPrefs.GetInt($"{slotNum}_Level");
+                Debug.Log($"슬롯넘버 {slotNum}의 레벨은 {level}");
 
                 switch (slotNum)
                 {

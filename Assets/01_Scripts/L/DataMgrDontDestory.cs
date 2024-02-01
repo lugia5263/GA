@@ -23,7 +23,7 @@ public class DataMgrDontDestroy : MonoBehaviour
     public int level;
     public int exp;
     public float maxhp;
-    public float hp; // 현재체력이 필요한가?
+    public float hp;
     public int weaponLevel;
     public int attackPower;
     public int criChance;
@@ -179,6 +179,29 @@ public class DataMgrDontDestroy : MonoBehaviour
 
     public void SaveDate() // 접속종료할때 저장
     {
+        int slotNum = SelectSlot.slotNum;
+        Debug.Log("현재 슬롯넘버는 : "+slotNum);
+        //PlayerPrefs.SetString($"SlotNum_{slotNum}", slotNum.ToString());
 
+
+        // 주석부분은 필요없을거같은데 게임내에서 변하는 정보가 아님
+        //PlayerPrefs.SetString($"{slotNum}_NickName", NickName);
+        //PlayerPrefs.SetString($"{slotNum}_Class", className);
+        //PlayerPrefs.SetInt($"{slotNum}_ClassNum", classNum);
+        Debug.Log($"저장하려는 Level은 : {Level}");
+        PlayerPrefs.SetInt($"{slotNum}_Level", Level);
+        Debug.Log($"저장하려는 MaxHp은 : {MaxHp}");
+        PlayerPrefs.SetFloat($"{slotNum}_MaxHp", MaxHp);
+        Debug.Log($"저장하려는 WeaponLevel은 : {WeaponLevel}");
+        PlayerPrefs.SetInt($"{slotNum}_WeaponLevel", WeaponLevel);
+        Debug.Log($"저장하려는 AttackPower은 : {AttackPower}");
+        PlayerPrefs.SetInt($"{slotNum}_AttackPower", AttackPower);
+        PlayerPrefs.SetInt($"{slotNum}_CriChance", CriChance);
+        PlayerPrefs.SetFloat($"{slotNum}_CriDamage", CriDamage);
+        PlayerPrefs.SetInt($"{slotNum}_UserGold", UserGold);
+        PlayerPrefs.SetInt($"{slotNum}_Material", UserMaterial);
+        PlayerPrefs.SetInt($"{slotNum}_ExpPotion", userExpPotion);
+
+        PlayerPrefs.Save();
     }
 }
