@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 424358303198483609}
   - component: {fileID: 8898862242301469738}
   - component: {fileID: 3496042517098249328}
+  - component: {fileID: 5083443637831732441}
   m_Layer: 0
   m_Name: die instantly Active
   m_TagString: Untagged
@@ -84,6 +85,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5083443637831732441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5309087038445080835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fff659cf9e85ca444b352eb41fc87ea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bombArea: {fileID: 6436512289698843829}
+  castingTime: 0
+  Effect: {fileID: 7093197919085047918, guid: 40847dd3928f7514788051ee5d039d6d, type: 3}
+  offPos: 4
 --- !u!1 &6436512289698843829
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +112,6 @@ GameObject:
   - component: {fileID: 4435988331069011780}
   - component: {fileID: 2024663520542765484}
   - component: {fileID: 7545693082094562020}
-  - component: {fileID: 1282522602260672021}
   m_Layer: 0
   m_Name: die instantly Loding
   m_TagString: Untagged
@@ -168,18 +184,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1282522602260672021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6436512289698843829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fff659cf9e85ca444b352eb41fc87ea6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bombArea: {fileID: 6436512289698843829}
-  castingTime: 0
-  Effect: {fileID: 7093197919085047918, guid: 40847dd3928f7514788051ee5d039d6d, type: 3}
