@@ -6,6 +6,7 @@ using System.IO;
 using SimpleJSON;
 public class QuestManager : MonoBehaviour
 {
+
     public TextAsset txtFile; //Jsonfile
     public GameObject jsonObject; //안써도 됨
     public QuestPopUpManager qPopup;
@@ -19,7 +20,6 @@ public class QuestManager : MonoBehaviour
     public GameObject questCanvas;
     public Text questNameTxt;
     public Text goalNameTxt;
-    public Text countTxt;
     public Image questRewards;
     public GameObject descriptionPanel;
 
@@ -36,6 +36,12 @@ public class QuestManager : MonoBehaviour
     public Text rewardMat;
     public Text rewardGold;
 
+    [Header("퀘스트 수락버튼")]
+    public QuestPopUpManager QuestPopUpManager;
+
+    public GameObject acceptBtn;
+    public GameObject ingBtn;
+    public GameObject completedBtn;
 
     //Player enterPlayer;
 
@@ -46,20 +52,29 @@ public class QuestManager : MonoBehaviour
     }
     private void Awake()
     {
+        Debug.Log("Start: Trying to find Buttons");
+
         questNameTxt = GameObject.Find("questNameTxt").GetComponent<Text>();
         goalNameTxt = GameObject.Find("goalNameTxt").GetComponent<Text>();
-        countTxt = GameObject.Find("countTxt").GetComponent<Text>();
         questRewards = GameObject.Find("QuestRewards").GetComponent<Image>();
         questPopUpPanel = GameObject.Find("QuestPanel");
         questGoalTxt = GameObject.Find("GoalTxt").GetComponent<Text>();
         qPopup = GameObject.Find("QuestPopUp").GetComponent<QuestPopUpManager>();
-   
+
+        ingBtn = GameObject.Find("QuestIngBtn");
+
+
+
     }
-    void Start()
+    private void Start()
     {
+        //ingBtn.SetActive(false);
+        completedBtn.SetActive(false);
 
         descriptionPanel.SetActive(false);
     }
+
+
 
 
     public void InstQuest(int n)
@@ -67,14 +82,13 @@ public class QuestManager : MonoBehaviour
         string json = txtFile.text;
         var jsonData = JSON.Parse(json); //var의 의미: Unity외의 파일을 다가져온다.
 
-        int item = n-1; //매개변수
+        int item = n - 1; //매개변수
 
         //GameObject character = Instantiate(jsonObject);
 
 
         questNameTxt.text = (jsonData["Quest"][item]["QuestName"]);
         goalNameTxt.text = (jsonData["Quest"][item]["Goal"]);
-        countTxt.text = (jsonData["Quest"][item]["Count"]);
         rewardExp.text = (jsonData["Quest"][item]["Reward1"]);
         rewardMat.text = (jsonData["Quest"][item]["Reward2"]);
         rewardGold.text = (jsonData["Quest"][item]["Reward3"]);
@@ -92,16 +106,18 @@ public class QuestManager : MonoBehaviour
         #endregion
     }
 
-    public void AcceptQuestBtn()
+    public void AcceptBtn()
     {
         ReceiveQuest(acceptIdx);
+
+
     }
     public void ReceiveQuest(int n)
     {
 
         string json = txtFile.text;
         var jsonData = JSON.Parse(json); //var의 의미: Unity외의 파일을 다가져온다.
-        int item = n-1;
+        int item = n - 1;
 
         questGoalTxt.text = (jsonData["Quest"][item]["Goal"]);
         qPopup.questCountTxt.text = $"({questCurCount} / {(jsonData["Quest"][item]["Count"])})";
@@ -111,10 +127,22 @@ public class QuestManager : MonoBehaviour
         //rewardMat.text = (jsonData["Quest"][item]["Reward2"]);
         //rewardGold.text = (jsonData["Quest"][item]["Reward3"]);
 
+        acceptBtn.SetActive(false);
+        ingBtn.SetActive(true);
+
+    }
+
+    public void CompletedBtn()
+    {
+        GetComponent<QuestPopUpManager>().InitCurQuest();
+        //if (curCount >= maxCount) { 
+        //}
+        transform.Find("IngBtn").gameObject.SetActive(false);
+        transform.Find("CompletedBtn").gameObject.SetActive(true);
     }
 
     //public void CompleteButton()
     //{
-        
+
     //}
 }

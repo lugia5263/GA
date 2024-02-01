@@ -14,6 +14,16 @@ public class BulletCtrl : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.forward * 0.3f);
-        Destroy(gameObject, 0.3f);
+        Destroy(gameObject, 1f);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Boss"))
+        {
+            
+            Destroy(gameObject);
+        }
+        
     }
 }

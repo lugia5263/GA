@@ -37,7 +37,6 @@ public class LevelUpMgr : MonoBehaviour
         var jsonitemFile = Resources.Load<TextAsset>("Json/LvupTable");
         leveltxtFile = jsonitemFile;
 
-        stateMgr = GameObject.FindWithTag("Player").GetComponent<StateManager>();
         lvupPanel = GameObject.Find("LevelUpPanel");
         playerLvTxt = GameObject.Find("PlayerLevelInfo").GetComponent<Text>();
     }
