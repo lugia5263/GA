@@ -6,10 +6,14 @@ using System.IO;
 using SimpleJSON;
 public class QuestManager : MonoBehaviour
 {
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 
 >>>>>>> Stashed changes
+=======
+
+>>>>>>> a43b28fc9f8ec4d7f0e2cdde67ff64a520387528
     public TextAsset txtFile; //Jsonfile
     public GameObject jsonObject; //안써도 됨
     public QuestPopUpManager qPopup;
@@ -40,6 +44,15 @@ public class QuestManager : MonoBehaviour
     public Text rewardMat;
     public Text rewardGold;
 
+<<<<<<< HEAD
+=======
+    [Header("퀘스트 수락버튼")]
+    public QuestPopUpManager QuestPopUpManager;
+
+    public GameObject acceptBtn;
+    public GameObject ingBtn;
+    public GameObject completedBtn;
+>>>>>>> a43b28fc9f8ec4d7f0e2cdde67ff64a520387528
 
     //Player enterPlayer;
 
@@ -57,14 +70,18 @@ public class QuestManager : MonoBehaviour
         questPopUpPanel = GameObject.Find("QuestPanel");
         questGoalTxt = GameObject.Find("GoalTxt").GetComponent<Text>();
         qPopup = GameObject.Find("QuestPopUp").GetComponent<QuestPopUpManager>();
+<<<<<<< HEAD
 <<<<<<< Updated upstream
    
 =======
+=======
+>>>>>>> a43b28fc9f8ec4d7f0e2cdde67ff64a520387528
 
         ingBtn = GameObject.Find("QuestIngBtn");
 
 
 
+<<<<<<< HEAD
 >>>>>>> Stashed changes
     }
     void Start()
@@ -75,13 +92,18 @@ public class QuestManager : MonoBehaviour
     }
 =======
         ingBtn.SetActive(false);
+=======
+    }
+    private void Start()
+    {
+        //ingBtn.SetActive(false);
+>>>>>>> a43b28fc9f8ec4d7f0e2cdde67ff64a520387528
         completedBtn.SetActive(false);
 
         descriptionPanel.SetActive(false);
     }
 
 
->>>>>>> Stashed changes
 
 
     public void InstQuest(int n)
@@ -96,7 +118,10 @@ public class QuestManager : MonoBehaviour
 
         questNameTxt.text = (jsonData["Quest"][item]["QuestName"]);
         goalNameTxt.text = (jsonData["Quest"][item]["Goal"]);
+<<<<<<< HEAD
         countTxt.text = (jsonData["Quest"][item]["Count"]);
+=======
+>>>>>>> a43b28fc9f8ec4d7f0e2cdde67ff64a520387528
         rewardExp.text = (jsonData["Quest"][item]["Reward1"]);
         rewardMat.text = (jsonData["Quest"][item]["Reward2"]);
         rewardGold.text = (jsonData["Quest"][item]["Reward3"]);
@@ -117,18 +142,24 @@ public class QuestManager : MonoBehaviour
     public void AcceptQuestBtn()
     {
         ReceiveQuest(acceptIdx);
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> a43b28fc9f8ec4d7f0e2cdde67ff64a520387528
 
 
->>>>>>> Stashed changes
     }
     public void ReceiveQuest(int n)
     {
 
         string json = txtFile.text;
         var jsonData = JSON.Parse(json); //var의 의미: Unity외의 파일을 다가져온다.
+<<<<<<< HEAD
         int item = n-1;
+=======
+        int item = n - 1;
+>>>>>>> a43b28fc9f8ec4d7f0e2cdde67ff64a520387528
 
         questGoalTxt.text = (jsonData["Quest"][item]["Goal"]);
         qPopup.questCountTxt.text = $"({questCurCount} / {(jsonData["Quest"][item]["Count"])})";
@@ -138,10 +169,13 @@ public class QuestManager : MonoBehaviour
         //rewardMat.text = (jsonData["Quest"][item]["Reward2"]);
         //rewardGold.text = (jsonData["Quest"][item]["Reward3"]);
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     }
 
 =======
+=======
+>>>>>>> a43b28fc9f8ec4d7f0e2cdde67ff64a520387528
         acceptBtn.SetActive(false);
         ingBtn.SetActive(true);
 
@@ -156,9 +190,8 @@ public class QuestManager : MonoBehaviour
         transform.Find("CompletedBtn").gameObject.SetActive(true);
     }
 
->>>>>>> Stashed changes
     //public void CompleteButton()
     //{
-        
+
     //}
 }
