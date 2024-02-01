@@ -5180,10 +5180,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chatList: []
   chatLog: {fileID: 1722712897}
-  chattingList: {fileID: 1057551508}
   inputChat: {fileID: 779330938}
-  scroll_rect: {fileID: 1168219434}
-  chatters: 
+  scrollRect: {fileID: 0}
+  nickNameTxt: {fileID: 0}
+  pv: {fileID: 0}
+  player: {fileID: 0}
 --- !u!4 &477819445
 Transform:
   m_ObjectHideFlags: 0
@@ -9436,15 +9437,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8161a81723a64bf9b743eaa9ebc6455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadPlayerInfo: {fileID: 926131062}
+  spawnMgr: {fileID: 1409482582}
   slotNum: 0
-  selectCharPanel: {fileID: 1358116491}
   roomName: {fileID: 2137403620}
   connectInfo: {fileID: 45341676}
   msgList: {fileID: 983324645}
   exitBtn: {fileID: 755753885}
   chatBox: {fileID: 1459900881}
-  spawnMgr: {fileID: 1409482582}
 --- !u!4 &916267105
 Transform:
   m_ObjectHideFlags: 0

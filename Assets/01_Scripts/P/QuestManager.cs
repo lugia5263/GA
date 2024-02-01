@@ -6,7 +6,7 @@ using System.IO;
 using SimpleJSON;
 public class QuestManager : MonoBehaviour
 {
-
+    public DataMgr dataMgr;
     public TextAsset txtFile; //Jsonfile
     public GameObject jsonObject; //안써도 됨
     public QuestPopUpManager qPopup;
@@ -72,6 +72,8 @@ public class QuestManager : MonoBehaviour
         completedBtn.SetActive(false);
 
         descriptionPanel.SetActive(false);
+
+        questIdx = DataMgr.questidx;
     }
 
 
@@ -120,9 +122,13 @@ public class QuestManager : MonoBehaviour
         int item = n - 1;
 
         questGoalTxt.text = (jsonData["Quest"][item]["Goal"]);
-        qPopup.questCountTxt.text = $"({questCurCount} / {(jsonData["Quest"][item]["Count"])})";
-        qPopup.maxCount = (int)(jsonData["Quest"][item]["Count"]);
-        qPopup.curQuestIndex = (int)(jsonData["Quest"][item]["QuestNum"]);
+        qPopup.maxCnt = (int)(jsonData["Quest"][item]["Count"]);
+        qPopup.questCountTxt.text = $"({questCurCount} / {qPopup.maxCnt})";
+
+        qPopup.questIndex = ; //datamgr 필요
+        questidx = (int)(jsonData["Quest"][item]["QuestNum"]);
+            datamgr.curquestidx=qustidx
+
         //rewardExp.text = (jsonData["Quest"][item]["Reward1"]);
         //rewardMat.text = (jsonData["Quest"][item]["Reward2"]);
         //rewardGold.text = (jsonData["Quest"][item]["Reward3"]);
