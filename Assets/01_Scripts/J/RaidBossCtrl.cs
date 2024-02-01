@@ -78,10 +78,13 @@ public class RaidBossCtrl : MonoBehaviour
     {
         raidBoss = RAIDBOSS.IDLE;
         characterController = GetComponent<CharacterController>();
-        targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        if(targetPlayer != null)
+        {
+            targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        }
         anim = GetComponent<Animator>();
         stateManager = GetComponent<StateManager>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     void Update()

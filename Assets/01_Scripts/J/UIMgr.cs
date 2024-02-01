@@ -23,7 +23,7 @@ public class UIMgr : MonoBehaviour
     {
         foreach (GameObject obj in npcPanel)
         {
-            obj.SetActive(false);
+            //obj.SetActive(false);
         }
     }
     // Update is called once per frame
