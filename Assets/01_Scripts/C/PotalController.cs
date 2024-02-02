@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Timeline;
+using Photon.Pun;
 
-public class PotalController : MonoBehaviour
+public class PotalController : MonoBehaviourPunCallbacks
 {
     public bool isPortal = false;
     public GameObject portalPanel;
@@ -21,14 +22,21 @@ public class PotalController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Portal();
+            if (other.GetComponent<PhotonView>().IsMine)
+            {
+                Debug.Log("충돌일어남");
+                Portal();
+            }
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Portal();
+            if (other.GetComponent<PhotonView>().IsMine)
+            {
+                Portal();
+            }
         }
     }
     public void Portal()
