@@ -164,7 +164,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 52539819}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46573b77e40543b459725e02adcf6a33, type: 3}
+  m_Script: {fileID: 11500000, guid: 223fa7ec9824ed84399afe75f8aa6a6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   nickName: 
@@ -183,6 +183,8 @@ MonoBehaviour:
   goalTxt: 
   questCurCnt: 0
   questMaxCnt: 0
+  dungeonSortIdx: 0
+  dungeonNumIdx: 0
 --- !u!1 &127642404
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,6 +305,7 @@ MonoBehaviour:
   userGold: 0
   userMaterial: 0
   userExpPotion: 0
+  currentSlotNum: 0
   slot1Text:
   - {fileID: 1838937866}
   - {fileID: 1891901141}
