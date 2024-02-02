@@ -33,11 +33,11 @@ public class QuestManager : MonoBehaviour
 
     public int acceptIdx;
 
-    [Header("Äù½ºÆ®ÆË¾÷")]
-    public GameObject questPopUpPanel;
-    public Text questGoalTxt;
-    public int questCurCount;
-    //public int questMaxCount;
+    //[Header("Äù½ºÆ®ÆË¾÷")]
+    //public GameObject questPopUpPanel;
+    //public Text questGoalTxt;
+    //public int questCurCount;
+    ////public int questMaxCount;
 
     [Header("Äù½ºÆ® º¸»ó¸ñ·Ï Ç¥½Ã")]
     public Text rewardExp;
@@ -67,8 +67,8 @@ public class QuestManager : MonoBehaviour
         goalNameTxt = GameObject.Find("goalNameTxt").GetComponent<Text>();
         countTxt = GameObject.Find("countTxt").GetComponent<Text>();
         questRewards = GameObject.Find("QuestRewards").GetComponent<Image>();
-        questPopUpPanel = GameObject.Find("QuestPanel");
-        questGoalTxt = GameObject.Find("GoalTxt").GetComponent<Text>();
+        //questPopUpPanel = GameObject.Find("QuestPanel");
+        //questGoalTxt = GameObject.Find("GoalTxt").GetComponent<Text>();
         qPopup = GameObject.Find("QuestPopUp").GetComponent<QuestPopUpManager>();
 <<<<<<< HEAD
 <<<<<<< Updated upstream
@@ -161,8 +161,8 @@ public class QuestManager : MonoBehaviour
         int item = n - 1;
 >>>>>>> a43b28fc9f8ec4d7f0e2cdde67ff64a520387528
 
-        questGoalTxt.text = (jsonData["Quest"][item]["Goal"]);
-        qPopup.questCountTxt.text = $"({questCurCount} / {(jsonData["Quest"][item]["Count"])})";
+        //questGoalTxt.text = (jsonData["Quest"][item]["Goal"]);
+        //qPopup.questCountTxt.text = $"({questCurCount} / {(jsonData["Quest"][item]["Count"])})";
         qPopup.maxCount = (int)(jsonData["Quest"][item]["Count"]);
         qPopup.curQuestIndex = (int)(jsonData["Quest"][item]["QuestNum"]);
         //rewardExp.text = (jsonData["Quest"][item]["Reward1"]);
