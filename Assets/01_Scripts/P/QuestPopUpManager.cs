@@ -18,7 +18,7 @@ public class QuestPopUpManager : MonoBehaviour
 
     private void Start()
     {
-        questCountTxt = GameObject.Find("QCountTxt").GetComponent<Text>();
+        
     }
 
 
