@@ -454,8 +454,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         //if (other.CompareTag("NPCW") && pv.IsMine)
         //    uimgr.npcPanel[1].SetActive(true);
         if (other.CompareTag("NPCL") && pv.IsMine)
-            uimgr.npcPanel[2].SetActive(true);
-        //if (other.CompareTag("NPCP"))
+            uimgr.npcPanel[2].SetActive(true); // 퀘스트랑 강화 레벨 켜질때 dataMgrDontDestroy에서 현재 퀘스트값이나 레벨값 가져와야함
+        //if (other.CompareTag("NPCP")) 
         //uimgr.npcPanel[5].SetActive(true);
         //if (other.CompareTag("NPCA"))
         //uimgr.npcPanel[1].SetActive(true);

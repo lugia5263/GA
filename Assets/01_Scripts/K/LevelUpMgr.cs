@@ -3,20 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using SimpleJSON;
+using Photon.Pun;
 
 public class LevelUpMgr : MonoBehaviour
 {
+
     public DataMgrDontDestroy dataMgrDontDestroy;
     public TextAsset leveltxtFile; //Jsonfile
-
-
-    public StateManager stateMgr;
     public InventoryManager inventoryMgr;
     public GameObject lvupPanel;
-    public int playerlv;
-    public int classNum;
-    public int playerExp;
-    public int upMaxExp;
 
     [Header("레벨업 패널")]
     public Text playerLvTxt;
@@ -36,23 +31,36 @@ public class LevelUpMgr : MonoBehaviour
     {
         var jsonitemFile = Resources.Load<TextAsset>("Json/LvupTable");
         leveltxtFile = jsonitemFile;
-
         dataMgrDontDestroy = DataMgrDontDestroy.Instance;
-        lvupPanel = GameObject.Find("LevelUpPanel");
-        playerLvTxt = GameObject.Find("PlayerLevelInfo").GetComponent<Text>();
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (other.GetComponent<PhotonView>().IsMine)
+            {
+
+                lvupPanel.SetActive(true);
+            }
+        }
+    }
+    public void InitLevelInfo()
+    {
+
+    }
+
+
 
 
     public void PlayerCheck() // 현재 플레이어 가진거 불러옴, npc 누를때 호출
     {
-        playerlv = dataMgrDontDestroy.level;
         playerHaveExpTxt.text = inventoryMgr.expPotion.ToString();
-        
     }
 
     public void LevelUpCheck() // 레벨업 처음에 세팅됌
     {
-        InitCheckLevel(playerlv,classNum);
+        InitCheckLevel(dataMgrDontDestroy.level);
         lvupPanel.SetActive(true);
     }
 
@@ -66,10 +74,10 @@ public class LevelUpMgr : MonoBehaviour
 
         //여기에 json의 추가량만큼 더해줌
 
-        InitCheckLevel(playerlv, classNum); // 초기화해줌
+        InitCheckLevel(dataMgrDontDestroy.level); // 초기화해줌
     }
 
-    public void InitCheckLevel(int lv, int classnum)
+    public void InitCheckLevel(int lv)
     {
         string json = leveltxtFile.text;
         var jsonData = JSON.Parse(json);
@@ -81,9 +89,9 @@ public class LevelUpMgr : MonoBehaviour
         //여기서 클래스에 따른 json파일 가져옴
 
         afterHealth.text = (jsonData["LvWarrior"][lv]["PlayerHp"]);
-        beforeCriPer.text = stateMgr.criChance.ToString();
+        beforeCriPer.text = dataMgrDontDestroy.criChance.ToString();
         //afeterCriPer.text = json 다음꺼
-        beforeCriPer.text = stateMgr.criDamage.ToString();
+        beforeCriPer.text = dataMgrDontDestroy.criDamage.ToString();
         //afterCriDmg.Text = json 다음꺼
 
 
