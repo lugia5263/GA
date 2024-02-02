@@ -17,13 +17,13 @@ public class ChaosDungeonMgr : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && ground1)
-            InstBoss1();
+            InstBoss1(); //厘局拱积己秦具窃
         if (other.CompareTag("Player") && ground2)
-            InstBoss2();
+            InstBoss2(); //厘局拱积己秦具窃
         if (other.CompareTag("Player") && ground3)
-            InstBoss3();
+            InstBoss3(); //厘局拱积己秦具窃
         if (other.CompareTag("Player") && ground4)
-            InstBoss4();
+            InstBoss4(); //厘局拱积己秦具窃
     }
 
     public void InstBoss1()
