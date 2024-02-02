@@ -104,10 +104,12 @@ public class CharacterCreate : MonoBehaviour
         PlayerPrefs.SetString($"{slotNum}_Class", className);
         PlayerPrefs.SetInt($"{slotNum}_ClassNum", classNum);
         PlayerPrefs.SetInt($"{slotNum}_Level", 1);
-        PlayerPrefs.SetInt($"{slotNum}_MaxHp", 500);
+        PlayerPrefs.SetFloat($"{slotNum}_MaxHp", 500);
+        PlayerPrefs.SetFloat($"{slotNum}_Hp", 500);
         PlayerPrefs.SetInt($"{slotNum}_WeaponLevel", 1);
-        PlayerPrefs.SetInt($"{slotNum}_ATK", 50);
-        PlayerPrefs.SetInt($"{slotNum}_CriticalPer", 50);
+        PlayerPrefs.SetInt($"{slotNum}_AttackPower", 50);
+        PlayerPrefs.SetInt($"{slotNum}_CriChance", 50);
+        PlayerPrefs.SetFloat($"{slotNum}_CriDamage", 120f);
         PlayerPrefs.SetInt($"{slotNum}_UserGold", 0);
         PlayerPrefs.SetInt($"{slotNum}_Material", 0);
         PlayerPrefs.SetInt($"{slotNum}_ExpPotion", 0);
@@ -129,9 +131,11 @@ public class CharacterCreate : MonoBehaviour
             PlayerPrefs.DeleteKey($"{slotNum}_ClassNum");
             PlayerPrefs.DeleteKey($"{slotNum}_Level");
             PlayerPrefs.DeleteKey($"{slotNum}_MaxHp");
+            PlayerPrefs.DeleteKey($"{slotNum}_Hp");
             PlayerPrefs.DeleteKey($"{slotNum}_WeaponLevel");
-            PlayerPrefs.DeleteKey($"{slotNum}_ATK");
-            PlayerPrefs.DeleteKey($"{slotNum}_CriticalPer");
+            PlayerPrefs.DeleteKey($"{slotNum}_AttackPower");
+            PlayerPrefs.DeleteKey($"{slotNum}_CriChance");
+            PlayerPrefs.DeleteKey($"{slotNum}_CriDamage");
             PlayerPrefs.DeleteKey($"{slotNum}_UserGold");
             PlayerPrefs.DeleteKey($"{slotNum}_Material");
             PlayerPrefs.DeleteKey($"{slotNum}_ExpPotion");
@@ -144,22 +148,5 @@ public class CharacterCreate : MonoBehaviour
         {
             Debug.Log("현재슬롯에 키값이 없음");
         }
-    }
-
-    // 만약 직업마다 스탯이 다르다면.. 여기서 switch로 클래스명받아와서 createcharacter에서 호출하게끔하기
-    //void CreateDefaultPlayerData(string userID)
-    //{
-        // 예시로 대충 1레벨일때의 능력치.. 실제로 만들때 초기화하기
-        //int defaultLevel = 1;
-        //int defaultAtk = 10;
-
-        //PlayerPrefs.SetInt(userID, defaultLevel);
-        //PlayerPrefs.SetInt(userID, defaultAtk);
-        //PlayerPrefs.Save();
-    //}
-
-    public void OnClickGoLoginSceneBtn() // 로비에서 연결끊고 나가는거 추가하기
-    {
-        SceneManager.LoadScene("Login");
     }
 }

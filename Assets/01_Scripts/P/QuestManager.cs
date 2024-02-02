@@ -4,15 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using SimpleJSON;
-using static UnityEditor.Progress;
 public class QuestManager : MonoBehaviour
 {
 
     public TextAsset txtFile; //Jsonfile
     public GameObject jsonObject; //안써도 됨
     public QuestPopUpManager qPopup;
-    public RewardMgr rewardMgr;
-    public InventoryManager inventoryMgr;
 
     // 퀘스트 팝업은 싱글톤으로 다른 씬을 갔다가 온다. 그러므로 퀘스트 NPC에 상호작용을 할 때 
     // 현재 팝업에 있는 카운트를 퀘스트 매니저 스크립트에 있는 현재, 최대 카운트 값을 보내줘야한다
@@ -28,11 +25,11 @@ public class QuestManager : MonoBehaviour
 
     public int acceptIdx;
 
-    [Header("퀘스트팝업")]
-    public GameObject questPopUpPanel;
-    public Text questGoalTxt;
-    public int questCurCount;
-    //public int questMaxCount;
+    //[Header("퀘스트팝업")]
+    //public GameObject questPopUpPanel;
+    //public Text questGoalTxt;
+    //public int questCurCount;
+    ////public int questMaxCount;
 
     [Header("퀘스트 보상목록 표시")]
     public Text rewardExp;
@@ -40,53 +37,19 @@ public class QuestManager : MonoBehaviour
     public Text rewardGold;
 
     [Header("퀘스트 수락버튼")]
-<<<<<<< HEAD
-=======
     public QuestPopUpManager QuestPopUpManager;
->>>>>>> DEV
 
     public GameObject acceptBtn;
     public GameObject ingBtn;
     public GameObject completedBtn;
-<<<<<<< HEAD
-    public GameObject questEndBtn;
-
-    public bool isQuestIng;
-    public bool isCompleted;
-    public bool isEnd;
-=======
->>>>>>> DEV
 
     //Player enterPlayer;
 
-
-    public void CurQuestCheck()
+    public void Enter(Player player)
     {
-        if (questCurCount == 0)
-        {
-            return;
-        }
-        else
-        {
-            if (acceptIdx == qPopup.curQuestIndex)
-            {
-                descriptionPanel.SetActive(true);
-                if (qPopup.curCount >= qPopup.maxCount)
-                {
-                    completedBtn.SetActive(true);
-                    isCompleted = true;
-                }
-                else
-                {
-                    return;
-                }
-                InstQuest(acceptIdx);
-            }
-
-        }
-
+        //enterPlayer = player;
+        //uiGroup.anchoredPosition = Vector3.zero;
     }
-
     private void Awake()
     {
         Debug.Log("Start: Trying to find Buttons");
@@ -94,33 +57,19 @@ public class QuestManager : MonoBehaviour
         questNameTxt = GameObject.Find("questNameTxt").GetComponent<Text>();
         goalNameTxt = GameObject.Find("goalNameTxt").GetComponent<Text>();
         questRewards = GameObject.Find("QuestRewards").GetComponent<Image>();
-        questPopUpPanel = GameObject.Find("QuestPopUp");
-        questGoalTxt = GameObject.Find("GoalTxt").GetComponent<Text>();
+        //questPopUpPanel = GameObject.Find("QuestPanel");
+        //questGoalTxt = GameObject.Find("GoalTxt").GetComponent<Text>();
         qPopup = GameObject.Find("QuestPopUp").GetComponent<QuestPopUpManager>();
-<<<<<<< HEAD
-        rewardMgr = GameObject.Find("RewardMgr").GetComponent<RewardMgr>();
-        inventoryMgr = GameObject.Find("InventoryMgr").GetComponent<InventoryManager>();
-        ingBtn = GameObject.Find("QuestIngBtn");
-        completedBtn = GameObject.Find("CompletedBtn");
-        questEndBtn = GameObject.Find("QuestEndBtn");
-=======
 
         ingBtn = GameObject.Find("QuestIngBtn");
 
->>>>>>> DEV
 
 
     }
     private void Start()
     {
-<<<<<<< HEAD
-        ingBtn.SetActive(false);
-        completedBtn.SetActive(false);
-        questEndBtn.SetActive(false);
-=======
         //ingBtn.SetActive(false);
         completedBtn.SetActive(false);
->>>>>>> DEV
 
         descriptionPanel.SetActive(false);
     }
@@ -137,28 +86,13 @@ public class QuestManager : MonoBehaviour
 
         //GameObject character = Instantiate(jsonObject);
 
-        if (n >= acceptIdx || acceptIdx != 0)
-        {
-            questNameTxt.text = (jsonData["Quest"][item]["QuestName"]);
-            goalNameTxt.text = (jsonData["Quest"][item]["Goal"]);
-            rewardExp.text = (jsonData["Quest"][item]["Reward1"]);
-            rewardMat.text = (jsonData["Quest"][item]["Reward2"]);
-            rewardGold.text = (jsonData["Quest"][item]["Reward3"]);
-            questCurCount = n;
-            acceptIdx = n;
-        }
 
-
-
-<<<<<<< HEAD
-=======
         questNameTxt.text = (jsonData["Quest"][item]["QuestName"]);
         goalNameTxt.text = (jsonData["Quest"][item]["Goal"]);
         rewardExp.text = (jsonData["Quest"][item]["Reward1"]);
         rewardMat.text = (jsonData["Quest"][item]["Reward2"]);
         rewardGold.text = (jsonData["Quest"][item]["Reward3"]);
         acceptIdx = n;
->>>>>>> DEV
 
         #region
         //character.transform.name = (jsonData["시트1"][n]["QuestName"]);
@@ -175,120 +109,29 @@ public class QuestManager : MonoBehaviour
     public void AcceptBtn()
     {
         ReceiveQuest(acceptIdx);
-<<<<<<< HEAD
-=======
 
 
     }
     public void ReceiveQuest(int n)
     {
->>>>>>> DEV
 
-
-    }
-    public void ReceiveQuest(int n) // 수락버튼 눌렀을 때
-    {
-        n = acceptIdx;
         string json = txtFile.text;
         var jsonData = JSON.Parse(json); //var의 의미: Unity외의 파일을 다가져온다.
         int item = n - 1;
-<<<<<<< HEAD
 
-        qPopup.curCount = 0;
-
-        ingBtn.SetActive(false);
-        completedBtn.SetActive(false);
-        questEndBtn.SetActive(false);
-
-        qPopup.maxCount = (int)(jsonData["Quest"][item]["Count"]);
-        qPopup.questCountTxt.text = $"({qPopup.curCount} / {(jsonData["Quest"][item]["Count"])})";
-        qPopup.curQuestIndex = (int)(jsonData["Quest"][item]["QuestNum"]);
-        isCompleted = false;
-
-=======
->>>>>>> DEV
-
-        questGoalTxt.text = (jsonData["Quest"][item]["Goal"]);
+        //questGoalTxt.text = (jsonData["Quest"][item]["Goal"]);
         //qPopup.questCountTxt.text = $"({questCurCount} / {(jsonData["Quest"][item]["Count"])})";
-
+        qPopup.maxCount = (int)(jsonData["Quest"][item]["Count"]);
         qPopup.curQuestIndex = (int)(jsonData["Quest"][item]["QuestNum"]);
         //rewardExp.text = (jsonData["Quest"][item]["Reward1"]);
         //rewardMat.text = (jsonData["Quest"][item]["Reward2"]);
         //rewardGold.text = (jsonData["Quest"][item]["Reward3"]);
 
-<<<<<<< HEAD
-        isQuestIng = true;
-        qPopup.InitCurQuest();
-        questPopUpPanel.SetActive(true);
-=======
         acceptBtn.SetActive(false);
->>>>>>> DEV
         ingBtn.SetActive(true);
 
     }
 
-<<<<<<< HEAD
-    public void QuestCompleted() // 완료
-    {
-        qPopup.InitCurQuest();
-
-        //########보상 팝업#####################################
-        //수령받을 수 있는 팝업 on에 현재 json에 있는 보상함수에 ACCEPTiDX 매개변수로
-        rewardMgr.Reward100exp3EABtn();
-
-    }
-
-    public void QuestSendBtn()
-    {
-
-        string json = txtFile.text;
-        var jsonData = JSON.Parse(json); //var의 의미: Unity외의 파일을 다가져온다.
-        //완료 버튼에 이거 넣기 (지금은 자동)
-        inventoryMgr.SendInventory();
-
-        //위에꺼 넣기
-
-        ingBtn.SetActive(false);
-        completedBtn.SetActive(false);
-        questEndBtn.SetActive(false);
-
-        qPopup.curQuestIndex++;
-        acceptIdx++;
-
-        questGoalTxt.text = (jsonData["Quest"][acceptIdx]["Goal"]);
-
-        Debug.Log("Tlqkf");
-        qPopup.InitCurQuest();
-
-        questPopUpPanel.SetActive(false);
-        isCompleted = true;
-        isEnd = true;
-
-
-        isQuestIng = false;
-
-
-        descriptionPanel.SetActive(false);
-        //1퀘스트꺼 패널 가려버려
-
-
-    } // 보상 받기 버튼
-
-    public void QuestRewading()
-    {
-        //버튼에다 달아서 완료로 수령받기
-    }
-
-
-    public void QuestCheck()
-    {
-        if (qPopup.curCount >= qPopup.maxCount)
-        {
-            completedBtn.SetActive(true);
-        }
-    }
-
-=======
     public void CompletedBtn()
     {
         GetComponent<QuestPopUpManager>().InitCurQuest();
@@ -302,6 +145,4 @@ public class QuestManager : MonoBehaviour
     //{
 
     //}
->>>>>>> DEV
 }
-
