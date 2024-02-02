@@ -394,7 +394,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 7480308001886950082}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.593211
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -50782,7 +50782,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6088121806010854665}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 890e43544abb6814b8e5a51718d38d53, type: 3}
+  m_Script: {fileID: 11500000, guid: bf5f3eb98e856694a90a31241354c12f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   discription: {fileID: 0}
@@ -50798,9 +50798,9 @@ MonoBehaviour:
   chaosContent: {fileID: 0}
   raidContent: {fileID: 0}
   txtFile: {fileID: 0}
-  singleCell: {fileID: 6226444408516719881, guid: bf06c23d952eeb4478d9fd2c84641e60, type: 3}
-  chaosCell: {fileID: 6226444408516719881, guid: 92e0c518ccbe1fb47ad463d90db5b4a6, type: 3}
-  raidCell: {fileID: 6226444408516719881, guid: 8cbfb94eec260484b852c7342e4ad635, type: 3}
+  singleCell: {fileID: 0}
+  chaosCell: {fileID: 0}
+  raidCell: {fileID: 0}
 --- !u!1 &6136594710325291105
 GameObject:
   m_ObjectHideFlags: 0
@@ -57582,8 +57582,8 @@ RectTransform:
   - {fileID: 854056678896685595}
   - {fileID: 3498873337361261813}
   - {fileID: 8711474692008456391}
-  - {fileID: 3121904565326998150}
   - {fileID: 1206446512895552882}
+  - {fileID: 3121904565326998150}
   - {fileID: 8777282806732429439}
   m_Father: {fileID: 5224310352255433392}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

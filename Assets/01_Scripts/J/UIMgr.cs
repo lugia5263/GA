@@ -11,7 +11,7 @@ public class UIMgr : MonoBehaviour
     public GameObject[] playerSkillIcon;
 
     void Start()
-    {
+    { 
         UIstartOff();
         if (player != null)
         {

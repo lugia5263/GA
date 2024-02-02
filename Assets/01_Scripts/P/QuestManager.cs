@@ -27,12 +27,20 @@ public class QuestManager : MonoBehaviour
     public Text goalNameTxt;
     public Image questRewards;
 
+<<<<<<< HEAD
     [Header("Äù½ºÆ®ÆË¾÷")]
     public GameObject questPopUpPanel;
     public Text questGoalTxt;
     public int questCurCnt;
     public int questMaxCnt;
     public int questIdx;
+=======
+    //[Header("Äù½ºÆ®ÆË¾÷")]
+    //public GameObject questPopUpPanel;
+    //public Text questGoalTxt;
+    //public int questCurCount;
+    ////public int questMaxCount;
+>>>>>>> upstream/DEV
 
     [Header("Äù½ºÆ® º¸»ó¸ñ·Ï Ç¥½Ã")]
     public Text rewardExp;
@@ -60,9 +68,15 @@ public class QuestManager : MonoBehaviour
         questNameTxt = GameObject.Find("questNameTxt").GetComponent<Text>();
         goalNameTxt = GameObject.Find("goalNameTxt").GetComponent<Text>();
         questRewards = GameObject.Find("QuestRewards").GetComponent<Image>();
+<<<<<<< HEAD
         questPopUpPanel = GameObject.Find("QuestPanel");
         questGoalTxt = GameObject.Find("GoalTxt").GetComponent<Text>();
         questPopUpManager = GameObject.Find("QuestPopUp").GetComponent<QuestPopUpManager>();
+=======
+        //questPopUpPanel = GameObject.Find("QuestPanel");
+        //questGoalTxt = GameObject.Find("GoalTxt").GetComponent<Text>();
+        qPopup = GameObject.Find("QuestPopUp").GetComponent<QuestPopUpManager>();
+>>>>>>> upstream/DEV
 
         ingBtn = GameObject.Find("QuestIngBtn");
 
@@ -118,11 +132,21 @@ public class QuestManager : MonoBehaviour
         var jsonData = JSON.Parse(json);
         int item = n - 1;
 
+<<<<<<< HEAD
         questGoalTxt.text = (jsonData["Quest"][item]["Goal"]);
         questPopUpManager.questMaxCnt = (int)(jsonData["Quest"][item]["Count"]);
         questPopUpManager.questCountTxt.text = $"({questPopUpManager.questCurCnt} / {questPopUpManager.questMaxCnt})";
         questPopUpManager.questIdx = (int)(jsonData["Quest"][item]["QuestNum"]);
         dataMgrDontDestroy.curquestidx = n;
+=======
+        //questGoalTxt.text = (jsonData["Quest"][item]["Goal"]);
+        //qPopup.questCountTxt.text = $"({questCurCount} / {(jsonData["Quest"][item]["Count"])})";
+        qPopup.maxCount = (int)(jsonData["Quest"][item]["Count"]);
+        qPopup.curQuestIndex = (int)(jsonData["Quest"][item]["QuestNum"]);
+        //rewardExp.text = (jsonData["Quest"][item]["Reward1"]);
+        //rewardMat.text = (jsonData["Quest"][item]["Reward2"]);
+        //rewardGold.text = (jsonData["Quest"][item]["Reward3"]);
+>>>>>>> upstream/DEV
 
         acceptBtn.SetActive(false);
         ingBtn.SetActive(true);
