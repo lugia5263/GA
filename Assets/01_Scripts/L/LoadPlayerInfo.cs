@@ -32,22 +32,22 @@ public class LoadPlayerInfo : MonoBehaviour
         characterCreate = GameObject.Find("CharacterCreate").GetComponent<CharacterCreate>();
         // DataMgr의 인스턴스 가져오기
         dataMgrDontDestroy = DataMgrDontDestroy.Instance;
-        nickName = dataMgrDontDestroy.NickName;
-        level = dataMgrDontDestroy.Level;
-        exp = dataMgrDontDestroy.Exp;
-        maxhp = dataMgrDontDestroy.MaxHp;
-        hp = dataMgrDontDestroy.Hp;
-        attackPower = dataMgrDontDestroy.AttackPower;
-        criChance = dataMgrDontDestroy.CriChance;
-        criDamage = dataMgrDontDestroy.CriDamage;
-        weaponLevel = dataMgrDontDestroy.WeaponLevel;
-        userGold = dataMgrDontDestroy.UserGold;
-        userMaterial = dataMgrDontDestroy.UserMaterial;
-        userExpPotion = dataMgrDontDestroy.UserExpPotion;
+        //nickName = dataMgrDontDestroy.NickName;
+        //level = dataMgrDontDestroy.Level;
+        //exp = dataMgrDontDestroy.Exp;
+        //maxhp = dataMgrDontDestroy.MaxHp;
+        //hp = dataMgrDontDestroy.Hp;
+        //attackPower = dataMgrDontDestroy.AttackPower;
+        //criChance = dataMgrDontDestroy.CriChance;
+        //criDamage = dataMgrDontDestroy.CriDamage;
+        //weaponLevel = dataMgrDontDestroy.WeaponLevel;
+        //userGold = dataMgrDontDestroy.UserGold;
+        //userMaterial = dataMgrDontDestroy.UserMaterial;
+        //userExpPotion = dataMgrDontDestroy.UserExpPotion;
 
         LoadEverySlotData();
     }
-    
+
     public void LoadEverySlotData()
     {
         for (int slotNum = 0; slotNum < 3; slotNum++)
@@ -96,7 +96,7 @@ public class LoadPlayerInfo : MonoBehaviour
         exp = PlayerPrefs.GetInt($"{currentSlotNum}_Exp");
         maxhp = PlayerPrefs.GetFloat($"{currentSlotNum}_MaxHp");
         hp = PlayerPrefs.GetFloat($"{currentSlotNum}_Hp");
-        attackPower= PlayerPrefs.GetInt($"{currentSlotNum}_AttackPower");
+        attackPower = PlayerPrefs.GetInt($"{currentSlotNum}_AttackPower");
         weaponLevel = PlayerPrefs.GetInt($"{currentSlotNum}_WeaponLevel");
         criChance = PlayerPrefs.GetInt($"{currentSlotNum}_CriChance");
         criDamage = PlayerPrefs.GetFloat($"{currentSlotNum}_CriDamage");
