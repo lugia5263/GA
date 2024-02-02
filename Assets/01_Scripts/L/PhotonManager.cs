@@ -127,5 +127,11 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
         PhotonNetwork.CreateRoom("Room_Home", ro);
     }
+
+    public void OnClickGoIntroBtn() // 연결끊고 인트로씬으로가기
+    {
+        PhotonNetwork.Disconnect();
+        SceneManager.LoadScene("Intro");
+    }
     #endregion
 }

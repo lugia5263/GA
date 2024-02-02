@@ -40,7 +40,7 @@ public class RaidDungeonManager : MonoBehaviourPunCallbacks
     // Exit 버튼의 OnClick에 연결할 함수
     public void OnClickExitBtn()
     {
-        RoomEnterManager.dungeonType = "None";
+        //RoomEnterManager.dungeonType = "None";
         PhotonNetwork.LeaveRoom();
     }
 
