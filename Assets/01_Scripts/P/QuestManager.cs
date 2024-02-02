@@ -4,93 +4,85 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using SimpleJSON;
+using Photon.Pun;
 
 //###### Quest List, Quest Description UI 담당 ######
 
 public class QuestManager : MonoBehaviour
 {
+    [Header("DonDestroy")]
     public DataMgrDontDestroy dataMgrDontDestroy;
-    public UIMgr uIMgr;
     public TextAsset txtFile; //Jsonfile
-    public QuestPopUpManager questPopUpManager;
-
+    public int questIdx;
     // 퀘스트 팝업은 싱글톤으로 다른 씬을 갔다가 온다. 그러므로 퀘스트 NPC에 상호작용을 할 때 
     // 현재 팝업에 있는 카운트를 퀘스트 매니저 스크립트에 있는 현재, 최대 카운트 값을 보내줘야한다
     // 그리고 상호작용할때 퀘스트가 완료되었을 때 bool값이 True인지 확인해서
     // 퀘스트완료 버튼을 SetActive = true 로 한다.
     // npc 커밋하고 할것. 
+    [Header("Component")]
+    public QuestPopUpManager questPopUpManager;
 
-    public GameObject questCanvas;
+    [Header("퀘스트 선택창")]
+    public GameObject questPanel;
+
+    [Header("퀘스트 설명창")]
     public GameObject descriptionPanel;
-
     public Text questNameTxt;
-    public Text goalNameTxt;
-    public Image questRewards;
+    public Text goalTxt;
 
-<<<<<<< HEAD
-    [Header("퀘스트팝업")]
-    public GameObject questPopUpPanel;
-    public Text questGoalTxt;
-    public int questCurCnt;
-    public int questMaxCnt;
-    public int questIdx;
-=======
-    //[Header("퀘스트팝업")]
-    //public GameObject questPopUpPanel;
-    //public Text questGoalTxt;
-    //public int questCurCount;
-    ////public int questMaxCount;
->>>>>>> upstream/DEV
-
-    [Header("퀘스트 보상목록 표시")]
     public Text rewardExp;
     public Text rewardMat;
     public Text rewardGold;
-
-    [Header("퀘스트 수락버튼")]
-    public QuestPopUpManager QuestPopUpManager;
-
+    [Header("퀘스트 진행버튼")]
     public GameObject acceptBtn;
-    public GameObject ingBtn;
+    public GameObject ingImg;
     public GameObject completedBtn;
+    [Header("퀘스트 현재 진행도 창")]
+    public GameObject questPopUpPanel;
+    //public bool questPopUpPanelVisible;
+    public Text questDescriptionGoalTxt; //이 텍스트에 questGoalTxt 의 문자가 들어감
+    public string questGoalTxt; 
+    public int questCurCnt;
+    public int questMaxCnt;
 
-    //Player enterPlayer;
-
-    public void Enter(Player player)
-    {
-        //enterPlayer = player;
-        //uiGroup.anchoredPosition = Vector3.zero;
-    }
     private void Awake()
     {
-        Debug.Log("Start: Trying to find Buttons");
-
-        questNameTxt = GameObject.Find("questNameTxt").GetComponent<Text>();
-        goalNameTxt = GameObject.Find("goalNameTxt").GetComponent<Text>();
-        questRewards = GameObject.Find("QuestRewards").GetComponent<Image>();
-<<<<<<< HEAD
-        questPopUpPanel = GameObject.Find("QuestPanel");
-        questGoalTxt = GameObject.Find("GoalTxt").GetComponent<Text>();
-        questPopUpManager = GameObject.Find("QuestPopUp").GetComponent<QuestPopUpManager>();
-=======
-        //questPopUpPanel = GameObject.Find("QuestPanel");
-        //questGoalTxt = GameObject.Find("GoalTxt").GetComponent<Text>();
-        qPopup = GameObject.Find("QuestPopUp").GetComponent<QuestPopUpManager>();
->>>>>>> upstream/DEV
-
-        ingBtn = GameObject.Find("QuestIngBtn");
-
-
-
+        dataMgrDontDestroy = DataMgrDontDestroy.Instance;
     }
     private void Start()
     {
         //ingBtn.SetActive(false);
         completedBtn.SetActive(false);
-
+        ingImg.SetActive(false);
         descriptionPanel.SetActive(false);
+        questPopUpPanel.SetActive(false);
+        questIdx = dataMgrDontDestroy.QuestIdx;
+        questGoalTxt = dataMgrDontDestroy.GoalTxt;
+        questCurCnt = dataMgrDontDestroy.QuestCurCnt;
+        questMaxCnt = dataMgrDontDestroy.QuestMaxCnt;
+}
 
-        questIdx = dataMgrDontDestroy.questIdx;
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (other.GetComponent<PhotonView>().IsMine)
+            {
+                Debug.Log("충돌일어남");
+                questPanel.SetActive(true);
+            }
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (other.GetComponent<PhotonView>().IsMine)
+            {
+                // 강화창 껐으니까 플레이어의 정보에 반영
+                questPanel.SetActive(false);
+            }
+        }
     }
 
     public void InstQuest(int n)
@@ -100,13 +92,14 @@ public class QuestManager : MonoBehaviour
 
         int item = n - 1; //매개변수
 
+        questIdx = n;
         questNameTxt.text = (jsonData["Quest"][item]["QuestName"]);
-        goalNameTxt.text = (jsonData["Quest"][item]["Goal"]);
+        goalTxt.text = (jsonData["Quest"][item]["Goal"]);
         rewardExp.text = (jsonData["Quest"][item]["Reward1"]);
         rewardMat.text = (jsonData["Quest"][item]["Reward2"]);
         rewardGold.text = (jsonData["Quest"][item]["Reward3"]);
-        questIdx = n;
-
+        
+        
         #region
         //character.transform.name = (jsonData["시트1"][n]["QuestName"]);
         //character.GetComponent<QuestData>().charname = (jsonData["시트1"][n]["QuestName"]);
@@ -122,7 +115,7 @@ public class QuestManager : MonoBehaviour
     public void AcceptBtn()
     {
         ReceiveQuest(questIdx);
-        uIMgr.UpdateQuestPopUpInfo(questPopUpManager.questGoalTxt.text, questPopUpManager.questCountTxt.text);
+        //uIMgr.UpdateQuestPopUpInfo(questPopUpManager.questGoalTxt.text, questPopUpManager.questCountTxt.text);
     }
 
     public void ReceiveQuest(int n)
@@ -132,24 +125,16 @@ public class QuestManager : MonoBehaviour
         var jsonData = JSON.Parse(json);
         int item = n - 1;
 
-<<<<<<< HEAD
-        questGoalTxt.text = (jsonData["Quest"][item]["Goal"]);
+        goalTxt.text = (jsonData["Quest"][item]["Goal"]);
         questPopUpManager.questMaxCnt = (int)(jsonData["Quest"][item]["Count"]);
         questPopUpManager.questCountTxt.text = $"({questPopUpManager.questCurCnt} / {questPopUpManager.questMaxCnt})";
         questPopUpManager.questIdx = (int)(jsonData["Quest"][item]["QuestNum"]);
-        dataMgrDontDestroy.curquestidx = n;
-=======
-        //questGoalTxt.text = (jsonData["Quest"][item]["Goal"]);
-        //qPopup.questCountTxt.text = $"({questCurCount} / {(jsonData["Quest"][item]["Count"])})";
-        qPopup.maxCount = (int)(jsonData["Quest"][item]["Count"]);
-        qPopup.curQuestIndex = (int)(jsonData["Quest"][item]["QuestNum"]);
-        //rewardExp.text = (jsonData["Quest"][item]["Reward1"]);
-        //rewardMat.text = (jsonData["Quest"][item]["Reward2"]);
-        //rewardGold.text = (jsonData["Quest"][item]["Reward3"]);
->>>>>>> upstream/DEV
+        dataMgrDontDestroy.questIdx = n;
 
+        //questPopUpPanelVisible
         acceptBtn.SetActive(false);
-        ingBtn.SetActive(true);
+        questPopUpPanel.SetActive(true);
+        ingImg.SetActive(true);
     }
 
     public void CompletedBtn()
@@ -157,9 +142,10 @@ public class QuestManager : MonoBehaviour
         GetComponent<QuestPopUpManager>().InitCurQuest();
         if (questCurCnt >= questMaxCnt)
         {
-            
+            questIdx++;
+            dataMgrDontDestroy.QuestIdx = questIdx;
         }
-        transform.Find("IngBtn").gameObject.SetActive(false);
+        transform.Find("IngImg").gameObject.SetActive(false);
         transform.Find("CompletedBtn").gameObject.SetActive(true);
     }
 

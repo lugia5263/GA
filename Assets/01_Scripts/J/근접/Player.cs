@@ -120,7 +120,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         stateManager = GetComponent<StateManager>();
         hudManager = GetComponent<HUDManager>();
         uimgr = GameObject.Find("UIMgr").GetComponent<UIMgr>();
-        chargingSlider = GameObject.FindGameObjectWithTag("Heal").GetComponent<Slider>();
+        //chargingSlider = GameObject.FindGameObjectWithTag("Heal").GetComponent<Slider>();
         cvc = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
         //enforceMgr = GameObject.Find("Town/NPC/NPC_Weapon_3").GetComponent<EnforceMgr>(); // 현창 추가함.
         if (PhotonNetwork.IsConnected && photonView.IsMine)

@@ -4112,7 +4112,6 @@ GameObject:
   - component: {fileID: 3686115219372456667}
   - component: {fileID: 1692082614431753170}
   - component: {fileID: 3840056755141048021}
-  - component: {fileID: 4311051044662154638}
   m_Layer: 0
   m_Name: NickName
   m_TagString: Untagged
@@ -4181,18 +4180,6 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: NickName
---- !u!114 &4311051044662154638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3650098665979906890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c984b587bd4d6a4790f9c6637ca68c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3686099415975910669
 GameObject:
   m_ObjectHideFlags: 0
@@ -7503,7 +7490,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataMgrDontDestroy: {fileID: 0}
   pv: {fileID: 8556590183487569295}
-  rewardCanvas: {fileID: 0}
   inventoryPanel: {fileID: 8002630482744117536}
   isInven: 0
   playerLevel: 0

@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class QuestPopUpManager : MonoBehaviour
 {
     public DataMgrDontDestroy dataMgr;
-    
     public int questIndex; //현재 퀘스트 번호
     public Text questCountTxt;
 
@@ -20,12 +19,17 @@ public class QuestPopUpManager : MonoBehaviour
 
     public bool isCompleted;
 
+    private void Awake()
+    {
+        
+    }
+
     private void Start()
     {
-        dataMgr = DataMgrDontDestroy.instance;
+        dataMgr = DataMgrDontDestroy.Instance;
 
         questCountTxt = GameObject.Find("QCountTxt").GetComponent<Text>();
-        questIndex = dataMgr.QuestIdx;
+        questIndex = dataMgr.questIdx;
         goal = dataMgr.GoalTxt;
         curCnt = dataMgr.QuestCurCnt;
         maxCnt = dataMgr.QuestMaxCnt;
@@ -47,7 +51,7 @@ public class QuestPopUpManager : MonoBehaviour
     {
         //qcondition = (QuestCondition)n; // 위의 이넘값을 1, 2 로 쓸거야
         if (questIndex == n)
-        { 
+        {
             curCnt++;
             dataMgr.QuestCurCnt = curCnt; // 데이터 매니저에 현재 퀘스트 달성도 업데이트
         }
@@ -59,7 +63,7 @@ public class QuestPopUpManager : MonoBehaviour
     {
         questCountTxt.text = $"({curCnt} /  {maxCnt} )";
 
-        if(curCnt >= maxCnt)
+        if (curCnt >= maxCnt)
         {
             questCountTxt.color = Color.yellow;
             isCompleted = true;
@@ -72,6 +76,3 @@ public class QuestPopUpManager : MonoBehaviour
 
 
 }
-
-
-
