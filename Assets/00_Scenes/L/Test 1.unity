@@ -579,7 +579,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1023491245}
-  - component: {fileID: 1023491244}
+  - component: {fileID: 1023491246}
   m_Layer: 0
   m_Name: DataMgr
   m_TagString: Untagged
@@ -587,27 +587,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1023491244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1023491243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e523ce9f7bc60240af8ec9e8e873806, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  level: 0
-  exp: 0
-  maxhp: 0
-  hp: 0
-  attackPower: 0
-  criChance: 50
-  criDamage: 120
-  def: 0
-  gageTime: 0
 --- !u!4 &1023491245
 Transform:
   m_ObjectHideFlags: 0
@@ -623,6 +602,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1023491246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023491243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46573b77e40543b459725e02adcf6a33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nickName: 
+  level: 0
+  exp: 0
+  maxhp: 0
+  hp: 0
+  weaponLevel: 0
+  attackPower: 0
+  criChance: 0
+  criDamage: 0
+  userGold: 0
+  userMateiral: 0
+  userExpPotion: 0
+  questIdx: 0
+  goalTxt: 
+  questCurCnt: 0
+  questMaxCnt: 0
 --- !u!1 &1036971636
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,6 +954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b6fe1958a0c80748be2bd09a69edc91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dataMgrDontDestroy: {fileID: 0}
   level: 0
   exp: 0
   maxhp: 0
