@@ -2,45 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-
-public class InventoryManager : MonoBehaviour
+public class InventoryManager : MonoBehaviourPunCallbacks
 {
-    #region 싱글톤
-    private static InventoryManager instance;
-    public static InventoryManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                // 인스턴스가 없으면 새로 생성
-                GameObject singletonObject = new GameObject("InventoryManager");
-                instance = singletonObject.AddComponent<InventoryManager>();
-                DontDestroyOnLoad(singletonObject); // 씬 전환 시에도 유지되도록 설정
-            }
-
-            return instance;
-        }
-    }
-    #endregion  
+    public DataMgrDontDestroy dataMgrDontDestroy;
+    public PhotonView pv;
 
     [Space(1)]
-    public StateManager stateMgr;
-    public GameObject rewardCanvas;
-    public GameObject inventoryCanvas;
+    public GameObject inventoryPanel;
     public bool isInven;
 
-    [Header("PlayerState")]
-    [Header("싱글톤 적용됌")]
-
-    public int weaponLv = 1;
-
+    // 이 데이터들도 DataManager같은 싱글톤에서 땡겨와야한다.
+    public int playerLevel;
+    public int weaponLv;
+    public int attackPower;
+    public string playerTitle; // 칭호
+    public string playerNick; // 닉네임
     public int expPotion;
     public int materials;
     public int gold;
 
-    [HideInInspector]
+
     public Image goldImage;
     public Image expImage;
     public Image materialImage;
@@ -48,67 +31,50 @@ public class InventoryManager : MonoBehaviour
     public Text expTxt;
     public Text materialTxt;
     public Text atkInfo;
+    public Text playerLvTxt;   // 인벤토리창 레벨
+    public Text playerTitleTxt; // 인벤토리창 칭호
+    public Text playerNickTxt; // 인벤토리창 이름
 
     private void Awake()
     {
-        Transform tr = transform.GetChild(0).GetChild(0).GetChild(1);
-        stateMgr = GameObject.FindGameObjectWithTag("Player").GetComponent<StateManager>();//TODO: 
-        rewardCanvas = GameObject.Find("RewardContent").gameObject;//TODO:
-        inventoryCanvas = GameObject.Find("InventoryCanvas").gameObject;
-        goldImage = tr.Find("item_gold").GetComponent<Image>();
-        expImage = tr.transform.Find("item_exp").GetComponent<Image>();
-        materialImage = tr.transform.Find("item_material").GetComponent<Image>();
-        goldTxt = tr.transform.Find("item_goldTxt").GetComponent<Text>();
-        expTxt = tr.transform.Find("item_expTxt").GetComponent<Text>();
-        materialTxt = tr.transform.Find("item_materialTxt").GetComponent<Text>();
-        atkInfo = tr.transform.Find("atkInfo").GetComponent<Text>();
-        InitInventory();
-        inventoryCanvas.SetActive(false);
+        dataMgrDontDestroy = DataMgrDontDestroy.Instance;
+        pv = GetComponent<PhotonView>();
+        playerLevel = dataMgrDontDestroy.Level;
+        weaponLv = dataMgrDontDestroy.WeaponLevel;
+        attackPower = dataMgrDontDestroy.AttackPower;
+        expPotion = dataMgrDontDestroy.UserExpPotion;
+        materials = dataMgrDontDestroy.UserMaterial;
+        gold = dataMgrDontDestroy.UserGold;
+        playerNick = dataMgrDontDestroy.NickName;
+        playerTitle = "Faker"; // 현창 추가. 필요시에 바꾼다.
 
-
+        inventoryPanel.SetActive(false);
     }
 
-    private void Start()
+    private void Update() // i 눌러서 인벤토리 열기
     {
-        // 싱글톤 인스턴스가 이미 존재하면 현재 인스턴스를 파괴
-        if (instance != null && instance != this)
+        if (pv.IsMine)
         {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            // 처음 생성된 경우, 현재 인스턴스를 설정
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-    }
-
-    private void Update() // c 눌러서 인벤토리 열기
-    {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            if (!isInven)
+            if (Input.GetKeyDown(KeyCode.I))
             {
-                inventoryCanvas.SetActive(true);
-                isInven = true;
-            }
-            else
-            {
-                inventoryCanvas.SetActive(false);
-                isInven = false;
+                if (!isInven)
+                {
+                    inventoryPanel.SetActive(true);
+                    InitInventory();
+                    isInven = true;
+                }
+                else
+                {
+                    InitInventory();
+                    inventoryPanel.SetActive(false);
+                    isInven = false;
+                }
             }
         }
-
     }
-
-
-
-
-
-
-    #region 아이템
     public void InitInventory()
     {
+        #region 아이템 1개 이상이면 불들어오게
         if (gold >= 1)
         {
             goldImage.color = Color.white;
@@ -135,46 +101,25 @@ public class InventoryManager : MonoBehaviour
         {
             materialImage.color = Color.gray;
         }
+        #endregion
+
+        #region DataMgrDontDestroy랑 정보 동기화
+        // 레벨, 공격력, 재료, 경험치포션, 골드, 칭호만 초기화하면될듯
+        playerLevel = dataMgrDontDestroy.Level;
+        attackPower = dataMgrDontDestroy.AttackPower;
+        expPotion = dataMgrDontDestroy.UserExpPotion;
+        materials = dataMgrDontDestroy.UserMaterial;
+        gold = dataMgrDontDestroy.UserGold;
+        playerTitle = "Faker";
+        #endregion
+
         goldTxt.text = gold.ToString();
         expTxt.text = expPotion.ToString();
         materialTxt.text = materials.ToString();
-        atkInfo.text = stateMgr.atk.ToString();
+        atkInfo.text = attackPower.ToString();
+        playerLvTxt.text = playerLevel.ToString();
 
-    } //아이템 1개 이상이면 불들어오게
-
-    public void AddMaterial() // 태그 찾기 -> 인벤토리 개수 늘리기
-    {
-            for (int i = 0; i < rewardCanvas.transform.childCount; i++)
-            {
-                GameObject item = rewardCanvas.transform.GetChild(i).gameObject;
-                if (rewardCanvas.transform.GetChild(i).CompareTag("Material"))
-                {
-                    materials += item.GetComponent<ItemJsonData>().count;
-                    item.SetActive(false);
-                }
-                if (rewardCanvas.transform.GetChild(i).CompareTag("Exp"))
-                {
-                    expPotion += item.GetComponent<ItemJsonData>().count;
-                    item.SetActive(false);
-                }
-                if (rewardCanvas.transform.GetChild(i).CompareTag("Gold"))
-                {
-                    gold += item.GetComponent<ItemJsonData>().count;
-                    item.SetActive(false);
-                }
-
-       
-            //TODO: Destroy(item);
-        }
+        playerNickTxt.text = playerNick;
+        playerTitleTxt.text = playerTitle;
     }
-
-
-    public void SendInventory() // Reward에 있는 아이템 수령받기 버튼
-    {
-        AddMaterial();
-        InitInventory();
-    }
-#endregion
-
-
 }

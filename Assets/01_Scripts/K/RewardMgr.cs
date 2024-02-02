@@ -7,7 +7,6 @@ using SimpleJSON; //########################大败客具青
 public class RewardMgr : MonoBehaviour
 {
     public static RewardMgr reward;
-    public InventoryManager inventoryMgr;
     public ImageList imagelist;
 
 
@@ -20,7 +19,6 @@ public class RewardMgr : MonoBehaviour
 
     private void Start()
     {
-        inventoryMgr = GameObject.Find("InventoryMgr").GetComponent<InventoryManager>();
         imagelist = GameObject.Find("ImageList").GetComponent<ImageList>();
         var jsonitemFile = Resources.Load<TextAsset>("Json/ItemList");
         txtFile = jsonitemFile;

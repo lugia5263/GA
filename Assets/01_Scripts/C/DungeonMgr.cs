@@ -5,9 +5,11 @@ using UnityEngine.UI;
 using SimpleJSON;
 using UnityEngine.SceneManagement;
 using System;
+using Photon.Pun;
 
-public class DungeonMgr : MonoBehaviour
+public class DungeonMgr : MonoBehaviourPunCallbacks
 {
+    public DataMgrDontDestroy dataMgrDontDestroy;
     public Text discription;
 
     public int dungeonSort; // 현재 던전 형식(싱글1, 카오스2, 레이드3)
@@ -25,35 +27,24 @@ public class DungeonMgr : MonoBehaviour
     public GameObject chaosContent;
     public GameObject raidContent;
 
-    public TextAsset txtFile; //Jsonfile
+    TextAsset txtFile; //Jsonfile
     public GameObject singleCell; // Prefab
     public GameObject chaosCell;
     public GameObject raidCell;
 
-
     private void Awake()
     {
-        singleContent = GameObject.Find("SingleContent");
-        chaosContent = GameObject.Find("ChaosContent");
-        raidContent = GameObject.Find("RaidContent");
-
-        singlePanel = GameObject.Find("SinglePanel");
-        chaosPanel = GameObject.Find("ChaosPanel");
-        raidPanel = GameObject.Find("RaidPanel");
-
         discription = GameObject.Find("DungeonDescription").GetComponent<Text>();
-
         var jsonitemFIle = Resources.Load<TextAsset>("Json/DungeonList");
         txtFile = jsonitemFIle;
     }
 
     private void Start()
     {
+        dataMgrDontDestroy = DataMgrDontDestroy.Instance;
         BackDungeon();
-
         var DunGeonListFile = Resources.Load<TextAsset>("Json/DungeonList");
         txtFile = DunGeonListFile;
-
 
         string json = txtFile.text;
         var jsonData = JSON.Parse(json);
@@ -64,7 +55,7 @@ public class DungeonMgr : MonoBehaviour
         }
         for (int i = 1; i < jsonData["Chaos"].Count + 1; i++)
         {
-            InstChaosDunGeon(i);
+            InstChaosDunGeon(i); 
         }
         for (int i = 1; i < jsonData["Raid"].Count + 1; i++)
         {
@@ -128,9 +119,6 @@ public class DungeonMgr : MonoBehaviour
         character.transform.SetParent(raidContent.transform);
     }
 
-
-
-
     public void OnSinglePanel()
     {
         singlePanel.SetActive(true);
@@ -169,14 +157,36 @@ public class DungeonMgr : MonoBehaviour
         string main = "던전을 선택해.";
         discription.text = main;
     }
+
     public void MoveDungeon()
     {
-        if (dungeonSort == 1)
-            SceneManager.LoadScene(single);
-        else if (dungeonSort == 2)
-            SceneManager.LoadScene(chaos);
-        else if (dungeonSort == 3)
-            SceneManager.LoadScene(raid);
+        switch (dungeonSort)
+        {
+            case 1:
+                Debug.Log($"현재 선택한 던전은 : single");
+                dataMgrDontDestroy.DungeonSortIdx = dungeonSort;
+                dataMgrDontDestroy.DungeonNumIdx = dungeonNum;
+                Debug.Log($"선택한 던전의 번호는 {dataMgrDontDestroy.DungeonSortIdx} / {dataMgrDontDestroy.DungeonNumIdx}");
+                PhotonNetwork.Disconnect();
+                //SceneManager.LoadScene(single);
+                break;
+            case 2:
+                Debug.Log($"현재 선택한  : chaos");
+                dataMgrDontDestroy.DungeonSortIdx = dungeonSort;
+                dataMgrDontDestroy.DungeonNumIdx = dungeonNum;
+                Debug.Log($"선택한 던전의 번호는 {dataMgrDontDestroy.DungeonSortIdx} / {dataMgrDontDestroy.DungeonNumIdx}");
+                PhotonNetwork.Disconnect();
+                //SceneManager.LoadScene(chaos);
+                break;
+            case 3:
+                Debug.Log($"현재 선택한  : raid");
+                dataMgrDontDestroy.DungeonSortIdx = dungeonSort;
+                dataMgrDontDestroy.DungeonNumIdx = dungeonNum;
+                Debug.Log($"선택한 던전의 번호는 {dataMgrDontDestroy.DungeonSortIdx} / {dataMgrDontDestroy.DungeonNumIdx}");
+                //SceneManager.LoadScene(raid);
+                break;
+            default:
+                break;
+        }
     }
-
 }

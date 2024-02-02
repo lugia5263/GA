@@ -1,38 +1,54 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-
-public class StateManager : MonoBehaviour
+public class StateManager : MonoBehaviourPunCallbacks
 {
-   
-
+    public DataMgrDontDestroy dataMgrDontDestroy;
 
     [Header("Stet")]
     // 플레이어의 스텟!!!!
-    public float maxhp;
-    public float hp;
-    public int atk;
     public int level = 1;
     public int exp;
-    
+    public float maxhp;
+    public float hp;
+    public int weaponLevel;
+    public int attackPower;
+    public int criChance;
+    public float criDamage;
+    //public int classNum; // 클래스 변경시, 이 부분도 신경써주세요 1전사 2원딜 3마법
+
     [Space(10)]
     [Range(0, 100)]
-    public int criChance = 50; //in percentage
-    public float criDamage = 1.5f;
-    public int def;
-    public float gageTime;
+    public int userGold;
+    public int userMaterial;
+    public int userExpPotion;
 
     [HideInInspector]
     
     public HUDManager hudManager;
-   
-
+    public PhotonView pv;
 
     private void Start()
     {
-        
         hudManager = gameObject.GetComponent<HUDManager>();
+        pv = GetComponent<PhotonView>();
+        dataMgrDontDestroy = DataMgrDontDestroy.Instance;
+
+        level = dataMgrDontDestroy.Level;
+        exp = dataMgrDontDestroy.Exp;
+        maxhp = dataMgrDontDestroy.MaxHp;
+        hp = dataMgrDontDestroy.Hp;
+        weaponLevel = dataMgrDontDestroy.WeaponLevel;
+        attackPower = dataMgrDontDestroy.AttackPower;
+        criChance = dataMgrDontDestroy.CriChance;
+        criDamage = dataMgrDontDestroy.CriDamage;
+        userGold = dataMgrDontDestroy.UserGold;
+        userMaterial = dataMgrDontDestroy.UserMaterial;
+        userExpPotion = dataMgrDontDestroy.UserExpPotion;
+
+        hp = maxhp;
     }
 
 
@@ -56,7 +72,7 @@ public class StateManager : MonoBehaviour
         var monster = target.GetComponent<StateManager>();
         if (monster != null)
         {
-            float totalDamage = atk * (skillDMG * Random.Range(0.005f, 0.01f));
+            float totalDamage = attackPower * (skillDMG * Random.Range(0.005f, 0.01f));
             if (Random.Range(0f, 100f) <= criChance)
             {
                 totalDamage *= criDamage * 0.02f;
@@ -73,8 +89,6 @@ public class StateManager : MonoBehaviour
         // hit - (hit*def/100)
 
         DamagePopUpGenerator.current.CreatePopup(transform.position + randomness, hit.ToString(), popupColor);
-        hudManager.ChangeUserHUD();
+        //hudManager.ChangeUserHUD();
     }
-
-    
 }
