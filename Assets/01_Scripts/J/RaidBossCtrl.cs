@@ -107,7 +107,7 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks, IPunObservable
         targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (PhotonNetwork.IsMasterClient)
         {
@@ -115,14 +115,17 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks, IPunObservable
             {
                 if (!die)
                 {
-                    GameObject closestargetPlayer = FindClosestPlayerWithTag("Player");
-                    if (closestargetPlayer != null)
-                    {
+                    //GameObject closestargetPlayer = FindClosestPlayerWithTag("Player");
+                    //if (closestargetPlayer != null)
+                    //{
+                        pv.RPC("BreakTime", RpcTarget.AllBuffered);
                         BreakTime();
                         PatternTimeCheck();
                         Dieing();
-                        DieNowPatternt();
-                        healthUpPattern();
+                        pv.RPC("DieNowPatternt", RpcTarget.AllBuffered);
+                        //DieNowPatternt();
+                        pv.RPC("healthUpPattern", RpcTarget.AllBuffered);
+                        //healthUpPattern();
                         switch (raidBoss)
                         {
                             case RAIDBOSS.IDLE:
@@ -229,13 +232,15 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks, IPunObservable
                                 isActivating = true;
                                 speed = 0f;
                                 breakTime = 0f;
-                                StartCoroutine(breakTiming());
+                                //pv.RPC("Break", RpcTarget.AllBuffered);
+                               StartCoroutine(breakTiming());
                                 break;
                             case RAIDBOSS.DOWN:
                                 isActivating = true;
                                 down = true;
                                 speed = 0f;
                                 float dista = Vector3.Distance(targetPlayer.position, transform.position);
+                                //pv.RPC("Down", RpcTarget.AllBuffered);
                                 anim.SetTrigger("Down");
                                 if (dista > attakRange)
                                 {
@@ -249,12 +254,13 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks, IPunObservable
                             case RAIDBOSS.DIE:
                                 isActivating = true;
                                 speed = 0;
-                                anim.SetTrigger("Die");
+                                 pv.RPC("Die", RpcTarget.AllBuffered);
+                                 anim.SetTrigger("Die");
                                 break;
                             case RAIDBOSS.PAGE1:
                                 break;
                         }
-                    }
+                    //}
                 }
             }
         }
@@ -279,6 +285,7 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks, IPunObservable
 
         return closestPlayer;
     }
+    [PunRPC]
     void MoveTowardsTarget(bool stop)
     {
         if (isActivating)
@@ -327,7 +334,7 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks, IPunObservable
             anim.speed = 1f;
         }
     }
-
+    [PunRPC]
     void PatternTimeCheck()
     {
         p1 += Time.deltaTime;
@@ -361,6 +368,8 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks, IPunObservable
             p5Ready = true;
         }
     }
+
+    [PunRPC]
     void BreakTime()
     {
         breakTime += Time.deltaTime;
@@ -389,16 +398,18 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks, IPunObservable
         yield return new WaitForSeconds(2f);
         DownPattern.SetActive(false);
     }
-
+    [PunRPC]
     void Dieing()
     {
         if(stateManager.hp <= 0)
         {
             die = true;
             raidBoss = RAIDBOSS.DIE;
+            characterController.enabled = false;
         }
     }
 
+    [PunRPC]
     void DieNowPatternt()
     {
         dieNowPattern += Time.deltaTime;
@@ -413,6 +424,7 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
+    [PunRPC]
     void healthUpPattern()
     {
         healthUpingTime += Time.deltaTime;

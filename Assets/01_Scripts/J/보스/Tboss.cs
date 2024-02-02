@@ -367,6 +367,7 @@ public class Tboss : MonoBehaviourPunCallbacks, IPunObservable
         {
             die = true;
             tBOSS = TBOSS.DIE;
+            characterController.enabled = false;
         }
     }
     void BreakTime()

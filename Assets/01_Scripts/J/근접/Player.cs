@@ -79,7 +79,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject[] ob;
 
     [Header("Skill CoolTime")]
-    public Image[] skillIcon;
+    public Image[] skillICoolicon;
+    public GameObject[] playerSkillIcon;
     public bool skillUse;
     public bool qisReady;
     public bool eisReady;
@@ -122,24 +123,17 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         stateManager = GetComponent<StateManager>();
         hudManager = GetComponent<HUDManager>();
         uimgr = GameObject.Find("UIMgr").GetComponent<UIMgr>();
-        chargingSlider = GameObject.FindGameObjectWithTag("Heal").GetComponent<Slider>();
         cvc = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
-        //테스트용
-        //raidBoss = GameObject.Find("RaidBoss").GetComponent<RaidBossCtrl>();
-        //tboss = GameObject.Find("TTboss").GetComponent<Tboss>();
-        //raidBoss.GetComponent<RaidBossCtrl>().Starts();
-        //tboss.GetComponent<Tboss>().Starts();
-        //테스트용
         if (PhotonNetwork.IsConnected && photonView.IsMine)
         {
             cvc.GetComponent<ThirdPersonOrbitCamBasicA>().player = transform;
         }
         cvc.GetComponent<ThirdPersonOrbitCamBasicA>().Starts();
-        if (skillIcon != null)
+        if (skillICoolicon != null)
         {
-            skillIcon[0] = GameObject.Find("CoolTimeBGQ").GetComponent<Image>();
-            skillIcon[1] = GameObject.Find("CoolTimeBGE").GetComponent<Image>();
-            skillIcon[2] = GameObject.Find("CoolTimeBGR").GetComponent<Image>();
+            skillICoolicon[0] = GameObject.Find("CoolTimeBGQ").GetComponent<Image>();
+            skillICoolicon[1] = GameObject.Find("CoolTimeBGE").GetComponent<Image>();
+            skillICoolicon[2] = GameObject.Find("CoolTimeBGR").GetComponent<Image>();
         }
         if (boss != null)
         {
@@ -156,15 +150,14 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         pv = GetComponent<PhotonView>();
         pav = GetComponent<PhotonAnimatorView>();
         plane = new Plane(transform.up, transform.position);
-        skillIcon[0].fillAmount = 0;
-        skillIcon[1].fillAmount = 0;
-        skillIcon[2].fillAmount = 0;
+        skillICoolicon[0].fillAmount = 0;
+        skillICoolicon[1].fillAmount = 0;
+        skillICoolicon[2].fillAmount = 0;
         
         if (pv.IsMine)
         {
             cvc.Follow = transform;
             cvc.LookAt = transform;
-            SKilliconOn();
         }
         //chatManager.StartCoroutine(chatManager.CheckEnterKey());
     }
@@ -218,8 +211,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
     }
-    // Update is called once per frame
-    void Update() // 원래 FixedUpdate였음
+  
+    void FixedUpdate() // 원래 FixedUpdate였음
     {
        
         if (pv.IsMine)
@@ -284,15 +277,15 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (!qisReady)
         {
-            skillIcon[0].fillAmount = 1 - qskillcool /curQskillcool;
+            skillICoolicon[0].fillAmount = 1 - qskillcool /curQskillcool;
         }
         if (!eisReady)
         {
-            skillIcon[1].fillAmount = 1 - eskillcool / curEskillcool;
+            skillICoolicon[1].fillAmount = 1 - eskillcool / curEskillcool;
         }
         if (!risReady)
         {
-            skillIcon[2].fillAmount = 1 - rskillcool / curRskillcool;
+            skillICoolicon[2].fillAmount = 1 - rskillcool / curRskillcool;
         }
     }
 
@@ -420,7 +413,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
         if (onMagic)
         {
-            ob[0] = GameObject.FindGameObjectWithTag("Heal").GetComponent<GameObject>();
             if (rischarging)
             {
                 if (Input.GetKey(KeyCode.R))
@@ -490,6 +482,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             nearObject = other.gameObject;
         if (other.tag == "HealArea")
         {
+            if (stateManager.hp >= stateManager.maxhp)
+                return;
+
             stateManager.hp += 5;
             hudManager.ChangeUserHUD();
         }
@@ -527,30 +522,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
     }
-    void SKilliconOn()
-    {
-        if (sPlayer)
-        {
-            uimgr.playerSkillIcon[0].SetActive(true);
-            uimgr.playerSkillIcon[1].SetActive(false);
-            uimgr.playerSkillIcon[2].SetActive(false);
-        }
-        if(aPlayer)
-        {
-            uimgr.playerSkillIcon[0].SetActive(false);
-            uimgr.playerSkillIcon[1].SetActive(true);
-            uimgr.playerSkillIcon[2].SetActive(false);
-        }
-        if(mPlayer)
-        {
-            uimgr.playerSkillIcon[0].SetActive(false);
-            uimgr.playerSkillIcon[1].SetActive(false);
-            uimgr.playerSkillIcon[2].SetActive(true);
-        }
-            
-    }    
-
-
+      
 
     void SkillUsing()
     {
