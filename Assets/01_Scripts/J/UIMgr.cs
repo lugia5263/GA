@@ -11,7 +11,7 @@ public class UIMgr : MonoBehaviour
     public GameObject[] playerSkillIcon;
 
     void Start()
-    { 
+    {
         UIstartOff();
         if (player != null)
         {
@@ -29,6 +29,6 @@ public class UIMgr : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
