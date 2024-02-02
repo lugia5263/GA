@@ -41,6 +41,12 @@ public class DataMgrDontDestroy : MonoBehaviour
     public int questMaxCnt;
     #endregion
 
+    #region 던전의 정보를 저장하는 변수
+    [Header("던전의 정보")]
+    public int dungeonSortIdx=0; //싱글, 카오스, 레이드
+    public int dungeonNumIdx=0; // n-1, n-2, n-3의 1, 2, 3번
+    #endregion
+
     // 싱글톤
     void Awake()
     {
@@ -172,6 +178,20 @@ public class DataMgrDontDestroy : MonoBehaviour
     }
     #endregion
 
+    #region 던전 관련
+    public int DungeonSortIdx
+    {
+        get { return dungeonSortIdx; }
+        set { dungeonSortIdx = value; }
+    }
+
+    public int DungeonNumIdx
+    {
+        get { return dungeonNumIdx; }
+        set { dungeonNumIdx = value; }
+    }
+    #endregion
+
     public void LoadData() // 접속했을때, 저장 <- 이건 이미 loadplayer에서 start누를때 datamgr에 저장을 함.
     {
 
@@ -185,10 +205,10 @@ public class DataMgrDontDestroy : MonoBehaviour
 
 
         // 주석부분은 필요없을거같은데 게임내에서 변하는 정보가 아님
-        //PlayerPrefs.SetString($"{slotNum}_NickName", NickName);
         //PlayerPrefs.SetString($"{slotNum}_Class", className);
         //PlayerPrefs.SetInt($"{slotNum}_ClassNum", classNum);
         #region 캐릭터 정보 저장
+        PlayerPrefs.SetString($"{slotNum}_NickName", NickName);
         Debug.Log($"저장하려는 Level은 : {Level}");
         PlayerPrefs.SetInt($"{slotNum}_Level", Level);
         Debug.Log($"저장하려는 MaxHp은 : {MaxHp}");
