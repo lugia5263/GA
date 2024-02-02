@@ -180,7 +180,7 @@ public class DataMgrDontDestroy : MonoBehaviour
     public void SaveDate() // 접속종료할때 저장
     {
         int slotNum = SelectSlot.slotNum;
-        Debug.Log("현재 슬롯넘버는 : "+slotNum);
+        Debug.Log("현재 슬롯넘버는 : " + slotNum);
         //PlayerPrefs.SetString($"SlotNum_{slotNum}", slotNum.ToString());
 
 
