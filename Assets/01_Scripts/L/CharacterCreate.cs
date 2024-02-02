@@ -114,6 +114,11 @@ public class CharacterCreate : MonoBehaviour
         PlayerPrefs.SetInt($"{slotNum}_Material", 0);
         PlayerPrefs.SetInt($"{slotNum}_ExpPotion", 0);
 
+        PlayerPrefs.SetInt($"{slotNum}_QuestIdx", 0);
+        PlayerPrefs.SetString($"{slotNum}_GoalTxt", "");
+        PlayerPrefs.SetInt($"{slotNum}_QuestCurCnt", 0);
+        PlayerPrefs.SetInt($"{slotNum}_QuestMaxCnt", 0);
+
         PlayerPrefs.Save();
 
         yield return null;
@@ -139,6 +144,11 @@ public class CharacterCreate : MonoBehaviour
             PlayerPrefs.DeleteKey($"{slotNum}_UserGold");
             PlayerPrefs.DeleteKey($"{slotNum}_Material");
             PlayerPrefs.DeleteKey($"{slotNum}_ExpPotion");
+
+            PlayerPrefs.DeleteKey($"{slotNum}_QuestIdx");
+            PlayerPrefs.DeleteKey($"{slotNum}_GoalTxt");
+            PlayerPrefs.DeleteKey($"{slotNum}_QuestCurCnt");
+            PlayerPrefs.DeleteKey($"{slotNum}_QuestMaxCnt");
 
             PlayerPrefs.Save();
 

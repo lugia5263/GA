@@ -153,7 +153,7 @@ public class DataMgrDontDestroy : MonoBehaviour
     #endregion
 
     #region 퀘스트관련
-    public int QusetIdx
+    public int QuestIdx
     {
         get { return questIdx; }
         set { questIdx = value; }
@@ -227,7 +227,10 @@ public class DataMgrDontDestroy : MonoBehaviour
         #endregion
 
         #region 퀘스트 정보 저장
-
+        PlayerPrefs.SetInt($"{slotNum}_QuestIdx", questIdx);
+        PlayerPrefs.SetInt($"{slotNum}_QuestCurCnt", questCurCnt);
+        PlayerPrefs.SetInt($"{slotNum}_QuestMaxCnt", questMaxCnt);
+        PlayerPrefs.SetString($"{slotNum}_GoalTxt", goalTxt);
         #endregion
 
         PlayerPrefs.Save();

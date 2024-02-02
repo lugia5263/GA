@@ -212,6 +212,17 @@ MonoBehaviour:
   playerGold: 0
   playerMaterial: 0
   playerAttackPower: 0
+--- !u!114 &1296660799 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5406880361288337009, guid: 8d0613e5695e44c48b6ce43f1121f369, type: 3}
+  m_PrefabInstance: {fileID: 2061591191288617341}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1467348093 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8961072527678984207, guid: dc762da5e38f5db4dafc6a4e9e1765c7, type: 3}
@@ -281,7 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd682f53a737ed641a4d3c4dda347986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonPanel: {fileID: 0}
+  dataMgrDontDestroy: {fileID: 0}
 --- !u!1 &2113125195 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9182061656932151095, guid: 8d0613e5695e44c48b6ce43f1121f369, type: 3}
@@ -568,12 +579,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1283477203675841026, guid: 8d0613e5695e44c48b6ce43f1121f369, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1283477203675841026, guid: 8d0613e5695e44c48b6ce43f1121f369, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1283477203675841026, guid: 8d0613e5695e44c48b6ce43f1121f369, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2004079602}
     - target: {fileID: 1283477203675841026, guid: 8d0613e5695e44c48b6ce43f1121f369, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1283477203675841026, guid: 8d0613e5695e44c48b6ce43f1121f369, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnSinglePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1283477203675841026, guid: 8d0613e5695e44c48b6ce43f1121f369, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: DungeonMgr, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1293684493990968747, guid: 8d0613e5695e44c48b6ce43f1121f369, type: 3}
       propertyPath: m_Material
@@ -865,7 +892,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5406880361288337009, guid: 8d0613e5695e44c48b6ce43f1121f369, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5406880361288337009, guid: 8d0613e5695e44c48b6ce43f1121f369, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -1092,19 +1119,47 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8728899971103148065, guid: 8d0613e5695e44c48b6ce43f1121f369, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8728899971103148065, guid: 8d0613e5695e44c48b6ce43f1121f369, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8728899971103148065, guid: 8d0613e5695e44c48b6ce43f1121f369, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2004079602}
     - target: {fileID: 8728899971103148065, guid: 8d0613e5695e44c48b6ce43f1121f369, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2004079603}
+    - target: {fileID: 8728899971103148065, guid: 8d0613e5695e44c48b6ce43f1121f369, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8728899971103148065, guid: 8d0613e5695e44c48b6ce43f1121f369, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: MoveDungeon
+      objectReference: {fileID: 0}
+    - target: {fileID: 8728899971103148065, guid: 8d0613e5695e44c48b6ce43f1121f369, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: LeaveVillige
       objectReference: {fileID: 0}
     - target: {fileID: 8728899971103148065, guid: 8d0613e5695e44c48b6ce43f1121f369, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: DungeonMgr, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8728899971103148065, guid: 8d0613e5695e44c48b6ce43f1121f369, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RoomEnterManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8728899971103148065, guid: 8d0613e5695e44c48b6ce43f1121f369, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8728899971103148065, guid: 8d0613e5695e44c48b6ce43f1121f369, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8775432468542230539, guid: 8d0613e5695e44c48b6ce43f1121f369, type: 3}
@@ -1580,6 +1635,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mgr_Total
       objectReference: {fileID: 0}
+    - target: {fileID: 1902150478588735069, guid: 86e5606118ac82049bd062c3c2bfcb09, type: 3}
+      propertyPath: exitBtn
+      value: 
+      objectReference: {fileID: 1296660799}
     - target: {fileID: 3353839748692893754, guid: 86e5606118ac82049bd062c3c2bfcb09, type: 3}
       propertyPath: m_LocalPosition.x
       value: -540
