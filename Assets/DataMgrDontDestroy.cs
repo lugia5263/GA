@@ -147,25 +147,25 @@ public class DataMgrDontDestroy : MonoBehaviour
     #endregion
 
     #region 퀘스트관련
-    public int QusetIdx
+    public int QuestIdx //Json 데이터 'QuestTable'의 Index 번호를 불러옴.
     {
         get { return questIdx; }
         set { questIdx = value; }
     }
 
-    public string GoalTxt
+    public string GoalTxt //Json 데이터 'QuestTable'의 'Goal' 에 있는 정보를 불러옴.
     {
         get { return goalTxt; }
         set { goalTxt = value; }
     }
 
-    public int QuestCurCnt
+    public int QuestCurCnt //바뀌어야하는 것 
     {
         get { return questCurCnt; }
         set { questCurCnt = value; }
     }
 
-    public int QuestMaxCnt
+    public int QuestMaxCnt //Json 데이터 'QuestTable'의 'Count' 에 있는 정보를 불러옴.
     {
         get { return questMaxCnt; }
         set { questMaxCnt = value; }
@@ -207,7 +207,10 @@ public class DataMgrDontDestroy : MonoBehaviour
         #endregion
 
         #region 퀘스트 정보 저장
-
+        PlayerPrefs.SetInt($"{slotNum}_QuestIdx", questIdx);
+        PlayerPrefs.SetInt($"{slotNum}_QuestCurCnt", questCurCnt);
+        PlayerPrefs.SetInt($"{slotNum}_QuestMaxCnt", questMaxCnt);
+        PlayerPrefs.SetString($"{slotNum}_GoalTxt", goalTxt);
         #endregion
 
         PlayerPrefs.Save();
