@@ -43,8 +43,8 @@ public class DataMgrDontDestroy : MonoBehaviour
 
     #region 던전의 정보를 저장하는 변수
     [Header("던전의 정보")]
-    public int dungeonSortIdx=0; //싱글, 카오스, 레이드
-    public int dungeonNumIdx=0; // n-1, n-2, n-3의 1, 2, 3번
+    public int dungeonSortIdx = 0; //싱글, 카오스, 레이드
+    public int dungeonNumIdx = 0; // n-1, n-2, n-3의 1, 2, 3번
     #endregion
 
     // 싱글톤
@@ -153,25 +153,25 @@ public class DataMgrDontDestroy : MonoBehaviour
     #endregion
 
     #region 퀘스트관련
-    public int QuestIdx //Json 데이터 'QuestTable'의 Index 번호를 불러옴.
+    public int QuestIdx
     {
         get { return questIdx; }
         set { questIdx = value; }
     }
 
-    public string GoalTxt //Json 데이터 'QuestTable'의 'Goal' 에 있는 정보를 불러옴.
+    public string GoalTxt
     {
         get { return goalTxt; }
         set { goalTxt = value; }
     }
 
-    public int QuestCurCnt //바뀌어야하는 것 
+    public int QuestCurCnt
     {
         get { return questCurCnt; }
         set { questCurCnt = value; }
     }
 
-    public int QuestMaxCnt //Json 데이터 'QuestTable'의 'Count' 에 있는 정보를 불러옴.
+    public int QuestMaxCnt
     {
         get { return questMaxCnt; }
         set { questMaxCnt = value; }
@@ -227,10 +227,7 @@ public class DataMgrDontDestroy : MonoBehaviour
         #endregion
 
         #region 퀘스트 정보 저장
-        PlayerPrefs.SetInt($"{slotNum}_QuestIdx", questIdx);
-        PlayerPrefs.SetInt($"{slotNum}_QuestCurCnt", questCurCnt);
-        PlayerPrefs.SetInt($"{slotNum}_QuestMaxCnt", questMaxCnt);
-        PlayerPrefs.SetString($"{slotNum}_GoalTxt", goalTxt);
+
         #endregion
 
         PlayerPrefs.Save();
