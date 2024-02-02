@@ -58,7 +58,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     PhotonView pv;
     PhotonAnimatorView pav;
     CinemachineVirtualCamera cvc;
-     UIMgr uimgr;
+    UIMgr uimgr;
+    //EnforceMgr enforceMgr;
     [Header("CamBat")]
     public bool isAttack;
     public bool isAttack1;
@@ -119,8 +120,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         stateManager = GetComponent<StateManager>();
         hudManager = GetComponent<HUDManager>();
         uimgr = GameObject.Find("UIMgr").GetComponent<UIMgr>();
-        chargingSlider = GameObject.FindGameObjectWithTag("Heal").GetComponent<Slider>();
+        //chargingSlider = GameObject.FindGameObjectWithTag("Heal").GetComponent<Slider>();
         cvc = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
+        //enforceMgr = GameObject.Find("Town/NPC/NPC_Weapon_3").GetComponent<EnforceMgr>(); // 현창 추가함.
         if (PhotonNetwork.IsConnected && photonView.IsMine)
         {
             cvc.GetComponent<ThirdPersonOrbitCamBasicA>().player = transform;
@@ -228,7 +230,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                     Deshs();
                     Interation();
                     SkillCoolTime();
-                    UIctrl();
+                    //UIctrl();
                 }
             }
         }
@@ -447,11 +449,11 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
         if (other.CompareTag("SaveZone"))
             isDeshInvincible = true;
-        if (other.CompareTag("NPCQ"))
+        if (other.CompareTag("NPCQ")&&pv.IsMine)
             uimgr.npcPanel[0].SetActive(true);
-        if (other.CompareTag("NPCW"))
-            uimgr.npcPanel[1].SetActive(true);
-        if (other.CompareTag("NPCL"))
+        //if (other.CompareTag("NPCW") && pv.IsMine)
+        //    uimgr.npcPanel[1].SetActive(true);
+        if (other.CompareTag("NPCL") && pv.IsMine)
             uimgr.npcPanel[2].SetActive(true);
         //if (other.CompareTag("NPCP"))
         //uimgr.npcPanel[5].SetActive(true);
@@ -489,30 +491,30 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             shop.Exit();
             nearObject = null;
         }
-        if (other.CompareTag("NPCQ"))
+        if (other.CompareTag("NPCQ") && pv.IsMine)
             uimgr.npcPanel[0].SetActive(false);
-        if (other.CompareTag("NPCW"))
-            uimgr.npcPanel[1].SetActive(false);
-        if (other.CompareTag("NPCL"))
+        //if (other.CompareTag("NPCW") && pv.IsMine)
+        //    uimgr.npcPanel[1].SetActive(false);
+        if (other.CompareTag("NPCL") && pv.IsMine)
             uimgr.npcPanel[2].SetActive(false);
     }
 
-    void UIctrl()
-    {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            if (!isInven)
-            {
-                uimgr.npcPanel[3].SetActive(true);
-                isInven = true;
-            }
-            else
-            {
-                uimgr.npcPanel[3].SetActive(false);
-                isInven = false;
-            }
-        }
-    }
+    //void UIctrl()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.I) && pv.IsMine)
+    //    {
+    //        if (!isInven)
+    //        {
+    //            uimgr.npcPanel[3].SetActive(true);
+    //            isInven = true;
+    //        }
+    //        else
+    //        {
+    //            uimgr.npcPanel[3].SetActive(false);
+    //            isInven = false;
+    //        }
+    //    }
+    //}
     void SKilliconOn()
     {
         if (sPlayer)

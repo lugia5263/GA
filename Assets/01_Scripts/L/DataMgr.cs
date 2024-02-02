@@ -1,128 +1,69 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 public class DataMgr : MonoBehaviour
 {
-    private static DataMgr _instance;
-    public static DataMgr Instance
+    public DataMgrDontDestroy dataMgrDontDestroy;
+    public InventoryManager inventoryMgr;
+    public StateManager stateMgr;
+    public RewardMgr rewardMgr;
+    public TrophyMgr trophyMgr;
+
+    public TextAsset forcetxtFile; //Jsonfile
+
+    [Header("강화하시겠습니까?")]
+    public GameObject enforcePanel;
+    public Text weaponNowTxt;
+    public Text weaponAftTxt;
+    public Text wantEnforceTxt;
+    public Text needMaterial;
+    public Text needGold;
+
+    public GameObject enforceEffect;
+    public Jun_TweenRuntime lessTween;
+
+    [Header("재련성공")]
+    public GameObject successPanel;
+    public Text successweaponNowTxt;
+    public Text beforeAtk;
+    public Text afterAtk;
+
+    [Header("재련실패")]
+    public GameObject failedPanel;
+    public Text failweaponNowTxt;
+    public Text beforeAtkF;
+    public Text afterAtkF;
+
+    [Header("업적클리어용")]
+    public int failEnforceCount;
+    public int playerWeaponLv;
+
+    private void Awake()
     {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = FindObjectOfType<DataMgr>();
-            }
-            return _instance;
-        }
-    }
+        var jsonitemFile = Resources.Load<TextAsset>("Json/EnforceTable");
+        forcetxtFile = jsonitemFile;
+        lessTween = GameObject.Find("lessTween").GetComponent<Jun_TweenRuntime>();
+        enforcePanel = GameObject.Find("EnforcePanel");
+        rewardMgr = GameObject.Find("RewardMgr").GetComponent<RewardMgr>();
+        //trophyMgr = GameObject.Find("TrophyMgr").GetComponent<TrophyMgr>();
+        wantEnforceTxt = GameObject.Find("ReallyTxt").GetComponent<Text>();
+        weaponNowTxt = GameObject.Find("ReadyBefore").GetComponent<Text>();
+        weaponAftTxt = GameObject.Find("ReadyAfter").GetComponent<Text>();
+        needMaterial = GameObject.Find("needMaterial").GetComponent<Text>();
+        needGold = GameObject.Find("needGold").GetComponent<Text>();
+        enforceEffect = GameObject.Find("EnforceEffect");
 
-    // 플레이어의 정보를 저장할 변수들
+        successPanel = GameObject.Find("SuccessPanel");
+        successweaponNowTxt = GameObject.Find("ForceLvS").GetComponent<Text>();
+        beforeAtk = GameObject.Find("beforeAtk").GetComponent<Text>();
+        afterAtk = GameObject.Find("afterAtk").GetComponent<Text>();
 
-    public int level;
-    public int exp;
-    public float maxhp;
-    public float hp;
-    public int attackPower;
-    public int criChance = 50; //in percentage
-    public float criDamage = 120f;
-    public int def; //방어력 안쓰지않나?
-    public float gageTime; // 이건뭐지
 
-    // 초기화 메서드
-    void Awake()
-    {
-        if (_instance == null)
-        {
-            _instance = this;
-            DontDestroyOnLoad(gameObject); // 다른 씬으로 이동해도 유지되도록 설정
-        }
-        else
-        {
-            Destroy(gameObject); // 중복된 인스턴스 파괴
-        }
-    }
-
-    // 초기화 메서드
-    void Start()
-    {
-        Initialize(); // 게임 시작 시 유저정보 초기화
-    }
-
-    // 게임 시작 시 기존에 있는 정보를 불러오기(curSlotNum의 정보 불러오기)
-    public void Initialize()
-    {
-        ;
-    }
-
-    // 공격력
-    public int AttackPower
-    {
-        get { return attackPower; }
-        set { attackPower = value; }
-    }
-
-    // 레벨
-    public int Level
-    {
-        get { return level; }
-        set { level = value; }
-    }
-
-    // 경험치통
-    public int Exp
-    {
-        get { return exp; }
-        set { exp = value; }
-    }
-
-    // 최대HP
-    public float MaxHp
-    {
-        get { return maxhp; }
-        set { maxhp = value; }
-    }
-
-    // 현재HP?
-    public float Hp
-    {
-        get { return hp; }
-        set { hp = value; }
-    }
-
-    // 크리확률
-    public int CriChance
-    {
-        get { return criChance; }
-        set { criChance = value; }
-    }
-
-    // 크리데미지
-    public float CriDamage
-    {
-        get { return criDamage; }
-        set { criDamage = value; }
-    }
-
-    // 방어력
-    public int Def
-    {
-        get { return def; }
-        set { def = value; }
-    }
-
-    // 게이지타임?
-    public float GageTime
-    {
-        get { return gageTime; }
-        set { gageTime = value; }
-    }
-
-    public void LoadData() // 접속했을때, 저장
-    {
-
-    }
-    public void SaveDate() // 접속종료할때 저장
-    {
-
+        failedPanel = GameObject.Find("FailedPanel");
+        failweaponNowTxt = GameObject.Find("ForceLvF").GetComponent<Text>();
+        beforeAtkF = GameObject.Find("beforeAtkF").GetComponent<Text>();
+        afterAtkF = GameObject.Find("afterAtkF").GetComponent<Text>();
     }
 }
