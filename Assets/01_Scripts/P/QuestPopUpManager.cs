@@ -5,46 +5,52 @@ using UnityEngine.UI;
 
 public class QuestPopUpManager : MonoBehaviour
 {
-    public DataMgr dataMgr;
+    public DataMgrDontDestroy dataMgr;
     
     public int questIndex; //현재 퀘스트 번호
-
     public Text questCountTxt;
 
     public string goal;
     public int curCnt;
     public int maxCnt;
 
+    public int questMaxCnt { get; set; }
+    public int questCurCnt { get; set; }
+    public int questIdx { get; set; }
+
     public bool isCompleted;
 
     private void Start()
     {
-        dataMgr = DataMgr.instance;
+        dataMgr = DataMgrDontDestroy.instance;
 
         questCountTxt = GameObject.Find("QCountTxt").GetComponent<Text>();
-        questIndex = dataMgr.CurQuestIndex;
-        goal = dataMgr.Goal;
-        curCnt = dataMgr.CurCnt;
-        maxCnt = dataMgr.MaxCnt;
+        questIndex = dataMgr.QuestIdx;
+        goal = dataMgr.GoalTxt;
+        curCnt = dataMgr.QuestCurCnt;
+        maxCnt = dataMgr.QuestMaxCnt;
     }
 
 
-    public enum QuestCondition
-    {
-        Talk = 1,
-        NormalMonKill,
-        BossKill,
-        GotGold,
-        Buy
-    }
+    //public enum QuestCondition
+    //{
+    //    Talk = 1,
+    //    NormalMonKill,
+    //    BossKill,
+    //    GotGold,
+    //    Buy
+    //}
 
-    private QuestCondition qcondition;
+    //private QuestCondition qcondition;
 
     public void QuestIndexUp(int n) //퀘스트 달성도 증가
     {
-        qcondition = (QuestCondition)n; // 위의 이넘값을 1, 2 로 쓸거야
+        //qcondition = (QuestCondition)n; // 위의 이넘값을 1, 2 로 쓸거야
         if (questIndex == n)
-        { curCnt++;}
+        { 
+            curCnt++;
+            dataMgr.QuestCurCnt = curCnt; // 데이터 매니저에 현재 퀘스트 달성도 업데이트
+        }
 
         InitCurQuest();
     }
