@@ -274,7 +274,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4128588830149721583, guid: 8d0613e5695e44c48b6ce43f1121f369, type: 3}
   m_PrefabInstance: {fileID: 2061591191288617341}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1694533724}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf5f3eb98e856694a90a31241354c12f, type: 3}
@@ -1425,6 +1425,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Directional Light
       objectReference: {fileID: 0}
+    - target: {fileID: 8764883706003247680, guid: 6e40d9764e6d45c4fbd21ba25c620dc9, type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1445,6 +1449,10 @@ PrefabInstance:
     - target: {fileID: 5105189936993270467, guid: dc762da5e38f5db4dafc6a4e9e1765c7, type: 3}
       propertyPath: m_Name
       value: Town
+      objectReference: {fileID: 0}
+    - target: {fileID: 5955278446738122876, guid: dc762da5e38f5db4dafc6a4e9e1765c7, type: 3}
+      propertyPath: sceneViewId
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7627522938536956361, guid: dc762da5e38f5db4dafc6a4e9e1765c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1591,6 +1599,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5550630291031930888, guid: 904963b08b62b814fbf84c502f037f5f, type: 3}
+      propertyPath: sceneViewId
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7187306041937312975, guid: 904963b08b62b814fbf84c502f037f5f, type: 3}
       propertyPath: m_Name
       value: EventSystem
@@ -1678,6 +1690,10 @@ PrefabInstance:
     - target: {fileID: 3353839748692893754, guid: 86e5606118ac82049bd062c3c2bfcb09, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5448278610133123380, guid: 86e5606118ac82049bd062c3c2bfcb09, type: 3}
+      propertyPath: sceneViewId
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6759599836853939567, guid: 86e5606118ac82049bd062c3c2bfcb09, type: 3}
       propertyPath: m_Enabled
