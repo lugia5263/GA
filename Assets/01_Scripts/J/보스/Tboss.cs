@@ -22,6 +22,11 @@ public class Tboss : MonoBehaviourPunCallbacks, IPunObservable
         PAGE3,
     }
 
+    public float detectionRadius = 10f;
+    public string playerTag = "Player";
+    private Transform currentTarget;
+    Collider[] player_s;
+    public GameObject[] nearbyPlayer;
     private Vector3 currPos;
     private Quaternion currRot;
     [Header("Move")]
@@ -83,12 +88,17 @@ public class Tboss : MonoBehaviourPunCallbacks, IPunObservable
         pv = GetComponent<PhotonView>();
         if (pv.IsMine)
         {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+            testGameMgr someComponent = GameObject.FindWithTag("Player").GetComponent<testGameMgr>();
+            //if (someComponent != null)
+            //{
+                //someComponent.Starts();
+            //}
             tBOSS = TBOSS.IDLE;
             characterController = GetComponent<CharacterController>();
             tbanim = GetComponent<Animator>();
             stateManager = GetComponent<StateManager>();
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-            targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         }
     }
     //테스트 용
@@ -108,9 +118,7 @@ public class Tboss : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (!die)
             {
-                GameObject closestargetPlayer = FindClosestPlayerWithTag("Player");
-                if (closestargetPlayer != null)
-                {
+                NearByPlayer();
                     breakTiming();
                     BreakTime();
                     Dieing();
@@ -253,7 +261,7 @@ public class Tboss : MonoBehaviourPunCallbacks, IPunObservable
                         case TBOSS.PAGE1:
                             isActivating = true;
                             page1 = 0;
-                            InvokeRepeating("Spawn", 0.01f, 1f);
+                            InvokeRepeating("Spawn", 0.01f, 0.2f);
                             StartCoroutine(Page1Start());
                             break;
                         case TBOSS.PAGE2:
@@ -262,7 +270,6 @@ public class Tboss : MonoBehaviourPunCallbacks, IPunObservable
                             StartCoroutine(BeamInstans());
                             break;
                     }
-                }
             }
         }
         void MoveTowardsTarget(bool stop)
@@ -318,25 +325,28 @@ public class Tboss : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
     }
-    GameObject FindClosestPlayerWithTag(string tag)
+
+    void NearByPlayer()
     {
-        GameObject[] players = GameObject.FindGameObjectsWithTag(tag);
-        GameObject closestPlayer = null;
-        float closestDistance = Mathf.Infinity;
-        Vector3 currentPosition = transform.position;
+        nearbyPlayer = GameObject.FindGameObjectsWithTag("Player");
+        targetPlayer = GetNearestPlayer(nearbyPlayer);
+    }
+    Transform GetNearestPlayer(GameObject[] players)
+    {
+        Transform nearestPlayer = null;
+        float shortestDistance = float.MaxValue;
 
-        foreach (GameObject playerz in players)
+        foreach (var player in players)
         {
-            float distanceToPlayer = Vector3.Distance(currentPosition, playerz.transform.position);
-
-            if (distanceToPlayer < closestDistance)
+            float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+            if (distanceToPlayer < shortestDistance)
             {
-                closestDistance = distanceToPlayer;
-                closestPlayer = playerz;
+                shortestDistance = distanceToPlayer;
+                nearestPlayer = player.transform;
             }
         }
 
-        return closestPlayer;
+        return nearestPlayer;
     }
     private void OnTriggerEnter(Collider other)
     {

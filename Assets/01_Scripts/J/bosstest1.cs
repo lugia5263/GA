@@ -52,7 +52,7 @@ public class bosstest1 : MonoBehaviourPunCallbacks
     {
         // 보스 몬스터를 생성하고 모든 클라이언트에 동기화
         GameObject bossMonster = PhotonNetwork.Instantiate(boss1.name, transform.position, transform.rotation);
-        bossMonster.GetComponent<RaidBossCtrl>().Starts();
+        //bossMonster.GetComponent<RaidBossCtrl>().Starts();
         photonView.RPC("SyncBossMonsterSpawn", RpcTarget.AllBuffered, bossMonster.GetComponent<PhotonView>().ViewID);
     }
 

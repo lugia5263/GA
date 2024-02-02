@@ -107,11 +107,14 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField] private float rotCamXAxisSpeed = 500f;
     [SerializeField] private float rotCamYAxisSpeed = 3f;
     internal string NickName;
+    RaidBossCtrl raidBoss;
+    Tboss tboss;
 
     //테스팅중
 
     void Awake()
     {
+
         camera = Camera.main;
         isFireReady = true;
         weapons = GetComponentInChildren<Weapons>();
@@ -160,6 +163,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         //chatManager.StartCoroutine(chatManager.CheckEnterKey());
     }
 
+    
     //"��������"
     void moves()
     {
