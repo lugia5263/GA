@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 {
     public DataMgrDontDestroy dataMgrDontDestroy;
 
-    public Button exitBtn;
+    Button exitBtn;
 
     private void Start()
     {
