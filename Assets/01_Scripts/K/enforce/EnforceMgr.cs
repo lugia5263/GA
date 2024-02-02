@@ -105,7 +105,7 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
     {
         if (other.CompareTag("Player"))
         {
-            if (other.GetComponent<PhotonView>().IsMine)
+            if (other.GetComponent<PhotonView>().IsMine)   
             {
                 // 강화창 껐으니까 플레이어의 정보에 반영
                 enforcePanel.SetActive(false);

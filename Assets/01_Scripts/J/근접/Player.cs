@@ -235,7 +235,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                     Deshs();
                     Interation();
                     SkillCoolTime();
-                    UIctrl();
                 }
             }
         }
@@ -455,8 +454,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             isDeshInvincible = true;
         if (other.CompareTag("NPCQ"))
             uimgr.npcPanel[0].SetActive(true);
-        if (other.CompareTag("NPCW"))
-            uimgr.npcPanel[1].SetActive(true);
+        //if (other.CompareTag("NPCW"))
+            //uimgr.npcPanel[1].SetActive(true);
         if (other.CompareTag("NPCL"))
             uimgr.npcPanel[2].SetActive(true);
         //if (other.CompareTag("NPCP"))
@@ -500,30 +499,11 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
         if (other.CompareTag("NPCQ"))
             uimgr.npcPanel[0].SetActive(false);
-        if (other.CompareTag("NPCW"))
-            uimgr.npcPanel[1].SetActive(false);
+        //if (other.CompareTag("NPCW"))
+            //uimgr.npcPanel[1].SetActive(false);
         if (other.CompareTag("NPCL"))
             uimgr.npcPanel[2].SetActive(false);
     }
-
-    void UIctrl()
-    {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            if (!isInven)
-            {
-                uimgr.npcPanel[3].SetActive(true);
-                isInven = true;
-            }
-            else
-            {
-                uimgr.npcPanel[3].SetActive(false);
-                isInven = false;
-            }
-        }
-    }
-      
-
     void SkillUsing()
     {
         skillUse = true;

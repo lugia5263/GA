@@ -5,48 +5,65 @@ using UnityEngine.UI;
 
 public class QuestPopUpManager : MonoBehaviour
 {
-    
-    public int curQuestIndex; //현재 퀘스트 번호
-
+    public DataMgrDontDestroy dataMgr;
+    public int questIndex; //현재 퀘스트 번호
     public Text questCountTxt;
 
     public string goal;
-    public int curCount;
-    public int maxCount;
+    public int curCnt;
+    public int maxCnt;
+
+    public int questMaxCnt { get; set; }
+    public int questCurCnt { get; set; }
+    public int questIdx { get; set; }
 
     public bool isCompleted;
 
+    private void Awake()
+    {
+        
+    }
+
     private void Start()
     {
+        dataMgr = DataMgrDontDestroy.Instance;
+
         questCountTxt = GameObject.Find("QCountTxt").GetComponent<Text>();
+        questIndex = dataMgr.questIdx;
+        goal = dataMgr.GoalTxt;
+        curCnt = dataMgr.QuestCurCnt;
+        maxCnt = dataMgr.QuestMaxCnt;
     }
 
 
-    public enum QuestCondition
-    {
-        Talk = 1,
-        NormalMonKill,
-        BossKill,
-        GotGold,
-        Buy
-    }
+    //public enum QuestCondition
+    //{
+    //    Talk = 1,
+    //    NormalMonKill,
+    //    BossKill,
+    //    GotGold,
+    //    Buy
+    //}
 
-    private QuestCondition qcondition;
+    //private QuestCondition qcondition;
 
     public void QuestIndexUp(int n) //퀘스트 달성도 증가
     {
-        qcondition = (QuestCondition)n; // 위의 이넘값을 1, 2 로 쓸거야
-        if (curQuestIndex == n)
-        { curCount++;}
+        //qcondition = (QuestCondition)n; // 위의 이넘값을 1, 2 로 쓸거야
+        if (questIndex == n)
+        {
+            curCnt++;
+            dataMgr.QuestCurCnt = curCnt; // 데이터 매니저에 현재 퀘스트 달성도 업데이트
+        }
 
         InitCurQuest();
     }
 
     public void InitCurQuest() //글씨 초기화
     {
-        questCountTxt.text = $"({curCount} /  {maxCount} )";
+        questCountTxt.text = $"({curCnt} /  {maxCnt} )";
 
-        if(curCount >= maxCount)
+        if (curCnt >= maxCnt)
         {
             questCountTxt.color = Color.yellow;
             isCompleted = true;
@@ -59,6 +76,3 @@ public class QuestPopUpManager : MonoBehaviour
 
 
 }
-
-
-
