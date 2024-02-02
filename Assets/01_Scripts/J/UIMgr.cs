@@ -29,6 +29,6 @@ public class UIMgr : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

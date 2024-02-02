@@ -58,7 +58,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     PhotonView pv;
     PhotonAnimatorView pav;
     CinemachineVirtualCamera cvc;
-     UIMgr uimgr;
+    UIMgr uimgr;
     [Header("CamBat")]
     public bool isAttack;
     public bool isAttack1;
