@@ -109,6 +109,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         SetUserId();
         JoinHome();
     }
+
     public void JoinHome()
     {
         Debug.Log("JoinHome 실행");
