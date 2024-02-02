@@ -19,11 +19,6 @@ public class LoadPlayerInfo : MonoBehaviour
     public int userMaterial;
     public int userExpPotion;
 
-    public int questIdx;
-    public int questCurCnt;
-    public int questMaxCnt;
-    public string goalTxt;
-
     public int currentSlotNum;
 
     public Text[] slot1Text;
@@ -50,14 +45,9 @@ public class LoadPlayerInfo : MonoBehaviour
         //userMaterial = dataMgrDontDestroy.UserMaterial;
         //userExpPotion = dataMgrDontDestroy.UserExpPotion;
 
-        //questIdx = dataMgrDontDestroy.QuestIdx;
-        //questCurCnt = dataMgrDontDestroy.QuestCurCnt;
-        //questMaxCnt = dataMgrDontDestroy.QuestMaxCnt;
-        //goalTxt = dataMgrDontDestroy.GoalTxt;
-
         LoadEverySlotData();
     }
-    
+
     public void LoadEverySlotData()
     {
         for (int slotNum = 0; slotNum < 3; slotNum++)
@@ -106,7 +96,7 @@ public class LoadPlayerInfo : MonoBehaviour
         exp = PlayerPrefs.GetInt($"{currentSlotNum}_Exp");
         maxhp = PlayerPrefs.GetFloat($"{currentSlotNum}_MaxHp");
         hp = PlayerPrefs.GetFloat($"{currentSlotNum}_Hp");
-        attackPower= PlayerPrefs.GetInt($"{currentSlotNum}_AttackPower");
+        attackPower = PlayerPrefs.GetInt($"{currentSlotNum}_AttackPower");
         weaponLevel = PlayerPrefs.GetInt($"{currentSlotNum}_WeaponLevel");
         criChance = PlayerPrefs.GetInt($"{currentSlotNum}_CriChance");
         criDamage = PlayerPrefs.GetFloat($"{currentSlotNum}_CriDamage");
@@ -127,20 +117,6 @@ public class LoadPlayerInfo : MonoBehaviour
         dataMgrDontDestroy.UserGold = userGold;
         dataMgrDontDestroy.UserMaterial = userMaterial;
         dataMgrDontDestroy.UserExpPotion = userExpPotion;
-        #endregion
-
-        #region 퀘스트 정보 변수에 담기
-        questIdx = PlayerPrefs.GetInt($"{currentSlotNum}_QuestIdx");
-        questCurCnt = PlayerPrefs.GetInt($"{currentSlotNum}_QuestCurCnt");
-        questMaxCnt = PlayerPrefs.GetInt($"{currentSlotNum}_QuestMaxCnt");
-        goalTxt = PlayerPrefs.GetString($"{currentSlotNum}_GoalTxt");
-        #endregion
-
-        #region 퀘스트정보. 변수의 값을 싱글톤에 보내주기
-        dataMgrDontDestroy.QuestIdx = questIdx;
-        dataMgrDontDestroy.QuestCurCnt = questCurCnt;
-        dataMgrDontDestroy.QuestMaxCnt = questMaxCnt;
-        dataMgrDontDestroy.GoalTxt = goalTxt;
         #endregion
     }
 }
