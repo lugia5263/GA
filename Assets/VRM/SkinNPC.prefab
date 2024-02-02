@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 690ea0146224b8b4694a1925dddeb352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Meta: {fileID: 8578711797045190020}
+  Meta: {fileID: 4815158920574330376}
 --- !u!114 &7649336534868820233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,8 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3869812175467a143ab9cd865752b4a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Avatar: {fileID: 8935904202759488684}
-  Description: {fileID: 8662794108488291390}
+  Avatar: {fileID: 8223706856010336508}
+  Description: {fileID: 7135774072214778070}
 --- !u!95 &5353701669617344693
 Animator:
   serializedVersion: 5
@@ -111,7 +111,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 76398247787958834}
   m_Enabled: 1
-  m_Avatar: {fileID: 8935904202759488684}
+  m_Avatar: {fileID: 8223706856010336508}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -7963,7 +7963,7 @@ Transform:
   - {fileID: 8223272498265686582}
   m_Father: {fileID: 1273898286264999152}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8578711797045190020
+--- !u!114 &4815158920574330376
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7989,7 +7989,7 @@ MonoBehaviour:
   OtherPermissionUrl: 
   LicenseType: 0
   OtherLicenseUrl: 
---- !u!114 &8662794108488291390
+--- !u!114 &7135774072214778070
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8388,7 +8388,7 @@ MonoBehaviour:
     max: {x: 0, y: 0, z: 0}
     center: {x: 0, y: 0, z: 0}
     axisLength: 0
---- !u!90 &8935904202759488684
+--- !u!90 &8223706856010336508
 Avatar:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
