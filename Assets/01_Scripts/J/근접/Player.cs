@@ -79,7 +79,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject[] ob;
 
     [Header("Skill CoolTime")]
-    public Image[] skillIcon;
+    public Image[] skillICoolicon;
+    public GameObject[] playerSkillIcon;
     public bool skillUse;
     public bool qisReady;
     public bool eisReady;
@@ -107,7 +108,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField] private float rotCamYAxisSpeed = 3f;
     internal string NickName;
 
-    
+    //테스팅중
+
     void Awake()
     {
         camera = Camera.main;
@@ -119,25 +121,23 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         stateManager = GetComponent<StateManager>();
         hudManager = GetComponent<HUDManager>();
         uimgr = GameObject.Find("UIMgr").GetComponent<UIMgr>();
-        chargingSlider = GameObject.FindGameObjectWithTag("Heal").GetComponent<Slider>();
         cvc = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
         if (PhotonNetwork.IsConnected && photonView.IsMine)
         {
             cvc.GetComponent<ThirdPersonOrbitCamBasicA>().player = transform;
         }
         cvc.GetComponent<ThirdPersonOrbitCamBasicA>().Starts();
-        if (skillIcon != null)
+        if (skillICoolicon != null)
         {
-            skillIcon[0] = GameObject.Find("CoolTimeBGQ").GetComponent<Image>();
-            skillIcon[1] = GameObject.Find("CoolTimeBGE").GetComponent<Image>();
-            skillIcon[2] = GameObject.Find("CoolTimeBGR").GetComponent<Image>();
+            skillICoolicon[0] = GameObject.Find("CoolTimeBGQ").GetComponent<Image>();
+            skillICoolicon[1] = GameObject.Find("CoolTimeBGE").GetComponent<Image>();
+            skillICoolicon[2] = GameObject.Find("CoolTimeBGR").GetComponent<Image>();
         }
         if (boss != null)
         {
             boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
         }
     }
-
     private void Start()
     {
         chatManager = GetComponent<ChatManager>();
@@ -148,15 +148,14 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         pv = GetComponent<PhotonView>();
         pav = GetComponent<PhotonAnimatorView>();
         plane = new Plane(transform.up, transform.position);
-        skillIcon[0].fillAmount = 0;
-        skillIcon[1].fillAmount = 0;
-        skillIcon[2].fillAmount = 0;
+        skillICoolicon[0].fillAmount = 0;
+        skillICoolicon[1].fillAmount = 0;
+        skillICoolicon[2].fillAmount = 0;
         
         if (pv.IsMine)
         {
             cvc.Follow = transform;
             cvc.LookAt = transform;
-            SKilliconOn();
         }
         //chatManager.StartCoroutine(chatManager.CheckEnterKey());
     }
@@ -204,7 +203,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
     }
-    // Update is called once per frame
+  
     void FixedUpdate() // 원래 FixedUpdate였음
     {
        
@@ -228,7 +227,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                     Deshs();
                     Interation();
                     SkillCoolTime();
-                    UIctrl();
                 }
             }
         }
@@ -270,15 +268,15 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (!qisReady)
         {
-            skillIcon[0].fillAmount = 1 - qskillcool /curQskillcool;
+            skillICoolicon[0].fillAmount = 1 - qskillcool /curQskillcool;
         }
         if (!eisReady)
         {
-            skillIcon[1].fillAmount = 1 - eskillcool / curEskillcool;
+            skillICoolicon[1].fillAmount = 1 - eskillcool / curEskillcool;
         }
         if (!risReady)
         {
-            skillIcon[2].fillAmount = 1 - rskillcool / curRskillcool;
+            skillICoolicon[2].fillAmount = 1 - rskillcool / curRskillcool;
         }
     }
 
@@ -406,7 +404,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
         if (onMagic)
         {
-            ob[0] = GameObject.FindGameObjectWithTag("Heal").GetComponent<GameObject>();
             if (rischarging)
             {
                 if (Input.GetKey(KeyCode.R))
@@ -449,8 +446,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             isDeshInvincible = true;
         if (other.CompareTag("NPCQ"))
             uimgr.npcPanel[0].SetActive(true);
-        if (other.CompareTag("NPCW"))
-            uimgr.npcPanel[1].SetActive(true);
+        //if (other.CompareTag("NPCW"))
+            //uimgr.npcPanel[1].SetActive(true);
         if (other.CompareTag("NPCL"))
             uimgr.npcPanel[2].SetActive(true);
         //if (other.CompareTag("NPCP"))
@@ -476,6 +473,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             nearObject = other.gameObject;
         if (other.tag == "HealArea")
         {
+            if (stateManager.hp >= stateManager.maxhp)
+                return;
+
             stateManager.hp += 5;
             hudManager.ChangeUserHUD();
         }
@@ -491,53 +491,11 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
         if (other.CompareTag("NPCQ"))
             uimgr.npcPanel[0].SetActive(false);
-        if (other.CompareTag("NPCW"))
-            uimgr.npcPanel[1].SetActive(false);
+        //if (other.CompareTag("NPCW"))
+            //uimgr.npcPanel[1].SetActive(false);
         if (other.CompareTag("NPCL"))
             uimgr.npcPanel[2].SetActive(false);
     }
-
-    void UIctrl()
-    {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            if (!isInven)
-            {
-                uimgr.npcPanel[3].SetActive(true);
-                isInven = true;
-            }
-            else
-            {
-                uimgr.npcPanel[3].SetActive(false);
-                isInven = false;
-            }
-        }
-    }
-    void SKilliconOn()
-    {
-        if (sPlayer)
-        {
-            uimgr.playerSkillIcon[0].SetActive(true);
-            uimgr.playerSkillIcon[1].SetActive(false);
-            uimgr.playerSkillIcon[2].SetActive(false);
-        }
-        if(aPlayer)
-        {
-            uimgr.playerSkillIcon[0].SetActive(false);
-            uimgr.playerSkillIcon[1].SetActive(true);
-            uimgr.playerSkillIcon[2].SetActive(false);
-        }
-        if(mPlayer)
-        {
-            uimgr.playerSkillIcon[0].SetActive(false);
-            uimgr.playerSkillIcon[1].SetActive(false);
-            uimgr.playerSkillIcon[2].SetActive(true);
-        }
-            
-    }    
-
-
-
     void SkillUsing()
     {
         skillUse = true;

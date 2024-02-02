@@ -29,8 +29,8 @@ public class DungeonLoadManager : MonoBehaviourPunCallbacks
     }
     void Start()
     {
-        dungeonType = RoomEnterManager.dungeonType;
-        Debug.Log("DungeonLoad.dungeonType : " + dungeonType);
+        //dungeonType = RoomEnterManager.dungeonType;
+        //Debug.Log("DungeonLoad.dungeonType : " + dungeonType);
     }
 
     void Update()
@@ -46,7 +46,7 @@ public class DungeonLoadManager : MonoBehaviourPunCallbacks
     }
     IEnumerator EnterDungeonRoom()
     {
-        if (PhotonNetwork.InLobby && dungeonType== "raidDungeon")
+        if (PhotonNetwork.InLobby)
         {
             PhotonNetwork.JoinRoom("Room_Raid");
         }

@@ -109,6 +109,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         SetUserId();
         JoinHome();
     }
+
     public void JoinHome()
     {
         Debug.Log("JoinHome 실행");
@@ -126,6 +127,12 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         ro.IsVisible = true;    // 로비에서 룸 목록에 노출시킬 여부
 
         PhotonNetwork.CreateRoom("Room_Home", ro);
+    }
+
+    public void OnClickGoIntroBtn() // 연결끊고 인트로씬으로가기
+    {
+        PhotonNetwork.Disconnect();
+        SceneManager.LoadScene("Intro");
     }
     #endregion
 }
