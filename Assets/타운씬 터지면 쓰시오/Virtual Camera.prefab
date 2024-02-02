@@ -71,7 +71,7 @@ Transform:
   m_GameObject: {fileID: 4990175494746098374}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.96687025, z: 0, w: 0.2552685}
-  m_LocalPosition: {x: -31.882002, y: 7.5379996, z: -13.85}
+  m_LocalPosition: {x: -32.57, y: 6.3, z: -15.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -132,12 +132,12 @@ MonoBehaviour:
   isFixed: 0
   player: {fileID: 0}
   pivotOffset: {x: 0, y: 1.5, z: -2}
-  camOffset: {x: 0, y: 1.5, z: -2}
-  smooth: 10
-  horizontalAimingSpeed: 6
-  verticalAimingSpeed: 6
-  maxVerticalAngle: 30
-  minVerticalAngle: -60
+  camOffset: {x: 0, y: 0, z: -2}
+  smooth: 8
+  horizontalAimingSpeed: 3
+  verticalAimingSpeed: 3
+  maxVerticalAngle: 10
+  minVerticalAngle: -20
   XAxis: Analog X
   YAxis: Analog Y
   cam: {fileID: 3262688130523997612}
