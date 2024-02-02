@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
+using System.Linq;
+using Cinemachine;
 
-public class Tboss : MonoBehaviour
+public class Tboss : MonoBehaviourPunCallbacks, IPunObservable
 {
+
     public enum TBOSS
     {
         IDLE = 0,
@@ -17,7 +22,8 @@ public class Tboss : MonoBehaviour
         PAGE3,
     }
 
-
+    private Vector3 currPos;
+    private Quaternion currRot;
     [Header("Move")]
     public float speed = 2.5f;
     public float rotSpeed = 5f;
@@ -33,6 +39,7 @@ public class Tboss : MonoBehaviour
     public StateManager stateManager;
     public Player player;
     public BoxCollider nem1Area;
+    public PhotonView pv;
     [Header("AttackPattern")]
     public float p1;
     public float p2;
@@ -73,192 +80,190 @@ public class Tboss : MonoBehaviour
     
     void Start()
     {
-        tBOSS = TBOSS.IDLE;
-        characterController = GetComponent<CharacterController>();
-        targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        tbanim = GetComponent<Animator>();
-        stateManager = GetComponent<StateManager>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        pv = GetComponent<PhotonView>();
+        if (pv.IsMine)
+        {
+            tBOSS = TBOSS.IDLE;
+            characterController = GetComponent<CharacterController>();
+            tbanim = GetComponent<Animator>();
+            stateManager = GetComponent<StateManager>();
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        }
+    }
+    //테스트 용
+    public void Starts()
+    {
+        {
+            if (player != null)
+            {
+                player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+                targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+            }
+        }
     }
     void Update()
     {
-        if (!die)
+        if(pv.IsMine)
         {
-            GameObject closestargetPlayer = FindClosestPlayerWithTag("Player");
-            if (closestargetPlayer != null)
+            if (!die)
             {
-                breakTiming();
-                BreakTime();
-                Dieing();
-                PatternTimeCheck();
-                NEM1();
-                NEM2();
-                switch (tBOSS)
+                GameObject closestargetPlayer = FindClosestPlayerWithTag("Player");
+                if (closestargetPlayer != null)
                 {
-                    case TBOSS.IDLE:
-                        isActivating = false;
-                        tbanim.SetTrigger("IDLE");
-                        float dist = Vector3.Distance(targetPlayer.position, transform.position);
-                        if (dist < range)
-                        {
-                            tBOSS = TBOSS.MOVE;
-                        }
-                        else
-                        {
-                            tBOSS = TBOSS.IDLE;
-                        }
-                        break;
-                    case TBOSS.MOVE:
-                        StartCoroutine(MoveDelay());
-                        if (down)
-                            return;
-                        if (attacking)
-                            return;
-                        float dis = Vector3.Distance(targetPlayer.position, transform.position);
-                        if (dis > 1f)
-                        {
+                    breakTiming();
+                    BreakTime();
+                    Dieing();
+                    PatternTimeCheck();
+                    NEM1();
+                    NEM2();
+                    switch (tBOSS)
+                    {
+                        case TBOSS.IDLE:
                             isActivating = false;
-                        }
-                        if (dis < attakRange)
-                        {
-                            tBOSS = TBOSS.ATTACK;
-                        }
-                        speed = 3f;
-                        MoveTowardsTarget(true);
-                        tbanim.SetTrigger("RUN");
-                        float distan = Vector3.Distance(targetPlayer.position, transform.position);
-                        if (distan > 18)
-                        {
-                            tBOSS = TBOSS.IDLE;
-                        }
-                        break;
-                    case TBOSS.ATTACK:
-                        isActivating = true;
-                        speed = 0f;
-                        float dists = Vector3.Distance(targetPlayer.position, transform.position);
-                        if (p1Ready)
-                        {
-                            if (dists < attakRange)
+                            tbanim.SetTrigger("IDLE");
+                            float dist = Vector3.Distance(targetPlayer.position, transform.position);
+                            if (dist < range)
                             {
-                                if (sword)
+                                tBOSS = TBOSS.MOVE;
+                            }
+                            else
+                            {
+                                tBOSS = TBOSS.IDLE;
+                            }
+                            break;
+                        case TBOSS.MOVE:
+                            StartCoroutine(MoveDelay());
+                            if (down)
+                                return;
+                            if (attacking)
+                                return;
+                            float dis = Vector3.Distance(targetPlayer.position, transform.position);
+                            if (dis > 1f)
+                            {
+                                isActivating = false;
+                            }
+                            if (dis < attakRange)
+                            {
+                                tBOSS = TBOSS.ATTACK;
+                            }
+                            speed = 3f;
+                            MoveTowardsTarget(true);
+                            tbanim.SetTrigger("RUN");
+                            float distan = Vector3.Distance(targetPlayer.position, transform.position);
+                            if (distan > 18)
+                            {
+                                tBOSS = TBOSS.IDLE;
+                            }
+                            break;
+                        case TBOSS.ATTACK:
+                            isActivating = true;
+                            speed = 0f;
+                            float dists = Vector3.Distance(targetPlayer.position, transform.position);
+                            if (p1Ready)
+                            {
+                                if (dists < attakRange)
                                 {
+                                    if (sword)
+                                    {
 
-                                    tbanim.SetTrigger("Pattern1");
-                                    p1 = 0;
-                                    p1Ready = false;
-                                    attacking = true;
+                                        tbanim.SetTrigger("Pattern1");
+                                        p1 = 0;
+                                        p1Ready = false;
+                                        attacking = true;
+                                    }
                                 }
                             }
-                        }
-                        if (p2Ready)
-                        {
-                            if (dists < attakRange)
+                            if (p2Ready)
                             {
-                                if (sword)
+                                if (dists < attakRange)
                                 {
+                                    if (sword)
+                                    {
 
-                                    tbanim.SetTrigger("Pattern2");
-                                    p2 = 0;
-                                    p2Ready = false;
-                                    attacking = true;
+                                        tbanim.SetTrigger("Pattern2");
+                                        p2 = 0;
+                                        p2Ready = false;
+                                        attacking = true;
+                                    }
                                 }
                             }
-                        }
-                        if (p3Ready)
-                        {
-                            if (dists < attakRange)
+                            if (p3Ready)
                             {
-                                if (twsword)
+                                if (dists < attakRange)
                                 {
+                                    if (twsword)
+                                    {
 
-                                    tbanim.SetTrigger("Pattern3");
-                                    p3 = 0;
-                                    p3Ready = false;
-                                    attacking = true;
+                                        tbanim.SetTrigger("Pattern3");
+                                        p3 = 0;
+                                        p3Ready = false;
+                                        attacking = true;
+                                    }
                                 }
                             }
-                        }
-                        if (p4Ready)
-                        {
-                            if (dists < attakRange)
+                            if (p4Ready)
                             {
-                                if (twsword)
+                                if (dists < attakRange)
                                 {
-                                    tbanim.SetTrigger("Pattern4");
-                                    p4 = 0;
-                                    p4Ready = false;
-                                    attacking = true;
+                                    if (twsword)
+                                    {
+                                        tbanim.SetTrigger("Pattern4");
+                                        p4 = 0;
+                                        p4Ready = false;
+                                        attacking = true;
+                                    }
                                 }
                             }
-                        }
-                        if (dists > attakRange)
-                        {
-                            tBOSS = TBOSS.MOVE;
-                        }
-                        else
-                        {
-                            tBOSS = TBOSS.ATTACK;
-                        }
-                        break;
-                    case TBOSS.BREAK:
-                        isActivating = true;
-                        speed = 0f;
-                        breakTime = 0f;
-                        StartCoroutine(breakTiming());
-                        break;
-                    case TBOSS.DOWN:
-                        isActivating = true;
-                        down = true;
-                        speed = 0f;
-                        float dista = Vector3.Distance(targetPlayer.position, transform.position);
-                        tbanim.SetTrigger("DOWN");
-                        if (dista > attakRange)
-                        {
-                            tBOSS = TBOSS.MOVE;
-                        }
-                        else
-                        {
-                            tBOSS = TBOSS.ATTACK;
-                        }
-                        break;
-                    case TBOSS.DIE:
-                        isActivating = true;
-                        speed = 0;
-                        tbanim.SetTrigger("DIE");
-                        break;
-                    case TBOSS.PAGE1:
-                        isActivating = true;
-                        page1 = 0;
-                        InvokeRepeating("Spawn", 0.01f, 0.2f);
-                        StartCoroutine(Page1Start());
-                        break;
-                    case TBOSS.PAGE2:
-                        page2 = 0;
-                        isActivating = true;
-                        StartCoroutine(BeamInstans());
-                        break;
+                            if (dists > attakRange)
+                            {
+                                tBOSS = TBOSS.MOVE;
+                            }
+                            else
+                            {
+                                tBOSS = TBOSS.ATTACK;
+                            }
+                            break;
+                        case TBOSS.BREAK:
+                            isActivating = true;
+                            speed = 0f;
+                            breakTime = 0f;
+                            StartCoroutine(breakTiming());
+                            break;
+                        case TBOSS.DOWN:
+                            isActivating = true;
+                            down = true;
+                            speed = 0f;
+                            float dista = Vector3.Distance(targetPlayer.position, transform.position);
+                            tbanim.SetTrigger("DOWN");
+                            if (dista > attakRange)
+                            {
+                                tBOSS = TBOSS.MOVE;
+                            }
+                            else
+                            {
+                                tBOSS = TBOSS.ATTACK;
+                            }
+                            break;
+                        case TBOSS.DIE:
+                            isActivating = true;
+                            speed = 0;
+                            tbanim.SetTrigger("DIE");
+                            break;
+                        case TBOSS.PAGE1:
+                            isActivating = true;
+                            page1 = 0;
+                            InvokeRepeating("Spawn", 0.01f, 1f);
+                            StartCoroutine(Page1Start());
+                            break;
+                        case TBOSS.PAGE2:
+                            page2 = 0;
+                            isActivating = true;
+                            StartCoroutine(BeamInstans());
+                            break;
+                    }
                 }
             }
-        }
-        GameObject FindClosestPlayerWithTag(string tag)
-        {
-            GameObject[] players = GameObject.FindGameObjectsWithTag(tag);
-            GameObject closestPlayer = null;
-            float closestDistance = Mathf.Infinity;
-            Vector3 currentPosition = transform.position;
-
-            foreach (GameObject player in players)
-            {
-                float distanceToPlayer = Vector3.Distance(currentPosition, player.transform.position);
-
-                if (distanceToPlayer < closestDistance)
-                {
-                    closestDistance = distanceToPlayer;
-                    closestPlayer = player;
-                }
-            }
-
-            return closestPlayer;
         }
         void MoveTowardsTarget(bool stop)
         {
@@ -313,6 +318,26 @@ public class Tboss : MonoBehaviour
             }
         }
     }
+    GameObject FindClosestPlayerWithTag(string tag)
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag(tag);
+        GameObject closestPlayer = null;
+        float closestDistance = Mathf.Infinity;
+        Vector3 currentPosition = transform.position;
+
+        foreach (GameObject playerz in players)
+        {
+            float distanceToPlayer = Vector3.Distance(currentPosition, playerz.transform.position);
+
+            if (distanceToPlayer < closestDistance)
+            {
+                closestDistance = distanceToPlayer;
+                closestPlayer = playerz;
+            }
+        }
+
+        return closestPlayer;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (breakOn)
@@ -342,6 +367,7 @@ public class Tboss : MonoBehaviour
         {
             die = true;
             tBOSS = TBOSS.DIE;
+            characterController.enabled = false;
         }
     }
     void BreakTime()
@@ -495,5 +521,21 @@ public class Tboss : MonoBehaviour
         downPattern.SetActive(true);
         yield return new WaitForSeconds(2.3f);
         downPattern.SetActive(false);
+    }
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        //통신을 보내는 
+        if (stream.IsWriting)
+        {
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
+        }
+
+        //클론이 통신을 받는 
+        else
+        {
+            currPos = (Vector3)stream.ReceiveNext();
+            currRot = (Quaternion)stream.ReceiveNext();
+        }
     }
 }
