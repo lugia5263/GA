@@ -25,11 +25,11 @@ public class QuestManager : MonoBehaviour
 
     public int acceptIdx;
 
-    [Header("퀘스트팝업")]
-    public GameObject questPopUpPanel;
-    public Text questGoalTxt;
-    public int questCurCount;
-    //public int questMaxCount;
+    //[Header("퀘스트팝업")]
+    //public GameObject questPopUpPanel;
+    //public Text questGoalTxt;
+    //public int questCurCount;
+    ////public int questMaxCount;
 
     [Header("퀘스트 보상목록 표시")]
     public Text rewardExp;
@@ -57,8 +57,8 @@ public class QuestManager : MonoBehaviour
         questNameTxt = GameObject.Find("questNameTxt").GetComponent<Text>();
         goalNameTxt = GameObject.Find("goalNameTxt").GetComponent<Text>();
         questRewards = GameObject.Find("QuestRewards").GetComponent<Image>();
-        questPopUpPanel = GameObject.Find("QuestPanel");
-        questGoalTxt = GameObject.Find("GoalTxt").GetComponent<Text>();
+        //questPopUpPanel = GameObject.Find("QuestPanel");
+        //questGoalTxt = GameObject.Find("GoalTxt").GetComponent<Text>();
         qPopup = GameObject.Find("QuestPopUp").GetComponent<QuestPopUpManager>();
 
         ingBtn = GameObject.Find("QuestIngBtn");
@@ -119,8 +119,8 @@ public class QuestManager : MonoBehaviour
         var jsonData = JSON.Parse(json); //var의 의미: Unity외의 파일을 다가져온다.
         int item = n - 1;
 
-        questGoalTxt.text = (jsonData["Quest"][item]["Goal"]);
-        qPopup.questCountTxt.text = $"({questCurCount} / {(jsonData["Quest"][item]["Count"])})";
+        //questGoalTxt.text = (jsonData["Quest"][item]["Goal"]);
+        //qPopup.questCountTxt.text = $"({questCurCount} / {(jsonData["Quest"][item]["Count"])})";
         qPopup.maxCount = (int)(jsonData["Quest"][item]["Count"]);
         qPopup.curQuestIndex = (int)(jsonData["Quest"][item]["QuestNum"]);
         //rewardExp.text = (jsonData["Quest"][item]["Reward1"]);

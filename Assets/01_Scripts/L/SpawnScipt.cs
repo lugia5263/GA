@@ -7,23 +7,23 @@ using Photon.Realtime;
 public class SpawnScipt : MonoBehaviourPunCallbacks
 {
     public GameObject[] cH;
-    public GameObject vc;
+    //public GameObject vc;
     public int classNum;
-    GameObject player;
-    public ThirdPersonOrbitCamBasicA thrid;
+    //GameObject player;
+    //public ThirdPersonOrbitCamBasicA thrid;
 
     private void Start()
     {
-        thrid = GameObject.Find("Virtual Camera").GetComponent<ThirdPersonOrbitCamBasicA>();
+        //thrid = GameObject.Find("Virtual Camera").GetComponent<ThirdPersonOrbitCamBasicA>();
+        StartCoroutine(SpawnPlayer());
     }
-    public IEnumerator SpwanPlayer()
+    IEnumerator SpawnPlayer()
     {
         yield return new WaitForSeconds(0.1f);
         CreatePlayer();
     }
     public void CreatePlayer()
     {
-        
         int curSlotNum = SelectSlot.slotNum;
         int classNum = PlayerPrefs.GetInt($"{curSlotNum}_ClassNum");
         Debug.Log(classNum);
@@ -32,9 +32,9 @@ public class SpawnScipt : MonoBehaviourPunCallbacks
         {
             Transform[] points = GameObject.Find("SpawnPointGroup").GetComponentsInChildren<Transform>();
             int idx = Random.Range(1, points.Length);
-            GameObject obj;
-            obj = PhotonNetwork.Instantiate(cH[classNum].name, points[idx].position, points[idx].rotation, 0);
-            
+            //GameObject obj;
+            //obj = PhotonNetwork.Instantiate(cH[classNum].name, points[idx].position, points[idx].rotation, 0);
+            PhotonNetwork.Instantiate(cH[classNum].name, points[idx].position, points[idx].rotation, 0);
         }
     }
 }
