@@ -188,10 +188,13 @@ public class DataMgrDontDestroy : MonoBehaviour
         //PlayerPrefs.SetString($"{slotNum}_NickName", NickName);
         //PlayerPrefs.SetString($"{slotNum}_Class", className);
         //PlayerPrefs.SetInt($"{slotNum}_ClassNum", classNum);
+        #region 캐릭터 정보 저장
         Debug.Log($"저장하려는 Level은 : {Level}");
         PlayerPrefs.SetInt($"{slotNum}_Level", Level);
         Debug.Log($"저장하려는 MaxHp은 : {MaxHp}");
         PlayerPrefs.SetFloat($"{slotNum}_MaxHp", MaxHp);
+        Debug.Log($"저장하려는 Hp는 : {Hp}");
+        PlayerPrefs.SetFloat($"{slotNum}_Hp", Hp);
         Debug.Log($"저장하려는 WeaponLevel은 : {WeaponLevel}");
         PlayerPrefs.SetInt($"{slotNum}_WeaponLevel", WeaponLevel);
         Debug.Log($"저장하려는 AttackPower은 : {AttackPower}");
@@ -201,6 +204,11 @@ public class DataMgrDontDestroy : MonoBehaviour
         PlayerPrefs.SetInt($"{slotNum}_UserGold", UserGold);
         PlayerPrefs.SetInt($"{slotNum}_Material", UserMaterial);
         PlayerPrefs.SetInt($"{slotNum}_ExpPotion", userExpPotion);
+        #endregion
+
+        #region 퀘스트 정보 저장
+
+        #endregion
 
         PlayerPrefs.Save();
     }

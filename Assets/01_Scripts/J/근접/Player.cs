@@ -230,7 +230,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                     Deshs();
                     Interation();
                     SkillCoolTime();
-                    UIctrl();
+                    //UIctrl();
                 }
             }
         }
@@ -499,22 +499,22 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             uimgr.npcPanel[2].SetActive(false);
     }
 
-    void UIctrl()
-    {
-        if (Input.GetKeyDown(KeyCode.I) && pv.IsMine)
-        {
-            if (!isInven)
-            {
-                uimgr.npcPanel[3].SetActive(true);
-                isInven = true;
-            }
-            else
-            {
-                uimgr.npcPanel[3].SetActive(false);
-                isInven = false;
-            }
-        }
-    }
+    //void UIctrl()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.I) && pv.IsMine)
+    //    {
+    //        if (!isInven)
+    //        {
+    //            uimgr.npcPanel[3].SetActive(true);
+    //            isInven = true;
+    //        }
+    //        else
+    //        {
+    //            uimgr.npcPanel[3].SetActive(false);
+    //            isInven = false;
+    //        }
+    //    }
+    //}
     void SKilliconOn()
     {
         if (sPlayer)

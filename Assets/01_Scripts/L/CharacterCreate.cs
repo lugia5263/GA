@@ -104,7 +104,8 @@ public class CharacterCreate : MonoBehaviour
         PlayerPrefs.SetString($"{slotNum}_Class", className);
         PlayerPrefs.SetInt($"{slotNum}_ClassNum", classNum);
         PlayerPrefs.SetInt($"{slotNum}_Level", 1);
-        PlayerPrefs.SetInt($"{slotNum}_MaxHp", 500);
+        PlayerPrefs.SetFloat($"{slotNum}_MaxHp", 500);
+        PlayerPrefs.SetFloat($"{slotNum}_Hp", 500);
         PlayerPrefs.SetInt($"{slotNum}_WeaponLevel", 1);
         PlayerPrefs.SetInt($"{slotNum}_AttackPower", 50);
         PlayerPrefs.SetInt($"{slotNum}_CriChance", 50);
@@ -130,6 +131,7 @@ public class CharacterCreate : MonoBehaviour
             PlayerPrefs.DeleteKey($"{slotNum}_ClassNum");
             PlayerPrefs.DeleteKey($"{slotNum}_Level");
             PlayerPrefs.DeleteKey($"{slotNum}_MaxHp");
+            PlayerPrefs.DeleteKey($"{slotNum}_Hp");
             PlayerPrefs.DeleteKey($"{slotNum}_WeaponLevel");
             PlayerPrefs.DeleteKey($"{slotNum}_AttackPower");
             PlayerPrefs.DeleteKey($"{slotNum}_CriChance");
@@ -146,10 +148,5 @@ public class CharacterCreate : MonoBehaviour
         {
             Debug.Log("현재슬롯에 키값이 없음");
         }
-    }
-
-    public void OnClickGoLoginSceneBtn() // 로비에서 연결끊고 나가는거 추가하기
-    {
-        SceneManager.LoadScene("Login");
     }
 }

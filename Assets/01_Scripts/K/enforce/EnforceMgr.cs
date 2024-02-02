@@ -39,7 +39,7 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
     public Text afterAtkF;
 
     [Header("업적클리어용")]
-    public int failEnforceCount;
+    //public int failEnforceCount;
 
 
     public int playerWeaponLevel;
@@ -81,9 +81,8 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
         playerGold = dataMgrDontDestroy.UserGold;
         playerAttackPower = dataMgrDontDestroy.AttackPower;
         //테스트용 주석사이 나중에 지우기
-        playerWeaponLevel = 1;
-        playerMaterial = 3000;
-        playerGold = 3000;
+        playerMaterial = 300000;
+        playerGold = 300000;
         //테스트용 주석사이 나중에 지우기
         enforceEffect.SetActive(false);
         successPanel.SetActive(false);
@@ -204,7 +203,7 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
             Debug.Log("강화 실패!");
             failweaponNowTxt.text = $"{jsonData["Enforce"][playerWeaponLv]["ForceLv"]} 단계";
             failedPanel.SetActive(true);
-            failEnforceCount++;
+            //failEnforceCount++;
             //trophyMgr.TrophyIndexUp(4);
             InitAtk();
             SyncDataMgr();

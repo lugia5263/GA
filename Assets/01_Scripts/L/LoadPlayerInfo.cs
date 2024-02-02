@@ -19,7 +19,7 @@ public class LoadPlayerInfo : MonoBehaviour
     public int userMaterial;
     public int userExpPotion;
 
-    public static int currentSlotNum;
+    public int currentSlotNum;
 
     public Text[] slot1Text;
     public Text[] slot2Text;
@@ -87,11 +87,15 @@ public class LoadPlayerInfo : MonoBehaviour
 
     public void LoadCurrnetPlayerData()
     {
+        currentSlotNum = SelectSlot.slotNum;
+        Debug.Log("데이터를 불러올 현재 슬롯의 번호는 " + currentSlotNum);
         // Start버튼을 눌렀을때, currentSlotNum에 있는 정보를 가져와서 dataMgr에 넣어준다.
+        #region 캐릭터정보 변수에 담기
         nickName = PlayerPrefs.GetString($"{currentSlotNum}_NickName"); //필요하면 쓰자
         level = PlayerPrefs.GetInt($"{currentSlotNum}_Level");
         exp = PlayerPrefs.GetInt($"{currentSlotNum}_Exp");
-        maxhp = PlayerPrefs.GetInt($"{currentSlotNum}_MaxHp");
+        maxhp = PlayerPrefs.GetFloat($"{currentSlotNum}_MaxHp");
+        hp = PlayerPrefs.GetFloat($"{currentSlotNum}_Hp");
         attackPower= PlayerPrefs.GetInt($"{currentSlotNum}_AttackPower");
         weaponLevel = PlayerPrefs.GetInt($"{currentSlotNum}_WeaponLevel");
         criChance = PlayerPrefs.GetInt($"{currentSlotNum}_CriChance");
@@ -99,7 +103,9 @@ public class LoadPlayerInfo : MonoBehaviour
         userGold = PlayerPrefs.GetInt($"{currentSlotNum}_UserGold");
         userMaterial = PlayerPrefs.GetInt($"{currentSlotNum}_Material");
         userExpPotion = PlayerPrefs.GetInt($"{currentSlotNum}_ExpPotion");
+        #endregion
 
+        #region 캐릭터정보. 변수의 값을 싱글톤에 보내주기
         dataMgrDontDestroy.Level = level;
         dataMgrDontDestroy.Exp = exp;
         dataMgrDontDestroy.MaxHp = maxhp;
@@ -111,5 +117,6 @@ public class LoadPlayerInfo : MonoBehaviour
         dataMgrDontDestroy.UserGold = userGold;
         dataMgrDontDestroy.UserMaterial = userMaterial;
         dataMgrDontDestroy.UserExpPotion = userExpPotion;
+        #endregion
     }
 }
