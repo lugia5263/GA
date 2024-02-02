@@ -436,7 +436,7 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks, IPunObservable
             {
                 InvokeRepeating("EffectInvoke", 0, 2);
                 stateManager.hp += 3000f;
-                stateManager.atk += 50;
+                stateManager.attackPower += 50;
                 healthUpingTime = 0;
                 StartCoroutine(EffectDelay());
             }
@@ -450,7 +450,7 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks, IPunObservable
     IEnumerator EffectDelay()
     {
         yield return new WaitForSeconds(12f);
-        stateManager.atk -= 50;
+        stateManager.attackPower -= 50;
         CancelInvoke();
         healthUpCheck = false;
     }
