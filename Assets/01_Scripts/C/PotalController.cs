@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Timeline;
-using UnityEngine.UI;
 
 public class PotalController : MonoBehaviour
 {
@@ -16,10 +15,6 @@ public class PotalController : MonoBehaviour
         portalPanel = GameObject.Find("PortalPanel");
         skyPortal = GameObject.Find("SkyPortal");
         skyPortal.SetActive(false);
-    }
-    void Start()
-    {
-        
     }
 
     private void OnTriggerEnter(Collider other)

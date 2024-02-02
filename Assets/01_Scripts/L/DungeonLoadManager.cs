@@ -29,7 +29,7 @@ public class DungeonLoadManager : MonoBehaviourPunCallbacks
     }
     void Start()
     {
-        dungeonType = RoomEnterManager.dungeonType;
+        //dungeonType = RoomEnterManager.dungeonType;
         Debug.Log("DungeonLoad.dungeonType : " + dungeonType);
     }
 
