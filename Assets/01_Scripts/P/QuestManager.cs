@@ -30,13 +30,27 @@ public class QuestManager : MonoBehaviour
     public Text questNameTxt;
     public Text goalTxt;
 
+    [Header("NPC 대화")]
+    public DialogueTrigger dialogueTrigger; //대본
+    public GameObject nextBtn; //대본 진행
+    public GameObject nPCConversation;
+
+    public Text textName;
+    public Text textSentence;
+    public GameObject conversationPanel;
+
+    Queue<string> naming = new Queue<string>();
+    Queue<string> sentence = new Queue<string>();
+
     public Text rewardExp;
     public Text rewardMat;
     public Text rewardGold;
+
     [Header("퀘스트 진행버튼")]
     public GameObject acceptBtn;
     public GameObject ingImg;
     public GameObject completedBtn;
+
     [Header("퀘스트 현재 진행도 창")]
     public GameObject questPopUpPanel;
     //public bool questPopUpPanelVisible;
@@ -60,8 +74,18 @@ public class QuestManager : MonoBehaviour
         questGoalTxt = dataMgrDontDestroy.GoalTxt;
         questCurCnt = dataMgrDontDestroy.QuestCurCnt;
         questMaxCnt = dataMgrDontDestroy.QuestMaxCnt;
-}
+        nPCConversation.SetActive(false);
+    }
 
+    public void Update()
+    {
+        if(Input.GetMouseButtonDown(2))
+        {
+            Debug.Log("마우스 휠클릭 정상동작");
+            nextBtn.GetComponent<TalkMgr>();
+            Debug.Log("### TalkMgr 정상동작 ###");
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -70,6 +94,7 @@ public class QuestManager : MonoBehaviour
             {
                 Debug.Log("충돌일어남");
                 questPanel.SetActive(true);
+                nPCConversation.SetActive(true);
             }
         }
     }
