@@ -40,15 +40,22 @@ public class QuestManager : MonoBehaviour
     public Text rewardGold;
 
     [Header("퀘스트 수락버튼")]
+<<<<<<< HEAD
+=======
+    public QuestPopUpManager QuestPopUpManager;
+>>>>>>> DEV
 
     public GameObject acceptBtn;
     public GameObject ingBtn;
     public GameObject completedBtn;
+<<<<<<< HEAD
     public GameObject questEndBtn;
 
     public bool isQuestIng;
     public bool isCompleted;
     public bool isEnd;
+=======
+>>>>>>> DEV
 
     //Player enterPlayer;
 
@@ -90,22 +97,35 @@ public class QuestManager : MonoBehaviour
         questPopUpPanel = GameObject.Find("QuestPopUp");
         questGoalTxt = GameObject.Find("GoalTxt").GetComponent<Text>();
         qPopup = GameObject.Find("QuestPopUp").GetComponent<QuestPopUpManager>();
+<<<<<<< HEAD
         rewardMgr = GameObject.Find("RewardMgr").GetComponent<RewardMgr>();
         inventoryMgr = GameObject.Find("InventoryMgr").GetComponent<InventoryManager>();
         ingBtn = GameObject.Find("QuestIngBtn");
         completedBtn = GameObject.Find("CompletedBtn");
         questEndBtn = GameObject.Find("QuestEndBtn");
+=======
+
+        ingBtn = GameObject.Find("QuestIngBtn");
+
+>>>>>>> DEV
 
 
     }
     private void Start()
     {
+<<<<<<< HEAD
         ingBtn.SetActive(false);
         completedBtn.SetActive(false);
         questEndBtn.SetActive(false);
+=======
+        //ingBtn.SetActive(false);
+        completedBtn.SetActive(false);
+>>>>>>> DEV
 
         descriptionPanel.SetActive(false);
     }
+
+
 
 
     public void InstQuest(int n)
@@ -130,6 +150,15 @@ public class QuestManager : MonoBehaviour
 
 
 
+<<<<<<< HEAD
+=======
+        questNameTxt.text = (jsonData["Quest"][item]["QuestName"]);
+        goalNameTxt.text = (jsonData["Quest"][item]["Goal"]);
+        rewardExp.text = (jsonData["Quest"][item]["Reward1"]);
+        rewardMat.text = (jsonData["Quest"][item]["Reward2"]);
+        rewardGold.text = (jsonData["Quest"][item]["Reward3"]);
+        acceptIdx = n;
+>>>>>>> DEV
 
         #region
         //character.transform.name = (jsonData["시트1"][n]["QuestName"]);
@@ -146,6 +175,14 @@ public class QuestManager : MonoBehaviour
     public void AcceptBtn()
     {
         ReceiveQuest(acceptIdx);
+<<<<<<< HEAD
+=======
+
+
+    }
+    public void ReceiveQuest(int n)
+    {
+>>>>>>> DEV
 
 
     }
@@ -155,6 +192,7 @@ public class QuestManager : MonoBehaviour
         string json = txtFile.text;
         var jsonData = JSON.Parse(json); //var의 의미: Unity외의 파일을 다가져온다.
         int item = n - 1;
+<<<<<<< HEAD
 
         qPopup.curCount = 0;
 
@@ -167,6 +205,8 @@ public class QuestManager : MonoBehaviour
         qPopup.curQuestIndex = (int)(jsonData["Quest"][item]["QuestNum"]);
         isCompleted = false;
 
+=======
+>>>>>>> DEV
 
         questGoalTxt.text = (jsonData["Quest"][item]["Goal"]);
         //qPopup.questCountTxt.text = $"({questCurCount} / {(jsonData["Quest"][item]["Count"])})";
@@ -176,13 +216,18 @@ public class QuestManager : MonoBehaviour
         //rewardMat.text = (jsonData["Quest"][item]["Reward2"]);
         //rewardGold.text = (jsonData["Quest"][item]["Reward3"]);
 
+<<<<<<< HEAD
         isQuestIng = true;
         qPopup.InitCurQuest();
         questPopUpPanel.SetActive(true);
+=======
+        acceptBtn.SetActive(false);
+>>>>>>> DEV
         ingBtn.SetActive(true);
 
     }
 
+<<<<<<< HEAD
     public void QuestCompleted() // 완료
     {
         qPopup.InitCurQuest();
@@ -243,5 +288,20 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+=======
+    public void CompletedBtn()
+    {
+        GetComponent<QuestPopUpManager>().InitCurQuest();
+        //if (curCount >= maxCount) { 
+        //}
+        transform.Find("IngBtn").gameObject.SetActive(false);
+        transform.Find("CompletedBtn").gameObject.SetActive(true);
+    }
+
+    //public void CompleteButton()
+    //{
+
+    //}
+>>>>>>> DEV
 }
 

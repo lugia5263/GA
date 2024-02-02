@@ -48,10 +48,16 @@ public class NPCController : MonoBehaviour
     {
         if (other.CompareTag("Player") && npcNum == 1) //퀘스트
         {
+<<<<<<< HEAD
 
             questPanel.SetActive(true);
             questMgr.CurQuestCheck();
 
+=======
+            
+            questPanel.SetActive(true);
+            
+>>>>>>> DEV
         }
         if (other.CompareTag("Player") && npcNum == 2) //업적
         {
