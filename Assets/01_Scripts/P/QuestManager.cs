@@ -133,7 +133,11 @@ public class QuestManager : MonoBehaviour
         GetComponent<QuestPopUpManager>().InitCurQuest();
         if (questCurCnt >= questMaxCnt)
         {
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> upstream/DEV
         }
         transform.Find("IngBtn").gameObject.SetActive(false);
         transform.Find("CompletedBtn").gameObject.SetActive(true);
