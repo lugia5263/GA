@@ -9,6 +9,7 @@ public class RaidBossMeeleDiePattren : MonoBehaviour
     Animator anim;
     public GameObject Effect;
     float size = 1f;
+    public float offPos;
     Vector3 maxSize;
     Vector3 originSize;
     void Start()
@@ -34,7 +35,7 @@ public class RaidBossMeeleDiePattren : MonoBehaviour
             if (bombArea.transform.localScale.z >= size)
             {
                 GameObject effcet;
-                Vector3 Pos = new Vector3(transform.position.x, transform.position.y, transform.position.z + 4f);
+                Vector3 Pos = new Vector3(transform.position.x, transform.position.y, transform.position.z + offPos);
                 effcet = Instantiate(Effect, Pos, transform.rotation);
                 effcet.GetComponent<BossWeapons>().sm = GameObject.FindGameObjectWithTag("Boss").GetComponent<StateManager>();
                 castingTime = 0;

@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
+using Photon.Pun;
+using Photon.Realtime;
+using System.Linq;
+using Cinemachine;
 
-public class RaidBossCtrl : MonoBehaviour
+public class RaidBossCtrl : MonoBehaviourPunCallbacks, IPunObservable
 {
     public enum RAIDBOSS
     {
@@ -18,7 +22,8 @@ public class RaidBossCtrl : MonoBehaviour
         PAGE3,
     }
 
-    
+    private Vector3 currPos;
+    private Quaternion currRot;
     [Header("Move")]
     public float speed = 2.5f;
     public float rotSpeed = 5f;
@@ -34,7 +39,8 @@ public class RaidBossCtrl : MonoBehaviour
     public StateManager stateManager;
     public VisualEffect healthUp;
     public Player player;
-
+    public PhotonView pv;
+    bosstest1 Bosst;
     [Header("AttackPattern")]
     public float p1;
     public float p2;
@@ -74,158 +80,187 @@ public class RaidBossCtrl : MonoBehaviour
     public GameObject p2EttectE;
     public GameObject p1EttectE;
     public GameObject healEttetE;
+    
     void Start()
     {
-        raidBoss = RAIDBOSS.IDLE;
-        characterController = GetComponent<CharacterController>();
-        targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        anim = GetComponent<Animator>();
-        stateManager = GetComponent<StateManager>();
+       
+        if (pv.IsMine)
+        {
+            bosstest1 someComponent = GameObject.FindWithTag("Player").GetComponent<bosstest1>();
+
+            // 컴포넌트를 사용하기
+            if (someComponent != null)
+            {
+                someComponent.Starts();
+            }
+            raidBoss = RAIDBOSS.IDLE;
+            characterController = GetComponent<CharacterController>();
+            anim = GetComponent<Animator>();
+            stateManager = GetComponent<StateManager>();
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        }
+    }
+    public void Starts()
+    {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (!die)
+        if (PhotonNetwork.IsMasterClient)
         {
-            GameObject closestargetPlayer = FindClosestPlayerWithTag("Player");
-            if (closestargetPlayer != null)
+            if (pv.IsMine)
             {
-                BreakTime();
-                PatternTimeCheck();
-                Dieing();
-                DieNowPatternt();
-                healthUpPattern();
-                switch (raidBoss)
+                if (!die)
                 {
-                    case RAIDBOSS.IDLE:
-                        isActivating = false;
-                        anim.SetTrigger("IDLE");
-                        float dist = Vector3.Distance(targetPlayer.position, transform.position);
-                        if (dist < range)
+                    //GameObject closestargetPlayer = FindClosestPlayerWithTag("Player");
+                    //if (closestargetPlayer != null)
+                    //{
+                        pv.RPC("BreakTime", RpcTarget.AllBuffered);
+                        BreakTime();
+                        PatternTimeCheck();
+                        Dieing();
+                        pv.RPC("DieNowPatternt", RpcTarget.AllBuffered);
+                        //DieNowPatternt();
+                        pv.RPC("healthUpPattern", RpcTarget.AllBuffered);
+                        //healthUpPattern();
+                        switch (raidBoss)
                         {
-                            raidBoss = RAIDBOSS.MOVE;
+                            case RAIDBOSS.IDLE:
+                                isActivating = false;
+                                anim.SetTrigger("IDLE");
+                                float dist = Vector3.Distance(targetPlayer.position, transform.position);
+                                if (dist < range)
+                                {
+                                    raidBoss = RAIDBOSS.MOVE;
+                                }
+                                else
+                                {
+                                    raidBoss = RAIDBOSS.IDLE;
+                                }
+                                break;
+                            case RAIDBOSS.MOVE:
+                                StartCoroutine(MoveDelay());
+                                if (down)
+                                    return;
+                                if (attacking)
+                                    return;
+                                float dis = Vector3.Distance(targetPlayer.position, transform.position);
+                                if (dis > 1f)
+                                {
+                                    isActivating = false;
+                                }
+                                if (dis < attakRange)
+                                {
+                                    raidBoss = RAIDBOSS.ATTACK;
+                                }
+                                speed = 3f;
+                                anim.SetTrigger("RUN");
+                                MoveTowardsTarget(true);
+                                float distan = Vector3.Distance(targetPlayer.position, transform.position);
+                                if (distan > 18)
+                                {
+                                    raidBoss = RAIDBOSS.IDLE;
+                                }
+                                break;
+                            case RAIDBOSS.ATTACK:
+                                isActivating = true;
+                                speed = 0f;
+                                float dists = Vector3.Distance(targetPlayer.position, transform.position);
+                                if (p1Ready)
+                                {
+                                    if (dists < attakRange)
+                                    {
+                                        anim.SetTrigger("Pattern1");
+                                        p1 = 0;
+                                        p1Ready = false;
+                                        attacking = true;
+                                    }
+                                }
+                                if (p2Ready)
+                                {
+                                    if (dists < attakRange)
+                                    {
+                                        anim.SetTrigger("Pattern2");
+                                        p2 = 0;
+                                        p2Ready = false;
+                                        attacking = true;
+                                    }
+                                }
+                                if (p3Ready)
+                                {
+                                    if (dists < attakRange)
+                                    {
+                                        anim.SetTrigger("Pattern3");
+                                        p3 = 0;
+                                        p3Ready = false;
+                                        attacking = true;
+                                    }
+                                }
+                                if (p4Ready)
+                                {
+                                    if (dists < attakRange)
+                                    {
+                                        anim.SetTrigger("Pattern4");
+                                        p4 = 0;
+                                        p4Ready = false;
+                                        attacking = true;
+                                    }
+                                }
+                                if (p5Ready)
+                                {
+                                    if (dists < attakRange)
+                                    {
+                                        anim.SetTrigger("Pattern5");
+                                        p5 = 0;
+                                        p5Ready = false;
+                                        attacking = true;
+                                    }
+                                }
+                                if (dists > attakRange)
+                                {
+                                    raidBoss = RAIDBOSS.MOVE;
+                                }
+                                else
+                                {
+                                    raidBoss = RAIDBOSS.ATTACK;
+                                }
+                                break;
+                            case RAIDBOSS.BREAK:
+                                isActivating = true;
+                                speed = 0f;
+                                breakTime = 0f;
+                                //pv.RPC("Break", RpcTarget.AllBuffered);
+                               StartCoroutine(breakTiming());
+                                break;
+                            case RAIDBOSS.DOWN:
+                                isActivating = true;
+                                down = true;
+                                speed = 0f;
+                                float dista = Vector3.Distance(targetPlayer.position, transform.position);
+                                //pv.RPC("Down", RpcTarget.AllBuffered);
+                                anim.SetTrigger("Down");
+                                if (dista > attakRange)
+                                {
+                                    raidBoss = RAIDBOSS.MOVE;
+                                }
+                                else
+                                {
+                                    raidBoss = RAIDBOSS.ATTACK;
+                                }
+                                break;
+                            case RAIDBOSS.DIE:
+                                isActivating = true;
+                                speed = 0;
+                                 pv.RPC("Die", RpcTarget.AllBuffered);
+                                 anim.SetTrigger("Die");
+                                break;
+                            case RAIDBOSS.PAGE1:
+                                break;
                         }
-                        else
-                        {
-                            raidBoss = RAIDBOSS.IDLE;
-                        }
-                        break;
-                    case RAIDBOSS.MOVE:
-                        StartCoroutine(MoveDelay());
-                        if (down)
-                            return;
-                        if (attacking)
-                            return;
-                        float dis = Vector3.Distance(targetPlayer.position, transform.position);
-                        if (dis > 1f)
-                        {
-                            isActivating = false;
-                        }
-                        if (dis < attakRange)
-                        {
-                            raidBoss = RAIDBOSS.ATTACK;
-                        }
-                        speed = 3f;
-                        anim.SetTrigger("RUN");
-                        MoveTowardsTarget(true);
-                        float distan = Vector3.Distance(targetPlayer.position, transform.position);
-                        if (distan > 18)
-                        {
-                            raidBoss = RAIDBOSS.IDLE;
-                        }
-                        break;
-                    case RAIDBOSS.ATTACK:
-                        isActivating = true;
-                        speed = 0f;
-                        float dists = Vector3.Distance(targetPlayer.position, transform.position);
-                        if (p1Ready)
-                        {
-                            if (dists < attakRange)
-                            {
-                                anim.SetTrigger("Pattern1");
-                                p1 = 0;
-                                p1Ready = false;
-                                attacking = true;
-                            }
-                        }
-                        if (p2Ready)
-                        {
-                            if (dists < attakRange)
-                            {
-                                anim.SetTrigger("Pattern2");
-                                p2 = 0;
-                                p2Ready = false;
-                                attacking = true;
-                            }
-                        }
-                        if (p3Ready)
-                        {
-                            if (dists < attakRange)
-                            {
-                                anim.SetTrigger("Pattern3");
-                                p3 = 0;
-                                p3Ready = false;
-                                attacking = true;
-                            }
-                        }
-                        if (p4Ready)
-                        {
-                            if (dists < attakRange)
-                            {
-                                anim.SetTrigger("Pattern4");
-                                p4 = 0;
-                                p4Ready = false;
-                                attacking = true;
-                            }
-                        }
-                        if (p5Ready)
-                        {
-                            if (dists < attakRange)
-                            {
-                                anim.SetTrigger("Pattern5");
-                                p5 = 0;
-                                p5Ready = false;
-                                attacking = true;
-                            }
-                        }
-                        if (dists > attakRange)
-                        {
-                            raidBoss = RAIDBOSS.MOVE;
-                        }
-                        else
-                        {
-                            raidBoss = RAIDBOSS.ATTACK;
-                        }
-                        break;
-                    case RAIDBOSS.BREAK:
-                        isActivating = true;
-                        speed = 0f;
-                        breakTime = 0f;
-                        StartCoroutine(breakTiming());
-                        break;
-                    case RAIDBOSS.DOWN:
-                        isActivating = true;
-                        down = true;
-                        speed = 0f;
-                        float dista = Vector3.Distance(targetPlayer.position, transform.position);
-                        anim.SetTrigger("Down");
-                        if (dista > attakRange)
-                        {
-                            raidBoss = RAIDBOSS.MOVE;
-                        }
-                        else
-                        {
-                            raidBoss = RAIDBOSS.ATTACK;
-                        }
-                        break;
-                    case RAIDBOSS.DIE:
-                        isActivating = true;
-                        speed = 0;
-                        anim.SetTrigger("Die");
-                        break;
-                    case RAIDBOSS.PAGE1:
-                        break;
+                    //}
                 }
             }
         }
@@ -237,19 +272,20 @@ public class RaidBossCtrl : MonoBehaviour
         float closestDistance = Mathf.Infinity;
         Vector3 currentPosition = transform.position;
 
-        foreach (GameObject player in players)
+        foreach (GameObject playerz in players)
         {
-            float distanceToPlayer = Vector3.Distance(currentPosition, player.transform.position);
+            float distanceToPlayer = Vector3.Distance(currentPosition, playerz.transform.position);
 
             if (distanceToPlayer < closestDistance)
             {
                 closestDistance = distanceToPlayer;
-                closestPlayer = player;
+                closestPlayer = playerz;
             }
         }
 
         return closestPlayer;
     }
+    [PunRPC]
     void MoveTowardsTarget(bool stop)
     {
         if (isActivating)
@@ -298,7 +334,7 @@ public class RaidBossCtrl : MonoBehaviour
             anim.speed = 1f;
         }
     }
-
+    [PunRPC]
     void PatternTimeCheck()
     {
         p1 += Time.deltaTime;
@@ -332,6 +368,8 @@ public class RaidBossCtrl : MonoBehaviour
             p5Ready = true;
         }
     }
+
+    [PunRPC]
     void BreakTime()
     {
         breakTime += Time.deltaTime;
@@ -360,16 +398,18 @@ public class RaidBossCtrl : MonoBehaviour
         yield return new WaitForSeconds(2f);
         DownPattern.SetActive(false);
     }
-
+    [PunRPC]
     void Dieing()
     {
         if(stateManager.hp <= 0)
         {
             die = true;
             raidBoss = RAIDBOSS.DIE;
+            characterController.enabled = false;
         }
     }
 
+    [PunRPC]
     void DieNowPatternt()
     {
         dieNowPattern += Time.deltaTime;
@@ -384,6 +424,7 @@ public class RaidBossCtrl : MonoBehaviour
         }
     }
 
+    [PunRPC]
     void healthUpPattern()
     {
         healthUpingTime += Time.deltaTime;
@@ -443,5 +484,21 @@ public class RaidBossCtrl : MonoBehaviour
         healEttetE.SetActive(true);
         yield return new WaitForSeconds(5f);
         healEttetE.SetActive(false);
+    }
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        //통신을 보내는 
+        if (stream.IsWriting)
+        {
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
+        }
+
+        //클론이 통신을 받는 
+        else
+        {
+            currPos = (Vector3)stream.ReceiveNext();
+            currRot = (Quaternion)stream.ReceiveNext();
+        }
     }
 }
