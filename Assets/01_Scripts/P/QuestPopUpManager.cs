@@ -8,8 +8,9 @@ public class QuestPopUpManager : MonoBehaviour
     public DataMgrDontDestroy dataMgr;
     public int questIndex; //현재 퀘스트 번호
     public Text questCountTxt;
+    public Text goalTxt;
 
-    public string goal;
+    public string goalInfo;
     public int curCnt;
     public int maxCnt;
 
@@ -19,31 +20,27 @@ public class QuestPopUpManager : MonoBehaviour
 
     public bool isCompleted;
 
-    private void Awake()
+    public void UpdateQuestStatus(string goals, int curCnts, int maxCnts)
     {
-        
-    }
+        goalInfo = goals;
+        curCnt = curCnts;
+        maxCnt = maxCnts;
 
+        goalTxt.text = goalInfo;
+        questCurCnt = curCnt;
+        questMaxCnt = maxCnt;
+        questCountTxt.text = $"({curCnt} / {maxCnt})";
+    }
     private void Start()
     {
         dataMgr = DataMgrDontDestroy.Instance;
 
         questCountTxt = GameObject.Find("QCountTxt").GetComponent<Text>();
         questIndex = dataMgr.questIdx;
-        goal = dataMgr.GoalTxt;
+        goalInfo = dataMgr.GoalTxt;
         curCnt = dataMgr.QuestCurCnt;
         maxCnt = dataMgr.QuestMaxCnt;
     }
-
-
-    //public enum QuestCondition
-    //{
-    //    Talk = 1,
-    //    NormalMonKill,
-    //    BossKill,
-    //    GotGold,
-    //    Buy
-    //}
 
     //private QuestCondition qcondition;
 
@@ -55,7 +52,6 @@ public class QuestPopUpManager : MonoBehaviour
             curCnt++;
             dataMgr.QuestCurCnt = curCnt; // 데이터 매니저에 현재 퀘스트 달성도 업데이트
         }
-
         InitCurQuest();
     }
 
