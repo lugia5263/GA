@@ -13,7 +13,6 @@ public class PotalController : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-        portalPanel = GameObject.Find("PortalPanel");
         skyPortal = GameObject.Find("SkyPortal");
         skyPortal.SetActive(false);
     }

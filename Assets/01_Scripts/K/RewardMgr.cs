@@ -2,32 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using SimpleJSON; //########################댕겨와야행
 
 public class RewardMgr : MonoBehaviour
 {
     public static RewardMgr reward;
-    //public ImageList imagelist;
-
-
-    //public TextAsset txtFile; //Jsonfile
-    //public GameObject jsonObject; //Prefab (Json char 달린)
-
-
     public GameObject rewardContent;
-
 
     private void Start()
     {
-        imagelist = GameObject.Find("ImageList").GetComponent<ImageList>();
-        //var jsonitemFile = Resources.Load<TextAsset>("Json/ItemList");
-        //txtFile = jsonitemFile;
-
-        //jsonObject = Resources.Load<GameObject>("Prefabs/item");
+        //imagelist = GameObject.Find("ImageList").GetComponent<ImageList>();
         rewardContent = GameObject.Find("RewardContent");
     }
-
-
 
     public void clear()
     {
@@ -80,27 +65,10 @@ public class RewardMgr : MonoBehaviour
     public void InstMaterial(int n, int itemcount)
     {
 
-        //string json = txtFile.text;
-        //var jsonData = JSON.Parse(json);
+        //character.GetComponent<Image>().sprite = imagelist.meterialsImage[n];
 
-
-        int item = n-1; // 매개변수
-
-
-        GameObject character = Instantiate(jsonObject); // 만들거야
-
-        character.transform.name = jsonData["Weapon"][item]["Name"]; // 오브젝트명 정의
-
-        character.GetComponent<ItemJsonData>().charname = (jsonData["Weapon"][item]["Name"]);
-        character.GetComponent<ItemJsonData>().discription = (jsonData["Weapon"][item]["Discription"]);
-        character.GetComponent<ItemJsonData>().atk = (int)(jsonData["Weapon"][item]["Str"]);
-        character.GetComponent<ItemJsonData>().rarity = (int)(jsonData["Weapon"][item]["Rarity"]);
-        character.GetComponent<ItemJsonData>().count += itemcount;
-        Debug.Log(jsonData["Weapon"][item]["Name"]);
-        character.GetComponent<Image>().sprite = imagelist.meterialsImage[n];
-
-        character.tag = "Material";
-        character.transform.SetParent(rewardContent.transform);
+        //character.tag = "Material";
+        //character.transform.SetParent(rewardContent.transform);
 
     } 
 
@@ -108,27 +76,10 @@ public class RewardMgr : MonoBehaviour
     //경험치 물약 소환 함수
     public void InstExp(int n, int itemcount) 
     {
-
-        string json = txtFile.text;
-        var jsonData = JSON.Parse(json);
-
-
         int item = n-1; // 매개변수
 
-        GameObject character = Instantiate(jsonObject); // 만들거야
-
-        character.transform.name = jsonData["Food"][item]["Name"]; // 오브젝트명 정의
-
-        character.GetComponent<ItemJsonData>().charname = (jsonData["Food"][item]["Name"]);
-        character.GetComponent<ItemJsonData>().discription = (jsonData["Food"][item]["Discription"]);
-        character.GetComponent<ItemJsonData>().exp = (int)(jsonData["Food"][item]["exp"]);
-        character.GetComponent<ItemJsonData>().rarity = (int)(jsonData["Food"][item]["Rarity"]);
-        character.GetComponent<ItemJsonData>().count += itemcount;
-        Debug.Log(jsonData["Food"][item]["Name"]);
-        character.GetComponent<Image>().sprite = imagelist.expPotionImage[n];
-
-        character.tag = "Exp";
-        character.transform.SetParent(rewardContent.transform);
+        //character.tag = "Exp";
+        //character.transform.SetParent(rewardContent.transform);
 
     } 
 
@@ -136,14 +87,9 @@ public class RewardMgr : MonoBehaviour
     // 골드 소환 함수
     public void InstGOld(int itemcount)
     {
-        GameObject character = Instantiate(jsonObject); // 만들거야
 
-        string json = txtFile.text;
-        var jsonData = JSON.Parse(json);
-        character.GetComponent<ItemJsonData>().count += itemcount;
-        character.GetComponent<Image>().sprite = imagelist.goldImage[1];
-        character.tag = "Gold";
-        character.transform.SetParent(rewardContent.transform);
+        //character.tag = "Gold";
+        //character.transform.SetParent(rewardContent.transform);
     }
 
 
