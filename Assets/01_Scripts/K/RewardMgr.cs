@@ -7,11 +7,11 @@ using SimpleJSON; //########################댕겨와야행
 public class RewardMgr : MonoBehaviour
 {
     public static RewardMgr reward;
-    public ImageList imagelist;
+    //public ImageList imagelist;
 
 
-    public TextAsset txtFile; //Jsonfile
-    public GameObject jsonObject; //Prefab (Json char 달린)
+    //public TextAsset txtFile; //Jsonfile
+    //public GameObject jsonObject; //Prefab (Json char 달린)
 
 
     public GameObject rewardContent;
@@ -20,10 +20,10 @@ public class RewardMgr : MonoBehaviour
     private void Start()
     {
         imagelist = GameObject.Find("ImageList").GetComponent<ImageList>();
-        var jsonitemFile = Resources.Load<TextAsset>("Json/ItemList");
-        txtFile = jsonitemFile;
+        //var jsonitemFile = Resources.Load<TextAsset>("Json/ItemList");
+        //txtFile = jsonitemFile;
 
-        jsonObject = Resources.Load<GameObject>("Prefabs/item");
+        //jsonObject = Resources.Load<GameObject>("Prefabs/item");
         rewardContent = GameObject.Find("RewardContent");
     }
 
@@ -31,7 +31,6 @@ public class RewardMgr : MonoBehaviour
 
     public void clear()
     {
-
         InstExp(3, 100);
     }
             ///예제입니다. 이렇게 불러오세요!!!
@@ -48,7 +47,22 @@ public class RewardMgr : MonoBehaviour
         int makeidx = Random.Range(1, 5);// 1에서 4까지 나옴
         InstMaterial(makeidx, 1);
     } // 랜덤으로 재료 1개 얻는 버튼
+    public void SoloClearReward()
+    {
 
+    }
+    public void ChaosClearReward()
+    {
+
+    }
+    public void RaidClearReward()
+    {
+
+    }
+    public void QuestClearReward()
+    {
+
+    }
     public void Reward100exp3EABtn()
     {
         //앞자리 3으로 통일할게요!!!!!
@@ -66,8 +80,8 @@ public class RewardMgr : MonoBehaviour
     public void InstMaterial(int n, int itemcount)
     {
 
-        string json = txtFile.text;
-        var jsonData = JSON.Parse(json);
+        //string json = txtFile.text;
+        //var jsonData = JSON.Parse(json);
 
 
         int item = n-1; // 매개변수
@@ -91,7 +105,7 @@ public class RewardMgr : MonoBehaviour
     } 
 
 
-             //경험치 물약 소환 함수
+    //경험치 물약 소환 함수
     public void InstExp(int n, int itemcount) 
     {
 
@@ -119,7 +133,7 @@ public class RewardMgr : MonoBehaviour
     } 
 
 
-             // 골드 소환 함수
+    // 골드 소환 함수
     public void InstGOld(int itemcount)
     {
         GameObject character = Instantiate(jsonObject); // 만들거야
