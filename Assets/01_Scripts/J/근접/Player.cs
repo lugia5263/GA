@@ -444,12 +444,12 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
         if (other.CompareTag("SaveZone"))
             isDeshInvincible = true;
-        if (other.CompareTag("NPCQ"))
-            uimgr.npcPanel[0].SetActive(true);
+        //if (other.CompareTag("NPCQ"))
+            //uimgr.npcPanel[0].SetActive(true);
         //if (other.CompareTag("NPCW"))
             //uimgr.npcPanel[1].SetActive(true);
-        if (other.CompareTag("NPCL"))
-            uimgr.npcPanel[2].SetActive(true);
+        //if (other.CompareTag("NPCL"))
+            //uimgr.npcPanel[2].SetActive(true);
         //if (other.CompareTag("NPCP"))
         //uimgr.npcPanel[5].SetActive(true);
         //if (other.CompareTag("NPCA"))
@@ -489,12 +489,12 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             shop.Exit();
             nearObject = null;
         }
-        if (other.CompareTag("NPCQ"))
-            uimgr.npcPanel[0].SetActive(false);
+        //if (other.CompareTag("NPCQ"))
+            //uimgr.npcPanel[0].SetActive(false);
         //if (other.CompareTag("NPCW"))
             //uimgr.npcPanel[1].SetActive(false);
-        if (other.CompareTag("NPCL"))
-            uimgr.npcPanel[2].SetActive(false);
+        //if (other.CompareTag("NPCL"))
+            //uimgr.npcPanel[2].SetActive(false);
     }
     void SkillUsing()
     {

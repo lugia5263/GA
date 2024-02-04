@@ -16,10 +16,12 @@ public class DataMgrDontDestroy : MonoBehaviour
             return _instance;
         }
     }
+    public RewardMgr rewardMgr;
 
     #region 플레이어의 정보를 저장하는 변수
     [Header("플레이어의 정보")]
     public string nickName;
+    public int classNum; //0:전사, 1:거너, 2:법사
     public int level;
     public int exp;
     public float maxhp;
@@ -50,6 +52,7 @@ public class DataMgrDontDestroy : MonoBehaviour
     // 싱글톤
     void Awake()
     {
+        rewardMgr = GetComponent<RewardMgr>();
         if (_instance == null)
         {
             _instance = this;
@@ -72,6 +75,13 @@ public class DataMgrDontDestroy : MonoBehaviour
     {
         get { return nickName; }
         set { nickName = value; }
+    }
+
+    // 클래스번호 0:전사, 1:거너, 2:법사
+    public int ClassNum
+    {
+        get { return classNum; }
+        set { classNum = value; }
     }
 
     // 공격력
@@ -129,7 +139,7 @@ public class DataMgrDontDestroy : MonoBehaviour
         get { return criDamage; }
         set { criDamage = value; }
     }
-
+    
     // 보유골드
     public int UserGold
     {

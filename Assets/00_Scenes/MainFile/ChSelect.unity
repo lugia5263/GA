@@ -167,7 +167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 223fa7ec9824ed84399afe75f8aa6a6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rewardMgr: {fileID: 0}
   nickName: 
+  classNum: 0
   level: 0
   exp: 0
   maxhp: 0
@@ -3935,9 +3937,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4990c1ec828ff884d80b11da65faf92a, type: 3}
   - {fileID: 21300000, guid: 7e0e469e73fb3464182e9ccb1aa6eb6e, type: 3}
   slots:
-  - {fileID: 2073945126}
-  - {fileID: 1922731323}
-  - {fileID: 1900658247}
+  - {fileID: 997102000}
+  - {fileID: 2107641726}
+  - {fileID: 446471810}
   loadPlayerInfo: {fileID: 0}
 --- !u!4 &1811083771
 Transform:
