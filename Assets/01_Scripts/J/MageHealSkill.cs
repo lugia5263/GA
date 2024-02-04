@@ -25,26 +25,17 @@ public class MageHealSkill : MonoBehaviour
             if (Input.GetKey(KeyCode.R))
             {
                 player.animator.SetTrigger("SkillR");
+                player.Skill[2].SetActive(true);
                 healS.SetActive(true);
-                uimgr.healSlider.SetActive(true);
                 charging.value += Time.deltaTime * 0.35f;
 
                 if (charging.value == 1)
                 {
-
                     charging.value = 0;
                     player.Skill[2].SetActive(false);
                     healS.SetActive(false);
                     player.rischarging = false;
                     player.rskillcool = 0;
-                }
-                else
-                {
-                    player.rskillcool = 0;
-                    charging.value = 0;
-                    player.Skill[2].SetActive(false);
-                    healS.SetActive(false);
-                    player.rischarging = false;
                 }
             }
         }

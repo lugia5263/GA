@@ -421,8 +421,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                     eisReady = false;
                 }
             }
-            if (onMagic)
-                return;
+
             if (risReady)
             {
                 if (Input.GetKeyDown(KeyCode.R))
@@ -623,12 +622,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     void M_SkillR()
     {
-        Skill[2].SetActive(true);
-        if (magehealSkill.charging.value == 1)
-        {
-            Skill[2].SetActive(false);
-            magehealSkill.charging.value = 0;
-        }
+        GameObject obj;
+        obj = Instantiate(Skill[2], transform.position, transform.rotation);
+        Destroy(obj, 6f);
     }
 
     void ActiveRifle()
