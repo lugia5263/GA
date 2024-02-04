@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Photon.Pun;
+using Photon.Realtime;
+using System.Linq;
+using Cinemachine;
 
 public class Boss : MonoBehaviour
 {
@@ -24,7 +28,6 @@ public class Boss : MonoBehaviour
     public NavMeshAgent nvAgent;
     public CharacterController characterController;
     public Rigidbody rigidbody;
-    public BoxCollider hitBox;
     public BoxCollider neM1area;
     private List<GameObject> gameObjects = new List<GameObject>();
     public GameObject[] prefabs;
@@ -32,7 +35,8 @@ public class Boss : MonoBehaviour
     StateManager stateManager;
     public GameObject nem2Area;
     public GameObject safeZoneBall;
-
+    public GameObject[] nearbyPlayer;
+    public PhotonView pv;
     [Header("Stet")]
     public float speed;
     public float range;
@@ -46,136 +50,183 @@ public class Boss : MonoBehaviour
     public bool attacking;
     public float patternTime;
     public float nem2PatternTime;
-    public float originalTimeScale;
-    public List<GameObject> collidedEnemies = new List<GameObject>();
+    public float originalTimeScale; 
     void Start()
     {
-        bossAnim = GetComponent<Animator>();
-        nvAgent = GetComponent<NavMeshAgent>();
-        targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        rigidbody = GetComponent<Rigidbody>();
-        characterController = GetComponent<CharacterController>();
-        bossState = BOSSSTATE.IDLE;
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        stateManager = GetComponent<StateManager>();
+        pv = GetComponent<PhotonView>();
+        if (pv.IsMine)
+        {
+            bossAnim = GetComponent<Animator>();
+            nvAgent = GetComponent<NavMeshAgent>();
+            targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+            rigidbody = GetComponent<Rigidbody>();
+            characterController = GetComponent<CharacterController>();
+            bossState = BOSSSTATE.IDLE;
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            stateManager = GetComponent<StateManager>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        patternTime += Time.deltaTime;
-        nem2PatternTime += Time.deltaTime;
-        NemStart();
-        Nem2Start();
-        if (isDeath != true)
+        if (pv.IsMine)
         {
-            Die();
-
-            switch (bossState)
+            NearByPlayer();
+            patternTime += Time.deltaTime;
+            nem2PatternTime += Time.deltaTime;
+            NemStart();
+            Nem2Start();
+            if (isDeath != true)
             {
-                case BOSSSTATE.IDLE:
-                    bossAnim.SetInteger("BOSSSTATE", 0);
-                    nvAgent.speed = 0;
-
-                    float dist = Vector3.Distance(targetPlayer.position, transform.position);
-                    if (dist < range)
-                    {
-                        bossState = BOSSSTATE.MOVE;
-                    }
-                    else
-                    {
-                        bossState = BOSSSTATE.IDLE;
-                    }
-
-
-                    break;
-                case BOSSSTATE.MOVE:
-                    bossAnim.SetInteger("BOSSSTATE", 1);
-                    nvAgent.speed = speed;
-
-                    float distan = Vector3.Distance(targetPlayer.position, transform.position);
-                    if (distan < attackRange)
-                    {
-                        bossState = BOSSSTATE.ATTACK;
-                    }
-                    else
-                    {
-                        nvAgent.SetDestination(targetPlayer.position + new Vector3(0, 0, -2f));
-                    }
-                    if (distan > range)
-                    {
-                        bossState = BOSSSTATE.IDLE;
-                    }
-
-
-                    break;
-                case BOSSSTATE.ATTACK:
-                    bossAnim.SetInteger("BOSSSTATE", 2);
-                    nvAgent.speed = 0;
-                    attacking = true;
-                    if (attacking == true)
-                    {
+                Die();
+                switch (bossState)
+                {
+                    case BOSSSTATE.IDLE:
+                        bossAnim.SetInteger("BOSSSTATE", 0);
                         nvAgent.speed = 0;
-                    }
-                    else
-                    {
+
+                        float dist = Vector3.Distance(targetPlayer.position, transform.position);
+                        if (dist < range)
+                        {
+                            bossState = BOSSSTATE.MOVE;
+                        }
+                        else
+                        {
+                            bossState = BOSSSTATE.IDLE;
+                        }
+
+
+                        break;
+                    case BOSSSTATE.MOVE:
+                        bossAnim.SetInteger("BOSSSTATE", 1);
                         nvAgent.speed = speed;
 
-                    }
-                    float dists = Vector3.Distance(targetPlayer.position, transform.position);
-                    if (dists > attackRange)
-                    {
-                        attacking = false;
-                        bossState = BOSSSTATE.MOVE;
-                    }
-                    else
-                    {
-                        bossState = BOSSSTATE.ATTACK;
-                    }
+                        float distan = Vector3.Distance(targetPlayer.position, transform.position);
+                        if (distan < attackRange)
+                        {
+                            bossState = BOSSSTATE.ATTACK;
+                        }
+                        else
+                        {
+                            nvAgent.SetDestination(targetPlayer.position + new Vector3(0, 0, -2f));
+                        }
+                        if (distan > range)
+                        {
+                            bossState = BOSSSTATE.IDLE;
+                        }
 
 
-                    break;
-                case BOSSSTATE.DOWN:
-                    bossAnim.SetInteger("BOSSSTATE", 3);
-                    nvAgent.speed = 0;
-                    attacking = true;
-                    if (attacking == true)
-                    {
+                        break;
+                    case BOSSSTATE.ATTACK:
+                        bossAnim.SetInteger("BOSSSTATE", 2);
                         nvAgent.speed = 0;
-                    }
-                    else
-                    {
-                        nvAgent.speed = speed;
+                        attacking = true;
+                        if (attacking == true)
+                        {
+                            nvAgent.speed = 0;
+                        }
+                        else
+                        {
+                            nvAgent.speed = speed;
 
-                    }
-                    StartCoroutine(StandUp());
+                        }
+                        float dists = Vector3.Distance(targetPlayer.position, transform.position);
+                        if (dists > attackRange)
+                        {
+                            attacking = false;
+                            bossState = BOSSSTATE.MOVE;
+                        }
+                        else
+                        {
+                            bossState = BOSSSTATE.ATTACK;
+                        }
 
-                    break;
-                case BOSSSTATE.DIE:
+
+                        break;
+                    case BOSSSTATE.DOWN:
+                        bossAnim.SetInteger("BOSSSTATE", 3);
+                        nvAgent.speed = 0;
+                        attacking = true;
+                        if (attacking == true)
+                        {
+                            nvAgent.speed = 0;
+                        }
+                        else
+                        {
+                            nvAgent.speed = speed;
+
+                        }
+                        StartCoroutine(StandUp());
+
+                        break;
+                    case BOSSSTATE.DIE:
 
 
-                    break;
+                        break;
 
-                case BOSSSTATE.NEM1:
-                    bossAnim.SetInteger("BOSSSTATE", 5);
-                    if (patternTime > Random.Range(30, 39))
-                    {
-                        StartCoroutine(Nem1delay());
-                        Spawn();
-                    }
-                    break;
-                case BOSSSTATE.NEM2:
-                    bossAnim.SetInteger("BOSSSTATE", 5);
-                    
-                    Nem2();
-                    
-                    break;
-                default:
-                    break;
+                    case BOSSSTATE.NEM1:
+                        bossAnim.SetInteger("BOSSSTATE", 5);
+                        if (patternTime > Random.Range(30, 39))
+                        {
+                            StartCoroutine(Nem1delay());
+                            Spawn();
+                        }
+                        float distst = Vector3.Distance(targetPlayer.position, transform.position);
+                        if (distst > attackRange)
+                        {
+                            attacking = false;
+                            bossState = BOSSSTATE.MOVE;
+                        }
+                        else
+                        {
+                            bossState = BOSSSTATE.ATTACK;
+                        }
+                        break;
+                    case BOSSSTATE.NEM2:
+                        bossAnim.SetInteger("BOSSSTATE", 5);
+
+                        Nem2();
+                        float diststan = Vector3.Distance(targetPlayer.position, transform.position);
+                        if (diststan > attackRange)
+                        {
+                            attacking = false;
+                            bossState = BOSSSTATE.MOVE;
+                        }
+                        else
+                        {
+                            bossState = BOSSSTATE.ATTACK;
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }
 
+    void NearByPlayer()
+    {
+        nearbyPlayer = GameObject.FindGameObjectsWithTag("Player");
+        targetPlayer = GetNearestPlayer(nearbyPlayer);
+    }
+    Transform GetNearestPlayer(GameObject[] players)
+    {
+        Transform nearestPlayer = null;
+        float shortestDistance = float.MaxValue;
+
+        foreach (var player in players)
+        {
+            float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+            if (distanceToPlayer < shortestDistance)
+            {
+                shortestDistance = distanceToPlayer;
+                nearestPlayer = player.transform;
+            }
+        }
+
+        return nearestPlayer;
+    }
     public void Die()
     {
         if(stateManager.hp <=0)
@@ -247,14 +298,14 @@ public class Boss : MonoBehaviour
     }
     private void NemStart()
     {
-        if (patternTime >= 30)
+        if (patternTime >= 30f)
         {
             bossState = BOSSSTATE.NEM1;
         }
     }
     void Nem2Start()
     {
-        if (nem2PatternTime >= 120f)
+        if (nem2PatternTime >= 53f)
         {
             Nem2();
             nem2PatternTime = 0;
