@@ -74,7 +74,7 @@ public class ChaosDungeonMgr : MonoBehaviour
 
     public void ClearEndBoss()
     {
-        clearPanel.SetActive(true);
+        //clearPanel.SetActive(true);
     }
 
     public void Update()
