@@ -5,93 +5,94 @@ using UnityEngine.UI;
 
 public class RewardMgr : MonoBehaviour
 {
-    public static RewardMgr reward;
+    public DataMgrDontDestroy dataMgrDontDestroy;
+
     public GameObject rewardContent;
+    public GameObject itemPrefab;
+    public Sprite[] imageList; //0번은 material, 1번은 expPotion, 2번은 gold
 
-    private void Start()
-    {
-        //imagelist = GameObject.Find("ImageList").GetComponent<ImageList>();
-        rewardContent = GameObject.Find("RewardContent");
-    }
+    public int expPotionReward;
+    public int materialReward;
+    public int goldReward;
 
-    public void clear()
-    {
-        InstExp(3, 100);
-    }
-            ///예제입니다. 이렇게 불러오세요!!!
-    public void MakeItem(int itemIdx, int count) // n번째 아이템을 count개 얻음
-    {
-        InstMaterial(itemIdx, count);
-    }
-    public void MakeItemOne(int itemIdx) // n번째 아이템을 1개 얻음
-    {
-        InstMaterial(itemIdx, 1);
-    }
-    public void MakeItemRandomBtn()
-    {
-        int makeidx = Random.Range(1, 5);// 1에서 4까지 나옴
-        InstMaterial(makeidx, 1);
-    } // 랜덤으로 재료 1개 얻는 버튼
+    //보상=(재화 종류) * 던전의 번호? 1-2, 1-3의 2랑 3을 재화종류에 곱해주는 이런식(일단 이렇게 설정만 해놓음 필요시 수정)
+    //던전의 종류에 따라 리워드를 설정하고, 난이도에따라(더 높은단계의 던전이면) 그만큼 리워드에 곱해준다.
     public void SoloClearReward()
     {
+        expPotionReward = 3;
+        materialReward = 100;
 
+        expPotionReward *= dataMgrDontDestroy.dungeonNumIdx;
+        materialReward *= dataMgrDontDestroy.dungeonNumIdx;
+        InstExp(expPotionReward);
+        InstMaterial(materialReward);
     }
     public void ChaosClearReward()
     {
+        expPotionReward = 5;
+        materialReward = 200;
 
+        expPotionReward *= dataMgrDontDestroy.dungeonNumIdx;
+        materialReward *= dataMgrDontDestroy.dungeonNumIdx;
+        InstExp(expPotionReward);
+        InstMaterial(materialReward);
     }
     public void RaidClearReward()
     {
+        expPotionReward = 10;
+        goldReward = 1000;
 
+        expPotionReward *= dataMgrDontDestroy.dungeonNumIdx;
+        goldReward *= dataMgrDontDestroy.dungeonNumIdx;
+        InstExp(expPotionReward);
+        InstGold(goldReward);
     }
     public void QuestClearReward()
     {
-
+        //expPotionReward=(퀘스트보상);
+        //materialReward=(퀘스트보상);
+        //goldReward=(퀘스트보상);
+        expPotionReward *= dataMgrDontDestroy.dungeonNumIdx;
+        materialReward *= dataMgrDontDestroy.dungeonNumIdx;
+        goldReward *= dataMgrDontDestroy.dungeonNumIdx;
+        InstExp(expPotionReward);
+        InstMaterial(materialReward);
+        InstGold(goldReward);
     }
-    public void Reward100exp3EABtn()
-    {
-        //앞자리 3으로 통일할게요!!!!!
-        InstExp(3, 100);
-        InstMaterial(3, 200);
-        InstGOld(100); //3
-    }
-
-
-
-
-
-
-    // 재료소환 함수
-    public void InstMaterial(int n, int itemcount)
-    {
-
-        //character.GetComponent<Image>().sprite = imagelist.meterialsImage[n];
-
-        //character.tag = "Material";
-        //character.transform.SetParent(rewardContent.transform);
-
-    } 
-
 
     //경험치 물약 소환 함수
-    public void InstExp(int n, int itemcount) 
+    public void InstExp(int itemcount)
     {
-        int item = n-1; // 매개변수
+        GameObject character = Instantiate(itemPrefab);
 
+        character.GetComponent<Image>().sprite = imageList[1];
+        character.GetComponentInChildren<Text>().text = expPotionReward.ToString();
         //character.tag = "Exp";
-        //character.transform.SetParent(rewardContent.transform);
-
-    } 
-
-
-    // 골드 소환 함수
-    public void InstGOld(int itemcount)
-    {
-
-        //character.tag = "Gold";
-        //character.transform.SetParent(rewardContent.transform);
+        character.transform.SetParent(rewardContent.transform);
+        dataMgrDontDestroy.UserExpPotion += expPotionReward;
     }
 
+    // 재료소환 함수
+    public void InstMaterial(int itemcount)
+    {
+        GameObject character = Instantiate(itemPrefab);
 
+        character.GetComponent<Image>().sprite = imageList[0];
+        character.GetComponentInChildren<Text>().text = materialReward.ToString();
+        //character.tag = "Material";
+        character.transform.SetParent(rewardContent.transform);
+        dataMgrDontDestroy.UserMaterial += materialReward;
+    }
 
+    // 골드 소환 함수
+    public void InstGold(int itemcount)
+    {
+        GameObject character = Instantiate(itemPrefab);
+
+        character.GetComponent<Image>().sprite = imageList[2];
+        character.GetComponentInChildren<Text>().text = goldReward.ToString();
+        //character.tag = "Gold";
+        character.transform.SetParent(rewardContent.transform);
+        dataMgrDontDestroy.UserGold += goldReward;
+    }
 }
