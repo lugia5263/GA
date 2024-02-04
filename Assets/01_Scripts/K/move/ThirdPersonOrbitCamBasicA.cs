@@ -146,8 +146,6 @@ public class ThirdPersonOrbitCamBasicA : MonoBehaviour
 
 			cam.position = player.position + camYRotation * smoothPivotOffset + aimRotation * smoothCamOffset;
 		}
-			
-		
 	}
 	// Set camera offsets to custom values.
 	public void SetTargetOffsets(Vector3 newPivotOffset, Vector3 newCamOffset)
