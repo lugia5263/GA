@@ -39,6 +39,8 @@ public class MageMiddleBoss : MonoBehaviour
     public bool die;
 
     [Header("PatternEffect")]
+    public Transform shotPoint;
+    public Transform JumpShotPoint;
     public GameObject[] patternE;
     public GameObject[] patternSkillActive;
     void Start()
@@ -87,7 +89,7 @@ public class MageMiddleBoss : MonoBehaviour
                         MoveTowardsTarget(true);
                     mageAnim.SetTrigger("RUN");
                         float distan = Vector3.Distance(targetPlayer.position, transform.position);
-                        if (distan > 18)
+                        if (distan > 15)
                         {
                         mageBoss = MAGEBOSS.IDLE;
                         }
@@ -164,4 +166,60 @@ public class MageMiddleBoss : MonoBehaviour
             characterController.enabled = false;
         }
     }
+
+    void P1effect()
+    {
+        GameObject obj;
+        obj = Instantiate(patternE[0], shotPoint.position, shotPoint.rotation);
+        Destroy(obj, 3f);
+    }
+    void P2effect()
+    {
+        GameObject obj;
+        obj = Instantiate(patternE[1], transform.position, transform.rotation);
+        Destroy(obj, 0.8f);
+    }
+    void P2bigerEffect()
+    {
+        GameObject obj;
+        obj = Instantiate(patternE[2], transform.position, transform.rotation);
+        Destroy(obj, 1f);
+    }
+
+    void P3Effect()
+    {
+        GameObject obj;
+        obj = Instantiate(patternE[3], shotPoint.position, shotPoint.rotation);
+        Destroy(obj, 3f);
+    }
+    void P4Effect()
+    {
+        GameObject obj;
+        obj = Instantiate(patternE[4], transform.position, transform.rotation);
+        Destroy(obj, 1.3f);
+    }
+    void P5Effect()
+    {
+        GameObject obj;
+        Vector3 spwanPos = new Vector3(0, 1f, 0);
+        obj = Instantiate(patternE[5], transform.position + spwanPos, transform.rotation);
+        Destroy(obj, 4f);
+    }
+    void P6Effect()
+    {
+        GameObject obj;
+        Quaternion rot = Quaternion.Euler(135f, 0, 0);
+        obj = Instantiate(patternE[6], JumpShotPoint.position, JumpShotPoint.rotation);
+        Destroy(obj, 3f);
+    }
+    void CastingEffectOn()
+    {
+        patternE[7].SetActive(true);
+    }
+    void CastingEffectOff()
+    {
+        patternE[7].SetActive(false);
+    }
+
 }
+

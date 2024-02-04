@@ -98,6 +98,8 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
             {
                 Debug.Log("충돌일어남");
                 OnEnforcePanel();
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
         }
     }
@@ -107,6 +109,8 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
         {
             if (other.GetComponent<PhotonView>().IsMine)   
             {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
                 // 강화창 껐으니까 플레이어의 정보에 반영
                 enforcePanel.SetActive(false);
                 StateManager stateManager = other.gameObject.GetComponent<StateManager>();

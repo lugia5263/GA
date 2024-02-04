@@ -16,6 +16,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public bool allowMove = false;
     // 여기 위에를 추가했음. 현창
 
+    public Canvas canvas;
     private Vector3 currPos;
     private Quaternion currRot;
     private Transform tr;
@@ -45,7 +46,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     [Header("Component")]
     CharacterController characterController;
     Rigidbody rigid;
-    Animator animator;
+    public Animator animator;
     TrailRenderer trailRenderer;
     Weapons weapons;
     private PlayableDirector PD;
@@ -59,6 +60,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     PhotonAnimatorView pav;
     CinemachineVirtualCamera cvc;
      UIMgr uimgr;
+    MageHealSkill magehealSkill;
     [Header("CamBat")]
     public bool isAttack;
     public bool isAttack1;
@@ -80,7 +82,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     [Header("Skill CoolTime")]
     public Image[] skillICoolicon;
-    public GameObject[] playerSkillIcon;
+    public GameObject CoolTimeZip;
+    public GameObject playerSkillIcon;
     public bool skillUse;
     public bool qisReady;
     public bool eisReady;
@@ -109,12 +112,12 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     internal string NickName;
     RaidBossCtrl raidBoss;
     Tboss tboss;
-
+    public bool npcAttackStop;
     //테스팅중
 
     void Awake()
     {
-
+        
         camera = Camera.main;
         isFireReady = true;
         weapons = GetComponentInChildren<Weapons>();
@@ -130,36 +133,34 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             cvc.GetComponent<ThirdPersonOrbitCamBasicA>().player = transform;
         }
         cvc.GetComponent<ThirdPersonOrbitCamBasicA>().Starts();
-        if (skillICoolicon != null)
-        {
-            skillICoolicon[0] = GameObject.Find("CoolTimeBGQ").GetComponent<Image>();
-            skillICoolicon[1] = GameObject.Find("CoolTimeBGE").GetComponent<Image>();
-            skillICoolicon[2] = GameObject.Find("CoolTimeBGR").GetComponent<Image>();
-        }
         if (boss != null)
         {
             boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
         }
+        skillICoolicon[0] = GameObject.Find("CoolTimeBGQ").GetComponent<Image>();
+        skillICoolicon[1] = GameObject.Find("CoolTimeBGE").GetComponent<Image>();
+        skillICoolicon[2] = GameObject.Find("CoolTimeBGR").GetComponent<Image>();
     }
     private void Start()
     {
-        chatManager = GetComponent<ChatManager>();
-        Canvas nickCanvas = GetComponentInChildren<Canvas>();
-        nickNameTxt = nickCanvas.GetComponentInChildren<Text>();
-        // 여기 위에를 추가했음. 현창
-
         pv = GetComponent<PhotonView>();
-        pav = GetComponent<PhotonAnimatorView>();
-        plane = new Plane(transform.up, transform.position);
+        if (pv.IsMine)
+        {
+            canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+            cvc.Follow = transform;
+            cvc.LookAt = transform;
+            chatManager = GetComponent<ChatManager>();
+            Canvas nickCanvas = GetComponentInChildren<Canvas>();
+            nickNameTxt = nickCanvas.GetComponentInChildren<Text>();
+            // 여기 위에를 추가했음. 현창
+
+            pv = GetComponent<PhotonView>();
+            pav = GetComponent<PhotonAnimatorView>();
+            plane = new Plane(transform.up, transform.position);
+        }
         skillICoolicon[0].fillAmount = 0;
         skillICoolicon[1].fillAmount = 0;
         skillICoolicon[2].fillAmount = 0;
-        
-        if (pv.IsMine)
-        {
-            cvc.Follow = transform;
-            cvc.LookAt = transform;
-        }
         //chatManager.StartCoroutine(chatManager.CheckEnterKey());
     }
 
@@ -236,8 +237,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
-            nickNameTxt.text = pv.Owner.NickName;
-            nickNameTxt.color = Color.red;
+            //nickNameTxt.text = pv.Owner.NickName;
+            //nickNameTxt.color = Color.red;
         }
     }
 
@@ -270,23 +271,45 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     void SkillCoolTime()
     {
-        if (!qisReady)
+        if (pv.IsMine)
         {
-            skillICoolicon[0].fillAmount = 1 - qskillcool /curQskillcool;
-        }
-        if (!eisReady)
-        {
-            skillICoolicon[1].fillAmount = 1 - eskillcool / curEskillcool;
-        }
-        if (!risReady)
-        {
-            skillICoolicon[2].fillAmount = 1 - rskillcool / curRskillcool;
+            if (!qisReady)
+            {
+                skillICoolicon[0].fillAmount = 1 - qskillcool / curQskillcool;
+            }
+            if (!eisReady)
+            {
+                skillICoolicon[1].fillAmount = 1 - eskillcool / curEskillcool;
+            }
+            if (!risReady)
+            {
+                skillICoolicon[2].fillAmount = 1 - rskillcool / curRskillcool;
+            }
+            if (sPlayer)
+            {
+                uimgr.playerSkillIcon[0].SetActive(true);
+                uimgr.playerSkillIcon[1].SetActive(false);
+                uimgr.playerSkillIcon[2].SetActive(false);
+            }
+            if (aPlayer)
+            {
+                uimgr.playerSkillIcon[0].SetActive(false);
+                uimgr.playerSkillIcon[1].SetActive(true);
+                uimgr.playerSkillIcon[2].SetActive(false);
+            }
+            if (mPlayer)
+            {
+                uimgr.playerSkillIcon[0].SetActive(false);
+                uimgr.playerSkillIcon[1].SetActive(false);
+                uimgr.playerSkillIcon[2].SetActive(true);
+            }
         }
     }
-
     
     void Attack()
     {
+        if (npcAttackStop)
+            return;
         //chargingTime += Time.deltaTime;
         fireDelay += Time.deltaTime;
         isFireReady = weapons.rate < fireDelay;
@@ -353,84 +376,60 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     void SkillOn()
     {
-        qskillcool += Time.deltaTime;
-
-        if (qskillcool >= curQskillcool)
+        if (pv.IsMine)
         {
-            qskillcool = curQskillcool;
-            qisReady = true;
-        }
+            qskillcool += Time.deltaTime;
 
-        eskillcool += Time.deltaTime;
-
-        if (eskillcool >= curEskillcool)
-        {
-            eskillcool = curEskillcool;
-            eisReady = true;
-        }
-        rskillcool += Time.deltaTime;
-
-        if (rskillcool >= curRskillcool)
-        {
-            rskillcool = curRskillcool;
-            risReady = true;
-            rischarging = true;
-        }
-
-        if (qisReady)
-        {
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (qskillcool >= curQskillcool)
             {
-                animator.SetTrigger("SkillQ");
-                qskillcool = 0;
-                qisReady = false;
+                qskillcool = curQskillcool;
+                qisReady = true;
             }
-        }
 
-        if (eisReady)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                animator.SetTrigger("SkillE");
-                eskillcool = 0;
-                eisReady = false;
-            }
-        }
+            eskillcool += Time.deltaTime;
 
-        if (risReady)
-        {
-            if (Input.GetKeyDown(KeyCode.R))
+            if (eskillcool >= curEskillcool)
             {
-                animator.SetTrigger("SkillR");
-                rskillcool = 0;
-                risReady = false;
+                eskillcool = curEskillcool;
+                eisReady = true;
             }
-        }
-        if (onMagic)
-        {
-            if (rischarging)
+            rskillcool += Time.deltaTime;
+
+            if (rskillcool >= curRskillcool)
             {
-                if (Input.GetKey(KeyCode.R))
+                rskillcool = curRskillcool;
+                risReady = true;
+                rischarging = true;
+            }
+
+            if (qisReady)
+            {
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    animator.SetTrigger("SkillQ");
+                    qskillcool = 0;
+                    qisReady = false;
+                }
+            }
+
+            if (eisReady)
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    animator.SetTrigger("SkillE");
+                    eskillcool = 0;
+                    eisReady = false;
+                }
+            }
+            if (onMagic)
+                return;
+            if (risReady)
+            {
+                if (Input.GetKeyDown(KeyCode.R))
                 {
                     animator.SetTrigger("SkillR");
-                    Skill[2].SetActive(true);
-                    ob[0].SetActive(true);
-                    chargingSlider.value += Time.deltaTime * 0.35f;
-
-                    if (chargingSlider.value == 1)
-                    {
-                        Skill[2].SetActive(false);
-                        ob[0].SetActive(false);
-                        rischarging = false;
-                    }
-                }
-                else
-                {
-                Skill[2].SetActive(false);
-                ob[0].SetActive(false);
-                
-                rischarging = false;
-                chargingSlider.value = 0;
+                    rskillcool = 0;
+                    risReady = false;
                 }
             }
         }
@@ -448,12 +447,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
         if (other.CompareTag("SaveZone"))
             isDeshInvincible = true;
-        if (other.CompareTag("NPCQ"))
-            uimgr.npcPanel[0].SetActive(true);
+            
         //if (other.CompareTag("NPCW"))
             //uimgr.npcPanel[1].SetActive(true);
-        if (other.CompareTag("NPCL"))
-            uimgr.npcPanel[2].SetActive(true);
         //if (other.CompareTag("NPCP"))
         //uimgr.npcPanel[5].SetActive(true);
         //if (other.CompareTag("NPCA"))
@@ -483,23 +479,49 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             stateManager.hp += 5;
             hudManager.ChangeUserHUD();
         }
+        if (other.CompareTag("NPCQ"))
+        {
+            npcAttackStop = true;
+            uimgr.npcPanel[0].SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        if (other.CompareTag("NPCL"))
+        {
+            npcAttackStop = true;
+            uimgr.npcPanel[2].SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Shop")
         {
+
             Shop shop = nearObject.GetComponent<Shop>();
             shop.Exit();
             nearObject = null;
         }
         if (other.CompareTag("NPCQ"))
+        {
+            npcAttackStop = false;
             uimgr.npcPanel[0].SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
         //if (other.CompareTag("NPCW"))
             //uimgr.npcPanel[1].SetActive(false);
         if (other.CompareTag("NPCL"))
+        {
+            npcAttackStop = false;
             uimgr.npcPanel[2].SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
+
     void SkillUsing()
     {
         skillUse = true;
@@ -602,10 +624,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     void M_SkillR()
     {
         Skill[2].SetActive(true);
-        if (chargingSlider.value == 1)
+        if (magehealSkill.charging.value == 1)
         {
             Skill[2].SetActive(false);
-            chargingSlider.value = 0;
+            magehealSkill.charging.value = 0;
         }
     }
 

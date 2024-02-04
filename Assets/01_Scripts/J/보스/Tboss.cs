@@ -267,7 +267,7 @@ public class Tboss : MonoBehaviourPunCallbacks, IPunObservable
                         case TBOSS.PAGE2:
                             page2 = 0;
                             isActivating = true;
-                            StartCoroutine(BeamInstans());
+                            
                             break;
                     }
             }

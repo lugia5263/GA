@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.49243817, y: 0.50744915, z: -0.50744915, w: 0.49243817}
   m_LocalPosition: {x: 0.0315083, y: -0.313822, z: 0.30558088}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6751135402864706496}
@@ -146,7 +146,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.008980225, y: 0, z: -0.29902086}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6751135402864706496}
@@ -421,7 +421,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -474,7 +474,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -527,7 +527,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationX:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -580,7 +580,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -4967,6 +4967,9 @@ GameObject:
   - component: {fileID: 6751135402864706496}
   - component: {fileID: 8148886096523200933}
   - component: {fileID: 3586618859264864674}
+  - component: {fileID: 3643522978773121849}
+  - component: {fileID: 431420515875434255}
+  - component: {fileID: 1863876190647627032}
   m_Layer: 0
   m_Name: P1E
   m_TagString: Untagged
@@ -4982,15 +4985,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7162286457160739069}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.49243817, y: -0.50744915, z: 0.50744915, w: 0.49243817}
+  m_LocalRotation: {x: -0.49243903, y: -0.5074483, z: 0.5074483, w: 0.49243903}
   m_LocalPosition: {x: 16.55, y: 2.07, z: 2.69}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3559172962261659804}
   - {fileID: 7076576523498802882}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 1.72, y: -90, z: 90}
 --- !u!198 &8148886096523200933
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -9796,3 +9799,58 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &3643522978773121849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7162286457160739069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c1973af5d8b5bb40a13d22dead72e9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p6Bullet: {fileID: 0}
+  p1Speed: 0.07
+  p3Speed: 0
+  p6Speed: 0
+  p1Shot: 1
+  p3Shot: 0
+  p6Shot: 0
+--- !u!65 &431420515875434255
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7162286457160739069}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.75, y: 0.75, z: 0.75}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1863876190647627032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7162286457160739069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fac9142f96420c3419eb34712cacc9ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sm: {fileID: 2574167886633043152, guid: de8b7bfd83855b9499a9187c5fcc31c0, type: 3}
+  atkPer: 65
+  player: {fileID: 0}

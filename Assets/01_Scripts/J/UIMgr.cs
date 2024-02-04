@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using Photon.Pun;
+using Photon.Realtime;
+using System.Linq;
 public class UIMgr : MonoBehaviour
 {
-    Player player;
+    public Player player;
 
     public GameObject[] npcPanel;
     public GameObject[] npcCH;
     public GameObject[] playerSkillIcon;
 
+    public GameObject healSlider;
     void Start()
     {
         UIstartOff();
