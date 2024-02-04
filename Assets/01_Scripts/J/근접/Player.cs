@@ -45,7 +45,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     [Header("Component")]
     CharacterController characterController;
     Rigidbody rigid;
-    Animator animator;
+    public Animator animator;
     TrailRenderer trailRenderer;
     Weapons weapons;
     private PlayableDirector PD;
