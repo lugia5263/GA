@@ -11,6 +11,7 @@ using Cinemachine;
 
 public class Player : MonoBehaviourPunCallbacks, IPunObservable
 {
+    float gravity = -9.8f;
     public Text nickNameTxt;
     public ChatManager chatManager;
     public bool allowMove = false;
@@ -194,6 +195,11 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             transform.forward = moveDir;
             transform.position += moveDir * Time.deltaTime * 0.01f;
             characterController.Move(moveDir * 5f);
+        }
+        if(!characterController.isGrounded)
+        {
+            Vector3 gravityVector = Vector3.down * gravity * Time.deltaTime;
+            characterController.Move(gravityVector);
         }
     }
     
