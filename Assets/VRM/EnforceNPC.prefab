@@ -844,7 +844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 690ea0146224b8b4694a1925dddeb352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Meta: {fileID: 3909701046859896351}
+  Meta: {fileID: 2398720685718444776}
 --- !u!114 &1498604563475982360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -857,8 +857,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3869812175467a143ab9cd865752b4a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Avatar: {fileID: 296874745277823742}
-  Description: {fileID: 9107072161987496996}
+  Avatar: {fileID: 5185049072924527379}
+  Description: {fileID: 8465062378921806075}
 --- !u!95 &464982628691437114
 Animator:
   serializedVersion: 5
@@ -868,7 +868,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3558131397582413053}
   m_Enabled: 1
-  m_Avatar: {fileID: 296874745277823742}
+  m_Avatar: {fileID: 5185049072924527379}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -3364,7 +3364,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6881195108083810976}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!90 &296874745277823742
+--- !u!114 &2398720685718444776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63b589176a34b344b9ccbee2b7e7114a, type: 3}
+  m_Name: Meta
+  m_EditorClassIdentifier: 
+  ExporterVersion: VRoid Studio-1.26.0
+  Title: EnforceNPC
+  Version: 
+  Author: "\uFF43"
+  ContactInformation: 
+  Reference: 
+  Thumbnail: {fileID: 2800000, guid: b18b695791d206448bef43d336c106ed, type: 3}
+  AllowedUser: 0
+  ViolentUssage: 0
+  SexualUssage: 0
+  CommercialUssage: 0
+  OtherPermissionUrl: 
+  LicenseType: 0
+  OtherLicenseUrl: 
+--- !u!90 &5185049072924527379
 Avatar:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5681,33 +5707,7 @@ Avatar:
     m_HasTranslationDoF: 0
     m_HasExtraRoot: 0
     m_SkeletonHasParents: 0
---- !u!114 &3909701046859896351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63b589176a34b344b9ccbee2b7e7114a, type: 3}
-  m_Name: Meta
-  m_EditorClassIdentifier: 
-  ExporterVersion: VRoid Studio-1.26.0
-  Title: EnforceNPC
-  Version: 
-  Author: "\uFF43"
-  ContactInformation: 
-  Reference: 
-  Thumbnail: {fileID: 2800000, guid: b18b695791d206448bef43d336c106ed, type: 3}
-  AllowedUser: 0
-  ViolentUssage: 0
-  SexualUssage: 0
-  CommercialUssage: 0
-  OtherPermissionUrl: 
-  LicenseType: 0
-  OtherLicenseUrl: 
---- !u!114 &9107072161987496996
+--- !u!114 &8465062378921806075
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
