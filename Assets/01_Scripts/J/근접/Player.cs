@@ -237,7 +237,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                     Death();
                     Deshs();
                     Interation();
-                    SkillCoolTime();
+                    //SkillCoolTime();
                 }
             }
         }
@@ -452,15 +452,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
         if (other.CompareTag("SaveZone"))
             isDeshInvincible = true;
-
-        //if (other.CompareTag("NPCW"))
-        //uimgr.npcPanel[1].SetActive(true);
-        //if (other.CompareTag("NPCP"))
-        //uimgr.npcPanel[5].SetActive(true);
-        //if (other.CompareTag("NPCA"))
-        //uimgr.npcPanel[1].SetActive(true);
-
-
     }
 
     IEnumerator DownDelay()
@@ -484,20 +475,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             stateManager.hp += 5;
             hudManager.ChangeUserHUD();
         }
-        if (other.CompareTag("NPCQ"))
-        {
-            npcAttackStop = true;
-            uimgr.npcPanel[0].SetActive(true);
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-        if (other.CompareTag("NPCL"))
-        {
-            npcAttackStop = true;
-            uimgr.npcPanel[2].SetActive(true);
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -508,22 +485,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             Shop shop = nearObject.GetComponent<Shop>();
             shop.Exit();
             nearObject = null;
-        }
-        if (other.CompareTag("NPCQ"))
-        {
-            npcAttackStop = false;
-            uimgr.npcPanel[0].SetActive(false);
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-        //if (other.CompareTag("NPCW"))
-        //uimgr.npcPanel[1].SetActive(false);
-        if (other.CompareTag("NPCL"))
-        {
-            npcAttackStop = false;
-            uimgr.npcPanel[2].SetActive(false);
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
         }
     }
 
