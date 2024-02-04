@@ -4683,7 +4683,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 331c09749fa9d33419687a88a67ba42b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
   castRadius: 1
+  targetPlayer: {fileID: 0}
 --- !u!1 &1754062265
 GameObject:
   m_ObjectHideFlags: 0
@@ -5015,10 +5017,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: magicBoss
       objectReference: {fileID: 0}
-    - target: {fileID: 7223578788308549897, guid: de8b7bfd83855b9499a9187c5fcc31c0, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9065695102054427690, guid: de8b7bfd83855b9499a9187c5fcc31c0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.04
@@ -5126,25 +5124,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1062931592681949436, guid: 5dc21cbbdd87eb445aba7fdaaad4b74e, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2542026107897127785, guid: 5dc21cbbdd87eb445aba7fdaaad4b74e, type: 3}
       propertyPath: m_Name
       value: TTboss
-      objectReference: {fileID: 0}
-    - target: {fileID: 2542026107897127785, guid: 5dc21cbbdd87eb445aba7fdaaad4b74e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5419291578747363250, guid: 5dc21cbbdd87eb445aba7fdaaad4b74e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6294311814710889917, guid: 5dc21cbbdd87eb445aba7fdaaad4b74e, type: 3}
-      propertyPath: sceneViewId
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6818644597875904007, guid: 5dc21cbbdd87eb445aba7fdaaad4b74e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5185,14 +5167,6 @@ PrefabInstance:
     - target: {fileID: 6818644597875904007, guid: 5dc21cbbdd87eb445aba7fdaaad4b74e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8141892138508379036, guid: 5dc21cbbdd87eb445aba7fdaaad4b74e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 8141892138508379036, guid: 5dc21cbbdd87eb445aba7fdaaad4b74e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 4.08
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -79,8 +79,8 @@ public class ChaosDungeonMgr : MonoBehaviour
 
     public void Update()
     {
-        if (reset.transform.position.y < -7f)
-            ResetPlayer();
+        //if (reset.transform.position.y < -7f)
+            //ResetPlayer();
 
     }
 

@@ -670,7 +670,7 @@ VisualEffect:
       - m_Value: {x: -0, y: 180, z: -0}
         m_Name: Transform_angles
         m_Overridden: 1
-      - m_Value: {x: -1.19, y: -0.5, z: 6.21}
+      - m_Value: {x: -1.19, y: 23.83, z: 6.21}
         m_Name: Transform_position
         m_Overridden: 1
       - m_Value: {x: 1, y: 1, z: 1}
@@ -6992,6 +6992,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebede63c47adfc949b82924e9eec2475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionRadius: 10
+  playerTag: Player
   speed: 2.5
   rotSpeed: 5
   range: 8
@@ -7035,6 +7037,7 @@ MonoBehaviour:
   breakOn: 0
   die: 0
   healthUpCheck: 0
+  weapons: {fileID: 9000596249190480269}
   p5PatternE: {fileID: 6810067018939647671}
   downPatterE: {fileID: 1858839583088856774}
   p2EttectE: {fileID: 2579152407155664761}
@@ -7079,17 +7082,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f2b234d65ba7b84485082702a4067fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxhp: 100000
-  hp: 100000
-  atk: 20
+  dataMgrDontDestroy: {fileID: 0}
   level: 1
   exp: 0
-  classNum: 0
+  maxhp: 100000
+  hp: 100000
+  weaponLevel: 0
+  attackPower: 120
   criChance: 50
   criDamage: 1.5
-  def: 0
-  gageTime: 0
+  userGold: 0
+  userMaterial: 0
+  userExpPotion: 0
   hudManager: {fileID: 0}
+  pv: {fileID: 0}
 --- !u!114 &2104592536116756750
 MonoBehaviour:
   m_ObjectHideFlags: 0

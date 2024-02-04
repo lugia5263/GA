@@ -78,6 +78,7 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks, IPunObservable
     public bool healthUpCheck;
 
     [Header("Ettect")]
+    public BoxCollider weapons;
     public GameObject p5PatternE;
     public GameObject downPatterE;
     public GameObject p2EttectE;
@@ -106,8 +107,6 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks, IPunObservable
 
     void FixedUpdate()
     {
-        if (PhotonNetwork.IsMasterClient)
-        {
             if (pv.IsMine)
             {
                 if (!die)
@@ -256,7 +255,6 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks, IPunObservable
                                 break;
                         }
                 }
-            }
         }
     }
     void FindNearestPlayer()
@@ -418,6 +416,7 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks, IPunObservable
         if(stateManager.hp <= 0)
         {
             die = true;
+            weapons.enabled = false;
             raidBoss = RAIDBOSS.DIE;
             characterController.enabled = false;
         }

@@ -44,7 +44,8 @@ public class ThirdPersonOrbitCamBasicA : MonoBehaviour
 	{
 
 		//thiscam = gameObject.GetComponent<CinemachineVirtualCamera>();
-
+		
+		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
 		// Reference to the camera transform.
 		if (player != null)
