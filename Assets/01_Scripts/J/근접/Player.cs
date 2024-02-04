@@ -198,7 +198,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
         if (!characterController.isGrounded)
         {
-            Vector3 gravityVector = Vector3.down * gravity * Time.deltaTime;
+            Vector3 gravityVector = Vector3.down * -gravity * Time.deltaTime;
             characterController.Move(gravityVector);
         }
     }
