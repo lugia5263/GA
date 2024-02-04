@@ -7,6 +7,6 @@ public class DestroygameObject : MonoBehaviour
     // Start is called before the first frame update
     public void AutoDestroy()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
