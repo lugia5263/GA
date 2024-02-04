@@ -10,7 +10,7 @@ public class DeadBoxCollider : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             other.transform.position = new Vector3(0, 1, 0);
-            Debug.Log("SEx");
+            Debug.Log("SEs");
         }
     }
     void Start()
