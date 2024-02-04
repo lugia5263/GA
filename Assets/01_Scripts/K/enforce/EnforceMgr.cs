@@ -10,8 +10,6 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
     public DataMgrDontDestroy dataMgrDontDestroy;
     public TextAsset forcetxtFile; //Jsonfile
 
-    public InventoryManager inventoryMgr;
-    public RewardMgr rewardMgr;
     public StateManager stateMgr;
     public Button enBtn;
 
@@ -38,10 +36,7 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
     public Text beforeAtkF;
     public Text afterAtkF;
 
-    [Header("업적클리어용")]
-    //public int failEnforceCount;
-
-
+    [Header("강화 이후 정보")]
     public int playerWeaponLevel;
     public int playerGold;
     public int playerMaterial;
@@ -55,7 +50,6 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
         forcetxtFile = jsonitemFile;
         lessTween = GameObject.Find("lessTween").GetComponent<Jun_TweenRuntime>();
         enforcePanel = GameObject.Find("EnforcePanel");
-        rewardMgr = GameObject.Find("RewardMgr").GetComponent<RewardMgr>();
         wantEnforceTxt = GameObject.Find("ReallyTxt").GetComponent<Text>();
         weaponNowTxt = GameObject.Find("ReadyBefore").GetComponent<Text>();
         weaponAftTxt = GameObject.Find("ReadyAfter").GetComponent<Text>();
