@@ -34,7 +34,6 @@ public class DungeonMgr : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-        discription = GameObject.Find("DungeonDescription").GetComponent<Text>();
         var jsonitemFIle = Resources.Load<TextAsset>("Json/DungeonList");
         txtFile = jsonitemFIle;
     }
