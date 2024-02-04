@@ -4,7 +4,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
-
+using System.Collections;
 
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
@@ -13,6 +13,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     public LoadPlayerInfo loadPlayerInfo;
     public int slotNum;
+    public Canvas chCanvas;
+    public GameObject fakeloading;
 
     void Awake()
     {
@@ -107,6 +109,13 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public void OnClickStartBtn()
     {
         SetUserId();
+        StartCoroutine(FakePanelOn());
+    }
+
+    IEnumerator FakePanelOn()
+    {
+        Instantiate(fakeloading, chCanvas.transform);
+        yield return new WaitForSeconds(1f);
         JoinHome();
     }
 
