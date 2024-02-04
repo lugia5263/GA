@@ -47,7 +47,7 @@ public class QuestPopUpManager : MonoBehaviour
     public void QuestIndexUp(int n) //퀘스트 달성도 증가
     {
         //qcondition = (QuestCondition)n; // 위의 이넘값을 1, 2 로 쓸거야
-        if (questIndex == n)
+        if (dataMgr.questIdx == n)
         {
             curCnt++;
             dataMgr.QuestCurCnt = curCnt; // 데이터 매니저에 현재 퀘스트 달성도 업데이트

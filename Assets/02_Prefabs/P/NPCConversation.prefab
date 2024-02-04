@@ -148,7 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textName: {fileID: 138072000805027861}
   textSentence: {fileID: 5817346439961976437}
-  conversationPanel: {fileID: 6021175532182677748}
+  nPCConversation: {fileID: 0}
   nextBtn: {fileID: 1762294094827192864}
 --- !u!1 &3442360611870334757
 GameObject:
@@ -307,7 +307,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC548\uB155\uD558\uC138\uC694!!"
+  m_Text: "\uC88C\uCE21 \uD018\uC2A4\uD2B8 \uBC84\uD2BC\uC744 \uB20C\uB7EC \uD018\uC2A4\uD2B8\uB97C
+    \uC9C4\uD589\uD574\uC8FC\uC138\uC694"
 --- !u!1 &6021175532182677748
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +466,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uAC00\uC77C"
+  m_Text: "[ \uD018\uC2A4\uD2B8 \uD29C\uD1A0\uB9AC\uC5BC]"
 --- !u!1 &7474798483726204862
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,7 +627,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textName: {fileID: 138072000805027861}
   textSentence: {fileID: 5817346439961976437}
-  conversationPanel: {fileID: 6021175532182677748}
+  nPCConversation: {fileID: 0}
   nextBtn: {fileID: 7474798483726204862}
 --- !u!1 &8511313395764582053
 GameObject:
