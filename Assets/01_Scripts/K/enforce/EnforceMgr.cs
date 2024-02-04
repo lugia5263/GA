@@ -10,8 +10,6 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
     public DataMgrDontDestroy dataMgrDontDestroy;
     public TextAsset forcetxtFile; //Jsonfile
 
-    public InventoryManager inventoryMgr;
-    public RewardMgr rewardMgr;
     public StateManager stateMgr;
     public Button enBtn;
 
@@ -38,10 +36,7 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
     public Text beforeAtkF;
     public Text afterAtkF;
 
-    [Header("업적클리어용")]
-    //public int failEnforceCount;
-
-
+    [Header("강화 이후 정보")]
     public int playerWeaponLevel;
     public int playerGold;
     public int playerMaterial;
@@ -55,7 +50,6 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
         forcetxtFile = jsonitemFile;
         lessTween = GameObject.Find("lessTween").GetComponent<Jun_TweenRuntime>();
         enforcePanel = GameObject.Find("EnforcePanel");
-        rewardMgr = GameObject.Find("RewardMgr").GetComponent<RewardMgr>();
         wantEnforceTxt = GameObject.Find("ReallyTxt").GetComponent<Text>();
         weaponNowTxt = GameObject.Find("ReadyBefore").GetComponent<Text>();
         weaponAftTxt = GameObject.Find("ReadyAfter").GetComponent<Text>();
@@ -98,6 +92,8 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
             {
                 Debug.Log("충돌일어남");
                 OnEnforcePanel();
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
         }
     }
@@ -107,6 +103,8 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
         {
             if (other.GetComponent<PhotonView>().IsMine)   
             {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
                 // 강화창 껐으니까 플레이어의 정보에 반영
                 enforcePanel.SetActive(false);
                 StateManager stateManager = other.gameObject.GetComponent<StateManager>();

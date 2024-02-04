@@ -60,7 +60,7 @@ public class NPCController : MonoBehaviour
         if (other.CompareTag("Player") && npcNum == 3) //대장장이
         {
             enforceMgr.stateMgr = GameObject.FindWithTag("Player").GetComponent<StateManager>();
-            enforceMgr.inventoryMgr = GameObject.Find("InventoryMgr").GetComponent<InventoryManager>();
+            //enforceMgr.inventoryMgr = GameObject.Find("InventoryMgr").GetComponent<InventoryManager>();
             enforceMgr.InitAtk();
             weaponPanel.SetActive(true);
 

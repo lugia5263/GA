@@ -13,7 +13,6 @@ public class PotalController : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-        portalPanel = GameObject.Find("PortalPanel");
         skyPortal = GameObject.Find("SkyPortal");
         skyPortal.SetActive(false);
     }
@@ -26,6 +25,8 @@ public class PotalController : MonoBehaviourPunCallbacks
             {
                 Debug.Log("충돌일어남");
                 Portal();
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
         }
     }
@@ -35,6 +36,8 @@ public class PotalController : MonoBehaviourPunCallbacks
         {
             if (other.GetComponent<PhotonView>().IsMine)
             {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
                 Portal();
             }
         }
