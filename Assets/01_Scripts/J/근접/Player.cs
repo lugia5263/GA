@@ -109,8 +109,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     internal string NickName;
 
     //테스팅중
-    RaidBossCtrl raidBoss;
-    Tboss tboss;
 
     void Awake()
     {
@@ -160,12 +158,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             cvc.LookAt = transform;
         }
         //chatManager.StartCoroutine(chatManager.CheckEnterKey());
-    }
-
-    public void DoSomething()
-    {
-        raidBoss.player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        raidBoss.targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     //"��������"
