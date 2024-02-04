@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 3262688130523997612}
   - component: {fileID: 4041401576224061932}
   - component: {fileID: 6301793314366865830}
+  - component: {fileID: 4588713372236716438}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -147,3 +148,16 @@ MonoBehaviour:
   targetCamOffset: {x: 0, y: 0, z: -2}
   zoomSpeed: 20
   scrollSpeed: 1.13
+--- !u!114 &4588713372236716438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4990175494746098374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 331c09749fa9d33419687a88a67ba42b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  castRadius: 0.3

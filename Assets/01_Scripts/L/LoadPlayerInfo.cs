@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class LoadPlayerInfo : MonoBehaviour
 {
+
+    public int currentSlotNum;
+
     private DataMgrDontDestroy dataMgrDontDestroy;
     public string nickName;
     public int level;
@@ -18,8 +21,6 @@ public class LoadPlayerInfo : MonoBehaviour
     public int userGold;
     public int userMaterial;
     public int userExpPotion;
-
-    public int currentSlotNum;
 
     public Text[] slot1Text;
     public Text[] slot2Text;
@@ -58,8 +59,15 @@ public class LoadPlayerInfo : MonoBehaviour
             {
                 string nickName = PlayerPrefs.GetString($"{slotNum}_NickName");
                 string className = PlayerPrefs.GetString($"{slotNum}_Class");
+                
                 int level = PlayerPrefs.GetInt($"{slotNum}_Level");
-                Debug.Log($"슬롯넘버 {slotNum}의 레벨은 {level}");
+                PlayerPrefs.GetInt($"{slotNum}_MaxHp");
+                PlayerPrefs.GetInt($"{slotNum}_WeaponLevel");
+                PlayerPrefs.GetInt($"{slotNum}_ATK");
+                PlayerPrefs.GetInt($"{slotNum}_CriticalPer");
+                PlayerPrefs.GetInt($"{slotNum}_UserGold");
+                PlayerPrefs.GetInt($"{slotNum}_Material");
+                PlayerPrefs.GetInt($"{slotNum}_ExpPotion");
 
                 switch (slotNum)
                 {
@@ -84,6 +92,7 @@ public class LoadPlayerInfo : MonoBehaviour
             }
         }
     }
+
 
     public void LoadCurrnetPlayerData()
     {
@@ -119,4 +128,5 @@ public class LoadPlayerInfo : MonoBehaviour
         dataMgrDontDestroy.UserExpPotion = userExpPotion;
         #endregion
     }
+
 }

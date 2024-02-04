@@ -7,10 +7,10 @@ public class BossWeapons : MonoBehaviour
     public StateManager sm;
     public float atkPer;
     public Player player;
+    Tboss tboss;
 
     private void Start()
     {
-        if(player != null)
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
