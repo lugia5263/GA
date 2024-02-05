@@ -42,7 +42,7 @@ public class Tboss : MonoBehaviourPunCallbacks, IPunObservable
     public TBOSS  tBOSS;
     public Animator tbanim;
     public StateManager stateManager;
-    public ChaosPlayerCtlr player;
+    public Player player;
     public BoxCollider nem1Area;
     public PhotonView pv;
     [Header("AttackPattern")]
@@ -88,7 +88,7 @@ public class Tboss : MonoBehaviourPunCallbacks, IPunObservable
         pv = GetComponent<PhotonView>();
         if (pv.IsMine)
         {
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<ChaosPlayerCtlr>();
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
             targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
             testGameMgr someComponent = GameObject.FindWithTag("Player").GetComponent<testGameMgr>();
             //if (someComponent != null)
@@ -107,7 +107,7 @@ public class Tboss : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (player != null)
             {
-                player = GameObject.FindGameObjectWithTag("Player").GetComponent<ChaosPlayerCtlr>();
+                player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
                 targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
             }
         }

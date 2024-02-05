@@ -24,6 +24,7 @@ public class HidingObjCamera : MonoBehaviour
         testGameMgr someComponent = GameObject.FindWithTag("Player").GetComponent<testGameMgr>();
         if (someComponent != null)
         {
+            targetPlayer = GameObject.FindWithTag("Player");
             someComponent.Starts();
         }
         targetPlayer = GameObject.FindWithTag("Player");

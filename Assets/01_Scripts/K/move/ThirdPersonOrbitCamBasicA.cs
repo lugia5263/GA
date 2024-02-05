@@ -40,12 +40,27 @@ public class ThirdPersonOrbitCamBasicA : MonoBehaviour
 	public float zoomSpeed = 20f;
 	public float scrollSpeed = 1.2f;
 
-     public void Starts()
+    private void Start()
+    {
+		testGameMgr someComponent = GameObject.FindWithTag("Player").GetComponent<testGameMgr>();
+		if (someComponent != null)
+		{
+			player = GameObject.FindWithTag("Player").transform;
+			someComponent.Starts();
+		}
+		player = GameObject.FindWithTag("Player").transform;
+	}
+    public void Starts()
 	{
 
 		//thiscam = gameObject.GetComponent<CinemachineVirtualCamera>();
-		
-		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+
+		testGameMgr someComponent = GameObject.FindWithTag("Player").GetComponent<testGameMgr>();
+		if (someComponent != null)
+		{
+			someComponent.Starts();
+			
+		}
 
 		// Reference to the camera transform.
 		if (player != null)
@@ -75,8 +90,8 @@ public class ThirdPersonOrbitCamBasicA : MonoBehaviour
 
 	void Update()
 	{
-		
-			float scroll = Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
+
+		float scroll = Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
 
 			//if (thiscam.m_Lens.FieldOfView <= 20.0f && scroll < 0)
 			//{

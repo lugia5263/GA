@@ -82,11 +82,9 @@ public class ChaosDungeonMgr : MonoBehaviour
     }
     public void ClearMidBoss() //중간 보스잡을때마다 호출해야함.
     {
-        if(mageMiddle.GetComponent<StateManager>().hp <= 0)
-        {
+      
             isBattle = false;
             Door();
-        }
     }
     public void InstBoss4()
     {

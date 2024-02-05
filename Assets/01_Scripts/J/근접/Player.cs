@@ -128,12 +128,12 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         stateManager = GetComponent<StateManager>();
         hudManager = GetComponent<HUDManager>();
         uimgr = GameObject.Find("UIMgr").GetComponent<UIMgr>();
-        cvc = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
+        cvc = GameObject.FindGameObjectWithTag("CVC").GetComponent<CinemachineVirtualCamera>();
+        cvc.GetComponent<ThirdPersonOrbitCamBasicA>().player = transform;
         if (PhotonNetwork.IsConnected && photonView.IsMine)
         {
             cvc.GetComponent<ThirdPersonOrbitCamBasicA>().player = transform;
         }
-        cvc.GetComponent<ThirdPersonOrbitCamBasicA>().Starts();
         if (boss != null)
         {
             boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
