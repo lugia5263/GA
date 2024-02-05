@@ -124,7 +124,7 @@ public class QuestManager : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (other.GetComponent<PhotonView>().IsMine && isFirst)
+            if (other.GetComponent<PhotonView>().IsMine)
             {
                 Debug.Log("충돌일어남");
                 questPanel.SetActive(true);
@@ -143,6 +143,8 @@ public class QuestManager : MonoBehaviour
         {
             if (other.GetComponent<PhotonView>().IsMine)
             {
+                nPCConversation.SetActive(false);
+                descriptionPanel.SetActive(false);
                 questPanel.SetActive(false);
             }
         }
