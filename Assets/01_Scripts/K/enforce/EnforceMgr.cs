@@ -97,6 +97,22 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
             }
         }
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (other.GetComponent<PhotonView>().IsMine)
+            {
+                StateManager stateManager = other.gameObject.GetComponent<StateManager>();
+                stateManager.weaponLevel = playerWeaponLevel;
+                stateManager.userMaterial = playerMaterial;
+                stateManager.userGold = playerGold;
+                stateManager.attackPower = playerAttackPower;
+            }
+        }
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -107,11 +123,6 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
                 Cursor.visible = false;
                 // 강화창 껐으니까 플레이어의 정보에 반영
                 enforcePanel.SetActive(false);
-                StateManager stateManager = other.gameObject.GetComponent<StateManager>();
-                stateManager.weaponLevel = playerWeaponLevel;
-                stateManager.userMaterial = playerMaterial;
-                stateManager.userGold = playerGold;
-                stateManager.attackPower = playerAttackPower;
             }
         }
     }

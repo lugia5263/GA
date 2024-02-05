@@ -147,12 +147,12 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         pv = GetComponent<PhotonView>();
         if (pv.IsMine)
         {
-            canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+            canvas = GameObject.Find("WorldCanvas").GetComponent<Canvas>();
             cvc.Follow = transform;
             cvc.LookAt = transform;
             chatManager = GetComponent<ChatManager>();
-            Canvas nickCanvas = GetComponentInChildren<Canvas>();
-            nickNameTxt = nickCanvas.GetComponentInChildren<Text>();
+
+            nickNameTxt = GameObject.Find("WorldCanvas/NickName").GetComponent<Text>();
             // 여기 위에를 추가했음. 현창
 
             pv = GetComponent<PhotonView>();
@@ -452,7 +452,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
         if (other.CompareTag("SaveZone"))
             isDeshInvincible = true;
-    }
+    }     
 
     IEnumerator DownDelay()
     {

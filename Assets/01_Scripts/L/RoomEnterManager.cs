@@ -2,37 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-using Photon.Realtime;
-using Hashtable = ExitGames.Client.Photon.Hashtable;
 using UnityEngine.SceneManagement;
 
 public class RoomEnterManager : MonoBehaviourPunCallbacks
 {
-    public DataMgrDontDestroy dataMgrDontDestroy;
-
-    //솔로던전은 roomleave하고 씬매니저로 돌릴것
-
     public void LeaveVillige()
     {
-        dataMgrDontDestroy = DataMgrDontDestroy.Instance;
-
-        switch (dataMgrDontDestroy.DungeonSortIdx)
-        {
-            case 1: // 싱글던전
-                PhotonNetwork.Disconnect();
-                SceneManager.LoadScene("Dungeon_1"); // 테스트용 바꿔야함
-                break;
-            case 2: // 카오스던전
-                PhotonNetwork.Disconnect();
-                SceneManager.LoadScene("Dungeon_2"); // 테스트용 바꿔야함
-                break;
-            case 3:
-                PhotonNetwork.LeaveRoom(); // 마을 룸을 떠납니다.
-                StartCoroutine(LoadLoadingScene());
-                break;
-            default:
-                break;
-        }
+        PhotonNetwork.LeaveRoom(); // 마을 룸을 떠납니다.
+        StartCoroutine(LoadLoadingScene());
     }
 
     IEnumerator LoadLoadingScene()
