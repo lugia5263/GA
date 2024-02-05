@@ -20,6 +20,22 @@ public class ChaosDungeonMgr : MonoBehaviour
     public GameObject midBossEffect;
     public GameObject endBossEffect;
 
+    public MageMiddleBoss mageMiddle;
+    public Tboss tboss;
+
+    private void LateUpdate()
+    {
+        if (mageMiddle != null)
+        {
+            mageMiddle = GameObject.FindGameObjectWithTag("Boss").GetComponent<MageMiddleBoss>();
+        }
+        if (tboss != null)
+        {
+            tboss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Tboss>();
+        }
+        
+    }
+
 
     public void OnTriggerEnter(Collider other)
     {
@@ -66,8 +82,11 @@ public class ChaosDungeonMgr : MonoBehaviour
     }
     public void ClearMidBoss() //중간 보스잡을때마다 호출해야함.
     {
-        isBattle = false;
-        Door();
+        if(mageMiddle.GetComponent<StateManager>().hp <= 0)
+        {
+            isBattle = false;
+            Door();
+        }
     }
     public void InstBoss4()
     {
@@ -100,13 +119,19 @@ public class ChaosDungeonMgr : MonoBehaviour
 
     public void ClearEndBoss()
     {
-        //clearPanel.SetActive(true);
+        if(tboss.GetComponent<StateManager>().hp <= 0)
+        {
+            //clearPanel.SetActive(true);
+        }
+        
     }
 
     public void Update()
     {
+        ClearMidBoss();
+        ClearEndBoss();
        // if (reset.transform.position.y < -7f)
-      //      ResetPlayer();
+       //      ResetPlayer();
 
     }
 

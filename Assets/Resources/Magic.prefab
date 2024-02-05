@@ -10428,6 +10428,7 @@ MonoBehaviour:
   isDeshInvincible: 0
   animator: {fileID: 0}
   Ta: []
+  cvc: {fileID: 0}
   isAttack: 0
   isAttack1: 0
   isAttack2: 0
@@ -10637,6 +10638,7 @@ MonoBehaviour:
   - {fileID: 3229758590469220266}
   - {fileID: 7984246296813884848}
   - {fileID: 4522214087698935434}
+  - {fileID: 0}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -10688,6 +10690,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentA: {fileID: 4522214087698935434}
+  componentB: {fileID: 0}
+  chaosPlayer: {fileID: 0}
 --- !u!114 &-2806796340561295855
 MonoBehaviour:
   m_ObjectHideFlags: 0
