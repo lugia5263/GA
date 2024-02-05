@@ -21,14 +21,16 @@ public class HidingObjCamera : MonoBehaviour
 
     public void RefreshHiddenObjects()
     {
-        if(targetPlayer == null)
+        testGameMgr someComponent = GameObject.FindWithTag("Player").GetComponent<testGameMgr>();
+        if (someComponent != null)
         {
-            targetPlayer = GameObject.FindWithTag("Player");
+            someComponent.Starts();
+        }
+        targetPlayer = GameObject.FindWithTag("Player");
 
-            if (targetPlayer != null)
-            {
-                target = targetPlayer.transform;
-            }
+        if (targetPlayer != null)
+        {
+            target = targetPlayer.transform;
         }
         Vector3 toTarget = (target.position - transform.position);
         float targetDistance = toTarget.magnitude;
