@@ -110,9 +110,9 @@ public class CharacterCreate : MonoBehaviour
         PlayerPrefs.SetInt($"{slotNum}_AttackPower", 50);
         PlayerPrefs.SetInt($"{slotNum}_CriChance", 50);
         PlayerPrefs.SetFloat($"{slotNum}_CriDamage", 120f);
-        PlayerPrefs.SetInt($"{slotNum}_UserGold", 0);
-        PlayerPrefs.SetInt($"{slotNum}_Material", 0);
-        PlayerPrefs.SetInt($"{slotNum}_ExpPotion", 300);
+        PlayerPrefs.SetInt($"{slotNum}_UserGold", 10000);
+        PlayerPrefs.SetInt($"{slotNum}_Material", 10000);
+        PlayerPrefs.SetInt($"{slotNum}_ExpPotion", 3000);
         PlayerPrefs.SetInt($"{slotNum}_QusetIdx", 0);
         PlayerPrefs.SetString($"{slotNum}_GoalTxt", "");
         PlayerPrefs.SetInt($"{slotNum}_QuestCurCnt", 0);

@@ -10401,13 +10401,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataMgrDontDestroy: {fileID: 0}
   level: 1
-  exp: 0
-  maxhp: 15000
-  hp: 15000
-  weaponLevel: 0
+  maxhp: 500
+  weaponLevel: 50
+  hp: 500
   attackPower: 0
   criChance: 50
   criDamage: 150
+  exp: 0
+  ONPlayer: 0
   userGold: 0
   userMaterial: 0
   userExpPotion: 0
@@ -10547,7 +10548,6 @@ MonoBehaviour:
   - {fileID: 3229758590469220266}
   - {fileID: 7984246296813884848}
   - {fileID: 4522214087698935434}
-  - {fileID: 0}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
