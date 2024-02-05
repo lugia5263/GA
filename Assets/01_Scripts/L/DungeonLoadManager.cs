@@ -29,9 +29,9 @@ public class DungeonLoadManager : MonoBehaviourPunCallbacks
         {
             Debug.Log("현재 로비에 없기에 로비에 입장합니다.");
             PhotonNetwork.JoinLobby();
-        }   
+        }
     }
-    
+
     IEnumerator LoadLevelRaidDungeon()
     {
         yield return null;
@@ -69,29 +69,23 @@ public class DungeonLoadManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
+        Debug.Log("현재 inLobby : " + PhotonNetwork.InLobby);
         base.OnJoinRoomFailed(returnCode, message);
         Debug.Log("던전 생성합니다");
-        if (PhotonNetwork.InLobby)
-        {
-            switch (dataMgrDontDestroy.dungeonSortIdx)
-            {
-                case 1:
-                    CreateSingleRoom(roomCnt);
-                    break;
-                case 2:
-                    CreateChaosRoom(roomCnt);
-                    break;
-                case 3:
-                    CreateRaidRoom(roomCnt);
-                    break;
-                default:
-                    break;
+        switch (dataMgrDontDestroy.dungeonSortIdx)
+         {
+            case 1:
+                CreateSingleRoom(roomCnt);
+                break;
+            case 2:
+                CreateChaosRoom(roomCnt);
+                break;
+            case 3:
+                CreateRaidRoom(roomCnt);
+                break;
+            default:
+                break;
             }
-        }
-        else
-        {
-            Debug.Log("OnJoinRoomFailed 콜백함수의 if문에 들어가지못했음");
-        }
     }
 
     public override void OnJoinedRoom()
@@ -198,6 +192,7 @@ public class DungeonLoadManager : MonoBehaviourPunCallbacks
     {
         base.OnJoinedLobby();
         Debug.Log("로비 입장 완료.");
+        Debug.Log("현재 inLobby : "+PhotonNetwork.InLobby);
         StartCoroutine(EnterDungeonRoom());
     }
 

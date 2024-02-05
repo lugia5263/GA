@@ -26,6 +26,7 @@ public class RoomEnterManager : MonoBehaviourPunCallbacks
         base.OnLeftRoom();
         Debug.Log("방떠나기 완료");
         Debug.Log("Lobby에 입장 시도합니다");
+        PhotonNetwork.JoinLobby();
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)

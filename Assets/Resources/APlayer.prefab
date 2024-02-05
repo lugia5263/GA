@@ -6895,13 +6895,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataMgrDontDestroy: {fileID: 0}
   level: 1
-  exp: 0
-  maxhp: 18000
-  hp: 18000
-  weaponLevel: 0
-  attackPower: 0
+  maxhp: 500
+  weaponLevel: 1
+  hp: 500
+  attackPower: 50
   criChance: 50
   criDamage: 200
+  exp: 0
+  ONPlayer: 0
   userGold: 0
   userMaterial: 0
   userExpPotion: 0
@@ -7024,6 +7025,7 @@ MonoBehaviour:
   isDeshInvincible: 0
   animator: {fileID: 0}
   Ta: []
+  cvc: {fileID: 0}
   isAttack: 0
   isAttack1: 0
   isAttack2: 0

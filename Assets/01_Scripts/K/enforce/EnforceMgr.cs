@@ -74,10 +74,6 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
         playerMaterial = dataMgrDontDestroy.UserMaterial;
         playerGold = dataMgrDontDestroy.UserGold;
         playerAttackPower = dataMgrDontDestroy.AttackPower;
-        //테스트용 주석사이 나중에 지우기
-        playerMaterial = 300000;
-        playerGold = 300000;
-        //테스트용 주석사이 나중에 지우기
         enforceEffect.SetActive(false);
         successPanel.SetActive(false);
         failedPanel.SetActive(false);
