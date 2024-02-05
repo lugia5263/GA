@@ -129,7 +129,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         hudManager = GetComponent<HUDManager>();
         uimgr = GameObject.Find("UIMgr").GetComponent<UIMgr>();
         cvc = GameObject.FindGameObjectWithTag("CVC").GetComponent<CinemachineVirtualCamera>();
-        cvc.GetComponent<ThirdPersonOrbitCamBasicA>().player = transform;
         if (PhotonNetwork.IsConnected && photonView.IsMine)
         {
             cvc.GetComponent<ThirdPersonOrbitCamBasicA>().player = transform;

@@ -11,11 +11,12 @@ public class HidingObjCamera : MonoBehaviour
 
     List<HidingObj> hiddenObjects = new List<HidingObj>();
     List<HidingObj> previouslyHiddenObjects = new List<HidingObj>();
-
+    ThirdPersonOrbitCamBasicA thirdPerson;
     public GameObject targetPlayer;
 
     void LateUpdate()
     {
+        
         RefreshHiddenObjects();
     }
 
