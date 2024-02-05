@@ -220,8 +220,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
         if (pv.IsMine)
         {
-            nickNameTxt.text = PhotonNetwork.NickName + " (나)"; //여기 추가했음. 현창
-            nickNameTxt.color = Color.white;
+            //nickNameTxt.text = PhotonNetwork.NickName + " (나)"; //여기 추가했음. 현창
+            //nickNameTxt.color = Color.white;
 
             originalTimeScale = Time.timeScale * Time.unscaledDeltaTime;
 

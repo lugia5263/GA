@@ -53,7 +53,7 @@ public class BossStateMgr : MonoBehaviourPunCallbacks
 
     public void DealDamage(GameObject target, float skillDMG)//µô °è»ê, 105% ´À³¦À¸·Î ÇÒ °Í!
     {
-        Color popupColorsend = Color.white;
+        Color popupColorsend = Color.gray;
         var monster = target.GetComponent<StateManager>();
         if (monster != null)
         {
@@ -61,7 +61,7 @@ public class BossStateMgr : MonoBehaviourPunCallbacks
             if (Random.Range(0f, 100f) <= criChance)
             {
                 totalDamage *= criDamage * 0.02f;
-                popupColorsend = Color.yellow;
+                popupColorsend = Color.red;
             }
 
             monster.TakeDamage((int)totalDamage, popupColorsend);
