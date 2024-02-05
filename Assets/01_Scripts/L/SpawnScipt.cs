@@ -32,7 +32,7 @@ public class SpawnScipt : MonoBehaviourPunCallbacks
         {
             Transform[] points = GameObject.Find("SpawnPointGroup").GetComponentsInChildren<Transform>();
             int idx = Random.Range(1, points.Length);
-            //GameObject obj;
+            GameObject obj;
             //obj = PhotonNetwork.Instantiate(cH[classNum].name, points[idx].position, points[idx].rotation, 0);
             PhotonNetwork.Instantiate(cH[classNum].name, points[idx].position, points[idx].rotation, 0);
         }

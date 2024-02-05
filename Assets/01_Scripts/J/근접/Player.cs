@@ -131,8 +131,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         cvc = GameObject.FindGameObjectWithTag("CVC").GetComponent<CinemachineVirtualCamera>();
         if (PhotonNetwork.IsConnected && photonView.IsMine)
         {
+            cvc = GameObject.FindGameObjectWithTag("CVC").GetComponent<CinemachineVirtualCamera>();
             cvc.GetComponent<ThirdPersonOrbitCamBasicA>().player = transform;
-        }
+        } 
         if (boss != null)
         {
             boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();

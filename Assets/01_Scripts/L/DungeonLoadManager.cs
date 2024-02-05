@@ -35,8 +35,7 @@ public class DungeonLoadManager : MonoBehaviourPunCallbacks
     IEnumerator LoadLevelRaidDungeon()
     {
         yield return null;
-
-        PhotonNetwork.LoadLevel("RaidDungeon");
+        PhotonNetwork.LoadLevel("Raid");
         PhotonNetwork.AutomaticallySyncScene = true;
     }
 
@@ -93,6 +92,7 @@ public class DungeonLoadManager : MonoBehaviourPunCallbacks
         base.OnJoinedRoom();
         Debug.Log("Room입장 성공");
         SetRoomInfo();
+
 
         if (PhotonNetwork.InRoom)
         {
