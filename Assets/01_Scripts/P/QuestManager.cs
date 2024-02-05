@@ -130,7 +130,10 @@ public class QuestManager : MonoBehaviour
                 questPanel.SetActive(true);
                 QuestCompletedCheck();
                 nPCConversation.SetActive(true);
-                dialogueTrigger.Trigger();
+                if (isFirst)
+                {
+                    dialogueTrigger.Trigger();
+                }
             }
         }
     }
