@@ -59,7 +59,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     private new Camera camera;
     PhotonView pv;
     PhotonAnimatorView pav;
-    CinemachineVirtualCamera cvc;
+    public CinemachineVirtualCamera cvc;
     UIMgr uimgr;
     MageHealSkill magehealSkill;
     [Header("CamBat")]
@@ -220,8 +220,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
         if (pv.IsMine)
         {
-            nickNameTxt.text = PhotonNetwork.NickName + " (나)"; //여기 추가했음. 현창
-            nickNameTxt.color = Color.white;
+            //nickNameTxt.text = PhotonNetwork.NickName + " (나)"; //여기 추가했음. 현창
+            //nickNameTxt.color = Color.white;
 
             originalTimeScale = Time.timeScale * Time.unscaledDeltaTime;
 
@@ -484,20 +484,26 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             stateManager.hp += 5;
             hudManager.ChangeUserHUD();
         }
-        if (other.CompareTag("NPCQ"))
+        if(other.CompareTag("NPC"))
         {
             npcAttackStop = true;
-            uimgr.npcPanel[0].SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
-        if (other.CompareTag("NPCL"))
-        {
-            npcAttackStop = true;
-            uimgr.npcPanel[2].SetActive(true);
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
+        //if (other.CompareTag("NPCQ"))
+        //{
+        //npcAttackStop = true;
+        //uimgr.npcPanel[0].SetActive(true);
+        //Cursor.lockState = CursorLockMode.None;
+        //Cursor.visible = true;
+        //}
+        //if (other.CompareTag("NPCL"))
+        //{
+        //npcAttackStop = true;
+        //uimgr.npcPanel[2].SetActive(true);
+        //Cursor.lockState = CursorLockMode.None;
+        //Cursor.visible = true;
+        //}
     }
 
     private void OnTriggerExit(Collider other)
@@ -509,22 +515,28 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             shop.Exit();
             nearObject = null;
         }
-        if (other.CompareTag("NPCQ"))
+        if (other.CompareTag("NPC"))
         {
             npcAttackStop = false;
-            uimgr.npcPanel[0].SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
+        //if (other.CompareTag("NPCQ"))
+        //{
+        //npcAttackStop = false;
+        //uimgr.npcPanel[0].SetActive(false);
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        //}
         //if (other.CompareTag("NPCW"))
         //uimgr.npcPanel[1].SetActive(false);
-        if (other.CompareTag("NPCL"))
-        {
-            npcAttackStop = false;
-            uimgr.npcPanel[2].SetActive(false);
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
+        //if (other.CompareTag("NPCL"))
+        //{
+        //npcAttackStop = false;
+        //uimgr.npcPanel[2].SetActive(false);
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        //}
     }
 
     void SkillUsing()

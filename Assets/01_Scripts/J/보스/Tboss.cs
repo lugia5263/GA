@@ -378,6 +378,9 @@ public class Tboss : MonoBehaviourPunCallbacks, IPunObservable
             die = true;
             tBOSS = TBOSS.DIE;
             characterController.enabled = false;
+            weapons[0].SetActive(false);
+            weapons[1].SetActive(false);
+            weapons[2].SetActive(false);
         }
     }
     void BreakTime()
