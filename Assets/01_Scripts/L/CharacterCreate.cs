@@ -18,7 +18,7 @@ public class CharacterCreate : MonoBehaviour
 
     public static int currentClassNum;
     public static int currentSlotNum;
-    public Sprite[] sprites;
+    public Texture[] sprites;
     public Button[] slots;
 
     public LoadPlayerInfo loadPlayerInfo;
@@ -89,7 +89,7 @@ public class CharacterCreate : MonoBehaviour
         loadPlayerInfo.LoadEverySlotData();
 
         // 나중에 이부분(슬롯에 sprite넣기) 게임로딩하고 슬롯에도 넣게끔 추가해보기
-        slots[currentSlotNum].GetComponent<Image>().sprite = sprites[currentClassNum];
+        slots[currentSlotNum].GetComponent<RawImage>().texture = sprites[currentClassNum];
         selectPanel.SetActive(false);
         nickNamePanel.SetActive(false);
     }
@@ -112,7 +112,7 @@ public class CharacterCreate : MonoBehaviour
         PlayerPrefs.SetFloat($"{slotNum}_CriDamage", 120f);
         PlayerPrefs.SetInt($"{slotNum}_UserGold", 0);
         PlayerPrefs.SetInt($"{slotNum}_Material", 0);
-        PlayerPrefs.SetInt($"{slotNum}_ExpPotion", 0);
+        PlayerPrefs.SetInt($"{slotNum}_ExpPotion", 300);
         PlayerPrefs.SetInt($"{slotNum}_QusetIdx", 0);
         PlayerPrefs.SetString($"{slotNum}_GoalTxt", "");
         PlayerPrefs.SetInt($"{slotNum}_QuestCurCnt", 0);

@@ -2,27 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
+using Photon.Realtime;
+using System.Linq;
+using Cinemachine;
 
 
 public class HUDManager : MonoBehaviour
 {
-
+    private Vector3 currPos;
+    private Quaternion currRot;
     public StateManager stateManager;
     public Slider HpSlider;
     public Text HpText;
-
-
+   
     public Image DHpBar;
-
-
-
 
     //여기 함수를 피격판정에서 불러온다!
     private void Awake()
     {
+
         stateManager = gameObject.GetComponent<StateManager>();
-        InitHP();
-        
+      InitHP();
     }
 
 
@@ -70,9 +71,5 @@ public class HUDManager : MonoBehaviour
     {
 
     }
-
-
-
-
 
 }
