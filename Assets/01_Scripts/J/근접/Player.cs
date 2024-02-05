@@ -143,16 +143,14 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     }
     private void Start()
     {
-        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         pv = GetComponent<PhotonView>();
         if (pv.IsMine)
         {
-            canvas = GameObject.Find("WorldCanvas").GetComponent<Canvas>();
             cvc.Follow = transform;
             cvc.LookAt = transform;
             chatManager = GetComponent<ChatManager>();
 
-            nickNameTxt = GameObject.Find("WorldCanvas/NickName").GetComponent<Text>();
+            nickNameTxt = GetComponentInChildren<Canvas>().GetComponentInChildren<Text>();
             // 여기 위에를 추가했음. 현창
 
             pv = GetComponent<PhotonView>();
