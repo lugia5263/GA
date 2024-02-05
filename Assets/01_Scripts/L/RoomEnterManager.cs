@@ -20,11 +20,11 @@ public class RoomEnterManager : MonoBehaviourPunCallbacks
         {
             case 1: // 싱글던전
                 PhotonNetwork.Disconnect();
-                SceneManager.LoadScene("Dungeon_1"); // 테스트용 바꿔야함
+                SceneManager.LoadScene(""); // 테스트용 바꿔야함
                 break;
             case 2: // 카오스던전
                 PhotonNetwork.Disconnect();
-                SceneManager.LoadScene("Dungeon_2"); // 테스트용 바꿔야함
+                SceneManager.LoadScene("ChaosD"); // 테스트용 바꿔야함
                 break;
             case 3:
                 PhotonNetwork.LeaveRoom(); // 마을 룸을 떠납니다.

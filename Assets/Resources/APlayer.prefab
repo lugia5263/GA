@@ -7633,6 +7633,7 @@ GameObject:
   - component: {fileID: 9116409022111663470}
   - component: {fileID: 7598127053111804717}
   - component: {fileID: 6258217179606858797}
+  - component: {fileID: 5705856593280048975}
   m_Layer: 0
   m_Name: APlayer
   m_TagString: Player
@@ -8033,6 +8034,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentA: {fileID: 9116409022111663470}
+  componentB: {fileID: 0}
+  chaosPlayer: {fileID: 0}
 --- !u!114 &6258217179606858797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8067,6 +8070,66 @@ MonoBehaviour:
   playerLvTxt: {fileID: 5487240264797592264}
   playerTitleTxt: {fileID: 7890950879716867491}
   playerNickTxt: {fileID: 1496097846647784706}
+--- !u!114 &5705856593280048975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7298343793582599029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b1d1bb036689d498b275c02cee1aca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nickNameTxt: {fileID: 0}
+  chatManager: {fileID: 0}
+  allowMove: 0
+  canvas: {fileID: 0}
+  coin: 0
+  speed: 0
+  moveSpeed: 8
+  turn: 0
+  Desh: 0
+  isDeshInvincible: 0
+  animator: {fileID: 0}
+  Ta: []
+  cvc: {fileID: 0}
+  isAttack: 0
+  isAttack1: 0
+  isAttack2: 0
+  isAttack3: 0
+  isFireReady: 0
+  isDeath: 0
+  downing: 0
+  Skill: []
+  Point: []
+  ob: []
+  skillICoolicon: []
+  CoolTimeZip: {fileID: 0}
+  playerSkillIcon: {fileID: 0}
+  skillUse: 0
+  qisReady: 0
+  eisReady: 0
+  risReady: 0
+  rischarging: 0
+  onMagic: 0
+  qskillcool: 0
+  eskillcool: 0
+  rskillcool: 0
+  curQskillcool: 0
+  curEskillcool: 0
+  curRskillcool: 0
+  chargingSlider: {fileID: 0}
+  originalTimeScale: 0
+  sPlayer: 0
+  aPlayer: 0
+  mPlayer: 0
+  getNPC: []
+  isInven: 0
+  rotCamXAxisSpeed: 500
+  rotCamYAxisSpeed: 3
+  npcAttackStop: 0
 --- !u!1 &7320887849044138558
 GameObject:
   m_ObjectHideFlags: 0

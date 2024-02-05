@@ -36,6 +36,7 @@ public class StateManager : MonoBehaviourPunCallbacks
         pv = GetComponent<PhotonView>();
         dataMgrDontDestroy = DataMgrDontDestroy.Instance;
         hp = maxhp;
+
     }
 
 

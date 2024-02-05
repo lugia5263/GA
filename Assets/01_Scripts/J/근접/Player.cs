@@ -144,6 +144,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     }
     private void Start()
     {
+        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         pv = GetComponent<PhotonView>();
         if (pv.IsMine)
         {
