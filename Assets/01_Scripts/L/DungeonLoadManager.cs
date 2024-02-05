@@ -36,7 +36,7 @@ public class DungeonLoadManager : MonoBehaviourPunCallbacks
     {
         yield return null;
 
-        PhotonNetwork.LoadLevel("RaidDungeon");
+        PhotonNetwork.LoadLevel("Raid");
         PhotonNetwork.AutomaticallySyncScene = true;
     }
 
