@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class LoadPlayerInfo : MonoBehaviour
 {
+
+    public int currentSlotNum;
+
     private DataMgrDontDestroy dataMgrDontDestroy;
     public string nickName;
     public int level;
@@ -18,8 +21,6 @@ public class LoadPlayerInfo : MonoBehaviour
     public int userGold;
     public int userMaterial;
     public int userExpPotion;
-
-    public int currentSlotNum;
 
     public Text[] slot1Text;
     public Text[] slot2Text;
@@ -58,12 +59,20 @@ public class LoadPlayerInfo : MonoBehaviour
             {
                 string nickName = PlayerPrefs.GetString($"{slotNum}_NickName");
                 string className = PlayerPrefs.GetString($"{slotNum}_Class");
+                
                 int level = PlayerPrefs.GetInt($"{slotNum}_Level");
-                Debug.Log($"슬롯넘버 {slotNum}의 레벨은 {level}");
+                PlayerPrefs.GetInt($"{slotNum}_MaxHp");
+                PlayerPrefs.GetInt($"{slotNum}_WeaponLevel");
+                PlayerPrefs.GetInt($"{slotNum}_ATK");
+                PlayerPrefs.GetInt($"{slotNum}_CriticalPer");
+                PlayerPrefs.GetInt($"{slotNum}_UserGold");
+                PlayerPrefs.GetInt($"{slotNum}_Material");
+                PlayerPrefs.GetInt($"{slotNum}_ExpPotion");
 
                 switch (slotNum)
                 {
                     case 0:
+                        Debug.Log("닉네임 : " + nickName);
                         slot1Text[0].text = nickName;
                         slot1Text[1].text = className;
                         slot1Text[2].text = level.ToString();
@@ -84,6 +93,7 @@ public class LoadPlayerInfo : MonoBehaviour
             }
         }
     }
+
 
     public void LoadCurrnetPlayerData()
     {
@@ -106,6 +116,7 @@ public class LoadPlayerInfo : MonoBehaviour
         #endregion
 
         #region 캐릭터정보. 변수의 값을 싱글톤에 보내주기
+        dataMgrDontDestroy.NickName = nickName;
         dataMgrDontDestroy.Level = level;
         dataMgrDontDestroy.Exp = exp;
         dataMgrDontDestroy.MaxHp = maxhp;
@@ -119,4 +130,5 @@ public class LoadPlayerInfo : MonoBehaviour
         dataMgrDontDestroy.UserExpPotion = userExpPotion;
         #endregion
     }
+
 }

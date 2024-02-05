@@ -7819,12 +7819,14 @@ MonoBehaviour:
   nickNameTxt: {fileID: 0}
   chatManager: {fileID: 9116409022111663470}
   allowMove: 1
+  canvas: {fileID: 0}
   coin: 0
   speed: 3
   moveSpeed: 8
   turn: 0
   Desh: 0
   isDeshInvincible: 0
+  animator: {fileID: 0}
   Ta: []
   isAttack: 0
   isAttack1: 0
@@ -7857,10 +7859,8 @@ MonoBehaviour:
   - {fileID: 7039368611829023297}
   - {fileID: 254639404112382047}
   - {fileID: 4641436036219891987}
-  playerSkillIcon:
-  - {fileID: 0}
-  - {fileID: 3834226094134751330}
-  - {fileID: 0}
+  CoolTimeZip: {fileID: 0}
+  playerSkillIcon: {fileID: 0}
   skillUse: 0
   qisReady: 0
   eisReady: 0
@@ -7887,6 +7887,7 @@ MonoBehaviour:
   isInven: 0
   rotCamXAxisSpeed: 500
   rotCamYAxisSpeed: 3
+  npcAttackStop: 0
 --- !u!114 &266425862809830969
 MonoBehaviour:
   m_ObjectHideFlags: 0

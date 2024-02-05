@@ -47,19 +47,7 @@ public class RewardMgr : MonoBehaviour
         InstExp(expPotionReward);
         InstGold(goldReward);
     }
-    public void QuestClearReward()
-    {
-        //expPotionReward=(퀘스트보상);
-        //materialReward=(퀘스트보상);
-        //goldReward=(퀘스트보상);
-        expPotionReward *= dataMgrDontDestroy.dungeonNumIdx;
-        materialReward *= dataMgrDontDestroy.dungeonNumIdx;
-        goldReward *= dataMgrDontDestroy.dungeonNumIdx;
-        InstExp(expPotionReward);
-        InstMaterial(materialReward);
-        InstGold(goldReward);
-    }
-
+    
     //경험치 물약 소환 함수
     public void InstExp(int itemcount)
     {

@@ -22,6 +22,9 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks, IPunObservable
         PAGE3,
     }
 
+    public float detectionRadius = 10f;
+    public string playerTag = "Player";
+    private Transform currentTarget;
     private Vector3 currPos;
     private Quaternion currRot;
     [Header("Move")]
@@ -40,7 +43,7 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks, IPunObservable
     public VisualEffect healthUp;
     public Player player;
     public PhotonView pv;
-    bosstest1 Bosst;
+    testGameMgr testgameMgr;
     [Header("AttackPattern")]
     public float p1;
     public float p2;
@@ -86,9 +89,8 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks, IPunObservable
        
         if (pv.IsMine)
         {
-            bosstest1 someComponent = GameObject.FindWithTag("Player").GetComponent<bosstest1>();
-
-            // 컴포넌트를 사용하기
+            //스폰될시 게임 매니저 필요함;
+            testGameMgr someComponent = GameObject.FindWithTag("Player").GetComponent<testGameMgr>();
             if (someComponent != null)
             {
                 someComponent.Starts();
@@ -101,11 +103,6 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks, IPunObservable
             targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         }
     }
-    public void Starts()
-    {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-    }
 
     void FixedUpdate()
     {
@@ -115,9 +112,7 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks, IPunObservable
             {
                 if (!die)
                 {
-                    //GameObject closestargetPlayer = FindClosestPlayerWithTag("Player");
-                    //if (closestargetPlayer != null)
-                    //{
+                    FindNearestPlayer();
                         pv.RPC("BreakTime", RpcTarget.AllBuffered);
                         BreakTime();
                         PatternTimeCheck();
@@ -254,36 +249,55 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks, IPunObservable
                             case RAIDBOSS.DIE:
                                 isActivating = true;
                                 speed = 0;
-                                 pv.RPC("Die", RpcTarget.AllBuffered);
+                                 //pv.RPC("Die", RpcTarget.AllBuffered);
                                  anim.SetTrigger("Die");
                                 break;
                             case RAIDBOSS.PAGE1:
                                 break;
                         }
-                    //}
                 }
             }
         }
     }
-    GameObject FindClosestPlayerWithTag(string tag)
+    void FindNearestPlayer()
     {
-        GameObject[] players = GameObject.FindGameObjectsWithTag(tag);
-        GameObject closestPlayer = null;
-        float closestDistance = Mathf.Infinity;
-        Vector3 currentPosition = transform.position;
+        Collider[] players = Physics.OverlapSphere(transform.position, detectionRadius);
+        List<Transform> playerList = new List<Transform>();
 
-        foreach (GameObject playerz in players)
+        foreach (var player in players)
         {
-            float distanceToPlayer = Vector3.Distance(currentPosition, playerz.transform.position);
-
-            if (distanceToPlayer < closestDistance)
+            if (player.CompareTag(playerTag))
             {
-                closestDistance = distanceToPlayer;
-                closestPlayer = playerz;
+                playerList.Add(player.transform);
             }
         }
 
-        return closestPlayer;
+        if (playerList.Count > 0)
+        {
+            Transform nearestPlayer = GetNearestPlayer(playerList);
+            if (nearestPlayer != null)
+            {
+                currentTarget = nearestPlayer;
+            }
+        }
+    }
+
+    Transform GetNearestPlayer(List<Transform> players)
+    {
+        Transform nearestPlayer = null;
+        float shortestDistance = float.MaxValue;
+
+        foreach (var player in players)
+        {
+            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+            if (distanceToPlayer < shortestDistance)
+            {
+                shortestDistance = distanceToPlayer;
+                nearestPlayer = player;
+            }
+        }
+
+        return nearestPlayer;
     }
     [PunRPC]
     void MoveTowardsTarget(bool stop)
