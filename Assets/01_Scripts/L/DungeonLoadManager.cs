@@ -8,7 +8,9 @@ using TMPro;
 
 public class DungeonLoadManager : MonoBehaviourPunCallbacks
 {
-    public string dungeonType;
+    public DataMgrDontDestroy dataMgrDontDestroy;
+
+    public int roomCnt = 0;
 
     public TMP_Text roomName;
     public TMP_Text connectInfo;
@@ -16,6 +18,8 @@ public class DungeonLoadManager : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
+        dataMgrDontDestroy = DataMgrDontDestroy.Instance;
+
         if (!PhotonNetwork.IsConnected)
         {
             Debug.Log("현재 포톤네트워크 접속이 아니기에 접속합니다.");
@@ -27,16 +31,7 @@ public class DungeonLoadManager : MonoBehaviourPunCallbacks
             PhotonNetwork.JoinLobby();
         }   
     }
-    void Start()
-    {
-        //dungeonType = RoomEnterManager.dungeonType;
-        //Debug.Log("DungeonLoad.dungeonType : " + dungeonType);
-    }
-
-    void Update()
-    {
-
-    }
+    
     IEnumerator LoadLevelRaidDungeon()
     {
         yield return null;
@@ -44,11 +39,25 @@ public class DungeonLoadManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LoadLevel("RaidDungeon");
         PhotonNetwork.AutomaticallySyncScene = true;
     }
+
     IEnumerator EnterDungeonRoom()
     {
         if (PhotonNetwork.InLobby)
         {
-            PhotonNetwork.JoinRoom("Room_Raid");
+            switch (dataMgrDontDestroy.dungeonSortIdx)
+            {
+                case 1:
+                    PhotonNetwork.JoinRoom($"Room_Single_{roomCnt}");
+                    break;
+                case 2:
+                    PhotonNetwork.JoinRoom($"Room_Chaos_{roomCnt}");
+                    break;
+                case 3:
+                    PhotonNetwork.JoinRoom($"Room_Raid_{roomCnt}");
+                    break;
+                default:
+                    break;
+            }
         }
         else
         {
@@ -62,21 +71,101 @@ public class DungeonLoadManager : MonoBehaviourPunCallbacks
     {
         base.OnJoinRoomFailed(returnCode, message);
         Debug.Log("던전 생성합니다");
-        CreateRaidRoom();
+        if (PhotonNetwork.InLobby)
+        {
+            switch (dataMgrDontDestroy.dungeonSortIdx)
+            {
+                case 1:
+                    CreateSingleRoom(roomCnt);
+                    break;
+                case 2:
+                    CreateChaosRoom(roomCnt);
+                    break;
+                case 3:
+                    CreateRaidRoom(roomCnt);
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            Debug.Log("OnJoinRoomFailed 콜백함수의 if문에 들어가지못했음");
+        }
     }
+
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
         Debug.Log("Room입장 성공");
-        if (PhotonNetwork.IsMasterClient)
-        {
-            PhotonNetwork.AutomaticallySyncScene = true;
-        }
-
         SetRoomInfo();
+
+        if (PhotonNetwork.InRoom)
+        {
+            switch (dataMgrDontDestroy.dungeonSortIdx)
+            {
+                case 1:
+                    if (PhotonNetwork.IsMasterClient)
+                    {
+                        PhotonNetwork.LoadLevel("SingleDungeon");
+                    }
+                    break;
+                case 2:
+                    if (PhotonNetwork.IsMasterClient)
+                    {
+                        PhotonNetwork.LoadLevel("ChaosD");
+                    }
+                    break;
+                case 3:
+                    if (PhotonNetwork.IsMasterClient)
+                    {
+                        PhotonNetwork.AutomaticallySyncScene = true;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            Debug.Log("OnJoinedRoom 콜백함수의 if문에 들어가지못했음");
+        }
     }
 
-    public void CreateRaidRoom()
+    public override void OnCreateRoomFailed(short returnCode, string message)
+    {
+        base.OnCreateRoomFailed(returnCode, message);
+        roomCnt++;
+        StartCoroutine(EnterDungeonRoom());
+    }
+
+    public void CreateSingleRoom(int Cnt)
+    {
+        Debug.Log("CreateRaidRoom 실행");
+
+        // 룸의 속성 정의
+        RoomOptions ro = new RoomOptions();
+        ro.MaxPlayers = 1;     // 룸에 입장할 수 있는 최대 접속자 수
+        ro.IsOpen = true;       // 룸의 오픈 여부
+        ro.IsVisible = false;    // 로비에서 룸 목록에 노출시킬 여부
+
+        PhotonNetwork.CreateRoom($"Room_Single_{Cnt}", ro);
+    }
+
+    public void CreateChaosRoom(int Cnt)
+    {
+        Debug.Log("CreateRaidRoom 실행");
+
+        // 룸의 속성 정의
+        RoomOptions ro = new RoomOptions();
+        ro.MaxPlayers = 1;     // 룸에 입장할 수 있는 최대 접속자 수
+        ro.IsOpen = true;       // 룸의 오픈 여부
+        ro.IsVisible = false;    // 로비에서 룸 목록에 노출시킬 여부
+
+        PhotonNetwork.CreateRoom($"Room_Chaos_{Cnt}", ro);
+    }
+
+    public void CreateRaidRoom(int Cnt)
     {
         Debug.Log("CreateRaidRoom 실행");
 
@@ -86,7 +175,7 @@ public class DungeonLoadManager : MonoBehaviourPunCallbacks
         ro.IsOpen = true;       // 룸의 오픈 여부
         ro.IsVisible = true;    // 로비에서 룸 목록에 노출시킬 여부
 
-        PhotonNetwork.CreateRoom("Room_Raid", ro);
+        PhotonNetwork.CreateRoom($"Room_Raid_{Cnt}", ro);
     }
 
     // 룸 접속 정보를 출력
