@@ -21,7 +21,6 @@ public class HidingObjCamera : MonoBehaviour
 
     public void RefreshHiddenObjects()
     {
-
         if(targetPlayer == null)
         {
             targetPlayer = GameObject.FindWithTag("Player");
