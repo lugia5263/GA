@@ -6,6 +6,7 @@ public class testGameMgr : MonoBehaviour
 {
     RaidBossCtrl raidBoss;
     Tboss tboss;
+    Player player;
     void Start()
     {
         
@@ -18,6 +19,7 @@ public class testGameMgr : MonoBehaviour
     }
     public void Starts()
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         raidBoss.player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         raidBoss.targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         tboss.player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
