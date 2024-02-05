@@ -6,8 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneDependentComponent : MonoBehaviour
 {
     public ChatManager componentA;
-    public Player componentB;
-    public ChaosPlayerCtlr chaosPlayer;
+
     void Awake()
     {
         componentA = GetComponent<ChatManager>();
@@ -20,17 +19,13 @@ public class SceneDependentComponent : MonoBehaviour
         {
             // 씬 A에서는 컴포넌트 A 활성화, 컴포넌트 B 비활성화
             componentA.enabled = true;
-            chaosPlayer.enabled = false;
-            componentB.enabled = true;
-            //componentB.enabled = false;
+
         }
         else // 홈이 아닐때, 솔로던전이나 레이드던전일때
         {
             // 씬 B에서는 컴포넌트 A 비활성화, 컴포넌트 B 활성화
             componentA.enabled = false;
-            chaosPlayer.enabled = true;
-            componentB.enabled = false;
-            //componentB.enabled = true;
+
         }
     }
 }

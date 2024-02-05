@@ -23,10 +23,17 @@ public class ChaosDungeonMgr : MonoBehaviour
     public MageMiddleBoss mageMiddle;
     public Tboss tboss;
 
-    private void Start()
+    private void LateUpdate()
     {
-        mageMiddle = GameObject.FindGameObjectWithTag("Boss").GetComponent<MageMiddleBoss>();
-        tboss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Tboss>();
+        if (mageMiddle != null)
+        {
+            mageMiddle = GameObject.FindGameObjectWithTag("Boss").GetComponent<MageMiddleBoss>();
+        }
+        if (tboss != null)
+        {
+            tboss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Tboss>();
+        }
+        
     }
 
 
