@@ -7,7 +7,7 @@ using Photon.Realtime;
 using System.Linq;
 using Cinemachine;
 
-public class RaidBossCtrl : MonoBehaviourPunCallbacks, IPunObservable
+public class RaidBossCtrl : MonoBehaviourPunCallbacks //IPunObservable
 {
     public enum RAIDBOSS
     {
@@ -21,7 +21,7 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks, IPunObservable
         PAGE2,
         PAGE3,
     }
-
+    float gravity = -9.8f;
     public float detectionRadius = 10f;
     public string playerTag = "Player";
     private Transform currentTarget;
@@ -92,21 +92,28 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks, IPunObservable
     
     void Start()
     {
-       
+        raidBoss = RAIDBOSS.IDLE;
+        characterController = GetComponent<CharacterController>();
+        anim = GetComponent<Animator>();
+        stateManager = GetComponent<StateManager>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        
         if (pv.IsMine)
         {
             //스폰될시 게임 매니저 필요함;
             testGameMgr someComponent = GameObject.FindWithTag("Player").GetComponent<testGameMgr>();
+            someComponent.Starts();
             if (someComponent != null)
             {
+                raidBoss = RAIDBOSS.IDLE;
+                characterController = GetComponent<CharacterController>();
+                anim = GetComponent<Animator>();
+                stateManager = GetComponent<StateManager>();
+                player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+                targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
                 someComponent.Starts();
             }
-            raidBoss = RAIDBOSS.IDLE;
-            characterController = GetComponent<CharacterController>();
-            anim = GetComponent<Animator>();
-            stateManager = GetComponent<StateManager>();
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-            targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         }
     }
 
@@ -321,6 +328,12 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks, IPunObservable
 
         Vector3 moveDirection = directionToTarget.normalized;
         characterController.SimpleMove(moveDirection * speed);
+
+        if (!characterController.isGrounded)
+        {
+            Vector3 gravityVector = Vector3.down * -gravity * Time.deltaTime;
+            characterController.Move(gravityVector);
+        }
 
         if (Vector3.Distance(transform.position, targetPlayer.transform.position) < 1.5f)
         {
@@ -563,20 +576,20 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks, IPunObservable
         yield return new WaitForSeconds(5f);
         healEttetE.SetActive(false);
     }
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
+    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    //{
         //통신을 보내는 
-        if (stream.IsWriting)
-        {
-            stream.SendNext(transform.position);
-            stream.SendNext(transform.rotation);
-        }
+        //if (stream.IsWriting)
+        //{
+            //stream.SendNext(transform.position);
+            //stream.SendNext(transform.rotation);
+        //}
 
         //클론이 통신을 받는 
-        else
-        {
-            currPos = (Vector3)stream.ReceiveNext();
-            currRot = (Quaternion)stream.ReceiveNext();
-        }
-    }
+        //else
+        //{
+            //currPos = (Vector3)stream.ReceiveNext();
+            //currRot = (Quaternion)stream.ReceiveNext();
+        //}
+    //}
 }
