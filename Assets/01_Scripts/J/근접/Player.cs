@@ -57,7 +57,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     MeshRenderTail meshRenderTail;
     HUDManager hudManager;
     private new Camera camera;
-    PhotonView pv;
+    public PhotonView pv;
     PhotonAnimatorView pav;
     public CinemachineVirtualCamera cvc;
     UIMgr uimgr;
@@ -131,8 +131,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         cvc = GameObject.FindGameObjectWithTag("CVC").GetComponent<CinemachineVirtualCamera>();
         if (PhotonNetwork.IsConnected && photonView.IsMine)
         {
+            cvc = GameObject.FindGameObjectWithTag("CVC").GetComponent<CinemachineVirtualCamera>();
             cvc.GetComponent<ThirdPersonOrbitCamBasicA>().player = transform;
-        }
+        } 
         if (boss != null)
         {
             boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
@@ -227,12 +228,12 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (pv.IsMine)
         {
-            nickNameTxt.text = PhotonNetwork.NickName + " (나)"; //여기 추가했음. 현창
-            nickNameTxt.color = Color.white;
-            Vector3 offset = new Vector3(0f, 2f, 0f);
-            nickNameTxt.transform.position = transform.position + offset;
+            //nickNameTxt.text = PhotonNetwork.NickName + " (나)"; //여기 추가했음. 현창
+            //nickNameTxt.color = Color.white;
+            //Vector3 offset = new Vector3(0f, 2f, 0f);
+            //nickNameTxt.transform.position = transform.position + offset;
 
-            originalTimeScale = Time.timeScale * Time.unscaledDeltaTime;
+            //originalTimeScale = Time.timeScale * Time.unscaledDeltaTime;
 
             if (!isDeath)
             {
@@ -252,10 +253,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
-            nickNameTxt.text = pv.Owner.NickName;
-            nickNameTxt.color = Color.red;
-            Vector3 offset = new Vector3(0f, 2f, 0f);
-            nickNameTxt.transform.position = transform.position + offset;
+            //nickNameTxt.text = pv.Owner.NickName;
+            //nickNameTxt.color = Color.red;
+            //Vector3 offset = new Vector3(0f, 2f, 0f);
+            //nickNameTxt.transform.position = transform.position + offset;
         }
     }
 
