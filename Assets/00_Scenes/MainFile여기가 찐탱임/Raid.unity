@@ -6713,6 +6713,10 @@ PrefabInstance:
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.z
       value: -49.06
       objectReference: {fileID: 0}
+    - target: {fileID: 799205198313417201, guid: 6d07266f4acf9ae4daec4185f49db125, type: 3}
+      propertyPath: groundOner
+      value: 
+      objectReference: {fileID: 7000286012085218040}
     - target: {fileID: 2518597920440154029, guid: 6d07266f4acf9ae4daec4185f49db125, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.969
@@ -16011,10 +16015,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2090856116256728399}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -8}
+  m_SizeDelta: {x: 0, y: 16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4815490100828347302
 MonoBehaviour:
@@ -17399,6 +17403,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3f1f92b850ca6e4aa555cfe220cda8e, type: 3}
+--- !u!114 &7000286012085218040 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3837433793861085572, guid: c3f1f92b850ca6e4aa555cfe220cda8e, type: 3}
+  m_PrefabInstance: {fileID: 7000286012085218039}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2176ac0875c54a242bec0a52f43b4c47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7051270577325983440
 GameObject:
   m_ObjectHideFlags: 0

@@ -93,16 +93,8 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks,IPunObservable
     void Start()
     {
         pv = GetComponent<PhotonView>();
-        raidBoss = RAIDBOSS.IDLE;
-        characterController = GetComponent<CharacterController>();
-        anim = GetComponent<Animator>();
-        stateManager = GetComponent<StateManager>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         if (pv.IsMine)
         {
-            testGameMgr someComponents = GameObject.FindWithTag("Player").GetComponent<testGameMgr>();
-            someComponents.Starts();
             raidBoss = RAIDBOSS.IDLE;
             characterController = GetComponent<CharacterController>();
             anim = GetComponent<Animator>();
@@ -112,7 +104,7 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks,IPunObservable
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
             if (pv.IsMine)
             {
@@ -127,9 +119,10 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks,IPunObservable
                         //DieNowPatternt();
                         pv.RPC("healthUpPattern", RpcTarget.AllBuffered);
                 pv.RPC("NEM1", RpcTarget.AllBuffered);
-                
-                        //healthUpPattern();
-                        switch (raidBoss)
+                pv.RPC("Dieing", RpcTarget.AllBuffered);
+
+                //healthUpPattern();
+                switch (raidBoss)
                         {
                             case RAIDBOSS.IDLE:
                                 isActivating = false;
@@ -257,7 +250,7 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks,IPunObservable
                             case RAIDBOSS.DIE:
                                 isActivating = true;
                                 speed = 0;
-                                 //pv.RPC("Die", RpcTarget.AllBuffered);
+                                 pv.RPC("Die", RpcTarget.AllBuffered);
                                  anim.SetTrigger("Die");
                                 break;
                             case RAIDBOSS.PAGE1:
