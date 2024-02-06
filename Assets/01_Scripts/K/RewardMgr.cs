@@ -63,6 +63,8 @@ public class RewardMgr : MonoBehaviour
 
         expPotionReward *= dataMgrDontDestroy.dungeonNumIdx;
         materialReward *= dataMgrDontDestroy.dungeonNumIdx;
+        InstExp(expPotionReward);
+        InstMaterial(materialReward);
     }
 
     public void ChaosClearReward()
@@ -93,7 +95,7 @@ public class RewardMgr : MonoBehaviour
     {
         GameObject character = Instantiate(itemPrefab);
 
-        character.GetComponent<Image>().sprite = imageList[1];
+        character.GetComponentInChildren<Image>().sprite = imageList[1];
         character.GetComponentInChildren<Text>().text = itemcount.ToString();
         character.transform.SetParent(rewardContent.transform);
     }
@@ -102,7 +104,7 @@ public class RewardMgr : MonoBehaviour
     {
         GameObject character = Instantiate(itemPrefab);
 
-        character.GetComponent<Image>().sprite = imageList[0];
+        character.GetComponentInChildren<Image>().sprite = imageList[0];
         character.GetComponentInChildren<Text>().text = itemcount.ToString();
         character.transform.SetParent(rewardContent.transform);
     }
@@ -111,7 +113,7 @@ public class RewardMgr : MonoBehaviour
     {
         GameObject character = Instantiate(itemPrefab);
 
-        character.GetComponent<Image>().sprite = imageList[2];
+        character.GetComponentInChildren<Image>().sprite = imageList[2];
         character.GetComponentInChildren<Text>().text = itemcount.ToString();
         character.transform.SetParent(rewardContent.transform);
     }
