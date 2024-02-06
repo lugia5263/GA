@@ -23,7 +23,7 @@ public class RewardMgr : MonoBehaviour
     private void Start()
     {
         dataMgrDontDestroy = DataMgrDontDestroy.Instance;
-        DgSortIdx = 2; //dataMgrDontDestroy.DungeonSortIdx; //TODO: 나중에 바꿀 것!!
+        DgSortIdx= dataMgrDontDestroy.DungeonSortIdx; //TODO: 나중에 바꿀 것!!
         //rewardPanel.SetActive(false);
     }
 
