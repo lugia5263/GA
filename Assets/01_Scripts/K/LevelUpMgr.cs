@@ -38,6 +38,12 @@ public class LevelUpMgr : MonoBehaviourPunCallbacks
     public int afterExp;
     public int afterExpPotionCnt;
 
+    [Header("NPC 대화")]
+    public DialogueTrigger dialogueTrigger; //대본
+    public GameObject nPCConversation;
+
+
+
     private void Awake()
     {
         var jsonitemFile = Resources.Load<TextAsset>("Json/LvupTable");
@@ -53,6 +59,8 @@ public class LevelUpMgr : MonoBehaviourPunCallbacks
         {
             if (other.GetComponent<PhotonView>().IsMine)
             {
+                dialogueTrigger.Trigger();
+                nPCConversation.SetActive(true);
                 Debug.Log("충돌일어남");
                 PlayerDataCheck();
                 Debug.Log("업데이트할 ui의 클래스넘버 : " + classNum);
@@ -87,6 +95,7 @@ public class LevelUpMgr : MonoBehaviourPunCallbacks
         {
             if (other.GetComponent<PhotonView>().IsMine)
             {
+                nPCConversation.SetActive(false);
                 SyncDataMgr();
                 lvupPanel.SetActive(false);
             }

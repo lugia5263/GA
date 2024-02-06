@@ -130,6 +130,7 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
                 // 강화창 껐으니까 플레이어의 정보에 반영
+                nPCConversation.SetActive(false); // 대화창 꺼짐
                 enforcePanel.SetActive(false);
             }
         }
