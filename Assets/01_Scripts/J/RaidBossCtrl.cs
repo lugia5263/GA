@@ -7,7 +7,7 @@ using Photon.Realtime;
 using System.Linq;
 using Cinemachine;
 
-public class RaidBossCtrl : MonoBehaviourPunCallbacks //IPunObservable
+public class RaidBossCtrl : MonoBehaviourPunCallbacks,IPunObservable
 {
     public enum RAIDBOSS
     {
@@ -89,31 +89,18 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks //IPunObservable
     public GameObject p2EttectE;
     public GameObject p1EttectE;
     public GameObject healEttetE;
-    
+    public RaidGroundOner groundOner;
     void Start()
     {
-        raidBoss = RAIDBOSS.IDLE;
-        characterController = GetComponent<CharacterController>();
-        anim = GetComponent<Animator>();
-        stateManager = GetComponent<StateManager>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        
+        pv = GetComponent<PhotonView>();
         if (pv.IsMine)
         {
-            //스폰될시 게임 매니저 필요함;
-            testGameMgr someComponent = GameObject.FindWithTag("Player").GetComponent<testGameMgr>();
-            someComponent.Starts();
-            if (someComponent != null)
-            {
-                raidBoss = RAIDBOSS.IDLE;
-                characterController = GetComponent<CharacterController>();
-                anim = GetComponent<Animator>();
-                stateManager = GetComponent<StateManager>();
-                player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-                targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-                someComponent.Starts();
-            }
+            raidBoss = RAIDBOSS.IDLE;
+            characterController = GetComponent<CharacterController>();
+            anim = GetComponent<Animator>();
+            stateManager = GetComponent<StateManager>();
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         }
     }
 
@@ -123,7 +110,6 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks //IPunObservable
             {
                 if (!die)
                 {
-                    FindNearestPlayer();
                         pv.RPC("BreakTime", RpcTarget.AllBuffered);
                         BreakTime();
                         PatternTimeCheck();
@@ -133,9 +119,10 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks //IPunObservable
                         //DieNowPatternt();
                         pv.RPC("healthUpPattern", RpcTarget.AllBuffered);
                 pv.RPC("NEM1", RpcTarget.AllBuffered);
-                
-                        //healthUpPattern();
-                        switch (raidBoss)
+                pv.RPC("Dieing", RpcTarget.AllBuffered);
+
+                //healthUpPattern();
+                switch (raidBoss)
                         {
                             case RAIDBOSS.IDLE:
                                 isActivating = false;
@@ -263,7 +250,7 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks //IPunObservable
                             case RAIDBOSS.DIE:
                                 isActivating = true;
                                 speed = 0;
-                                 //pv.RPC("Die", RpcTarget.AllBuffered);
+                                 pv.RPC("Die", RpcTarget.AllBuffered);
                                  anim.SetTrigger("Die");
                                 break;
                             case RAIDBOSS.PAGE1:
@@ -273,7 +260,9 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks //IPunObservable
                         StartCoroutine(Page1Start());
                         break;
                         }
-                }
+                FindNearestPlayer();
+                GroundOner();
+            }
         }
     }
     void FindNearestPlayer()
@@ -296,6 +285,14 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks //IPunObservable
             {
                 currentTarget = nearestPlayer;
             }
+        }
+    }
+
+    void GroundOner()
+    {
+        if(stateManager.hp <= stateManager.maxhp / 2 )
+        {
+            groundOner.CrushOner();
         }
     }
 
@@ -576,20 +573,20 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks //IPunObservable
         yield return new WaitForSeconds(5f);
         healEttetE.SetActive(false);
     }
-    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    //{
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
         //통신을 보내는 
-        //if (stream.IsWriting)
-        //{
-            //stream.SendNext(transform.position);
-            //stream.SendNext(transform.rotation);
-        //}
+        if (stream.IsWriting)
+        {
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
+        }
 
         //클론이 통신을 받는 
-        //else
-        //{
-            //currPos = (Vector3)stream.ReceiveNext();
-            //currRot = (Quaternion)stream.ReceiveNext();
-        //}
-    //}
+        else
+        {
+            currPos = (Vector3)stream.ReceiveNext();
+            currRot = (Quaternion)stream.ReceiveNext();
+        }
+    }
 }
