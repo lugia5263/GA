@@ -31,15 +31,6 @@ public class DungeonLoadManager : MonoBehaviourPunCallbacks
             PhotonNetwork.JoinLobby();
         }
     }
-
-    IEnumerator LoadLevelRaidDungeon()
-    {
-        yield return null;
-
-        PhotonNetwork.LoadLevel("Raid");
-        PhotonNetwork.AutomaticallySyncScene = true;
-    }
-
     IEnumerator EnterDungeonRoom()
     {
         if (PhotonNetwork.InLobby)
@@ -113,6 +104,7 @@ public class DungeonLoadManager : MonoBehaviourPunCallbacks
                 case 3:
                     if (PhotonNetwork.IsMasterClient)
                     {
+                        PhotonNetwork.LoadLevel("Raid");
                         PhotonNetwork.AutomaticallySyncScene = true;
                     }
                     break;
@@ -202,20 +194,6 @@ public class DungeonLoadManager : MonoBehaviourPunCallbacks
         SetRoomInfo();
         string msg = $"\n<color=#00ff00>{newPlayer.NickName}</color> is joined room";
         msgList.text += msg;
-
-        if (PhotonNetwork.CurrentRoom.PlayerCount == PhotonNetwork.CurrentRoom.MaxPlayers)
-        {
-            Debug.Log("CurPlayerCount==MaxPlayerCount 입니다.");
-            if (PhotonNetwork.IsMasterClient)
-            {
-                Debug.Log("마스터 클라이언트 입니다. 코루틴 실행함.");
-                StartCoroutine(LoadLevelRaidDungeon());
-            }
-            else
-            {
-                Debug.Log("마스터 클라이언트가 아닙니다. 코루틴실행안함.");
-            }
-        }
     }
 
     // 룸에서 네트워크 유저가 퇴장했때 호출되는 콜백함수
