@@ -42,7 +42,8 @@ public class LevelUpMgr : MonoBehaviourPunCallbacks
     public DialogueTrigger dialogueTrigger; //대본
     public GameObject nPCConversation;
 
-
+    [Header("패널열기버튼")]
+    public GameObject panelOnBtnLV;
 
     private void Awake()
     {
@@ -59,21 +60,32 @@ public class LevelUpMgr : MonoBehaviourPunCallbacks
         {
             if (other.GetComponent<PhotonView>().IsMine)
             {
+                panelOnBtnLV.SetActive(true);
+                panelOnBtnLV.GetComponent<Jun_TweenRuntime>().Play();
                 dialogueTrigger.Trigger();
                 nPCConversation.SetActive(true);
                 Debug.Log("충돌일어남");
                 PlayerDataCheck();
                 Debug.Log("업데이트할 ui의 클래스넘버 : " + classNum);
                 UpdateUiData(classNum);
-                lvupPanel.SetActive(true);
             }
         }
+    }
+
+    public void OnLevelUpPanel()
+    {
+        lvupPanel.SetActive(true);
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+            if (Input.GetKey(KeyCode.F))
+            {
+                OnLevelUpPanel();
+            }
+
             if (other.GetComponent<PhotonView>().IsMine)
             {
                 SyncDataMgr();
@@ -95,6 +107,7 @@ public class LevelUpMgr : MonoBehaviourPunCallbacks
         {
             if (other.GetComponent<PhotonView>().IsMine)
             {
+                panelOnBtnLV.SetActive(false);
                 nPCConversation.SetActive(false);
                 SyncDataMgr();
                 lvupPanel.SetActive(false);
