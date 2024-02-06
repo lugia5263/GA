@@ -16,7 +16,6 @@ public class DataMgrDontDestroy : MonoBehaviour
             return _instance;
         }
     }
-    public RewardMgr rewardMgr;
 
     #region 플레이어의 정보를 저장하는 변수
     [Header("플레이어의 정보")]
@@ -52,7 +51,6 @@ public class DataMgrDontDestroy : MonoBehaviour
     // 싱글톤
     void Awake()
     {
-        rewardMgr = GetComponent<RewardMgr>();
         if (_instance == null)
         {
             _instance = this;

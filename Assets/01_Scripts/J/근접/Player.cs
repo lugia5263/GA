@@ -143,21 +143,29 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     }
     private void Start()
     {
-        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         pv = GetComponent<PhotonView>();
+        Canvas obj = transform.Find("WCan").GetComponent<Canvas>();
+        nickNameTxt = obj.GetComponentInChildren<Text>();
+
         if (pv.IsMine)
         {
-            canvas = GameObject.Find("WorldCanvas").GetComponent<Canvas>();
+            nickNameTxt.text = PhotonNetwork.NickName + " (나)"; //여기 추가했음. 현창
+            nickNameTxt.color = Color.white;
+
             cvc.Follow = transform;
             cvc.LookAt = transform;
             chatManager = GetComponent<ChatManager>();
 
-            nickNameTxt = GameObject.Find("WorldCanvas/NickName").GetComponent<Text>();
             // 여기 위에를 추가했음. 현창
 
             pv = GetComponent<PhotonView>();
             pav = GetComponent<PhotonAnimatorView>();
             plane = new Plane(transform.up, transform.position);
+        }
+        else
+        {
+            nickNameTxt.text = pv.Owner.NickName;
+            nickNameTxt.color = Color.red;
         }
         skillICoolicon[0].fillAmount = 0;
         skillICoolicon[1].fillAmount = 0;
@@ -217,8 +225,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     void FixedUpdate() // 원래 FixedUpdate였음
     {
-        
-
         if (pv.IsMine)
         {
             nickNameTxt.text = PhotonNetwork.NickName + " (나)"; //여기 추가했음. 현창
