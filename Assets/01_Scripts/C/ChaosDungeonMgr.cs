@@ -9,27 +9,22 @@ public class ChaosDungeonMgr : MonoBehaviour
 {
     public DataMgrDontDestroy dataMgr;
 
-
     public int bossKilled;
 
+    public int cDungeonStep;                //초기 던전 난이도
 
-    public GameObject door11;
-    public GameObject door12;
-    public GameObject door21;
-    public GameObject door22;
+    public bool isBattle;
 
-    public int cDungeonStep; 
-
-    public bool isBattle;           //전투 시 문 닫힘.
-
-    public GameObject reset;        //떨어지면 리셋되는 플레이어
-    public GameObject[] bossPrefab; //bossPrefab[0]은 빈칸
-    public GameObject[] mobPrefab;
-    public Transform[] spawnPoint;
-    public Transform[] mobSpawnPoint;
+    public GameObject reset;                //떨어지면 리셋되는 플레이어
+    public GameObject[] door;
+    public GameObject[] bossPrefab;         //[0]은 빈칸
+    public GameObject[] mobPrefab;          //[0]은 빈칸
+    public Transform[] mobSpawnPoint;       //[0]은 빈칸
+    public Transform[] spawnPoint;          //[0]은 플레이어 리셋 위치
 
     public GameObject midBossEffect;
     public GameObject endBossEffect;
+
 
 
     private void Start()
@@ -45,10 +40,8 @@ public class ChaosDungeonMgr : MonoBehaviour
     {
         StartCoroutine(MakeBoss1());
         StartCoroutine(MakeMob1());
-
-        //Door();
+        StartCoroutine(Door());
     }
-
     IEnumerator MakeBoss1()
     {
         Instantiate(midBossEffect, spawnPoint[1]); // 이펙트 생성
@@ -66,7 +59,6 @@ public class ChaosDungeonMgr : MonoBehaviour
         mob1.GetComponentInChildren<StateManager>().hp *= cDungeonStep;
         mob1.GetComponentInChildren<StateManager>().attackPower += (cDungeonStep * 30);
     }
-
     #endregion
 
     #region 2보스 소환
@@ -74,6 +66,7 @@ public class ChaosDungeonMgr : MonoBehaviour
     {
         StartCoroutine(MakeBoss2());
         StartCoroutine(MakeMob2());
+        StartCoroutine(Door());
     }
     IEnumerator MakeBoss2()
     {
@@ -99,8 +92,8 @@ public class ChaosDungeonMgr : MonoBehaviour
     {
         StartCoroutine(MakeBoss3());
         StartCoroutine(MakeMob3());
+        StartCoroutine(Door());
     }
-
     IEnumerator MakeBoss3()
     {
         Instantiate(midBossEffect, spawnPoint[3]); // 이펙트 생성
@@ -120,36 +113,49 @@ public class ChaosDungeonMgr : MonoBehaviour
     }
     #endregion
 
-
-
-    public void ClearMidBoss() //중간 보스잡을때마다 호출해야함.
+    IEnumerator Door()
     {
-        isBattle = false;
-        Door();
-    }
-
-
-    public void Door() //문마다 달려있음. 싸움 시작하거나 끝날 시 호출 필요.
-    {
-        
-        Jun_TweenRuntime[] gameObject1 = door11.GetComponents<Jun_TweenRuntime>();
-        Jun_TweenRuntime[] gameObject2 = door12.GetComponents<Jun_TweenRuntime>();
-
-        if (isBattle == true)
+        if (isBattle == false)
         {
-            gameObject1[0].Play(); // 열리기
-            gameObject2[0].Play(); // 열리기
-            isBattle = false;
+            Jun_TweenRuntime[] gameObject1 = door[2].GetComponents<Jun_TweenRuntime>();
+            Jun_TweenRuntime[] gameObject2 = door[3].GetComponents<Jun_TweenRuntime>();
+            Jun_TweenRuntime[] gameObject3 = door[4].GetComponents<Jun_TweenRuntime>();
+            Jun_TweenRuntime[] gameObject4 = door[5].GetComponents<Jun_TweenRuntime>();
+            yield return new WaitForSeconds(0.5f);
+            gameObject1[0].Play(); // 닫히기
+            gameObject2[0].Play(); // 닫히기
+            gameObject3[0].Play(); // 닫히기
+            gameObject4[0].Play(); // 닫히기
+            isBattle = true;
         }
         else
         {
-            gameObject1[1].Play(); // 닫히기
-            gameObject2[1].Play(); // 열리기
-            isBattle = true;
+            Jun_TweenRuntime[] gameObject1 = door[2].GetComponents<Jun_TweenRuntime>();
+            Jun_TweenRuntime[] gameObject2 = door[3].GetComponents<Jun_TweenRuntime>();
+            Jun_TweenRuntime[] gameObject3 = door[4].GetComponents<Jun_TweenRuntime>();
+            Jun_TweenRuntime[] gameObject4 = door[5].GetComponents<Jun_TweenRuntime>();
+            yield return new WaitForSeconds(0.5f);
+            gameObject1[1].Play(); // 열려라 참깨
+            gameObject2[1].Play(); // 열려라 참깨
+            gameObject3[1].Play(); // 열려라 참깨
+            gameObject4[1].Play(); // 열려라 참깨
+            isBattle = false;
         }
     }
 
-    
+
+
+    public void ClearBoss1()
+    {
+        StartCoroutine(Door());
+        bossKilled++;
+    }
+
+    public void ClearBoss2()
+    {
+        StartCoroutine(Door());
+        bossKilled++;
+    }
 
     public void ClearEndBoss()
     {
@@ -158,16 +164,21 @@ public class ChaosDungeonMgr : MonoBehaviour
 
     public void Update()
     {
-        //#region
         //if (reset.transform.position.y < -7f)
         //    ResetPlayer();
-        //#endregion
-        //if (boss1.GetComponent<MageMiddleBoss>().die)
-        //{
-        //    bossKilled = 1;
-        //}
 
-
+        if (bossPrefab[1].GetComponent<MageMiddleBoss>().die)
+        {
+            ClearBoss1();
+        }
+        if (bossPrefab[2].GetComponent<Tboss>().die)
+        {
+            ClearBoss2();
+        }
+        if (bossPrefab[3].GetComponent<NomalMonsterCtrl>().golemisDeath)
+        {
+            ClearEndBoss();
+        }
     }
 
     public void ResetPlayer()
