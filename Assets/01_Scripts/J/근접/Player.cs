@@ -128,12 +128,11 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         stateManager = GetComponent<StateManager>();
         hudManager = GetComponent<HUDManager>();
         uimgr = GameObject.Find("UIMgr").GetComponent<UIMgr>();
-        cvc = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
+        cvc = GameObject.FindGameObjectWithTag("CVC").GetComponent<CinemachineVirtualCamera>();
         if (PhotonNetwork.IsConnected && photonView.IsMine)
         {
             cvc.GetComponent<ThirdPersonOrbitCamBasicA>().player = transform;
         }
-        cvc.GetComponent<ThirdPersonOrbitCamBasicA>().Starts();
         if (boss != null)
         {
             boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
@@ -144,15 +143,16 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     }
     private void Start()
     {
+        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         pv = GetComponent<PhotonView>();
         if (pv.IsMine)
         {
-            canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+            canvas = GameObject.Find("WorldCanvas").GetComponent<Canvas>();
             cvc.Follow = transform;
             cvc.LookAt = transform;
             chatManager = GetComponent<ChatManager>();
-            Canvas nickCanvas = GetComponentInChildren<Canvas>();
-            nickNameTxt = nickCanvas.GetComponentInChildren<Text>();
+
+            nickNameTxt = GameObject.Find("WorldCanvas/NickName").GetComponent<Text>();
             // 여기 위에를 추가했음. 현창
 
             pv = GetComponent<PhotonView>();
@@ -217,11 +217,14 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     void FixedUpdate() // 원래 FixedUpdate였음
     {
+        
 
         if (pv.IsMine)
         {
-            //nickNameTxt.text = PhotonNetwork.NickName + " (나)"; //여기 추가했음. 현창
-            //nickNameTxt.color = Color.white;
+            nickNameTxt.text = PhotonNetwork.NickName + " (나)"; //여기 추가했음. 현창
+            nickNameTxt.color = Color.white;
+            Vector3 offset = new Vector3(0f, 2f, 0f);
+            nickNameTxt.transform.position = transform.position + offset;
 
             originalTimeScale = Time.timeScale * Time.unscaledDeltaTime;
 
@@ -243,8 +246,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
-            //nickNameTxt.text = pv.Owner.NickName;
-            //nickNameTxt.color = Color.red;
+            nickNameTxt.text = pv.Owner.NickName;
+            nickNameTxt.color = Color.red;
+            Vector3 offset = new Vector3(0f, 2f, 0f);
+            nickNameTxt.transform.position = transform.position + offset;
         }
     }
 
@@ -452,16 +457,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
         if (other.CompareTag("SaveZone"))
             isDeshInvincible = true;
-
-        //if (other.CompareTag("NPCW"))
-        //uimgr.npcPanel[1].SetActive(true);
-        //if (other.CompareTag("NPCP"))
-        //uimgr.npcPanel[5].SetActive(true);
-        //if (other.CompareTag("NPCA"))
-        //uimgr.npcPanel[1].SetActive(true);
-
-
-    }
+    }     
 
     IEnumerator DownDelay()
     {
@@ -484,26 +480,12 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             stateManager.hp += 5;
             hudManager.ChangeUserHUD();
         }
-        if(other.CompareTag("NPC"))
+        if (other.CompareTag("NPC"))
         {
             npcAttackStop = true;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
-        //if (other.CompareTag("NPCQ"))
-        //{
-        //npcAttackStop = true;
-        //uimgr.npcPanel[0].SetActive(true);
-        //Cursor.lockState = CursorLockMode.None;
-        //Cursor.visible = true;
-        //}
-        //if (other.CompareTag("NPCL"))
-        //{
-        //npcAttackStop = true;
-        //uimgr.npcPanel[2].SetActive(true);
-        //Cursor.lockState = CursorLockMode.None;
-        //Cursor.visible = true;
-        //}
     }
 
     private void OnTriggerExit(Collider other)
@@ -521,22 +503,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
-        //if (other.CompareTag("NPCQ"))
-        //{
-        //npcAttackStop = false;
-        //uimgr.npcPanel[0].SetActive(false);
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
-        //}
-        //if (other.CompareTag("NPCW"))
-        //uimgr.npcPanel[1].SetActive(false);
-        //if (other.CompareTag("NPCL"))
-        //{
-        //npcAttackStop = false;
-        //uimgr.npcPanel[2].SetActive(false);
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
-        //}
     }
 
     void SkillUsing()

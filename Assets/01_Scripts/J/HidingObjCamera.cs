@@ -11,25 +11,28 @@ public class HidingObjCamera : MonoBehaviour
 
     List<HidingObj> hiddenObjects = new List<HidingObj>();
     List<HidingObj> previouslyHiddenObjects = new List<HidingObj>();
-
+    ThirdPersonOrbitCamBasicA thirdPerson;
     public GameObject targetPlayer;
 
     void LateUpdate()
     {
+        
         RefreshHiddenObjects();
     }
 
     public void RefreshHiddenObjects()
     {
-
-        if(targetPlayer == null)
+        testGameMgr someComponent = GameObject.FindWithTag("Player").GetComponent<testGameMgr>();
+        if (someComponent != null)
         {
             targetPlayer = GameObject.FindWithTag("Player");
+            someComponent.Starts();
+        }
+        targetPlayer = GameObject.FindWithTag("Player");
 
-            if (targetPlayer != null)
-            {
-                target = targetPlayer.transform;
-            }
+        if (targetPlayer != null)
+        {
+            target = targetPlayer.transform;
         }
         Vector3 toTarget = (target.position - transform.position);
         float targetDistance = toTarget.magnitude;

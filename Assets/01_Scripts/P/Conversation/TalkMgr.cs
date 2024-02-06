@@ -8,7 +8,7 @@ public class TalkMgr : MonoBehaviour
 {
     public Text textName; // 이름
     public Text textSentence; // 내용
-    public GameObject conversationPanel;
+    public GameObject nPCConversation;
     public GameObject nextBtn;
 
     Queue<string> naming = new Queue<string>();
@@ -19,7 +19,7 @@ public class TalkMgr : MonoBehaviour
     public void Begin(Dialogue info)
     {
         currentDialogue = info;
-        conversationPanel.SetActive(true); //만들어야함
+        nPCConversation.SetActive(true); 
         naming.Clear();
         sentences.Clear();
         textName.text = null;
@@ -69,11 +69,14 @@ public class TalkMgr : MonoBehaviour
 
     private void End()
     {
-        conversationPanel.gameObject.SetActive(false);        
+        if (nPCConversation != null)
+        {
+            nPCConversation.gameObject.SetActive(false);
+        }
     }
     public void RealEnd()
     {
-        conversationPanel.SetActive(false);
+        nPCConversation.SetActive(false);
         Debug.Log("끝!");
         textSentence.text = string.Empty;
     }
