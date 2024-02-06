@@ -7,11 +7,14 @@ using static MageMiddleBoss;
 
 public class ChaosDungeonMgr : MonoBehaviour
 {
-    public DataMgrDontDestroy dataMgr;
+    public DataMgrDontDestroy dataMgrDontDestroy;
+
+    public RewardMgr rewardMgr;
 
     public int bossKilled;
 
-    public int cDungeonStep;                //초기 던전 난이도
+    public int dungeonSortIdx;               //1은 싱글, 2는 카오스, 3은 레이드
+    public int dungeonNumIdx;                //생성 시 체력과 공격력 곱해짐.
 
     public bool isBattle;
 
@@ -21,17 +24,23 @@ public class ChaosDungeonMgr : MonoBehaviour
     public GameObject[] mobPrefab;          //[0]은 빈칸
     public Transform[] mobSpawnPoint;       //[0]은 빈칸
     public Transform[] spawnPoint;          //[0]은 플레이어 리셋 위치
+    public GameObject spawnPointObject;
 
     public GameObject midBossEffect;
     public GameObject endBossEffect;
+    public GameObject chaosEndClearEffect;
+    public GameObject clearPanel;
 
 
 
     private void Start()
     {
-        if(dataMgr != null)
+        if(dataMgrDontDestroy != null)
         {
-            cDungeonStep = DataMgrDontDestroy.Instance.DungeonNumIdx;
+            dungeonNumIdx = DataMgrDontDestroy.Instance.DungeonNumIdx;
+
+            dataMgrDontDestroy = DataMgrDontDestroy.Instance;
+            
         }
     }
 
@@ -47,17 +56,17 @@ public class ChaosDungeonMgr : MonoBehaviour
         Instantiate(midBossEffect, spawnPoint[1]); // 이펙트 생성
         GameObject bossnem1 = Instantiate(bossPrefab[1], spawnPoint[1]); // 보스 생성
         yield return new WaitForSeconds(0.5f);
-        bossnem1.GetComponent<StateManager>().maxhp *= cDungeonStep;
-        bossnem1.GetComponent<StateManager>().hp *= cDungeonStep;
-        bossnem1.GetComponent<StateManager>().attackPower += (cDungeonStep * 30);
+        bossnem1.GetComponent<StateManager>().maxhp *= dungeonNumIdx;
+        bossnem1.GetComponent<StateManager>().hp *= dungeonNumIdx;
+        bossnem1.GetComponent<StateManager>().attackPower += (dungeonNumIdx * 30);
     }
     IEnumerator MakeMob1()
     {
         GameObject mob1 = Instantiate(mobPrefab[1], mobSpawnPoint[1]);
         yield return new WaitForSeconds(0.5f);
-        mob1.GetComponentInChildren<StateManager>().maxhp *= cDungeonStep;
-        mob1.GetComponentInChildren<StateManager>().hp *= cDungeonStep;
-        mob1.GetComponentInChildren<StateManager>().attackPower += (cDungeonStep * 30);
+        mob1.GetComponentInChildren<StateManager>().maxhp *= dungeonNumIdx;
+        mob1.GetComponentInChildren<StateManager>().hp *= dungeonNumIdx;
+        mob1.GetComponentInChildren<StateManager>().attackPower += (dungeonNumIdx * 30);
     }
     #endregion
 
@@ -73,17 +82,17 @@ public class ChaosDungeonMgr : MonoBehaviour
         Instantiate(midBossEffect, spawnPoint[2]); // 이펙트 생성
         GameObject bossnem1 = Instantiate(bossPrefab[2], spawnPoint[2]); // 보스 생성
         yield return new WaitForSeconds(0.5f);
-        bossnem1.GetComponent<StateManager>().maxhp *= cDungeonStep;
-        bossnem1.GetComponent<StateManager>().hp *= cDungeonStep;
-        bossnem1.GetComponent<StateManager>().attackPower += (cDungeonStep * 30);
+        bossnem1.GetComponent<StateManager>().maxhp *= dungeonNumIdx;
+        bossnem1.GetComponent<StateManager>().hp *= dungeonNumIdx;
+        bossnem1.GetComponent<StateManager>().attackPower += (dungeonNumIdx * 30);
     }
     IEnumerator MakeMob2()
     {
         GameObject mob1 = Instantiate(mobPrefab[2], mobSpawnPoint[2]);
         yield return new WaitForSeconds(0.5f);
-        mob1.GetComponentInChildren<StateManager>().maxhp *= cDungeonStep;
-        mob1.GetComponentInChildren<StateManager>().hp *= cDungeonStep;
-        mob1.GetComponentInChildren<StateManager>().attackPower += (cDungeonStep * 30);
+        mob1.GetComponentInChildren<StateManager>().maxhp *= dungeonNumIdx;
+        mob1.GetComponentInChildren<StateManager>().hp *= dungeonNumIdx;
+        mob1.GetComponentInChildren<StateManager>().attackPower += (dungeonNumIdx * 30);
     }
     #endregion
 
@@ -99,17 +108,17 @@ public class ChaosDungeonMgr : MonoBehaviour
         Instantiate(midBossEffect, spawnPoint[3]); // 이펙트 생성
         GameObject bossnem1 = Instantiate(bossPrefab[3], spawnPoint[3]); // 보스 생성
         yield return new WaitForSeconds(0.5f);
-        bossnem1.GetComponent<StateManager>().maxhp *= cDungeonStep *3;
-        bossnem1.GetComponent<StateManager>().hp *= cDungeonStep *3;
-        bossnem1.GetComponent<StateManager>().attackPower += (cDungeonStep * 30);
+        bossnem1.GetComponent<StateManager>().maxhp *= dungeonNumIdx * 3;
+        bossnem1.GetComponent<StateManager>().hp *= dungeonNumIdx * 3;
+        bossnem1.GetComponent<StateManager>().attackPower += (dungeonNumIdx * 30);
     }
     IEnumerator MakeMob3()
     {
         GameObject mob1 = Instantiate(mobPrefab[3], mobSpawnPoint[3]);
         yield return new WaitForSeconds(0.5f);
-        mob1.GetComponentInChildren<StateManager>().maxhp *= cDungeonStep;
-        mob1.GetComponentInChildren<StateManager>().hp *= cDungeonStep;
-        mob1.GetComponentInChildren<StateManager>().attackPower += (cDungeonStep * 30);
+        mob1.GetComponentInChildren<StateManager>().maxhp *= dungeonNumIdx;
+        mob1.GetComponentInChildren<StateManager>().hp *= dungeonNumIdx;
+        mob1.GetComponentInChildren<StateManager>().attackPower += (dungeonNumIdx * 30);
     }
     #endregion
 
@@ -145,45 +154,38 @@ public class ChaosDungeonMgr : MonoBehaviour
 
 
 
-    public void ClearBoss1()
+    public void ClearMidBoss()
     {
         StartCoroutine(Door());
-        bossKilled++;
     }
-
-    public void ClearBoss2()
-    {
-        StartCoroutine(Door());
-        bossKilled++;
-    }
-
     public void ClearEndBoss()
     {
-        //clearPanel.SetActive(true);
+        rewardMgr.ShowReward();
+
+        spawnPointObject.SetActive(false);
+        Jun_TweenRuntime[] gameObject = clearPanel.GetComponents<Jun_TweenRuntime>();
+        gameObject[0].Play();
     }
 
-    public void Update()
+    public void Receive()
     {
-        //if (reset.transform.position.y < -7f)
-        //    ResetPlayer();
 
-        if (bossPrefab[1].GetComponent<MageMiddleBoss>().die)
-        {
-            ClearBoss1();
-        }
-        if (bossPrefab[2].GetComponent<Tboss>().die)
-        {
-            ClearBoss2();
-        }
-        if (bossPrefab[3].GetComponent<NomalMonsterCtrl>().golemisDeath)
-        {
-            ClearEndBoss();
-        }
     }
-
     public void ResetPlayer()
     {
         reset.transform.position = spawnPoint[0].position;
     }
 
+    public void MoveTown()
+    {
+        dataMgrDontDestroy.DungeonSortIdx = 0;
+        //마을로 이동 추가.
+    }
+    public void Update()
+    {
+
+    }
+
+    
+  
 }
