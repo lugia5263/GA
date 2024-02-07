@@ -5,7 +5,7 @@ using UnityEngine;
 public class RaidBossSpwan : MonoBehaviour
 {
     public GameObject raidBoss;
-    public Transform bossSpwanPos;
+    
     void Start()
     {
         
@@ -21,8 +21,8 @@ public class RaidBossSpwan : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            Instantiate(raidBoss, bossSpwanPos.position, bossSpwanPos.rotation);
-            Destroy(gameObject);
+            raidBoss.SetActive(true);
+            Destroy(gameObject, 1f);
         }
     }
 }

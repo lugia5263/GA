@@ -21,7 +21,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     private Vector3 currPos;
     private Quaternion currRot;
     private Transform tr;
-
+   
     [Header("Shop")]
     private GameObject nearObject;
     public int coin;
@@ -114,6 +114,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     RaidBossCtrl raidBoss;
     Tboss tboss;
     public bool npcAttackStop;
+
     //테스팅중
 
     void Awake()
@@ -248,6 +249,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                     Deshs();
                     Interation();
                     SkillCoolTime();
+                    KnowingBoss();
                 }
             }
         }
@@ -512,6 +514,22 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
+    public void KnowingBoss()
+    {
+        if (raidBoss != null)
+        {
+            if (pv.IsMine)
+            {
+                testGameMgr someComponent = GameObject.FindWithTag("Player").GetComponent<testGameMgr>();
+                someComponent.Starts();
+                raidBoss.characterController = raidBoss.GetComponent<CharacterController>();
+                raidBoss.anim = raidBoss.GetComponent<Animator>();
+                stateManager = raidBoss.GetComponent<StateManager>();
+                raidBoss.player = this;
+                raidBoss.targetPlayer = transform;
+            }
+        }
+    }
     void SkillUsing()
     {
         skillUse = true;

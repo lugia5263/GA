@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Photon.Pun;
 using static MageMiddleBoss;
 
 
-public class ChaosDungeonMgr : MonoBehaviour
+public class ChaosDungeonMgr : MonoBehaviourPunCallbacks
 {
     public DataMgrDontDestroy dataMgrDontDestroy;
 
@@ -35,13 +37,8 @@ public class ChaosDungeonMgr : MonoBehaviour
 
     private void Start()
     {
-        if(dataMgrDontDestroy != null)
-        {
-            dungeonNumIdx = DataMgrDontDestroy.Instance.DungeonNumIdx;
-
             dataMgrDontDestroy = DataMgrDontDestroy.Instance;
-            
-        }
+        dungeonNumIdx = DataMgrDontDestroy.Instance.DungeonNumIdx;
     }
 
     #region 1보스 소환
@@ -179,8 +176,11 @@ public class ChaosDungeonMgr : MonoBehaviour
     public void MoveTown()
     {
         dataMgrDontDestroy.DungeonSortIdx = 0;
-        //마을로 이동 추가.
+        PhotonNetwork.LeaveRoom();
+        SceneManager.LoadScene("DungeonLoadingScene");
     }
+
+    
     public void Update()
     {
 
