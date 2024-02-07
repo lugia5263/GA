@@ -9,12 +9,14 @@ public class RewardMgr : MonoBehaviour
 
     public GameObject rewardPanel;
     public GameObject movePanel;
+    public GameObject defeatPanel;
     public GameObject rewardContent;
     public GameObject itemPrefab;
     public Sprite[] imageList; //0번은 material, 1번은 expPotion, 2번은 gold
     public int DgSortIdx;
     public int expPotionReward;
     public int materialReward;
+
     public int goldReward;
     public int clearCut = 1;
     //보상=(재화 종류) * 던전의 번호? 1-2, 1-3의 2랑 3을 재화종류에 곱해주는 이런식(일단 이렇게 설정만 해놓음 필요시 수정)
@@ -28,6 +30,10 @@ public class RewardMgr : MonoBehaviour
         movePanel.SetActive(false);
     }
 
+    private void Update()
+    {
+        playerDieful();
+    }
     public void ShowReward()
     {
         rewardPanel.SetActive(true);
@@ -41,10 +47,19 @@ public class RewardMgr : MonoBehaviour
                 ChaosClearReward();
                 break;
             case 3:
-                RaidClearReward();  
+                RaidClearReward();
                 break;
             default:
                 break;
+        }
+    }
+
+    public void playerDieful()
+    {
+        if(dataMgrDontDestroy.playerDie)
+        {
+            movePanel.SetActive(true);
+            defeatPanel.SetActive(true);
         }
     }
         
