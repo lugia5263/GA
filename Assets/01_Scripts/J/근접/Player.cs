@@ -15,6 +15,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public Text nickNameTxt;
     public ChatManager chatManager;
     public bool allowMove = false;
+    public QuestPopUpManager questPopUpManager;
     // 여기 위에를 추가했음. 현창
 
     public Canvas canvas;
@@ -119,7 +120,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     void Awake()
     {
-
+        questPopUpManager = GameObject.Find("WorldCanvas/UIMgr/QuestPopUp").GetComponentInChildren<QuestPopUpManager>();
+        // 위에 추가함 현창
         camera = Camera.main;
         isFireReady = true;
         weapons = GetComponentInChildren<Weapons>();
@@ -151,6 +153,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
         if (pv.IsMine)
         {
+            questPopUpManager.UpdateQuestStatus(); // 여기 추가했음 현창
             nickNameTxt.text = PhotonNetwork.NickName + " (나)"; //여기 추가했음. 현창
             nickNameTxt.color = Color.white;
 
