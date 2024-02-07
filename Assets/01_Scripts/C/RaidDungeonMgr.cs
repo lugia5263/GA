@@ -26,11 +26,10 @@ public class RaidDungeonMgr : MonoBehaviourPunCallbacks
     }
         void clear()
     {
-        if(clearCut == 1)
+        if(rewardMgr.clearCut == 1)
         {
             if (boss.GetComponent<RaidBossCtrl>().die == true)
             {
-                clearCut = 1;
                 ClearEndBoss();
             }
         }
