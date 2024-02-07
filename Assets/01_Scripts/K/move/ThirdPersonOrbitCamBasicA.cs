@@ -42,12 +42,7 @@ public class ThirdPersonOrbitCamBasicA : MonoBehaviour
 
     private void Start()
     {
-		testGameMgr someComponent = GameObject.FindWithTag("Player").GetComponent<testGameMgr>();
-		if (someComponent != null)
-		{
-			player = GameObject.FindWithTag("Player").transform;
-			someComponent.Starts();
-		}
+
 	}
     public void Starts()
 	{
