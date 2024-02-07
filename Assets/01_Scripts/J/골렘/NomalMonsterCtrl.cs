@@ -5,6 +5,10 @@ using UnityEngine.AI;
 
 public class NomalMonsterCtrl : MonoBehaviour
 {
+    public ChaosDungeonMgr cDunMgr;
+    public GameObject bossDeathEffect;
+
+
     public enum GOLEM
     {
         IDLE = 0,
@@ -131,6 +135,12 @@ public class NomalMonsterCtrl : MonoBehaviour
                 case GOLEM.DIE:
                     StartCoroutine(DeadProcess(5f));
                     navAgent.enabled = false;
+                    if(gameObject.tag == "Boss")
+                    {
+                        Instantiate(bossDeathEffect, transform);
+                        cDunMgr = GameObject.Find("ChaosDungeonMgr").GetComponent<ChaosDungeonMgr>();
+                        cDunMgr.ClearEndBoss();
+                    }
                     break;
                 case GOLEM.NULL:
                     break;
@@ -142,6 +152,7 @@ public class NomalMonsterCtrl : MonoBehaviour
     {
         if(golemStateManager.hp <= 0)
         {
+            golem = GOLEM.DIE;
             navAgent.speed = 0;
             golemisDeath = true;
             col.enabled = false;

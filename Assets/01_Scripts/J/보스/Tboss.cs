@@ -8,7 +8,7 @@ using Cinemachine;
 
 public class Tboss : MonoBehaviourPunCallbacks, IPunObservable
 {
-
+    public ChaosDungeonMgr cDunMgr;
     public enum TBOSS
     {
         IDLE = 0,
@@ -85,20 +85,35 @@ public class Tboss : MonoBehaviourPunCallbacks, IPunObservable
     
     void Start()
     {
+        cDunMgr = GameObject.Find("ChaosDungeonMgr").GetComponent<ChaosDungeonMgr>();
+
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         pv = GetComponent<PhotonView>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        testGameMgr someComponent = GameObject.FindWithTag("Player").GetComponent<testGameMgr>();
+        //if (someComponent != null)
+        //{
+        //someComponent.Starts();
+        //}
+        tBOSS = TBOSS.IDLE;
+        characterController = GetComponent<CharacterController>();
+        tbanim = GetComponent<Animator>();
+        stateManager = GetComponent<StateManager>();
         if (pv.IsMine)
         {
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-            targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-            testGameMgr someComponent = GameObject.FindWithTag("Player").GetComponent<testGameMgr>();
-            //if (someComponent != null)
-            //{
-                //someComponent.Starts();
-            //}
-            tBOSS = TBOSS.IDLE;
-            characterController = GetComponent<CharacterController>();
-            tbanim = GetComponent<Animator>();
-            stateManager = GetComponent<StateManager>();
+            //player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            //targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+            //testGameMgr someComponent = GameObject.FindWithTag("Player").GetComponent<testGameMgr>();
+            ////if (someComponent != null)
+            ////{
+            //    //someComponent.Starts();
+            ////}
+            //tBOSS = TBOSS.IDLE;
+            //characterController = GetComponent<CharacterController>();
+            //tbanim = GetComponent<Animator>();
+            //stateManager = GetComponent<StateManager>();
         }
     }
     //테스트 용
@@ -114,8 +129,8 @@ public class Tboss : MonoBehaviourPunCallbacks, IPunObservable
     }
     void Update()
     {
-        if(pv.IsMine)
-        {
+        //if(pv.IsMine)
+        //{
             if (!die)
             {
                 NearByPlayer();
@@ -256,7 +271,9 @@ public class Tboss : MonoBehaviourPunCallbacks, IPunObservable
                         case TBOSS.DIE:
                             isActivating = true;
                             speed = 0;
-                            tbanim.SetTrigger("DIE");
+                            cDunMgr.bossKilled++;
+                            cDunMgr.ClearMidBoss();
+                            tbanim.SetTrigger("DIE");           
                             break;
                         case TBOSS.PAGE1:
                             isActivating = true;
@@ -270,7 +287,7 @@ public class Tboss : MonoBehaviourPunCallbacks, IPunObservable
                             
                             break;
                     }
-            }
+            // }
         }
         void MoveTowardsTarget(bool stop)
         {

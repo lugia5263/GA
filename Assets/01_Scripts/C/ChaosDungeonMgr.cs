@@ -1,141 +1,191 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Photon.Pun;
+using static MageMiddleBoss;
 
 
-public class ChaosDungeonMgr : MonoBehaviour
+public class ChaosDungeonMgr : MonoBehaviourPunCallbacks
 {
+    public DataMgrDontDestroy dataMgrDontDestroy;
 
-    public GameObject ground1;
-    public GameObject ground2;
-    public GameObject ground3;
-    public GameObject ground4;
+    public RewardMgr rewardMgr;
 
-    public bool isBattle;           //전투 시 문 닫힘.
+    public int bossKilled;
 
-    public GameObject reset;        //떨어지면 리셋되는 플레이어
-    public GameObject[] bossPrefab; //bossPrefab[0]은 빈칸
-    public Transform[] spawnPoint;
+    public int dungeonSortIdx;               //1은 싱글, 2는 카오스, 3은 레이드
+    public int dungeonNumIdx;                //생성 시 체력과 공격력 곱해짐.
+
+    public bool isBattle;
+
+    public GameObject reset;                //떨어지면 리셋되는 플레이어
+    public GameObject[] door;
+    public GameObject[] bossPrefab;         //[0]은 빈칸
+    public GameObject[] mobPrefab;          //[0]은 빈칸
+    public Transform[] mobSpawnPoint;       //[0]은 빈칸
+    public Transform[] spawnPoint;          //[0]은 플레이어 리셋 위치
+    public GameObject spawnPointObject;
 
     public GameObject midBossEffect;
     public GameObject endBossEffect;
+    public GameObject chaosEndClearEffect;
+    public GameObject clearPanel;
 
-    public MageMiddleBoss mageMiddle;
-    public Tboss tboss;
 
-    private void LateUpdate()
+
+    private void Start()
     {
-        if (mageMiddle != null)
-        {
-            mageMiddle = GameObject.FindGameObjectWithTag("Boss").GetComponent<MageMiddleBoss>();
-        }
-        if (tboss != null)
-        {
-            tboss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Tboss>();
-        }
-        
+            dataMgrDontDestroy = DataMgrDontDestroy.Instance;
+        dungeonNumIdx = DataMgrDontDestroy.Instance.DungeonNumIdx;
     }
 
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player") && ground1)
-        {
-            InstBoss1();
-            isBattle = true;
-        }
-        if (other.CompareTag("Player") && ground2)
-        {
-            InstBoss2();
-            isBattle = true;
-        }
-        if (other.CompareTag("Player") && ground3)
-        {
-            InstBoss3();
-            isBattle = true;
-        }
-        if (other.CompareTag("Player") && ground4)
-        {
-            InstBoss4();
-            isBattle = true;
-        }
-    }
-
+    #region 1보스 소환
     public void InstBoss1()
     {
-        Instantiate(midBossEffect, spawnPoint[1]);
-        Instantiate(bossPrefab[1], spawnPoint[1]);
-        Door();
+        StartCoroutine(MakeBoss1());
+        StartCoroutine(MakeMob1());
+        StartCoroutine(Door());
     }
-   
+    IEnumerator MakeBoss1()
+    {
+        Instantiate(midBossEffect, spawnPoint[1]); // 이펙트 생성
+        GameObject bossnem1 = Instantiate(bossPrefab[1], spawnPoint[1]); // 보스 생성
+        yield return new WaitForSeconds(0.5f);
+        bossnem1.GetComponent<StateManager>().maxhp *= dungeonNumIdx;
+        bossnem1.GetComponent<StateManager>().hp *= dungeonNumIdx;
+        bossnem1.GetComponent<StateManager>().attackPower += (dungeonNumIdx * 30);
+    }
+    IEnumerator MakeMob1()
+    {
+        GameObject mob1 = Instantiate(mobPrefab[1], mobSpawnPoint[1]);
+        yield return new WaitForSeconds(0.5f);
+        mob1.GetComponentInChildren<StateManager>().maxhp *= dungeonNumIdx;
+        mob1.GetComponentInChildren<StateManager>().hp *= dungeonNumIdx;
+        mob1.GetComponentInChildren<StateManager>().attackPower += (dungeonNumIdx * 30);
+    }
+    #endregion
+
+    #region 2보스 소환
     public void InstBoss2()
     {
-        Instantiate(midBossEffect, spawnPoint[2]);
-        Instantiate(bossPrefab[2], spawnPoint[2]);
-        Door();
+        StartCoroutine(MakeBoss2());
+        StartCoroutine(MakeMob2());
+        StartCoroutine(Door());
     }
+    IEnumerator MakeBoss2()
+    {
+        Instantiate(midBossEffect, spawnPoint[2]); // 이펙트 생성
+        GameObject bossnem1 = Instantiate(bossPrefab[2], spawnPoint[2]); // 보스 생성
+        yield return new WaitForSeconds(0.5f);
+        bossnem1.GetComponent<StateManager>().maxhp *= dungeonNumIdx;
+        bossnem1.GetComponent<StateManager>().hp *= dungeonNumIdx;
+        bossnem1.GetComponent<StateManager>().attackPower += (dungeonNumIdx * 30);
+    }
+    IEnumerator MakeMob2()
+    {
+        GameObject mob1 = Instantiate(mobPrefab[2], mobSpawnPoint[2]);
+        yield return new WaitForSeconds(0.5f);
+        mob1.GetComponentInChildren<StateManager>().maxhp *= dungeonNumIdx;
+        mob1.GetComponentInChildren<StateManager>().hp *= dungeonNumIdx;
+        mob1.GetComponentInChildren<StateManager>().attackPower += (dungeonNumIdx * 30);
+    }
+    #endregion
+
+    #region 3보스 소환
     public void InstBoss3()
     {
-        Instantiate(midBossEffect, spawnPoint[3]);
-        Instantiate(bossPrefab[3], spawnPoint[3]);
-        Door();
+        StartCoroutine(MakeBoss3());
+        StartCoroutine(MakeMob3());
+        StartCoroutine(Door());
     }
-    public void ClearMidBoss() //중간 보스잡을때마다 호출해야함.
+    IEnumerator MakeBoss3()
     {
-      
-            isBattle = false;
-            Door();
+        Instantiate(midBossEffect, spawnPoint[3]); // 이펙트 생성
+        GameObject bossnem1 = Instantiate(bossPrefab[3], spawnPoint[3]); // 보스 생성
+        yield return new WaitForSeconds(0.5f);
+        bossnem1.GetComponent<StateManager>().maxhp *= dungeonNumIdx * 3;
+        bossnem1.GetComponent<StateManager>().hp *= dungeonNumIdx * 3;
+        bossnem1.GetComponent<StateManager>().attackPower += (dungeonNumIdx * 30);
     }
-    public void InstBoss4()
+    IEnumerator MakeMob3()
     {
-        StartCoroutine(InstChaosBoss());
-        Door();
+        GameObject mob1 = Instantiate(mobPrefab[3], mobSpawnPoint[3]);
+        yield return new WaitForSeconds(0.5f);
+        mob1.GetComponentInChildren<StateManager>().maxhp *= dungeonNumIdx;
+        mob1.GetComponentInChildren<StateManager>().hp *= dungeonNumIdx;
+        mob1.GetComponentInChildren<StateManager>().attackPower += (dungeonNumIdx * 30);
     }
+    #endregion
 
-    IEnumerator InstChaosBoss()
+    IEnumerator Door()
     {
-        Instantiate(endBossEffect, spawnPoint[4]);
-        yield return new WaitForSeconds(1.5f);
-        Instantiate(bossPrefab[4], spawnPoint[4]);
-    }
-
-    public void Door() //문마다 달려있음. 싸움 시작하거나 끝날 시 호출 필요.
-    {
-        Jun_TweenRuntime[] gameObjects = GetComponents<Jun_TweenRuntime>();
-
-        if (isBattle)
+        if (isBattle == false)
         {
-            gameObjects[0].Play();
+            Jun_TweenRuntime[] gameObject1 = door[2].GetComponents<Jun_TweenRuntime>();
+            Jun_TweenRuntime[] gameObject2 = door[3].GetComponents<Jun_TweenRuntime>();
+            Jun_TweenRuntime[] gameObject3 = door[4].GetComponents<Jun_TweenRuntime>();
+            Jun_TweenRuntime[] gameObject4 = door[5].GetComponents<Jun_TweenRuntime>();
+            yield return new WaitForSeconds(0.5f);
+            gameObject1[0].Play(); // 닫히기
+            gameObject2[0].Play(); // 닫히기
+            gameObject3[0].Play(); // 닫히기
+            gameObject4[0].Play(); // 닫히기
+            isBattle = true;
         }
         else
         {
-            gameObjects[1].Play();
+            Jun_TweenRuntime[] gameObject1 = door[2].GetComponents<Jun_TweenRuntime>();
+            Jun_TweenRuntime[] gameObject2 = door[3].GetComponents<Jun_TweenRuntime>();
+            Jun_TweenRuntime[] gameObject3 = door[4].GetComponents<Jun_TweenRuntime>();
+            Jun_TweenRuntime[] gameObject4 = door[5].GetComponents<Jun_TweenRuntime>();
+            yield return new WaitForSeconds(0.5f);
+            gameObject1[1].Play(); // 열려라 참깨
+            gameObject2[1].Play(); // 열려라 참깨
+            gameObject3[1].Play(); // 열려라 참깨
+            gameObject4[1].Play(); // 열려라 참깨
+            isBattle = false;
         }
     }
 
-    
 
+
+    public void ClearMidBoss()
+    {
+        StartCoroutine(Door());
+    }
     public void ClearEndBoss()
     {
-        if(tboss.GetComponent<StateManager>().hp <= 0)
-        {
-            //clearPanel.SetActive(true);
-        }
-        
+        rewardMgr.ShowReward();
+
+        spawnPointObject.SetActive(false);
+        Jun_TweenRuntime[] gameObject = clearPanel.GetComponents<Jun_TweenRuntime>();
+        gameObject[0].Play();
     }
 
-    public void Update()
+    public void Receive()
     {
-        ClearMidBoss();
-        ClearEndBoss();
-       // if (reset.transform.position.y < -7f)
-       //      ResetPlayer();
 
     }
-
     public void ResetPlayer()
     {
         reset.transform.position = spawnPoint[0].position;
     }
 
+    public void MoveTown()
+    {
+        dataMgrDontDestroy.DungeonSortIdx = 0;
+        PhotonNetwork.LeaveRoom();
+        SceneManager.LoadScene("DungeonLoadingScene");
+    }
+
+    
+    public void Update()
+    {
+
+    }
+
+    
+  
 }
