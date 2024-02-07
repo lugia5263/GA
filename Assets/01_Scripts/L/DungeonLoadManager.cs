@@ -5,6 +5,8 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
 using TMPro;
+using System;
+using JetBrains.Annotations;
 
 public class DungeonLoadManager : MonoBehaviourPunCallbacks
 {
@@ -12,9 +14,12 @@ public class DungeonLoadManager : MonoBehaviourPunCallbacks
 
     public int roomCnt = 0;
 
-    public TMP_Text roomName;
-    public TMP_Text connectInfo;
-    public TMP_Text msgList;
+    public Text roomName;
+    public Text connectInfo;
+    public Text msgList;
+    public Image bgImage;
+    public Sprite[] bgImages;
+
 
     private void Awake()
     {
@@ -30,6 +35,11 @@ public class DungeonLoadManager : MonoBehaviourPunCallbacks
             Debug.Log("현재 로비에 없기에 로비에 입장합니다.");
             PhotonNetwork.JoinLobby();
         }
+
+        roomName.text = $"{CurDunGeonInfoMaker()}  {CurDunGeonLevelMaker()}";
+
+ 
+
     }
 
     // 마을로가고싶으면  던전에서 나갈때 dataMgrDontDestroy.dungeonSortIdx를 0으로 하고나서 로딩씬에 오면된다.
@@ -185,9 +195,54 @@ public class DungeonLoadManager : MonoBehaviourPunCallbacks
     void SetRoomInfo()
     {
         Room room = PhotonNetwork.CurrentRoom;
-        roomName.text = room.Name;
+        //roomName.text = room.Name;
+
+
         connectInfo.text = $"({room.PlayerCount}/{room.MaxPlayers})";
     }
+
+
+    public string CurDunGeonInfoMaker()
+    {
+        string sortDungeon = "";
+
+        dataMgrDontDestroy = DataMgrDontDestroy.Instance;
+        if (dataMgrDontDestroy.DungeonSortIdx == 1)
+        {
+            sortDungeon = "Single Dungeon";
+            bgImage.sprite = bgImages[1];
+            roomName.color = Color.yellow;
+        }
+        else if (dataMgrDontDestroy.DungeonSortIdx == 2)
+        {
+            sortDungeon = "Chaos Dungeon";
+            bgImage.sprite = bgImages[2];
+            roomName.color = Color.cyan;
+        }
+        else if (dataMgrDontDestroy.DungeonSortIdx == 3)
+        {
+            sortDungeon = "Raid";
+            bgImage.sprite = bgImages[3];
+            roomName.color = Color.red;
+        }
+
+        return sortDungeon;
+
+
+
+
+    }
+    public string CurDunGeonLevelMaker()
+    {
+        string dungeonLV = "";
+
+        dataMgrDontDestroy = DataMgrDontDestroy.Instance;
+
+        dungeonLV = dataMgrDontDestroy.DungeonNumIdx.ToString();
+
+        return dungeonLV;
+    }
+
 
     public override void OnConnectedToMaster()
     {
