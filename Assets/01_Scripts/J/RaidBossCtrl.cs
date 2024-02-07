@@ -224,10 +224,10 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks,IPunObservable
                         }
                         break;
                     case RAIDBOSS.BREAK:
-                        isActivating = true;
-                        speed = 0f;
-                        breakTime = 0f;
-                        StartCoroutine(breakTiming());
+                        //isActivating = true;
+                        //speed = 0f;
+                        //breakTime = 0f;
+                        //StartCoroutine(breakTiming());
                         break;
                     case RAIDBOSS.DOWN:
                         isActivating = true;
@@ -431,13 +431,18 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks,IPunObservable
         raidBoss = RAIDBOSS.BREAK;
         breakOn = true;
         breakTime = breakCheck;
+        StartCoroutine(breakTiming());
     }
 
     [PunRPC]
     IEnumerator breakTiming()
     {
         yield return new WaitForSeconds(3f);
-        pv.RPC("AllClientBreakTime", RpcTarget.All);
+        isActivating = true;
+        speed = 0f;
+        breakTime = 0f;
+        StartCoroutine(AllClientBreakTime());
+        //pv.RPC("AllClientBreakTime", RpcTarget.All);
     }
     [PunRPC]
     IEnumerator AllClientBreakTime()
