@@ -7,7 +7,7 @@ using Photon.Pun;
 
 public class RaidDungeonMgr : MonoBehaviourPunCallbacks
 {
-
+    public int clearCut = 1;
     public RewardMgr rewardMgr;
     public RaidBossCtrl boss;
     public DataMgrDontDestroy dataMgrDontDestroy;
@@ -26,9 +26,13 @@ public class RaidDungeonMgr : MonoBehaviourPunCallbacks
     }
         void clear()
     {
-        if(boss.GetComponent<RaidBossCtrl>().die == true)
+        if(clearCut == 1)
         {
-            ClearEndBoss();
+            if (boss.GetComponent<RaidBossCtrl>().die == true)
+            {
+                clearCut = 1;
+                ClearEndBoss();
+            }
         }
     }
     public void MoveTown()
