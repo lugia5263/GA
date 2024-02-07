@@ -8,6 +8,7 @@ public class RewardMgr : MonoBehaviour
     public DataMgrDontDestroy dataMgrDontDestroy;
 
     public GameObject rewardPanel;
+    public GameObject movePanel;
     public GameObject rewardContent;
     public GameObject itemPrefab;
     public Sprite[] imageList; //0번은 material, 1번은 expPotion, 2번은 gold
@@ -24,12 +25,14 @@ public class RewardMgr : MonoBehaviour
     {
         dataMgrDontDestroy = DataMgrDontDestroy.Instance;
         DgSortIdx = dataMgrDontDestroy.DungeonSortIdx;
-        rewardPanel.SetActive(false);   
+        rewardPanel.SetActive(false);
+        movePanel.SetActive(false);
     }
 
     public void ShowReward()
     {
         rewardPanel.SetActive(true);
+        movePanel.SetActive(true);
         switch (DgSortIdx)
         {
             case 1:
@@ -52,6 +55,7 @@ public class RewardMgr : MonoBehaviour
         dataMgrDontDestroy.UserMaterial += materialReward;
         dataMgrDontDestroy.UserGold += goldReward;
 
+        
         rewardPanel.SetActive(false);
     }
 

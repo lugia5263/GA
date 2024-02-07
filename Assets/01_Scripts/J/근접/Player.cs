@@ -182,7 +182,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     private void LateUpdate()
     {
-        hidingObjCamera.RefreshHiddenObjects();
+        if(pv.IsMine)
+        {
+            hidingObjCamera.RefreshHiddenObjects();
+        }
     }
 
 
@@ -267,7 +270,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                     Interation();
                     SkillCoolTime();
                     KnowingBoss();
-                    //KnowAnim();
+                    KnowAnim();
                 }
             }
         }
@@ -522,8 +525,11 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (pv != null && pv.IsMine)
             {
-                //RaidGroundOner groundOner;
-                //groundOner = 
+                if(raidBoss != null)
+                {
+                    raidBoss = GameObject.FindGameObjectWithTag("Boss").GetComponent<RaidBossCtrl>();
+                    raidBoss.GroundOner();
+                }
             }
         }
     }
