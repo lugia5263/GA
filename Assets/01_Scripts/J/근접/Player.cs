@@ -115,8 +115,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     RaidBossCtrl raidBoss;
     Tboss tboss;
     public bool npcAttackStop;
+    ThirdPersonOrbitCamBasicA camBasicA;
+    HidingObjCamera hidingObjCamera;
+    RaidGroundOner groundOner;
 
-    //테스팅중
 
     void Awake()
     {
@@ -131,11 +133,14 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         stateManager = GetComponent<StateManager>();
         hudManager = GetComponent<HUDManager>();
         uimgr = GameObject.Find("UIMgr").GetComponent<UIMgr>();
-        cvc = GameObject.FindGameObjectWithTag("CVC").GetComponent<CinemachineVirtualCamera>();
+        //cvc = GameObject.FindGameObjectWithTag("CVC").GetComponent<CinemachineVirtualCamera>();
         if (PhotonNetwork.IsConnected && photonView.IsMine)
         {
             cvc = GameObject.FindGameObjectWithTag("CVC").GetComponent<CinemachineVirtualCamera>();
             cvc.GetComponent<ThirdPersonOrbitCamBasicA>().player = transform;
+            hidingObjCamera = GameObject.FindGameObjectWithTag("CVC").GetComponent<HidingObjCamera>();
+            hidingObjCamera.GetComponent<HidingObjCamera>().targetPlayer = this.gameObject;
+            //groundOner = GameObject.Find("Ground2F").GetComponent<RaidGroundOner>();
         } 
         if (boss != null)
         {
@@ -176,6 +181,14 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         skillICoolicon[1].fillAmount = 0;
         skillICoolicon[2].fillAmount = 0;
         //chatManager.StartCoroutine(chatManager.CheckEnterKey());
+    }
+
+    private void LateUpdate()
+    {
+        if(pv.IsMine)
+        {
+            hidingObjCamera.RefreshHiddenObjects();
+        }
     }
 
 
@@ -232,12 +245,19 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (pv.IsMine)
         {
-            //nickNameTxt.text = PhotonNetwork.NickName + " (나)"; //여기 추가했음. 현창
-            //nickNameTxt.color = Color.white;
-            //Vector3 offset = new Vector3(0f, 2f, 0f);
-            //nickNameTxt.transform.position = transform.position + offset;
+            if (PhotonNetwork.IsConnected && photonView.IsMine)
+            {
+                cvc = GameObject.FindGameObjectWithTag("CVC").GetComponent<CinemachineVirtualCamera>();
+                cvc.GetComponent<ThirdPersonOrbitCamBasicA>().player = transform;
+                hidingObjCamera = GameObject.FindGameObjectWithTag("CVC").GetComponent<HidingObjCamera>();
+                hidingObjCamera.GetComponent<HidingObjCamera>().targetPlayer = this.gameObject;
+            }
+            nickNameTxt.text = PhotonNetwork.NickName + " (나)"; //여기 추가했음. 현창
+            nickNameTxt.color = Color.white;
+            Vector3 offset = new Vector3(0f, 2f, 0f);
+            nickNameTxt.transform.position = transform.position + offset;
 
-            //originalTimeScale = Time.timeScale * Time.unscaledDeltaTime;
+            originalTimeScale = Time.timeScale * Time.unscaledDeltaTime;
 
             if (!isDeath)
             {
@@ -253,15 +273,16 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                     Interation();
                     SkillCoolTime();
                     KnowingBoss();
+                    KnowAnim();
                 }
             }
         }
         else
         {
-            //nickNameTxt.text = pv.Owner.NickName;
-            //nickNameTxt.color = Color.red;
-            //Vector3 offset = new Vector3(0f, 2f, 0f);
-            //nickNameTxt.transform.position = transform.position + offset;
+            nickNameTxt.text = pv.Owner.NickName;
+            nickNameTxt.color = Color.red;
+            Vector3 offset = new Vector3(0f, 2f, 0f);
+            nickNameTxt.transform.position = transform.position + offset;
         }
     }
 
@@ -500,6 +521,21 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
+    [PunRPC]
+    void KnowAnim()
+    {
+        if (PhotonNetwork.IsConnected)
+        {
+            if (pv != null && pv.IsMine)
+            {
+                if(raidBoss != null)
+                {
+                    raidBoss = GameObject.FindGameObjectWithTag("Boss").GetComponent<RaidBossCtrl>();
+                    raidBoss.GroundOner();
+                }
+            }
+        }
+    }
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Shop")
@@ -517,6 +553,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
+
     public void KnowingBoss()
     {
         if (raidBoss != null)
@@ -533,6 +570,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
     }
+    #region // 스킬 함수들
     void SkillUsing()
     {
         skillUse = true;
@@ -694,3 +732,4 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     }
 
 }
+#endregion // 스킬 함수들
