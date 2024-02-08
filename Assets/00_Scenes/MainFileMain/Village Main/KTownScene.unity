@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18380532, g: 0.22911659, b: 0.3041125, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9238,17 +9238,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd31fefcd0264484b8e4fbda1833a916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questPanel: {fileID: 0}
-  achievementPanel: {fileID: 0}
-  weaponPanel: {fileID: 0}
-  lvPanel: {fileID: 0}
-  clothingPanel: {fileID: 0}
-  inventoryMgr: {fileID: 0}
-  enforceMgr: {fileID: 0}
-  levelupMgr: {fileID: 0}
-  questMgr: {fileID: 0}
-  introduce: 
-  npcNum: 1
 --- !u!135 &241038826
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -13212,17 +13201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd31fefcd0264484b8e4fbda1833a916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questPanel: {fileID: 0}
-  achievementPanel: {fileID: 0}
-  weaponPanel: {fileID: 0}
-  lvPanel: {fileID: 0}
-  clothingPanel: {fileID: 0}
-  inventoryMgr: {fileID: 0}
-  enforceMgr: {fileID: 0}
-  levelupMgr: {fileID: 0}
-  questMgr: {fileID: 0}
-  introduce: 
-  npcNum: 2
 --- !u!135 &492077549
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -20557,12 +20535,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd55ad446fb8feb44a0789674211a2c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateMgr: {fileID: 0}
-  rewardCanvas: {fileID: 0}
-  inventoryCanvas: {fileID: 0}
+  dataMgrDontDestroy: {fileID: 0}
+  pv: {fileID: 0}
+  inventoryPanel: {fileID: 0}
   isInven: 0
+  playerLevel: 0
   weaponLv: 1
-  playerName: 
+  attackPower: 0
+  playerTitle: 
   playerNick: 
   expPotion: 0
   materials: 0
@@ -20574,9 +20554,9 @@ MonoBehaviour:
   expTxt: {fileID: 0}
   materialTxt: {fileID: 0}
   atkInfo: {fileID: 0}
-  playerLv: {fileID: 0}
+  playerLvTxt: {fileID: 0}
+  playerTitleTxt: {fileID: 0}
   playerNickTxt: {fileID: 0}
-  playerNameTxt: {fileID: 0}
 --- !u!1 &644224094
 GameObject:
   m_ObjectHideFlags: 0
@@ -30104,24 +30084,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ced50b77b0197247a5f3540598dca3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dataMgrDontDestroy: {fileID: 0}
   leveltxtFile: {fileID: 0}
-  stateMgr: {fileID: 0}
-  inventoryMgr: {fileID: 638027515}
   lvupPanel: {fileID: 0}
-  playerlv: 0
+  expSlider: {fileID: 0}
   classNum: 0
+  playerlv: 0
+  playerHp: 0
   playerExp: 0
-  upMaxExp: 0
+  playerExpPotion: 0
+  playerCriDamage: 0
+  playerCriChance: 0
+  expRequire: 0
   playerLvTxt: {fileID: 1550888648}
   expSlideImg: {fileID: 1193186548}
-  expChartTxt: {fileID: 1160689257}
-  playerHaveExpTxt: {fileID: 813763093}
+  expRequireTxt: {fileID: 0}
+  curExpPotionTxt: {fileID: 0}
   beforeHealth: {fileID: 1331499895}
   afterHealth: {fileID: 755084221}
   beforeCriPer: {fileID: 1298529152}
   afterCriPer: {fileID: 81361448}
   beforeCriDmg: {fileID: 771022137}
   afterCriDmg: {fileID: 1259363496}
+  afterExp: 0
+  afterExpPotionCnt: 0
+  dialogueTrigger: {fileID: 0}
+  nPCConversation: {fileID: 0}
+  panelOnBtnLV: {fileID: 0}
 --- !u!1001 &918359030
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35712,6 +35701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 500281eec58fb5844a5563e030859550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pv: {fileID: 0}
   stateManager: {fileID: 0}
   HpSlider: {fileID: 0}
   HpText: {fileID: 0}
@@ -36049,12 +36039,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16e49e9aeca8f304fb674feebf69c83c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curQuestIndex: 0
+  dataMgrDonDestroy: {fileID: 0}
   questCountTxt: {fileID: 0}
-  goal: 
-  curCount: 0
-  maxCount: 0
-  isCompleted: 0
+  goalTxt: {fileID: 0}
+  questPopUpPanel: {fileID: 0}
+  goalInfo: 
+  questIdx: 0
+  curCnt: 0
+  maxCnt: 0
 --- !u!114 &960547383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36611,17 +36603,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd31fefcd0264484b8e4fbda1833a916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questPanel: {fileID: 0}
-  achievementPanel: {fileID: 0}
-  weaponPanel: {fileID: 0}
-  lvPanel: {fileID: 0}
-  clothingPanel: {fileID: 0}
-  inventoryMgr: {fileID: 0}
-  enforceMgr: {fileID: 0}
-  levelupMgr: {fileID: 0}
-  questMgr: {fileID: 0}
-  introduce: 
-  npcNum: 5
 --- !u!135 &987470835
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -37249,17 +37230,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd31fefcd0264484b8e4fbda1833a916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questPanel: {fileID: 0}
-  achievementPanel: {fileID: 0}
-  weaponPanel: {fileID: 0}
-  lvPanel: {fileID: 0}
-  clothingPanel: {fileID: 0}
-  inventoryMgr: {fileID: 0}
-  enforceMgr: {fileID: 0}
-  levelupMgr: {fileID: 0}
-  questMgr: {fileID: 0}
-  introduce: 
-  npcNum: 4
 --- !u!135 &1029212798
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -37457,17 +37427,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd31fefcd0264484b8e4fbda1833a916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questPanel: {fileID: 0}
-  achievementPanel: {fileID: 0}
-  weaponPanel: {fileID: 0}
-  lvPanel: {fileID: 0}
-  clothingPanel: {fileID: 0}
-  inventoryMgr: {fileID: 0}
-  enforceMgr: {fileID: 0}
-  levelupMgr: {fileID: 0}
-  questMgr: {fileID: 0}
-  introduce: 
-  npcNum: 3
 --- !u!135 &1043976215
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -76975,11 +76934,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1344dd13be4ce94c9d9ed6e938177df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryMgr: {fileID: 0}
-  imagelist: {fileID: 0}
-  txtFile: {fileID: 0}
-  jsonObject: {fileID: 0}
+  dataMgrDontDestroy: {fileID: 0}
+  rewardPanel: {fileID: 0}
+  movePanel: {fileID: 0}
+  defeatPanel: {fileID: 0}
   rewardContent: {fileID: 0}
+  itemPrefab: {fileID: 0}
+  imageList: []
+  DgSortIdx: 0
+  expPotionReward: 0
+  materialReward: 0
+  goldReward: 0
+  clearCut: 1
 --- !u!1 &1690009412
 GameObject:
   m_ObjectHideFlags: 0
@@ -77249,13 +77215,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 768aabbcf0c327041a48d267fdd90dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dataMgrDontDestroy: {fileID: 0}
   txtFile: {fileID: 4900000, guid: cc474b9786ff37f4dada911af62272ce, type: 3}
-  jsonObject: {fileID: 1522211221239391581, guid: de76610006dbe3845a77d5e541476eb0, type: 3}
-  questCanvas: {fileID: 727857267}
-  questNameTxt: {fileID: 727857269}
-  goalNameTxt: {fileID: 2014413813}
-  countTxt: {fileID: 0}
+  questPopUpManager: {fileID: 0}
+  questPanel: {fileID: 0}
+  quest_1: {fileID: 0}
+  quest_2: {fileID: 0}
+  quest_3: {fileID: 0}
+  quest_4: {fileID: 0}
   descriptionPanel: {fileID: 425618314}
+  questNameTxt: {fileID: 727857269}
+  goalTxt: {fileID: 0}
+  dialogueTrigger: {fileID: 0}
+  nextBtn: {fileID: 0}
+  nPCConversation: {fileID: 0}
+  textName: {fileID: 0}
+  textSentence: {fileID: 0}
+  clearfowardQuestImg: {fileID: 0}
+  acceptBtn: {fileID: 0}
+  ingImg: {fileID: 0}
+  completedBtn: {fileID: 0}
+  endBtn: {fileID: 0}
+  questPopUpPanel: {fileID: 0}
+  questDescriptionGoalTxt: {fileID: 0}
+  questGoalTxt: 
+  questCurCnt: 0
+  questMaxCnt: 0
+  expPotionReward: 0
+  materialReward: 0
+  goldReward: 0
+  rewardExp: {fileID: 0}
+  rewardMat: {fileID: 0}
+  rewardGold: {fileID: 0}
 --- !u!1 &1701767484
 GameObject:
   m_ObjectHideFlags: 0
@@ -90798,10 +90789,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb690c196c48914eabd7bcf7dd6eba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dataMgrDontDestroy: {fileID: 0}
   forcetxtFile: {fileID: 0}
-  inventoryMgr: {fileID: 0}
-  rewardMgr: {fileID: 0}
-  trophyMgr: {fileID: 0}
   stateMgr: {fileID: 0}
   enBtn: {fileID: 0}
   enforcePanel: {fileID: 0}
@@ -90820,8 +90809,13 @@ MonoBehaviour:
   failweaponNowTxt: {fileID: 0}
   beforeAtkF: {fileID: 0}
   afterAtkF: {fileID: 0}
-  failEnforceCount: 0
-  playerWeaponLv: 0
+  playerWeaponLevel: 0
+  playerGold: 0
+  playerMaterial: 0
+  playerAttackPower: 0
+  dialogueTrigger: {fileID: 0}
+  nPCConversation: {fileID: 0}
+  panelOnBtnEnF: {fileID: 0}
 --- !u!4 &1909744907
 Transform:
   m_ObjectHideFlags: 0
@@ -97227,8 +97221,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c92b5a17a60a7745a9c5343c6f43403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDunMenu: 0
-  potalPanel: {fileID: 0}
+  isPortal: 0
+  portalPanel: {fileID: 0}
+  skyPortal: {fileID: 0}
 --- !u!135 &2004998323
 SphereCollider:
   m_ObjectHideFlags: 0
