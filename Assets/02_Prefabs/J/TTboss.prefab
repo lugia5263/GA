@@ -1771,6 +1771,7 @@ GameObject:
   - component: {fileID: 2719020260001729072}
   - component: {fileID: 6294311814710889917}
   - component: {fileID: 5567452353469448382}
+  - component: {fileID: -3173376988287567286}
   m_Layer: 0
   m_Name: TTboss
   m_TagString: Boss
@@ -1835,6 +1836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 178e506cb56fb9b46bb851526935cfcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cDunMgr: {fileID: 0}
   detectionRadius: 10
   playerTag: Player
   nearbyPlayer: []
@@ -2075,18 +2077,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataMgrDontDestroy: {fileID: 0}
   level: 1
-  exp: 0
   maxhp: 20000
-  hp: 20000
   weaponLevel: 0
-  attackPower: 80
+  hp: 20000
+  attackPower: 30
   criChance: 35
   criDamage: 130
+  exp: 0
+  ONPlayer: 0
   userGold: 0
   userMaterial: 0
   userExpPotion: 0
   hudManager: {fileID: 0}
   pv: {fileID: 0}
+--- !u!114 &-3173376988287567286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2542026107897127785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e68bc5a07c37a45a1eb5d5e20f544b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateManager: {fileID: 0}
+  HpSlider: {fileID: 0}
+  HpText: {fileID: 0}
+  DHpBar: {fileID: 0}
 --- !u!1 &2553146903761872142
 GameObject:
   m_ObjectHideFlags: 0
