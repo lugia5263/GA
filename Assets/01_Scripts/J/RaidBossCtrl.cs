@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.VFX;
 using Photon.Pun;
 using Photon.Realtime;
@@ -45,6 +46,7 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks,IPunObservable
     public PhotonView pv;
     public PhotonAnimatorView pav;
     testGameMgr testgameMgr;
+    public Slider hud;
     [Header("AttackPattern")]
     public float p1;
     public float p2;
@@ -254,6 +256,11 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks,IPunObservable
                 }
             }
         }
+    }
+
+    void HUDctrl()
+    {
+        
     }
     void NearByPlayer()
     {
