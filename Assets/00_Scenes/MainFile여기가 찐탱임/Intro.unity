@@ -1810,6 +1810,10 @@ MonoBehaviour:
   mP_eSound: {fileID: 8300000, guid: adcac75087a17704ca6c0c3b15bc3aa5, type: 3}
   mP_rSound: {fileID: 8300000, guid: 34f9cbd28a9740349b6cc2f5e280dda3, type: 3}
   mP_normalAtkSound: {fileID: 0}
+  bossFire: {fileID: 0}
+  swordPattern: {fileID: 0}
+  healthUpPattern: {fileID: 0}
+  spinPattern: {fileID: 0}
 --- !u!4 &1031701334
 Transform:
   m_ObjectHideFlags: 0
@@ -7819,7 +7823,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1875813116}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 107412866}
+        m_TargetAssemblyTypeName: LoginSystem, Assembly-CSharp
+        m_MethodName: OnClickCreateBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1875813116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7920,6 +7936,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 973532767394848954, guid: bbb84318c27cbcd4eb1d7cbc74721a72, type: 3}
+      propertyPath: MaxDistance
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 973532767394848954, guid: bbb84318c27cbcd4eb1d7cbc74721a72, type: 3}
+      propertyPath: MinDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 973532767394848954, guid: bbb84318c27cbcd4eb1d7cbc74721a72, type: 3}
+      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2309693044733716856, guid: bbb84318c27cbcd4eb1d7cbc74721a72, type: 3}
       propertyPath: m_Name
       value: AudioMgr
