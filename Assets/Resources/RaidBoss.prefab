@@ -7062,6 +7062,7 @@ MonoBehaviour:
   player: {fileID: 0}
   pv: {fileID: 2720430316280853193}
   pav: {fileID: 0}
+  hud: {fileID: 0}
   p1: 0
   p2: 0
   p3: 0
@@ -7110,6 +7111,7 @@ MonoBehaviour:
   - {fileID: 5309087038445080835, guid: bee19df330eb5254b962757f47b7ec55, type: 3}
   - {fileID: 5309087038445080835, guid: bee19df330eb5254b962757f47b7ec55, type: 3}
   - {fileID: 5309087038445080835, guid: bee19df330eb5254b962757f47b7ec55, type: 3}
+  nearbyPlayer: []
   allDownArea: {fileID: 8821188965738105768}
   page1: 0
   page1check: 76
@@ -7164,12 +7166,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataMgrDontDestroy: {fileID: 0}
   level: 1
-  maxhp: 10000
+  maxhp: 200000
   weaponLevel: 0
-  hp: 10000
-  attackPower: 10
-  criChance: 50
-  criDamage: 1.5
+  hp: 200000
+  attackPower: 80
+  criChance: 20
+  criDamage: 130
   exp: 0
   ONPlayer: 0
   userGold: 0
