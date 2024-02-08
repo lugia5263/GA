@@ -21,6 +21,15 @@ public class ObjSound : MonoBehaviour
     public AudioClip mP_eSound;
     public AudioClip mP_rSound;
     public AudioClip mP_normalAtkSound;
+
+    [Header("BossPatternSound")]
+    public AudioClip bossFire;
+    public AudioClip swordPattern;
+    public AudioClip healthUpPattern;
+    public AudioClip spinPattern;
+
+    public AudioClip groundCrush;
+         
     void Start()
     {
         audioSource = GameObject.FindGameObjectWithTag("AM").GetComponent<AudioSource>();
@@ -85,5 +94,25 @@ public class ObjSound : MonoBehaviour
     public void MplayerAtkSound()
     {
         audioSource.PlayOneShot(mP_normalAtkSound);
+    }
+    public void BossFirePatternSound()
+    {
+        audioSource.PlayOneShot(bossFire);
+    }
+    public void BossSwordPatternSound()
+    {
+        audioSource.PlayOneShot(swordPattern);
+    }
+    public void BossHealthUpPatternSound()
+    {
+        audioSource.PlayOneShot(healthUpPattern);
+    }
+    public void BossSpinPatternSound()
+    {
+        audioSource.PlayOneShot(spinPattern);
+    }
+    public void GroundCrush()
+    {
+        audioSource.PlayOneShot(groundCrush);
     }
 }
