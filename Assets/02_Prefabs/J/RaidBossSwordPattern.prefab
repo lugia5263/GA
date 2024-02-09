@@ -4911,6 +4911,7 @@ GameObject:
   - component: {fileID: 894557021638387565}
   - component: {fileID: 6112892960489742235}
   - component: {fileID: 8196592517805192111}
+  - component: {fileID: 1759732883673987801}
   m_Layer: 0
   m_Name: RaidBossSwordPattern
   m_TagString: Untagged
@@ -9857,6 +9858,35 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.5, y: 1, z: 11}
   m_Center: {x: 0, y: 0, z: 1}
+--- !u!114 &1759732883673987801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901509097222932407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d036e4551422a7a4eb1984a9720154bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  btnSound: {fileID: 0}
+  aP_qSound: {fileID: 0}
+  aP_eSound: {fileID: 0}
+  aP_rSound: {fileID: 0}
+  aP_normalAtkSound: {fileID: 0}
+  sP_qSound: {fileID: 0}
+  sP_eSound: {fileID: 0}
+  sP_rSound: {fileID: 0}
+  sP_normalAtkSound: {fileID: 0}
+  mP_qSound: {fileID: 0}
+  mP_eSound: {fileID: 0}
+  mP_rSound: {fileID: 0}
+  mP_normalAtkSound: {fileID: 0}
+  bossFire: {fileID: 0}
+  swordPattern: {fileID: 8300000, guid: b957c1fc7ea3a2a44b95d1908a0b2d0b, type: 3}
+  healthUpPattern: {fileID: 0}
+  spinPattern: {fileID: 0}
 --- !u!1 &1508279336647300792
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,10 +12,12 @@ public class RaidBossMeeleDiePattren : MonoBehaviour
     public float offPos;
     Vector3 maxSize;
     Vector3 originSize;
+    public ObjSound objSound;
     void Start()
     {
         anim = GameObject.FindGameObjectWithTag("Boss").GetComponent<Animator>();
         originSize = bombArea.transform.localScale;
+        objSound = GameObject.FindGameObjectWithTag("OS").GetComponent<ObjSound>();
     }
 
     // Update is called once per frame
@@ -41,6 +43,7 @@ public class RaidBossMeeleDiePattren : MonoBehaviour
                 castingTime = 0;
                 Destroy(gameObject, 0.1f);
                 Destroy(effcet,3f);
+                objSound.BossSwordPatternSound();
                 break;
             }
             yield return null;
