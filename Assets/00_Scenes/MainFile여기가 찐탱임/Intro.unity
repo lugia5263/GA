@@ -1610,6 +1610,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 769706934}
   m_CullTransparentMesh: 1
+--- !u!1 &849122933
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 849122934}
+  m_Layer: 0
+  m_Name: "\uC0AD\uC81C\uC608\uC815"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &849122934
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849122933}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 135.3464, y: 40.97168, z: -127.28467}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &882075784
 GameObject:
   m_ObjectHideFlags: 0
@@ -1810,6 +1841,11 @@ MonoBehaviour:
   mP_eSound: {fileID: 8300000, guid: adcac75087a17704ca6c0c3b15bc3aa5, type: 3}
   mP_rSound: {fileID: 8300000, guid: 34f9cbd28a9740349b6cc2f5e280dda3, type: 3}
   mP_normalAtkSound: {fileID: 0}
+  bossFire: {fileID: 0}
+  swordPattern: {fileID: 0}
+  healthUpPattern: {fileID: 0}
+  spinPattern: {fileID: 0}
+  groundCrush: {fileID: 0}
 --- !u!4 &1031701334
 Transform:
   m_ObjectHideFlags: 0
@@ -7819,7 +7855,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1875813116}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 107412866}
+        m_TargetAssemblyTypeName: LoginSystem, Assembly-CSharp
+        m_MethodName: OnClickCreateBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1875813116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7920,6 +7968,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 973532767394848954, guid: bbb84318c27cbcd4eb1d7cbc74721a72, type: 3}
+      propertyPath: MaxDistance
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 973532767394848954, guid: bbb84318c27cbcd4eb1d7cbc74721a72, type: 3}
+      propertyPath: MinDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 973532767394848954, guid: bbb84318c27cbcd4eb1d7cbc74721a72, type: 3}
+      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2309693044733716856, guid: bbb84318c27cbcd4eb1d7cbc74721a72, type: 3}
       propertyPath: m_Name
       value: AudioMgr
@@ -8099,3 +8159,4 @@ SceneRoots:
   - {fileID: 107412867}
   - {fileID: 3551233932065566704}
   - {fileID: 1031701334}
+  - {fileID: 849122934}
