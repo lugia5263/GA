@@ -37,7 +37,8 @@ public class DungeonLoadManager : MonoBehaviourPunCallbacks
         }
 
         roomName.text = $"{CurDunGeonInfoMaker()}  {CurDunGeonLevelMaker()}";
-
+        if (dataMgrDontDestroy.DungeonSortIdx == 0)
+            roomName.text = "마을로 돌아가는 중입니다 . . .";
  
 
     }
