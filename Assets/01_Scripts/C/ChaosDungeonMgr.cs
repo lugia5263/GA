@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using Photon.Pun;
 using static MageMiddleBoss;
 
 
-public class ChaosDungeonMgr : MonoBehaviourPunCallbacks
+public class ChaosDungeonMgr : MonoBehaviour
 {
     public DataMgrDontDestroy dataMgrDontDestroy;
 
@@ -32,13 +30,18 @@ public class ChaosDungeonMgr : MonoBehaviourPunCallbacks
     public GameObject endBossEffect;
     public GameObject chaosEndClearEffect;
     public GameObject clearPanel;
-    
+
 
 
     private void Start()
     {
+        if(dataMgrDontDestroy != null)
+        {
+            dungeonNumIdx = DataMgrDontDestroy.Instance.DungeonNumIdx;
+
             dataMgrDontDestroy = DataMgrDontDestroy.Instance;
-        dungeonNumIdx = DataMgrDontDestroy.Instance.DungeonNumIdx;
+            
+        }
     }
 
     #region 1보스 소환
@@ -176,12 +179,8 @@ public class ChaosDungeonMgr : MonoBehaviourPunCallbacks
     public void MoveTown()
     {
         dataMgrDontDestroy.DungeonSortIdx = 0;
-        dataMgrDontDestroy.playerDie = false;
-        PhotonNetwork.LeaveRoom();
-        SceneManager.LoadScene("DungeonLoadingScene");
+        //마을로 이동 추가.
     }
-
-    
     public void Update()
     {
 
