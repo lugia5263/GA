@@ -5,7 +5,7 @@ using UnityEngine;
 public class DataMgrDontDestroy : MonoBehaviour
 {
     public static DataMgrDontDestroy _instance;
-    public bool playerDie;
+    public bool playerDie; 
     public static DataMgrDontDestroy Instance
     {
         get
@@ -67,7 +67,7 @@ public class DataMgrDontDestroy : MonoBehaviour
         {
             Destroy(gameObject); // 중복된 인스턴스 파괴
         }
-    }
+    } 
 
     #region 캐릭터의 정보관련
     // 닉네임

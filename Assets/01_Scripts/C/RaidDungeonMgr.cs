@@ -7,12 +7,12 @@ using Photon.Pun;
 
 public class RaidDungeonMgr : MonoBehaviourPunCallbacks
 {
-    public int clearCut = 1;
+    public int clearCut = 1; 
     public RewardMgr rewardMgr;
     public RaidBossCtrl boss;
     public DataMgrDontDestroy dataMgrDontDestroy;
     private void Start()
-    {
+    { 
         dataMgrDontDestroy = DataMgrDontDestroy.Instance;
     }
 
