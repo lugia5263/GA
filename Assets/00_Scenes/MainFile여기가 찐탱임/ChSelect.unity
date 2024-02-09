@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.10496814, g: 0.13481407, b: 0.13442673, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -583,6 +583,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 258266154}
   m_CullTransparentMesh: 1
+--- !u!1 &283655714
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 283655715}
+  m_Layer: 0
+  m_Name: K
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &283655715
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283655714}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 570.9323, y: 183.5983, z: -293.7866}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &289325457
 GameObject:
   m_ObjectHideFlags: 0
@@ -5526,6 +5557,11 @@ MonoBehaviour:
   mP_eSound: {fileID: 8300000, guid: adcac75087a17704ca6c0c3b15bc3aa5, type: 3}
   mP_rSound: {fileID: 8300000, guid: 34f9cbd28a9740349b6cc2f5e280dda3, type: 3}
   mP_normalAtkSound: {fileID: 0}
+  bossFire: {fileID: 0}
+  swordPattern: {fileID: 0}
+  healthUpPattern: {fileID: 0}
+  spinPattern: {fileID: 0}
+  groundCrush: {fileID: 0}
 --- !u!4 &1896200903
 Transform:
   m_ObjectHideFlags: 0
@@ -29512,3 +29548,4 @@ SceneRoots:
   - {fileID: 52539821}
   - {fileID: 42169807}
   - {fileID: 1896200903}
+  - {fileID: 283655715}
