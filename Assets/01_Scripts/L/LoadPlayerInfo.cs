@@ -10,6 +10,7 @@ public class LoadPlayerInfo : MonoBehaviour
 
     private DataMgrDontDestroy dataMgrDontDestroy;
     public string nickName;
+    public int classNum;
     public int level;
     public int exp;
     public float maxhp;
@@ -142,6 +143,8 @@ public class LoadPlayerInfo : MonoBehaviour
         userGold = PlayerPrefs.GetInt($"{currentSlotNum}_UserGold");
         userMaterial = PlayerPrefs.GetInt($"{currentSlotNum}_Material");
         userExpPotion = PlayerPrefs.GetInt($"{currentSlotNum}_ExpPotion");
+        classNum = PlayerPrefs.GetInt($"{currentSlotNum}_ClassNum");
+       
         #endregion
 
         #region 캐릭터정보. 변수의 값을 싱글톤에 보내주기
@@ -157,6 +160,7 @@ public class LoadPlayerInfo : MonoBehaviour
         dataMgrDontDestroy.UserGold = userGold;
         dataMgrDontDestroy.UserMaterial = userMaterial;
         dataMgrDontDestroy.UserExpPotion = userExpPotion;
+        dataMgrDontDestroy.ClassNum = classNum;
         #endregion
 
         #region 퀘스트 정보 변수에 담기
