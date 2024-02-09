@@ -16,13 +16,15 @@ public class PlayerUDChanger : MonoBehaviour
     private void Awake()
     {
         dataMgr = DataMgrDontDestroy.Instance;
-        plyaerHUDLv.text = dataMgr.level.ToString();
-        playerHUDName.text = dataMgr.name;
-        if (dataMgr.classNum == 1)
+
+        plyaerHUDLv.text = $"Lv {dataMgr.level.ToString()}";
+        playerHUDName.text = dataMgr.nickName;
+
+        if (dataMgr.classNum == 0)
             playerHUDFace.sprite = playerHUDFaceSet[1];
-        if (dataMgr.classNum == 2)
+        if (dataMgr.classNum == 1)
             playerHUDFace.sprite = playerHUDFaceSet[2];
-        if (dataMgr.classNum == 3)
+        if (dataMgr.classNum == 2)
             playerHUDFace.sprite = playerHUDFaceSet[3];
 
     }
