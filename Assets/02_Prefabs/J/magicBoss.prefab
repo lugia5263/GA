@@ -6254,7 +6254,6 @@ GameObject:
   - component: {fileID: 5539816558023711737}
   - component: {fileID: 4721304033008134736}
   - component: {fileID: 2574167886633043152}
-  - component: {fileID: 2962885732870690472}
   m_Layer: 0
   m_Name: magicBoss
   m_TagString: Boss
@@ -6412,10 +6411,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataMgrDontDestroy: {fileID: 0}
   level: 1
-  maxhp: 10000
+  maxhp: 20000
   weaponLevel: 0
-  hp: 10000
-  attackPower: 100
+  hp: 20000
+  attackPower: 80
   criChance: 30
   criDamage: 130
   exp: 0
@@ -6425,22 +6424,6 @@ MonoBehaviour:
   userExpPotion: 0
   hudManager: {fileID: 0}
   pv: {fileID: 0}
---- !u!114 &2962885732870690472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7223578788308549897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5e68bc5a07c37a45a1eb5d5e20f544b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stateManager: {fileID: 0}
-  HpSlider: {fileID: 0}
-  HpText: {fileID: 0}
-  DHpBar: {fileID: 0}
 --- !u!1 &7229298323635406445
 GameObject:
   m_ObjectHideFlags: 0
