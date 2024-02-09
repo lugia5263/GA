@@ -2076,10 +2076,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataMgrDontDestroy: {fileID: 0}
   level: 1
-  maxhp: 20000
+  maxhp: 6000
   weaponLevel: 0
-  hp: 20000
-  attackPower: 30
+  hp: 6000
+  attackPower: 20
   criChance: 28
   criDamage: 120
   exp: 0
@@ -6846,6 +6846,10 @@ PrefabInstance:
       propertyPath: looping
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4245480918620153635, guid: 666caa110d61694448b721b5d9f915c1, type: 3}
+      propertyPath: sm
+      value: 
+      objectReference: {fileID: 5567452353469448382}
     - target: {fileID: 6358566156498434482, guid: 666caa110d61694448b721b5d9f915c1, type: 3}
       propertyPath: m_LocalPosition.y
       value: -6.61

@@ -11474,9 +11474,9 @@ MonoBehaviour:
   qskillcool: 0
   eskillcool: 0
   rskillcool: 0
-  curQskillcool: 13
-  curEskillcool: 22
-  curRskillcool: 18
+  curQskillcool: 10
+  curEskillcool: 80
+  curRskillcool: 30
   chargingSlider: {fileID: 0}
   originalTimeScale: 1
   sPlayer: 0
@@ -11507,11 +11507,11 @@ MonoBehaviour:
   dataMgrDontDestroy: {fileID: 0}
   level: 1
   maxhp: 500
-  weaponLevel: 50
+  weaponLevel: 1
   hp: 500
-  attackPower: 0
-  criChance: 50
-  criDamage: 150
+  attackPower: 100
+  criChance: 30
+  criDamage: 200
   exp: 0
   ONPlayer: 1
   userGold: 0
@@ -40475,4 +40475,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sm: {fileID: 2845939988517761448}
-  atkPer: 200
+  atkPer: 450
