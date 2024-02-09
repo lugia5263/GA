@@ -7,8 +7,8 @@ public class RewardMgr : MonoBehaviour
 {
     public DataMgrDontDestroy dataMgrDontDestroy;
 
-    public GameObject rewardPanel;
-    public GameObject movePanel;
+    //public GameObject rewardPanel;
+    //public GameObject movePanel;
     public GameObject defeatPanel;
     public GameObject rewardContent;
     public GameObject itemPrefab;
@@ -26,8 +26,8 @@ public class RewardMgr : MonoBehaviour
     {
         dataMgrDontDestroy = DataMgrDontDestroy.Instance;
         DgSortIdx = dataMgrDontDestroy.DungeonSortIdx;
-        rewardPanel.SetActive(false);
-        movePanel.SetActive(false);
+        //rewardPanel.SetActive(false);
+        //movePanel.SetActive(false);
     }
 
     private void Update()
@@ -36,8 +36,8 @@ public class RewardMgr : MonoBehaviour
     }
     public void ShowReward()
     {
-        rewardPanel.SetActive(true);
-        movePanel.SetActive(true);
+        //rewardPanel.SetActive(true);
+        //movePanel.SetActive(true);
         switch (DgSortIdx)
         {
             case 1:
@@ -58,8 +58,8 @@ public class RewardMgr : MonoBehaviour
     {
         if(dataMgrDontDestroy.playerDie)
         {
-            movePanel.SetActive(true);
-            defeatPanel.SetActive(true);
+            //movePanel.SetActive(true);
+            //defeatPanel.SetActive(true);
         }
     }
         
@@ -69,7 +69,7 @@ public class RewardMgr : MonoBehaviour
         dataMgrDontDestroy.UserExpPotion += expPotionReward;
         dataMgrDontDestroy.UserMaterial += materialReward;
         dataMgrDontDestroy.UserGold += goldReward;
-        rewardPanel.SetActive(false);
+        //rewardPanel.SetActive(false);
     }
 
     #region 클리어보상 설정
