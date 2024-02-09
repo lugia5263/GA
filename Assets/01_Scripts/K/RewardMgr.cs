@@ -14,7 +14,7 @@ public class RewardMgr : MonoBehaviour
     public GameObject itemPrefab;
     public Sprite[] imageList; //0번은 material, 1번은 expPotion, 2번은 gold
     public int DgSortIdx;
-    public int expPotionReward;
+    public int expPotionReward; 
     public int materialReward;
 
     public int goldReward;
@@ -58,7 +58,7 @@ public class RewardMgr : MonoBehaviour
     {
         if(dataMgrDontDestroy.playerDie)
         {
-            movePanel.SetActive(true);
+            movePanel.SetActive(true);  
             defeatPanel.SetActive(true);
         }
     }
