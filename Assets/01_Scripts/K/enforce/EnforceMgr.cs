@@ -47,6 +47,9 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
     public GameObject nPCConversation;
 
 
+    [Header("패널열기버튼")]
+    public GameObject panelOnBtnEnF;
+
 
     private void Awake()
     {
@@ -76,14 +79,18 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
     }
     void Start()
     {
-        playerWeaponLevel = dataMgrDontDestroy.WeaponLevel;
-        playerMaterial = dataMgrDontDestroy.UserMaterial;
-        playerGold = dataMgrDontDestroy.UserGold;
-        playerAttackPower = dataMgrDontDestroy.AttackPower;
         enforceEffect.SetActive(false);
         successPanel.SetActive(false);
         failedPanel.SetActive(false);
         enforcePanel.SetActive(false);
+    }
+
+    public void PlayerDataCheck()
+    {
+        playerWeaponLevel = dataMgrDontDestroy.WeaponLevel;
+        playerMaterial = dataMgrDontDestroy.UserMaterial;
+        playerGold = dataMgrDontDestroy.UserGold;
+        playerAttackPower = dataMgrDontDestroy.AttackPower;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -92,16 +99,19 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
         {
             if (other.GetComponent<PhotonView>().IsMine)
             {
+                panelOnBtnEnF.SetActive(true);
+                panelOnBtnEnF.GetComponent<Jun_TweenRuntime>().Play();
                 Debug.Log("충돌일어남");
                 dialogueTrigger.Trigger(); // 대본 가져옴
                 nPCConversation.SetActive(true); // 대화창 켜짐
+                PlayerDataCheck();
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
             }
         }
     }
 
-    public void OnEnforcePanelBtn() // F 강화하기 버튼 눌러서 강화
+    public void OnEnforcePanelBtn() // F 강화하기 버튼 눌러서 강화창 열기
     {
         OnEnforcePanel();
     }
@@ -112,6 +122,10 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
         {
             if (other.GetComponent<PhotonView>().IsMine)
             {
+                if (Input.GetKey(KeyCode.F))
+                {
+                    OnEnforcePanel();
+                }
                 StateManager stateManager = other.gameObject.GetComponent<StateManager>();
                 stateManager.weaponLevel = playerWeaponLevel;
                 stateManager.userMaterial = playerMaterial;
@@ -130,6 +144,8 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
                 // 강화창 껐으니까 플레이어의 정보에 반영
+                panelOnBtnEnF.SetActive(false);
+                nPCConversation.SetActive(false); // 대화창 꺼짐
                 enforcePanel.SetActive(false);
             }
         }
@@ -151,8 +167,6 @@ public class EnforceMgr : MonoBehaviourPunCallbacks
         //여기에 캐릭터 레벨에 맞는 강화 초기화!!!frg
         enforcePanel.SetActive(true);
     }
-
-
 
     public void EnforceBtn() 
     {

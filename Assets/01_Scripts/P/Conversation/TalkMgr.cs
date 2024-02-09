@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements.Experimental;
 
 
 public class TalkMgr : MonoBehaviour
 {
+    public DataMgrDontDestroy dataMgrDontDestroy;
     public Text textName; // 이름
     public Text textSentence; // 내용
     public GameObject nPCConversation;
@@ -15,6 +17,11 @@ public class TalkMgr : MonoBehaviour
     Queue<string> sentences = new Queue<string>();
 
     private Dialogue currentDialogue;
+
+    private void Start()
+    {
+        dataMgrDontDestroy = DataMgrDontDestroy.Instance;
+    }
 
     public void Begin(Dialogue info)
     {
@@ -35,8 +42,6 @@ public class TalkMgr : MonoBehaviour
         Next();
     }
 
-
-
     public void Next()
     {
         // 타임라인 누를 때!!
@@ -54,10 +59,17 @@ public class TalkMgr : MonoBehaviour
 
         textName.text = string.Empty;
         textSentence.text = string.Empty;
+        
         StopAllCoroutines();
+        StartCoroutine(TypeName(naming.Dequeue()));
         StartCoroutine(TypeSentence(sentences.Dequeue()));
     }
     
+    IEnumerator TypeName(string namer)
+    {
+        textName.text = namer;
+        yield return null;
+    }
     IEnumerator TypeSentence(string sentence)
     {
         foreach (var letter in sentence)
