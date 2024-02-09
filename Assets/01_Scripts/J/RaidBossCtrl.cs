@@ -306,6 +306,11 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks,IPunObservable
         {
             groundOner.CrushOner();
             crush = false;
+            if(groundOner.sound)
+            {
+                groundOner.sounds();
+                groundOner.sound = false;
+            }
         }
         
     }

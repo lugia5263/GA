@@ -176,6 +176,7 @@ public class ChaosDungeonMgr : MonoBehaviourPunCallbacks
     public void MoveTown()
     {
         dataMgrDontDestroy.DungeonSortIdx = 0;
+        dataMgrDontDestroy.playerDie = false;
         PhotonNetwork.LeaveRoom();
         SceneManager.LoadScene("DungeonLoadingScene");
     }

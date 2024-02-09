@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PotalTeleport : MonoBehaviour
 {
-    Transform TeleportPos;
+    public Transform TeleportPos;
     public GameObject loadPanels;
     public Image loadPanel;
 
@@ -20,17 +20,17 @@ public class PotalTeleport : MonoBehaviour
       
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if(other.CompareTag("Player"))
         {
-            loadPanels.SetActive(true);
-            other.transform.position = TeleportPos.position;
-            loadPanel.fillAmount = -Time.deltaTime;
-            if(loadPanel.fillAmount == 0)
-            {
-                Destroy(loadPanel);
-            }
+            //loadPanels.SetActive(true);
+            other.transform.position = new Vector3(transform.position.x, 2, transform.position.z);
+            //loadPanel.fillAmount = -Time.deltaTime;
+            //if(loadPanel.fillAmount == 0)
+            //{
+                //Destroy(loadPanel);
+            //}
 
         }
     }
