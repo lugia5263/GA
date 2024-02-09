@@ -23,7 +23,7 @@ public class RaidGroundOner : MonoBehaviour
             StartCoroutine(Delay());
             StartCoroutine(Delay2());
         }
-    }
+    } 
         IEnumerator Delay()
         {
             yield return new WaitForSeconds(2f);
