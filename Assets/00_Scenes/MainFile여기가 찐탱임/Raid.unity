@@ -8829,7 +8829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataMgr: {fileID: 0}
-  plyaerHUDLv: {fileID: 680362733}
+  playerHUDLv: {fileID: 680362733}
   playerHUDName: {fileID: 101236224}
   playerHUDFace: {fileID: 345836896}
   playerHUDFaceSet:
@@ -16485,7 +16485,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uCE74\uC624\uC2A4 \uB358\uC804 \uC2E4\uD328"
+  m_Text: "\uB808\uC774\uB4DC \uB358\uC804 \uC2E4\uD328"
 --- !u!222 &1945953499
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19465,6 +19465,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionRadius: 10
   playerTag: Player
+  neM1area: {fileID: 8830997500843078630}
+  prefabs:
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  nem2Area: {fileID: 8662998407160962646, guid: b81dcfabb7a8bb74593860eaaff61d5e, type: 3}
+  safeZoneBall: {fileID: 4060544494506954394, guid: e333b43aa630554419d6a4c41bbde5c8, type: 3}
+  patternTime: 0
+  nem2PatternTime: 0
   speed: 2.5
   rotSpeed: 5
   range: 10
@@ -19842,12 +19863,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataMgrDontDestroy: {fileID: 0}
   level: 1
-  maxhp: 200000
+  maxhp: 500000
   weaponLevel: 0
-  hp: 200000
-  attackPower: 80
+  hp: 500000
+  attackPower: 160
   criChance: 20
-  criDamage: 130
+  criDamage: 150
   exp: 0
   ONPlayer: 0
   userGold: 0
@@ -22957,7 +22978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sm: {fileID: 1060706397603959068}
-  atkPer: 20
+  atkPer: 60
   player: {fileID: 0}
 --- !u!4 &3595942068232298732
 Transform:
@@ -31507,7 +31528,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 20, y: 0.5, z: 20}
+  m_Size: {x: 30, y: 0.5, z: 30}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &8851260851117666969
 Transform:
