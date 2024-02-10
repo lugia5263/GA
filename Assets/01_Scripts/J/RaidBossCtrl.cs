@@ -448,6 +448,9 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks,IPunObservable
     [PunRPC]
     IEnumerator breakTiming()
     {
+        DownPattern.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        DownPattern.SetActive(false);
         yield return new WaitForSeconds(3f);
         float dista = Vector3.Distance(targetPlayer.position, transform.position);
         if (dista > attakRange)
@@ -459,9 +462,6 @@ public class RaidBossCtrl : MonoBehaviourPunCallbacks,IPunObservable
             raidBoss = RAIDBOSS.ATTACK;
         }
         breakOn = false;
-        DownPattern.SetActive(true);
-        yield return new WaitForSeconds(2f);
-        DownPattern.SetActive(false);
     }
     [PunRPC]
     void Dieing()
