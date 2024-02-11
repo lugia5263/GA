@@ -139,15 +139,12 @@ public class ChaosDungeonMgr : MonoBehaviourPunCallbacks
     {
         if (isBattle == false)
         {
-            Jun_TweenRuntime[] gameObject1 = door[0].GetComponents<Jun_TweenRuntime>();
-            Jun_TweenRuntime[] gameObject2 = door[1].GetComponents<Jun_TweenRuntime>();
             Jun_TweenRuntime[] gameObject3 = door[2].GetComponents<Jun_TweenRuntime>();
             Jun_TweenRuntime[] gameObject4 = door[3].GetComponents<Jun_TweenRuntime>();
             Jun_TweenRuntime[] gameObject5 = door[4].GetComponents<Jun_TweenRuntime>();
             Jun_TweenRuntime[] gameObject6 = door[5].GetComponents<Jun_TweenRuntime>();
             yield return new WaitForSeconds(0.5f);
-            gameObject1[0].Play(); // ´ÝÈ÷±â
-            gameObject2[0].Play(); // ´ÝÈ÷±â
+            
             gameObject3[0].Play(); // ´ÝÈ÷±â
             gameObject4[0].Play(); // ´ÝÈ÷±â
             gameObject5[0].Play(); // ´ÝÈ÷±â
@@ -156,20 +153,17 @@ public class ChaosDungeonMgr : MonoBehaviourPunCallbacks
         }
         else
         {
-            Jun_TweenRuntime[] gameObject1 = door[0].GetComponents<Jun_TweenRuntime>();
-            Jun_TweenRuntime[] gameObject2 = door[1].GetComponents<Jun_TweenRuntime>();
             Jun_TweenRuntime[] gameObject3 = door[2].GetComponents<Jun_TweenRuntime>();
             Jun_TweenRuntime[] gameObject4 = door[3].GetComponents<Jun_TweenRuntime>();
             Jun_TweenRuntime[] gameObject5 = door[4].GetComponents<Jun_TweenRuntime>();
             Jun_TweenRuntime[] gameObject6 = door[5].GetComponents<Jun_TweenRuntime>();
             yield return new WaitForSeconds(0.5f);
 
-            gameObject1[1].Play(); // ¿­·Á¶ó Âü±ú
-            gameObject2[1].Play(); // ¿­·Á¶ó Âü±ú
             gameObject3[1].Play(); // ¿­·Á¶ó Âü±ú
             gameObject4[1].Play(); // ¿­·Á¶ó Âü±ú
             gameObject5[1].Play(); // ¿­·Á¶ó Âü±ú
             gameObject6[1].Play(); // ¿­·Á¶ó Âü±ú
+            isBattle = false;
         }
     }
 
@@ -201,6 +195,7 @@ public class ChaosDungeonMgr : MonoBehaviourPunCallbacks
     {
         dataMgrDontDestroy.DungeonSortIdx = 0;
         dataMgrDontDestroy.playerDie = false;
+
         PhotonNetwork.LeaveRoom();
         SceneManager.LoadScene("DungeonLoadingScene");
     }
