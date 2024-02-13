@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 7423806312415525848}
   - component: {fileID: -8076262145329726173}
   - component: {fileID: -2333520306331739335}
+  - component: {fileID: 6655158466981358678}
+  - component: {fileID: -4568923655710049893}
   m_Layer: 0
   m_Name: SafeBall
   m_TagString: Boss
@@ -121,9 +123,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataMgrDontDestroy: {fileID: 0}
   level: 1
-  maxhp: 4000
+  maxhp: 500
   weaponLevel: 0
-  hp: 4000
+  hp: 500
   attackPower: 0
   criChance: 50
   criDamage: 1.5
@@ -148,3 +150,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SaveZone: {fileID: 6424583148328831481, guid: d2ffbc8b168cdf74a9dbb7c6c1cfdf2f, type: 3}
   Sm: {fileID: -8076262145329726173}
+--- !u!114 &6655158466981358678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4060544494506954394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 1
+  m_UseLocal: 1
+--- !u!114 &-4568923655710049893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4060544494506954394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: -2333520306331739335}
+  - {fileID: 6655158466981358678}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0

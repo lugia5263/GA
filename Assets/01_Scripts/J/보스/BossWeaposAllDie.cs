@@ -15,12 +15,15 @@ public class BossWeaponsAllDie : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (player.isDeshInvincible == true)
-            return;
-
-        if (other.gameObject.CompareTag("Player"))
+        if (player.pv.IsMine)
         {
-            sm.DealDamage(other.GetComponent<StateManager>().gameObject, atkPer);
+            if (player.isDeshInvincible == true)
+                return;
+
+            if (other.gameObject.CompareTag("Player"))
+            {
+                sm.DealDamage(other.GetComponent<StateManager>().gameObject, atkPer);
+            }
         }
     }
 }
