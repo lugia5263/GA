@@ -3,12 +3,44 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - TAZOFX
+  - Potal
+  - HealArea
+  - Weapon
+  - DownSkill
+  - APlayer
+  - enemy
+  - DownPattern
+  - SaveZone
+  - Boss
+  - NomalMonster
+  - EnemyWeapon
+  - TimeSlow
+  - Gold
+  - Exp
+  - Material
+  - Heal
+  - Enemy
+  - StartStage
+  - Golem
+  - NPCQ
+  - NPCA
+  - NPCW
+  - NPCL
+  - NPCC
+  - NPCP
+  - UImgr
+  - NPC
+  - CVC
+  - AM
+  - EnemyHUD
+  - OS
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Post Processing
   - Water
   - UI
   - 
@@ -40,4 +72,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: inven
+    uniqueID: 881205837
     locked: 0
