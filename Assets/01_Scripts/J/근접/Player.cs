@@ -489,8 +489,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             animator.SetTrigger("Down");
             StartCoroutine(DownDelay());
         }
-        if (other.CompareTag("SaveZone"))
-            isDeshInvincible = true;
     }     
 
     IEnumerator DownDelay()
@@ -511,7 +509,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             if (stateManager.hp >= stateManager.maxhp)
                 return;
 
-            stateManager.hp += 5;
+            stateManager.hp += 1;
             hudManager.ChangeUserHUD();
         }
         if (other.CompareTag("NPC"))
@@ -519,6 +517,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             npcAttackStop = true;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+        }
+        if (other.CompareTag("SaveZone"))
+        {
+            isDeshInvincible = true;
         }
     }
 
@@ -552,6 +554,11 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
+        if (other.CompareTag("SaveZone"))
+        {
+            isDeshInvincible = false;
+        }
+
     }
 
 

@@ -14,7 +14,7 @@ public class RewardMgr : MonoBehaviour
     public GameObject itemPrefab;
     public Sprite[] imageList; //0번은 material, 1번은 expPotion, 2번은 gold
     public int DgSortIdx;
-    public int expPotionReward;
+    public int expPotionReward; 
     public int materialReward;
 
     public int goldReward;
@@ -58,7 +58,7 @@ public class RewardMgr : MonoBehaviour
     {
         if(dataMgrDontDestroy.playerDie)
         {
-            movePanel.SetActive(true);
+            movePanel.SetActive(true);  
             defeatPanel.SetActive(true);
         }
     }
@@ -86,8 +86,8 @@ public class RewardMgr : MonoBehaviour
 
     public void ChaosClearReward()
     {
-        expPotionReward = 5;
-        materialReward = 200;
+        expPotionReward = 500;
+        materialReward = 300;
 
         expPotionReward *= dataMgrDontDestroy.dungeonNumIdx;
         materialReward *= dataMgrDontDestroy.dungeonNumIdx;
@@ -97,8 +97,8 @@ public class RewardMgr : MonoBehaviour
 
     public void RaidClearReward()
     {
-        expPotionReward = 10;
-        goldReward = 1000;
+        expPotionReward = 1000;
+        goldReward = 15000;
 
         expPotionReward *= dataMgrDontDestroy.dungeonNumIdx;
         goldReward *= dataMgrDontDestroy.dungeonNumIdx;

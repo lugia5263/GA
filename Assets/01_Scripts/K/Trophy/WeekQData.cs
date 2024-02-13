@@ -29,12 +29,12 @@ public class WeekQData : MonoBehaviour
 
     private void Start()
     {
-        inventoryMgr = GameObject.Find("InventoryMgr").GetComponent<InventoryManager>();
-        imagelist = GameObject.Find("ImageList").GetComponent<ImageList>();
+        //inventoryMgr = GameObject.Find("InventoryMgr").GetComponent<InventoryManager>();
+        //imagelist = GameObject.Find("ImageList").GetComponent<ImageList>();
 
         gameObject.transform.GetChild(2).GetComponent<Text>().text = trophyName;
         gameObject.transform.GetChild(3).GetComponent<Text>().text = goalName;
-        gameObject.transform.GetChild(4).GetComponent<Image>().sprite = imagelist.meterialsImage[rewardItem];
+        //gameObject.transform.GetChild(4).GetComponent<Image>().sprite = imagelist.meterialsImage[rewardItem];
         gameObject.transform.GetChild(5).GetComponent<Text>().text = rewardCount.ToString();
         gameObject.transform.GetChild(6).GetComponent<Text>().text = $"{curGoal} / {goal}";
         getEndBtn = gameObject.transform.GetChild(8).gameObject;

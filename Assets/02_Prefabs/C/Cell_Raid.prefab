@@ -246,6 +246,7 @@ GameObject:
   - component: {fileID: 1570387483705405049}
   - component: {fileID: 4307171971461417340}
   - component: {fileID: -7261197139363392700}
+  - component: {fileID: 4719087404001093034}
   m_Layer: 5
   m_Name: Cell_Raid
   m_TagString: Untagged
@@ -297,14 +298,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8301887, g: 0.3155652, b: 0.08928439, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 485cd2ab0486a8e4aaa55e94ec27c6b6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5d59dddd519aa99409c6e6fcd27dfb2d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -370,6 +371,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4719087404001093034}
+        m_TargetAssemblyTypeName: ObjSound, Assembly-CSharp
+        m_MethodName: BtnSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-7261197139363392700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,6 +404,37 @@ MonoBehaviour:
   dungeonNameTxt: {fileID: 0}
   difficultTxt: {fileID: 0}
   discriptionTxt: {fileID: 0}
+--- !u!114 &4719087404001093034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6226444408516719881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d036e4551422a7a4eb1984a9720154bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  os: {fileID: 0}
+  btnSound: {fileID: 8300000, guid: 93873ba005ba08d458453d67ffaa878c, type: 3}
+  aP_qSound: {fileID: 0}
+  aP_eSound: {fileID: 0}
+  aP_rSound: {fileID: 0}
+  aP_normalAtkSound: {fileID: 0}
+  sP_qSound: {fileID: 0}
+  sP_eSound: {fileID: 0}
+  sP_rSound: {fileID: 0}
+  sP_normalAtkSound: {fileID: 0}
+  mP_qSound: {fileID: 0}
+  mP_eSound: {fileID: 0}
+  mP_rSound: {fileID: 0}
+  mP_normalAtkSound: {fileID: 0}
+  bossFire: {fileID: 0}
+  swordPattern: {fileID: 0}
+  healthUpPattern: {fileID: 0}
+  spinPattern: {fileID: 0}
+  groundCrush: {fileID: 0}
 --- !u!1 &7557032397941395251
 GameObject:
   m_ObjectHideFlags: 0

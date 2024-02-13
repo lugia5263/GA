@@ -37,7 +37,8 @@ public class DungeonLoadManager : MonoBehaviourPunCallbacks
         }
 
         roomName.text = $"{CurDunGeonInfoMaker()}  {CurDunGeonLevelMaker()}";
-
+        if (dataMgrDontDestroy.DungeonSortIdx == 0)
+            roomName.text = "마을로 돌아가는 중입니다 . . .";
  
 
     }
@@ -176,7 +177,7 @@ public class DungeonLoadManager : MonoBehaviourPunCallbacks
 
         // 룸의 속성 정의
         RoomOptions ro = new RoomOptions();
-        ro.MaxPlayers = 3;     // 룸에 입장할 수 있는 최대 접속자 수
+        ro.MaxPlayers = 4;     // 룸에 입장할 수 있는 최대 접속자 수
         ro.IsOpen = true;       // 룸의 오픈 여부
         ro.IsVisible = true;    // 로비에서 룸 목록에 노출시킬 여부
 

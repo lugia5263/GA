@@ -1771,7 +1771,6 @@ GameObject:
   - component: {fileID: 2719020260001729072}
   - component: {fileID: 6294311814710889917}
   - component: {fileID: 5567452353469448382}
-  - component: {fileID: -3173376988287567286}
   m_Layer: 0
   m_Name: TTboss
   m_TagString: Boss
@@ -2077,12 +2076,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataMgrDontDestroy: {fileID: 0}
   level: 1
-  maxhp: 20000
+  maxhp: 15000
   weaponLevel: 0
-  hp: 20000
-  attackPower: 30
-  criChance: 35
-  criDamage: 130
+  hp: 15000
+  attackPower: 20
+  criChance: 28
+  criDamage: 120
   exp: 0
   ONPlayer: 0
   userGold: 0
@@ -2090,22 +2089,6 @@ MonoBehaviour:
   userExpPotion: 0
   hudManager: {fileID: 0}
   pv: {fileID: 0}
---- !u!114 &-3173376988287567286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2542026107897127785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5e68bc5a07c37a45a1eb5d5e20f544b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stateManager: {fileID: 0}
-  HpSlider: {fileID: 0}
-  HpText: {fileID: 0}
-  DHpBar: {fileID: 0}
 --- !u!1 &2553146903761872142
 GameObject:
   m_ObjectHideFlags: 0
@@ -6802,7 +6785,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sm: {fileID: 5567452353469448382}
-  atkPer: 123
+  atkPer: 80
   player: {fileID: 0}
 --- !u!54 &2728713104683872261
 Rigidbody:
@@ -6863,6 +6846,10 @@ PrefabInstance:
       propertyPath: looping
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4245480918620153635, guid: 666caa110d61694448b721b5d9f915c1, type: 3}
+      propertyPath: sm
+      value: 
+      objectReference: {fileID: 5567452353469448382}
     - target: {fileID: 6358566156498434482, guid: 666caa110d61694448b721b5d9f915c1, type: 3}
       propertyPath: m_LocalPosition.y
       value: -6.61
@@ -7100,7 +7087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sm: {fileID: 5567452353469448382}
-  atkPer: 123
+  atkPer: 80
   player: {fileID: 0}
 --- !u!54 &325599327161041527
 Rigidbody:
@@ -7268,7 +7255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sm: {fileID: 5567452353469448382}
-  atkPer: 123
+  atkPer: 80
   player: {fileID: 0}
 --- !u!54 &5305299757843077839
 Rigidbody:
@@ -7422,7 +7409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sm: {fileID: 5567452353469448382}
-  atkPer: 123
+  atkPer: 80
   player: {fileID: 0}
 --- !u!54 &7484759389888596370
 Rigidbody:

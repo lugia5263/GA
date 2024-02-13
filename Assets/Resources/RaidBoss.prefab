@@ -6956,6 +6956,7 @@ GameObject:
   - component: {fileID: 2104592536116756750}
   - component: {fileID: 7936682812442219962}
   - component: {fileID: 2720430316280853193}
+  - component: {fileID: 7503035408322504622}
   m_Layer: 0
   m_Name: RaidBoss
   m_TagString: Boss
@@ -7048,6 +7049,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionRadius: 10
   playerTag: Player
+  neM1area: {fileID: 8821188965738105768}
+  prefabs:
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  - {fileID: 7841723335360785396, guid: c64eef41d416c7549bf9f56634781efe, type: 3}
+  nem2Area: {fileID: 8662998407160962646, guid: b81dcfabb7a8bb74593860eaaff61d5e, type: 3}
+  safeZoneBall: {fileID: 4060544494506954394, guid: e333b43aa630554419d6a4c41bbde5c8, type: 3}
+  patternTime: 0
+  nem2PatternTime: 0
   speed: 2.5
   rotSpeed: 5
   range: 10
@@ -7062,6 +7089,7 @@ MonoBehaviour:
   player: {fileID: 0}
   pv: {fileID: 2720430316280853193}
   pav: {fileID: 0}
+  hud: {fileID: 0}
   p1: 0
   p2: 0
   p3: 0
@@ -7110,6 +7138,7 @@ MonoBehaviour:
   - {fileID: 5309087038445080835, guid: bee19df330eb5254b962757f47b7ec55, type: 3}
   - {fileID: 5309087038445080835, guid: bee19df330eb5254b962757f47b7ec55, type: 3}
   - {fileID: 5309087038445080835, guid: bee19df330eb5254b962757f47b7ec55, type: 3}
+  nearbyPlayer: []
   allDownArea: {fileID: 8821188965738105768}
   page1: 0
   page1check: 76
@@ -7164,12 +7193,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataMgrDontDestroy: {fileID: 0}
   level: 1
-  maxhp: 10000
+  maxhp: 200000
   weaponLevel: 0
-  hp: 10000
-  attackPower: 10
-  criChance: 50
-  criDamage: 1.5
+  hp: 200000
+  attackPower: 80
+  criChance: 20
+  criDamage: 130
   exp: 0
   ONPlayer: 0
   userGold: 0
@@ -7278,6 +7307,37 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &7503035408322504622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8620877533986100761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d036e4551422a7a4eb1984a9720154bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  os: {fileID: 0}
+  btnSound: {fileID: 0}
+  aP_qSound: {fileID: 0}
+  aP_eSound: {fileID: 0}
+  aP_rSound: {fileID: 0}
+  aP_normalAtkSound: {fileID: 0}
+  sP_qSound: {fileID: 0}
+  sP_eSound: {fileID: 0}
+  sP_rSound: {fileID: 0}
+  sP_normalAtkSound: {fileID: 0}
+  mP_qSound: {fileID: 0}
+  mP_eSound: {fileID: 0}
+  mP_rSound: {fileID: 0}
+  mP_normalAtkSound: {fileID: 0}
+  bossFire: {fileID: 8300000, guid: 69cd04a32c6a1764c8e8284b90134a8c, type: 3}
+  swordPattern: {fileID: 8300000, guid: b957c1fc7ea3a2a44b95d1908a0b2d0b, type: 3}
+  healthUpPattern: {fileID: 8300000, guid: 8bc2c6918c73f414c8db1d62178eed44, type: 3}
+  spinPattern: {fileID: 8300000, guid: 16bda0b136a5c424199b2d13b6cde782, type: 3}
+  groundCrush: {fileID: 0}
 --- !u!1 &8628034541666123030
 GameObject:
   m_ObjectHideFlags: 0
